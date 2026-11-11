@@ -133,3 +133,18 @@ def test_streaming_reads_server_sent_events():
     assert seen == ["Ohm", "Ohms law"]
     assert result.text == "Ohms law" and result.output_tokens == 3 and result.input_tokens == 12
     assert result.extra["first_token_s"] is not None
+
+
+def test_speech_term_correction_is_conservative():
+    from src.voice.term_correction import correct_terms
+    vocab = {"hohmann transfer orbit": "Hohmann transfer orbit", "backpropagation": "Backpropagation",
+             "applications of artificial intelligence": "Applications of artificial intelligence",
+             "neural network": "Neural network", "rankine cycle": "Rankine cycle"}
+    fixed, changes = correct_terms("What is a Homan transfer orbit?", vocab)
+    assert fixed == "What is a Hohmann transfer orbit?" and changes == [("Homan transfer orbit", "Hohmann transfer orbit")]
+    assert correct_terms("Explain back propagation in neural networks.", vocab)[0] == \
+        "Explain backpropagation in neural networks."          # joined; plural and case kept
+    # Small words differ ("in" vs "of"): the student's words are not changed.
+    assert correct_terms("its application in artificial intelligence", vocab)[1] == []
+    assert correct_terms("What is the base of a transistor?", vocab)[1] == []
+    assert correct_terms("Explain the Rankine cycle.", vocab)[1] == []

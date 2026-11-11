@@ -170,6 +170,8 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 if "voice_pending" not in st.session_state:
     st.session_state.voice_pending = False
+if "voice_corrections" not in st.session_state:
+    st.session_state.voice_corrections = []
 
 status = system_status()
 
@@ -192,8 +194,17 @@ def warm_up_models():
     return True
 
 
+@st.cache_resource(show_spinner=False)
+def warm_up_speech():
+    """Load Whisper in the background so the first voice question is not slowed down."""
+    threading.Thread(target=get_recognizer()._load, daemon=True).start()
+    return True
+
+
 if status["llm"][0]:
     warm_up_models()
+if status["asr"]:
+    warm_up_speech()
 
 
 # ------------------------------------------------------------------ sidebar
@@ -386,8 +397,10 @@ for index, message in enumerate(st.session_state.messages):
 # ------------------------------------------------------------------- input
 
 if st.session_state.voice_pending:
-    st.info("Check the transcript in the box below, correct it if needed, then send.",
-            icon=":material/mic:")
+    fixes = st.session_state.voice_corrections
+    st.info("Check the transcript in the box below, correct it if needed, then send."
+            + ("  \nTechnical terms corrected: " + ", ".join(f"*{a}* → **{b}**" for a, b in fixes)
+               if fixes else ""), icon=":material/mic:")
 
 prompt = st.chat_input(
     "Ask an academic question...",
@@ -432,6 +445,7 @@ if prompt:
             st.warning("No speech was detected. Please try again.")
             st.stop()
         st.session_state.chat = transcript.text
+        st.session_state.voice_corrections = transcript.corrections
         st.session_state.voice_pending = True
         st.rerun()
 

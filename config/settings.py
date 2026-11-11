@@ -84,6 +84,9 @@ NLI_MODEL = _env("EDUROUTE_NLI_MODEL", "")
 
 # Voice
 WHISPER_MODEL_SIZE = _env("EDUROUTE_WHISPER_MODEL", "base.en")
+# Beam 1 was as accurate as beam 5 and faster on the synthetic test set (Nov 2026).
+WHISPER_BEAM_SIZE = int(_env("EDUROUTE_WHISPER_BEAM", "1"))
+WHISPER_TERM_CORRECTION = _env("EDUROUTE_WHISPER_TERM_CORRECTION", "true").lower() == "true"
 TTS_VOICE = _env("EDUROUTE_TTS_VOICE", "en-IN-NeerjaNeural")
 MAX_AUDIO_BYTES = 25 * 1024 * 1024
 
