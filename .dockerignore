@@ -1,0 +1,15 @@
+venv/
+.venv/
+.env
+**/__pycache__/
+.pytest_cache/
+outputs/
+run/
+data/raw/
+data/processed/
+models/
+colab/*.zip
+evaluation/results/
+evaluation/voice_eval/
+*.bak
+.git/

@@ -616,6 +616,22 @@ The labels were left unchanged, since editing labels after seeing results would 
 
 Tests: 79 unit tests plus 1 app test, all passing.
 
+## 9c. NVIDIA GPU server kit (11 Nov 2026)
+
+`deploy/` holds everything needed to run on the team's NVIDIA servers (guide: `docs/GPU_SERVER.md`):
+
+- **Packaging:** the committed project ships as one ~85 MB package. Secrets and personal data are git-ignored, so they cannot be included.
+- **Pre-flight:** a read-only check of the server.
+- **Setup:** no root needed. It installs CUDA PyTorch matched to the driver, Ollama in user space, qwen2.5:3b, qwen2.5vl:3b and qwen2.5vl:7b; the NLI check and Whisper run on the GPU.
+- **Services:** start and stop the app on 127.0.0.1 only, reached through an SSH tunnel.
+- **Evaluations:** one script runs them all (tests, retrieval, router, the **full** system benchmark, images with 3B vs 7B, voice, claim export) and returns a zip. The system benchmark resumes after an interruption.
+- **Docker:** an alternative route.
+- **Code changes:**
+  - Whisper's device is now a setting (`EDUROUTE_WHISPER_DEVICE`, `EDUROUTE_WHISPER_COMPUTE_TYPE`).
+  - `pymupdf` was missing from `requirements.txt`, so PDF uploads would have failed on a fresh install. It has been added.
+
+Status: ready. Waiting for server access.
+
 ## 10. What remains (report §25)
 
 Everything below is done in the **evaluation studio** (`streamlit run app.py`,
@@ -631,4 +647,5 @@ their own name, and the files are saved in the formats the analysis scripts read
 | Confirm or correct each subject; the AICTE match is shown (§7.5) | Review syllabus | Team; branches without an AICTE reference need the university syllabus | – |
 | Push to GitHub and create the Streamlit app | – | Team (`docs/DEPLOYMENT.md`, ~20 min) | – |
 | Corpus update for gaps found (AICTE core gaps; *Phase-locked loop*); rebuild the index on a GPU | – | Team decides, then me | – |
-| Optional: full 130-question benchmark; a larger NLI model or an LLM judge for reasoning errors | – | – | – |
+| Full 130-question benchmark and the 3B vs 7B image comparison on the GPU server | – | Me, once server access is given | `bash deploy/gpu/run_evaluations.sh` |
+| Optional: a larger NLI model or an LLM judge for reasoning errors | – | – | – |

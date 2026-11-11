@@ -1,0 +1,56 @@
+# Docker route (needs Docker + NVIDIA Container Toolkit). From the project root:
+#   cp deploy/gpu/server.env .env      (then set the two URLs below in .env)
+#       EDUROUTE_LLM_BASE_URL=http://ollama:11434/v1
+#       EDUROUTE_VISION_BASE_URL=http://ollama:11434/v1
+#   docker compose -f deploy/gpu/docker-compose.yml up -d --build
+#   docker compose -f deploy/gpu/docker-compose.yml exec ollama ollama pull qwen2.5:3b
+#   (same for qwen2.5vl:3b and qwen2.5vl:7b)
+# Evaluations inside the app container:
+#   docker compose -f deploy/gpu/docker-compose.yml exec app python -m evaluation.run_system_benchmark --seed 7
+# Both ports bind to 127.0.0.1 only: reach the app through an SSH tunnel.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    environment:
+      OLLAMA_CONTEXT_LENGTH: "8192"
+      OLLAMA_MAX_LOADED_MODELS: "3"
+      OLLAMA_NUM_PARALLEL: "2"
+      OLLAMA_KEEP_ALIVE: "30m"
+    volumes:
+      - ollama_models:/root/.ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all          # or device_ids: ["1"] on a shared server
+              capabilities: [gpu]
+
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/gpu/Dockerfile
+    restart: unless-stopped
+    env_file: ../../.env
+    depends_on: [ollama]
+    volumes:
+      - hf_cache:/models/hf
+      - ../../evaluation/results:/app/evaluation/results
+      - ../../outputs:/app/outputs
+    ports:
+      - "127.0.0.1:8501:8501"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  ollama_models:
+  hf_cache:

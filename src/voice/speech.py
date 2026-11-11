@@ -106,7 +106,8 @@ class SpeechRecognizer:
                 raise VoiceUnavailableError(
                     "Speech recognition needs faster-whisper: pip install faster-whisper"
                 ) from error
-            self._model = WhisperModel(self.model_size, device="cpu", compute_type="int8")
+            self._model = WhisperModel(self.model_size, device=settings.WHISPER_DEVICE,
+                                       compute_type=settings.WHISPER_COMPUTE_TYPE)
         return self._model
 
     @staticmethod

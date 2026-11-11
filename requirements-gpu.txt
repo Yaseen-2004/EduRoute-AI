@@ -1,0 +1,31 @@
+# EduRoute AI on an NVIDIA GPU server (Linux). Installed by deploy/gpu/setup.sh.
+# Same packages as requirements.txt, but with CUDA PyTorch instead of the
+# CPU-only build, and the test runner so the server can check itself.
+# The CUDA wheel index is chosen by setup.sh from the driver version
+# (TORCH_INDEX, default cu124); it is not pinned here.
+
+streamlit>=1.66,<1.67
+sentence-transformers>=5.0
+torch>=2.5
+faiss-cpu>=1.8
+numpy>=1.26
+pandas>=2.2
+Pillow>=10.0
+requests>=2.31
+python-dotenv>=1.0
+truststore>=0.9
+
+# Voice: faster-whisper runs on the GPU through CTranslate2 (needs cuDNN 9 and
+# cuBLAS 12, provided by the nvidia-* wheels below).
+faster-whisper>=1.1
+av>=12.0
+edge-tts>=6.1
+gTTS>=2.5
+nvidia-cublas-cu12
+nvidia-cudnn-cu12>=9,<10
+
+# Uploaded PDFs in the app (.docx is read with the standard library)
+pymupdf>=1.24
+
+# Self-check on the server
+pytest>=8.0

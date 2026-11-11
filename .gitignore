@@ -27,3 +27,8 @@ data/processed/wikipedia/*_chunks_*.jsonl
 
 # Backups written by src/data_collection/extend_corpus.py
 *.bak
+
+# GPU server: package, runtime files and per-server overrides
+deploy/*.tar.gz
+run/
+deploy/gpu/local.conf
