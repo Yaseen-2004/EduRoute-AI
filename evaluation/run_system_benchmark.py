@@ -99,6 +99,7 @@ def summarise(rows):
         "answers_with_citations": round(sum(r["cited"] > 0 for r in ok) / len(ok), 3),
         "answers_with_contradicted_claims": round(sum(r.get("contradicted_claims", 0) > 0 for r in ok) / len(ok), 3),
         "answers_with_unconfirmed_figures": round(sum(r.get("figure_warnings", 0) > 0 for r in ok) / len(ok), 3),
+        "answers_with_arithmetic_issues": round(sum(r.get("arithmetic_issues", 0) > 0 for r in ok) / len(ok), 3),
         "workflow_distribution": workflows,
     }
 
@@ -175,6 +176,7 @@ def main():
                     unsupported_claim_rate=v.get("unsupported_claim_rate"),
                     contradicted_claims=sum(c.get("nli") == "contradiction" for c in v.get("claims", [])),
                     figure_warnings=sum(bool(c.get("missing_numbers")) for c in v.get("claims", [])),
+                    arithmetic_issues=len(r.arithmetic_issues),
                     cited=len(r.cited_sources), invalid_citations=len(r.invalid_citations),
                     stages_ms=r.telemetry["stages_ms"],
                 )

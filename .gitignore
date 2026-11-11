@@ -24,3 +24,6 @@ evaluation/results/grading_key_*.json
 
 # Intermediate chunk files (their content is in vector_store/*_metadata.jsonl)
 data/processed/wikipedia/*_chunks_*.jsonl
+
+# Backups written by src/data_collection/extend_corpus.py
+*.bak

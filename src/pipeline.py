@@ -32,6 +32,7 @@ from src.router.query_analysis import depends_on_image  # noqa: F401  (re-export
 from src.router.router import AdaptiveRouter
 from src.utils.io import append_jsonl
 from src.verification.evidence_cache import EvidenceCache
+from src.verification.arithmetic import check_answer as check_arithmetic
 from src.verification.nli import build_nli_checker
 from src.verification.verifier import AnswerVerifier, verification_triggers
 from src.vision.analyzer import VisionAnalyzer
@@ -84,6 +85,7 @@ class EduRouteResponse:
     invalid_citations: list = field(default_factory=list)
     visual_description: str | None = None
     diagram_dot: str | None = None      # Graphviz flowchart of the answer, when one was drawn
+    arithmetic_issues: list = field(default_factory=list)   # calculations that do not work out
     verification: dict | None = None
     decision: dict | None = None
     notices: list = field(default_factory=list)
@@ -375,6 +377,26 @@ class EduRoutePipeline:
         if passages and INSUFFICIENT_EVIDENCE.search(answer):
             notices.append("The knowledge base did not contain enough information for a full answer.")
 
+        # 7b. Arithmetic: recompute what the answer computes (every workflow; no model needed).
+        # One revision call if a calculation is wrong and none has been made yet.
+        with _Timer(telemetry, "arithmetic"):
+            arithmetic = check_arithmetic(answer)
+        already_revised = bool(verification and verification.get("revised"))
+        if arithmetic and result.is_model_output and not already_revised:
+            fixes = [f"This calculation is wrong: {i.describe()}. Recompute it step by step."
+                     for i in arithmetic[:3]]
+            messages = build_revision_messages(question, answer, passages, fixes, answer_mode)
+            with _Timer(telemetry, "revision"):
+                revised = self._generate(messages, telemetry, answer_mode, passages, question, notices)
+            if revised.is_model_output and revised.text:
+                answer = strip_prompt_echo(revised.text)
+                arithmetic = check_arithmetic(answer)
+                if verification is not None:
+                    verification["arithmetic_revised"] = True
+        if arithmetic:
+            notices.append("A calculation in this answer does not work out, so check it: "
+                           + "; ".join(i.describe() for i in arithmetic[:3]))
+
         # 8. Workflow diagram of the final answer, when asked for or for 10-mark processes
         diagram = None
         intent = (decision.analysis or {}).get("intent")
@@ -399,6 +421,7 @@ class EduRoutePipeline:
                                 visual_description=visual_description,
                                 verification=verification, is_model_output=result.is_model_output)
         response.diagram_dot = diagram
+        response.arithmetic_issues = [i.describe() for i in arithmetic]
         return response
 
     def _finish(self, question, answer, answer_mode, decision, workflow, telemetry, notices,

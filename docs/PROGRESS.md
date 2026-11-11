@@ -587,6 +587,35 @@ Tests: 65 unit tests plus 1 app test, all passing.
 - Removed unused downloads: a rejected NLI model, partial model files and the Ollama installer. This brought C: back to 4.7 GB free.
 - Restarting the laptop lets Windows shrink the page file.
 
+## 9b. Gap filling and arithmetic checking (11 Nov 2026)
+
+**Knowledge-base gaps filled** (`src/data_collection/extend_corpus.py`):
+- **Inputs:** the 64 AICTE core courses missing from the catalogue (§7.5), plus two gaps found in evaluation: *Phase-locked loop* (router held-out miss H09) and *Bayes' theorem* (absent from the speech term vocabulary).
+- **Resolution:** the gaps went through the same audited resolver as the main corpus. A first dry run matched compound course titles to journals, a company and unrelated pages, so authoritative hints were added for 23 titles.
+- **Result:** 66 of 66 topics resolved; 15 already covered; **37 new articles, 800 new passages**. Audit file: `data/metadata/engineering_supplement_v1.csv`.
+- **Index:** only the new passages were embedded (87 s, against 3.7 h for a full rebuild) and appended. The index now holds **36,367 passages** (before: 35,567). Backups are kept as `*.bak`.
+
+| Measure | Before | After |
+|---|---|---|
+| Router held-out accuracy (τ unchanged) | 96.4% (29/30 in-domain kept) | **98.2%** (30/30 kept; phase-locked loop now covered) |
+| Engineering retrieval S@1 / MRR | 0.90 / 0.950 | 0.88 / 0.940 |
+| AIML retrieval S@1 / S@5 / MRR | 0.90 / 0.98 / 0.939 | 0.88 / 0.98 / 0.924 |
+
+Only two questions changed rank, and in both a new, relevant article now ranks first that the original labels do not list:
+- **E04** ("TCP/IP protocol suite") now returns *Computer network* first.
+- **R06** ("Explain Bayes theorem") now returns the article *Bayes' theorem* itself.
+
+The labels were left unchanged, since editing labels after seeing results would bias the benchmark. The small drop is therefore a labelling artefact, and the team's label review (§10) should decide on it.
+
+**Arithmetic and unit check** (`src/verification/arithmetic.py`). This addresses the verifier's documented blind spot: a calculation with plausible-looking figures was never checked.
+- **Equations:** every written equation is recomputed: each side that is pure arithmetic with known units (prefixes converted: 400 mA = 0.4 A) must match the next. Sides containing variables are skipped, never guessed.
+- **Period and frequency:** stated in the same sentence, they must satisfy f × T ≈ 1.
+- **Scope:** it runs on every answer, whatever the route, in microseconds.
+- **Action:** a wrong calculation triggers one revision call (unless one was already made); anything still wrong is shown to the student as a warning. The benchmark records `answers_with_arithmetic_issues`.
+- **Tests:** on 13 test statements it catches the three known errors: 12 V / 30 Ω = 0.5 A; "20 ms → 1 Hz"; and the 6-pole motor's 120 × 50 / 6 = 1500 RPM (it is 1,000). It stays silent on correct working, LaTeX, rounding and variable names.
+
+Tests: 79 unit tests plus 1 app test, all passing.
+
 ## 10. What remains (report §25)
 
 Everything below is done in the **evaluation studio** (`streamlit run app.py`,

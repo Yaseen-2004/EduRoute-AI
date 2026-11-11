@@ -1,0 +1,591 @@
+{
+    "generated_at": "2026-11-11T22:19:04",
+    "index": "engineering_v1",
+    "threshold": 0.4914,
+    "calibration_source": "router_calibration_engineering_v1.json",
+    "in_domain_kept": 1.0,
+    "out_of_domain_rejected_easy": 1.0,
+    "out_of_domain_rejected_hard": 0.938,
+    "accuracy_excluding_borderline": 0.982,
+    "missed_in_domain": [],
+    "false_accepts": [
+        [
+            "N22",
+            "How do vaccines train the immune system?",
+            0.6076,
+            "Vaccine"
+        ]
+    ],
+    "borderline": [
+        [
+            "N27",
+            "What is the Pythagorean theorem's proof by similar triangles?",
+            0.4893,
+            false,
+            "Cosine similarity"
+        ],
+        [
+            "N28",
+            "What causes earthquakes along tectonic plate boundaries?",
+            0.5427,
+            true,
+            "Tsunami"
+        ],
+        [
+            "N29",
+            "How do bees communicate the location of flowers?",
+            0.4403,
+            false,
+            "Nervous system"
+        ],
+        [
+            "N30",
+            "What is the greenhouse effect?",
+            0.7431,
+            true,
+            "Heat transfer"
+        ]
+    ],
+    "rows": [
+        {
+            "id": "H01",
+            "expected": "in",
+            "branch": "CSE",
+            "question": "Why is quicksort faster than bubble sort on average?",
+            "top_score": 0.7094,
+            "accepted": true,
+            "top_article": "Sorting algorithm"
+        },
+        {
+            "id": "H02",
+            "expected": "in",
+            "branch": "CSE",
+            "question": "What does a compiler's parser do?",
+            "top_score": 0.7871,
+            "accepted": true,
+            "top_article": "Parsing"
+        },
+        {
+            "id": "H03",
+            "expected": "in",
+            "branch": "AIML",
+            "question": "How does dropout reduce overfitting in neural networks?",
+            "top_score": 0.739,
+            "accepted": true,
+            "top_article": "Convolutional neural network"
+        },
+        {
+            "id": "H04",
+            "expected": "in",
+            "branch": "AIML",
+            "question": "what is k means clustering",
+            "top_score": 0.7118,
+            "accepted": true,
+            "top_article": "K-means clustering"
+        },
+        {
+            "id": "H05",
+            "expected": "in",
+            "branch": "DS",
+            "question": "When should I use a box plot to describe data?",
+            "top_score": 0.7251,
+            "accepted": true,
+            "top_article": "Box plot"
+        },
+        {
+            "id": "H06",
+            "expected": "in",
+            "branch": "IT",
+            "question": "Explain the difference between HTTP and HTTPS.",
+            "top_score": 0.54,
+            "accepted": true,
+            "top_article": "Transport Layer Security"
+        },
+        {
+            "id": "H07",
+            "expected": "in",
+            "branch": "CYBER",
+            "question": "What is a man-in-the-middle attack?",
+            "top_score": 0.5197,
+            "accepted": true,
+            "top_article": "Computer security"
+        },
+        {
+            "id": "H08",
+            "expected": "in",
+            "branch": "ECE",
+            "question": "How does a PN junction diode rectify current?",
+            "top_score": 0.7269,
+            "accepted": true,
+            "top_article": "Diode"
+        },
+        {
+            "id": "H09",
+            "expected": "in",
+            "branch": "ECE",
+            "question": "What is the purpose of a phase-locked loop?",
+            "top_score": 0.7007,
+            "accepted": true,
+            "top_article": "Phase-locked loop"
+        },
+        {
+            "id": "H10",
+            "expected": "in",
+            "branch": "EEE",
+            "question": "Why are transformers rated in kVA rather than kW?",
+            "top_score": 0.6125,
+            "accepted": true,
+            "top_article": "Power factor"
+        },
+        {
+            "id": "H11",
+            "expected": "in",
+            "branch": "EE",
+            "question": "What is power factor correction?",
+            "top_score": 0.7278,
+            "accepted": true,
+            "top_article": "Power factor"
+        },
+        {
+            "id": "H12",
+            "expected": "in",
+            "branch": "ME",
+            "question": "Explain the four strokes of a petrol engine.",
+            "top_score": 0.6833,
+            "accepted": true,
+            "top_article": "Four-stroke engine"
+        },
+        {
+            "id": "H13",
+            "expected": "in",
+            "branch": "ME",
+            "question": "What is the difference between stress and strain?",
+            "top_score": 0.7181,
+            "accepted": true,
+            "top_article": "Stress (mechanics)"
+        },
+        {
+            "id": "H14",
+            "expected": "in",
+            "branch": "CE",
+            "question": "How is the slump test used to check concrete workability?",
+            "top_score": 0.7843,
+            "accepted": true,
+            "top_article": "Concrete"
+        },
+        {
+            "id": "H15",
+            "expected": "in",
+            "branch": "CE",
+            "question": "What is a cantilever beam?",
+            "top_score": 0.6699,
+            "accepted": true,
+            "top_article": "Beam (structure)"
+        },
+        {
+            "id": "H16",
+            "expected": "in",
+            "branch": "CHE",
+            "question": "What does a heat exchanger do in a chemical plant?",
+            "top_score": 0.6417,
+            "accepted": true,
+            "top_article": "Heat exchanger"
+        },
+        {
+            "id": "H17",
+            "expected": "in",
+            "branch": "BT",
+            "question": "What are restriction enzymes used for in genetic engineering?",
+            "top_score": 0.7007,
+            "accepted": true,
+            "top_article": "Genetic engineering"
+        },
+        {
+            "id": "H18",
+            "expected": "in",
+            "branch": "BME",
+            "question": "How does a pacemaker regulate the heartbeat?",
+            "top_score": 0.6873,
+            "accepted": true,
+            "top_article": "Pacemaker"
+        },
+        {
+            "id": "H19",
+            "expected": "in",
+            "branch": "AE",
+            "question": "What is a jet engine's bypass ratio?",
+            "top_score": 0.6487,
+            "accepted": true,
+            "top_article": "Turbofan"
+        },
+        {
+            "id": "H20",
+            "expected": "in",
+            "branch": "AUTO",
+            "question": "How does a differential let car wheels turn at different speeds?",
+            "top_score": 0.7174,
+            "accepted": true,
+            "top_article": "Differential (mechanical device)"
+        },
+        {
+            "id": "H21",
+            "expected": "in",
+            "branch": "MCT",
+            "question": "What is a stepper motor and where is it used?",
+            "top_score": 0.7137,
+            "accepted": true,
+            "top_article": "Stepper motor"
+        },
+        {
+            "id": "H22",
+            "expected": "in",
+            "branch": "ROBO",
+            "question": "What are the degrees of freedom of a robot arm?",
+            "top_score": 0.7307,
+            "accepted": true,
+            "top_article": "Degrees of freedom (mechanics)"
+        },
+        {
+            "id": "H23",
+            "expected": "in",
+            "branch": "ICE",
+            "question": "What is a PID controller?",
+            "top_score": 0.7622,
+            "accepted": true,
+            "top_article": "PID controller"
+        },
+        {
+            "id": "H24",
+            "expected": "in",
+            "branch": "AGRI",
+            "question": "What is soil erosion and how can farmers reduce it?",
+            "top_score": 0.7724,
+            "accepted": true,
+            "top_article": "Soil erosion"
+        },
+        {
+            "id": "H25",
+            "expected": "in",
+            "branch": "MINING",
+            "question": "Why is ventilation important in underground mines?",
+            "top_score": 0.8087,
+            "accepted": true,
+            "top_article": "Underground mine ventilation"
+        },
+        {
+            "id": "H26",
+            "expected": "in",
+            "branch": "PETRO",
+            "question": "What is crude oil refining?",
+            "top_score": 0.7128,
+            "accepted": true,
+            "top_article": "Oil refinery"
+        },
+        {
+            "id": "H27",
+            "expected": "in",
+            "branch": "MARINE",
+            "question": "What does a ship's propeller pitch mean?",
+            "top_score": 0.6179,
+            "accepted": true,
+            "top_article": "Propeller"
+        },
+        {
+            "id": "H28",
+            "expected": "in",
+            "branch": "MET",
+            "question": "What is the iron-carbon phase diagram?",
+            "top_score": 0.7229,
+            "accepted": true,
+            "top_article": "Phase diagram"
+        },
+        {
+            "id": "H29",
+            "expected": "in",
+            "branch": "TEXTILE",
+            "question": "What is the difference between weaving and knitting?",
+            "top_score": 0.7303,
+            "accepted": true,
+            "top_article": "Knitting"
+        },
+        {
+            "id": "H30",
+            "expected": "in",
+            "branch": "COMMON",
+            "question": "Explain Newton's second law with an example.",
+            "top_score": 0.5917,
+            "accepted": true,
+            "top_article": "Force"
+        },
+        {
+            "id": "N01",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "What time does the sun set in Hyderabad today?",
+            "top_score": 0.4288,
+            "accepted": false,
+            "top_article": "Celestial navigation"
+        },
+        {
+            "id": "N02",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "Suggest a name for my new puppy.",
+            "top_score": 0.2796,
+            "accepted": false,
+            "top_article": "Bioethics"
+        },
+        {
+            "id": "N03",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "How do I tie a tie?",
+            "top_score": 0.4106,
+            "accepted": false,
+            "top_article": "Railway track"
+        },
+        {
+            "id": "N04",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "Who is the current captain of the Indian cricket team?",
+            "top_score": 0.3188,
+            "accepted": false,
+            "top_article": "Merchant navy"
+        },
+        {
+            "id": "N05",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "What should I gift my sister for her birthday?",
+            "top_score": 0.213,
+            "accepted": false,
+            "top_article": "E-textiles"
+        },
+        {
+            "id": "N06",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "Translate 'good morning' into Tamil.",
+            "top_score": 0.2815,
+            "accepted": false,
+            "top_article": "Applications of artificial intelligence"
+        },
+        {
+            "id": "N07",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "How do I make dosa batter?",
+            "top_score": 0.407,
+            "accepted": false,
+            "top_article": "Detonator"
+        },
+        {
+            "id": "N08",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "Which festival is celebrated with lamps in India?",
+            "top_score": 0.3617,
+            "accepted": false,
+            "top_article": "Lighting"
+        },
+        {
+            "id": "N09",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "Tell me a joke.",
+            "top_score": 0.2231,
+            "accepted": false,
+            "top_article": "Set theory"
+        },
+        {
+            "id": "N10",
+            "expected": "out",
+            "difficulty": "easy",
+            "question": "What are the lyrics of the national anthem?",
+            "top_score": 0.2156,
+            "accepted": false,
+            "top_article": "Satellite navigation"
+        },
+        {
+            "id": "N11",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What were the main causes of the First World War?",
+            "top_score": 0.3475,
+            "accepted": false,
+            "top_article": "SOLAS Convention"
+        },
+        {
+            "id": "N12",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "Explain the theme of Shakespeare's Macbeth.",
+            "top_score": 0.3574,
+            "accepted": false,
+            "top_article": "Tf–idf"
+        },
+        {
+            "id": "N13",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is the difference between civil law and criminal law?",
+            "top_score": 0.4145,
+            "accepted": false,
+            "top_article": "Smart contract"
+        },
+        {
+            "id": "N14",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "How does the Indian Parliament pass a bill?",
+            "top_score": 0.4579,
+            "accepted": false,
+            "top_article": "Information Technology Act, 2000"
+        },
+        {
+            "id": "N15",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is Keynesian economics?",
+            "top_score": 0.4398,
+            "accepted": false,
+            "top_article": "Mathematical optimization"
+        },
+        {
+            "id": "N16",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is the role of the Reserve Bank of India?",
+            "top_score": 0.4461,
+            "accepted": false,
+            "top_article": "Online banking"
+        },
+        {
+            "id": "N17",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What are the stages of grief in psychology?",
+            "top_score": 0.4758,
+            "accepted": false,
+            "top_article": "Emergency management"
+        },
+        {
+            "id": "N18",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is impressionism in painting?",
+            "top_score": 0.4516,
+            "accepted": false,
+            "top_article": "Deep learning"
+        },
+        {
+            "id": "N19",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "How is a raga structured in Carnatic music?",
+            "top_score": 0.4008,
+            "accepted": false,
+            "top_article": "Large language model"
+        },
+        {
+            "id": "N20",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What did Plato argue in The Republic?",
+            "top_score": 0.3772,
+            "accepted": false,
+            "top_article": "Mechanics"
+        },
+        {
+            "id": "N21",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is the treatment for type 2 diabetes?",
+            "top_score": 0.4402,
+            "accepted": false,
+            "top_article": "Carbohydrate"
+        },
+        {
+            "id": "N22",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "How do vaccines train the immune system?",
+            "top_score": 0.6076,
+            "accepted": true,
+            "top_article": "Vaccine"
+        },
+        {
+            "id": "N23",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What are the rules of English grammar for using articles?",
+            "top_score": 0.4322,
+            "accepted": false,
+            "top_article": "Parsing"
+        },
+        {
+            "id": "N24",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "Explain the causes of the 1857 revolt in India.",
+            "top_score": 0.4088,
+            "accepted": false,
+            "top_article": "Bhopal disaster"
+        },
+        {
+            "id": "N25",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "What is the difference between a sonnet and a haiku?",
+            "top_score": 0.3119,
+            "accepted": false,
+            "top_article": "ImageNet"
+        },
+        {
+            "id": "N26",
+            "expected": "out",
+            "difficulty": "hard",
+            "question": "How does a stock market index like the Sensex work?",
+            "top_score": 0.46,
+            "accepted": false,
+            "top_article": "Database index"
+        },
+        {
+            "id": "N27",
+            "expected": "either",
+            "difficulty": "borderline",
+            "question": "What is the Pythagorean theorem's proof by similar triangles?",
+            "top_score": 0.4893,
+            "accepted": false,
+            "top_article": "Cosine similarity"
+        },
+        {
+            "id": "N28",
+            "expected": "either",
+            "difficulty": "borderline",
+            "question": "What causes earthquakes along tectonic plate boundaries?",
+            "top_score": 0.5427,
+            "accepted": true,
+            "top_article": "Tsunami"
+        },
+        {
+            "id": "N29",
+            "expected": "either",
+            "difficulty": "borderline",
+            "question": "How do bees communicate the location of flowers?",
+            "top_score": 0.4403,
+            "accepted": false,
+            "top_article": "Nervous system"
+        },
+        {
+            "id": "N30",
+            "expected": "either",
+            "difficulty": "borderline",
+            "question": "What is the greenhouse effect?",
+            "top_score": 0.7431,
+            "accepted": true,
+            "top_article": "Heat transfer"
+        }
+    ]
+}
