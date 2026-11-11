@@ -55,7 +55,7 @@ off on the hosted app through the secrets.
    *Manage app → Settings → Secrets*, replace the four `EDUROUTE_*_URL/MODEL`
    lines with the printed ones, and save. The app restarts and reconnects.
 3. In the sidebar, *System status* should now say **Language model – ready**
-   (and **Vision model – ready**). Ask one question to warm up.
+   (and **Image questions – ready**). Ask one question to warm up.
 4. After the demo, stop step 5 of the notebook and disconnect the runtime.
 
 The tunnel URL changes every Colab session, so repeat step 2 each time. Anyone
