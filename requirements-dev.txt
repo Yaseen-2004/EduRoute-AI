@@ -13,3 +13,5 @@ PyMuPDF>=1.24
 pymupdf4llm>=0.0.17
 psutil>=5.9
 pytest>=8.0
+reportlab>=4.0
+pypdf>=4.0
