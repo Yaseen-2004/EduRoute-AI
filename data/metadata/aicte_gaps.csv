@@ -1,0 +1,65 @@
+branch,aicte_course,aicte_branch,best_coverage,document,page
+CSE,Discrete Mathematics,CSE,0.289,ug-cse-2022.pdf,17
+CSE,Machine Learning,CSE,0.294,ug-cse-2022.pdf,18
+DS,Mathematical Foundations,DATA_SCIENCE,0.293,ug-emerging.pdf,22
+DS,Machine Learning,DATA_SCIENCE,0.399,ug-emerging.pdf,22
+IT,Data Structure and Algorithms,CSE,0.378,ug-cse-2022.pdf,17
+IT,Discrete Mathematics,CSE,0.259,ug-cse-2022.pdf,17
+IT,Operating Systems,CSE,0.432,ug-cse-2022.pdf,17
+IT,Design and Analysis of Algorithms,CSE,0.389,ug-cse-2022.pdf,17
+IT,Machine Learning,CSE,0.277,ug-cse-2022.pdf,18
+IT,Theory of Computation,CSE,0.407,ug-cse-2022.pdf,18
+IT,Computer Networks,CSE,0.358,ug-cse-2022.pdf,18
+IT,Compiler Design,CSE,0.399,ug-cse-2022.pdf,18
+IT,Computer Organization and Computer Architecture,CSE,0.393,ug-cse-2022.pdf,129
+IT,Database Management Systems,CSE,0.334,ug-vol1.pdf,321
+IT,Formal Language & Automata Theory,CSE,0.325,ug-vol1.pdf,321
+CYBER,Security in Evolving Technology,CYBER_SECURITY,0.409,ug-emerging.pdf,26
+ECE,Probability and Stochastic Processes,ECE,0.24,ug-vol1.pdf,353
+ECE,Control Systems,ECE,0.397,ug-vol1.pdf,353
+ECE,Computer Network,ECE,0.315,ug-vol1.pdf,353
+EEE,Analog Electronic Circuits,EE,0.404,ug-vol1.pdf,192
+EEE,Electromagnetic Fields,EE,0.291,ug-vol1.pdf,192
+EEE,Signals and Systems,EE,0.329,ug-vol1.pdf,192
+EEE,Microprocessors,EE,0.328,ug-vol1.pdf,193
+EEE,Analog Electronics,EE,0.413,ug-vol1.pdf,197
+EE,Analog Electronic Circuits,EE,0.294,ug-vol1.pdf,192
+EE,Digital Electronics,EE,0.428,ug-vol1.pdf,192
+EE,Signals and Systems,EE,0.354,ug-vol1.pdf,192
+EE,Microprocessors,EE,0.29,ug-vol1.pdf,193
+EE,Analog Electronics,EE,0.288,ug-vol1.pdf,197
+EE,Measurements and Instrumentation,EE,0.192,ug-vol1.pdf,203
+ME,Mechanics of Deformable Solids,ME,0.405,ug-mechanical.pdf,21
+ME,"Mechatronics, Robotics & Control",ME,0.432,ug-mechanical.pdf,21
+ME,Measurements & Metrology,ME,0.316,ug-mechanical.pdf,21
+ME,Product Innovation & Entrepreneurship,ME,0.298,ug-mechanical.pdf,21
+ME,Instrumentation and Control,ME,0.243,ug-vol1.pdf,270
+CE,Robotics and Automation in Civil Engineering,CE,0.318,ug-civil-2024.pdf,7
+CE,Building Planning and Computer- aided Civil Engineering drawing,CE,0.43,ug-civil-2024.pdf,11
+CE,"Engineering Economics, Estimation & Costing 3",CE,0.355,ug-civil-2024.pdf,12
+CE,Disaster Preparedness & Planning Management,CE,0.205,ug-vol1.pdf,67
+CE,"Materials, Testing & Evaluation",CE,0.428,ug-vol1.pdf,67
+CE,"Engineering Economy, Estimation & Costing",CE,0.341,ug-vol1.pdf,67
+CE,Instrumentation & Sensor Technologies for Civil Engineering Applications,CE,0.357,ug-vol1.pdf,70
+CHE,Material and Energy Balance Computations,CHE,0.398,ug-vol2.pdf,24
+CHE,Transport Phenomena,CHE,0.337,ug-vol2.pdf,24
+ROBO,Analog & Digital Electronics,ROBO,0.168,ug-robotics-ai.pdf,18
+ROBO,Wireless Networks,ROBO,0.225,ug-robotics-ai.pdf,18
+ROBO,Machine Learning,ROBO,0.233,ug-robotics-ai.pdf,18
+ROBO,Microcontrollers and its Applications,ROBO,0.285,ug-robotics-ai.pdf,18
+ROBO,Signals and Systems,ROBO,0.279,ug-robotics-ai.pdf,18
+ROBO,"Data Structures, Files and Algorithms",ROBO,0.228,ug-robotics-ai.pdf,18
+ROBO,Theory of Machines & Machine Design,ROBO,0.365,ug-robotics-ai.pdf,18
+ROBO,Industrial Electronics and Power,ROBO,0.174,ug-robotics-ai.pdf,18
+ROBO,Advances in Robotics and Artificial Intelligence,ROBO,0.448,ug-robotics-ai.pdf,18
+ROBO,Hydraulic & Pneumatic Drives for Robots,ROBO,0.405,ug-robotics-ai.pdf,18
+ROBO,Embedded Systems Design,ROBO,0.214,ug-robotics-ai.pdf,18
+ROBO,Data Science,ROBO,0.299,ug-robotics-ai.pdf,18
+ROBO,Knowledge Engineering and Expert System,ROBO,0.258,ug-robotics-ai.pdf,18
+ROBO,Smart Manufacturing,ROBO,0.218,ug-robotics-ai.pdf,18
+ROBO,Internet of Robotic Things (RIoT),ROBO,0.41,ug-robotics-ai.pdf,18
+ROBO,Data Modeling and Visualization,ROBO,0.179,ug-robotics-ai.pdf,18
+ROBO,Fundamentals of Materials Science & Smart Materials,ROBO,0.186,ug-robotics-ai.pdf,93
+ROBO,Image Processing & Computer Vision,ROBO,0.407,ug-robotics-ai.pdf,179
+MET,Phase Transformations,MET,0.147,ug-vol2.pdf,79
+MET,Environmental Degradation of Materials,MET,0.28,ug-vol2.pdf,79

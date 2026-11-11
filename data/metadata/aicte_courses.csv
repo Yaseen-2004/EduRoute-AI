@@ -1,0 +1,326 @@
+branch,kind,title,document,page
+FIRST_YEAR,HSMC,English for Technical Writing,ug-civil-2024.pdf,6
+FIRST_YEAR,HSMC,Universal Human Value,ug-civil-2024.pdf,6
+FIRST_YEAR,BSC,Physics (Mechanics & Mechanics of Solids),ug-civil-2024.pdf,6
+FIRST_YEAR,BSC,Chemistry -I,ug-civil-2024.pdf,6
+FIRST_YEAR,BSC,Mathematics for Civil Engineering,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,Basic Electrical Engineering,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,Engineering Graphics & Design,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,Design Thinking,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,Programming for Problem Solving,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,Engineering Mechanics and Solid Mechanics,ug-civil-2024.pdf,6
+FIRST_YEAR,ESC,"Civil Engineering Materials, Testing & Evaluation",ug-civil-2024.pdf,6
+CE,PCC,Concrete Technology,ug-civil-2024.pdf,6
+CE,PCC,Fluid Mechanics,ug-civil-2024.pdf,6
+CE,PCC,Transportation Engineering,ug-civil-2024.pdf,6
+CE,PCC,Surveying and Geomatics,ug-civil-2024.pdf,6
+CE,PCC,Geotechnical Engineering,ug-civil-2024.pdf,6
+CE,PCC,Hydraulic Engineering,ug-civil-2024.pdf,7
+CE,PCC,Structural Analysis,ug-civil-2024.pdf,7
+CE,PCC,Construction Engineering & Management,ug-civil-2024.pdf,7
+CE,PCC,Structural Design-I,ug-civil-2024.pdf,7
+CE,PCC,Environmental Engineering,ug-civil-2024.pdf,7
+CE,PCC,Hydrology & Water Resources Engineering,ug-civil-2024.pdf,7
+CE,PCC,Structural Design -II,ug-civil-2024.pdf,7
+CE,PCC,Intelligent Transportation Systems,ug-civil-2024.pdf,7
+CE,PCC,Sustainable and Green Construction,ug-civil-2024.pdf,7
+CE,PCC,Robotics and Automation in Civil Engineering,ug-civil-2024.pdf,7
+CE,PEC,From Track,ug-civil-2024.pdf,7
+CE,PCC,Building Planning and Computer- aided Civil Engineering drawing,ug-civil-2024.pdf,11
+CE,PCC,"Engineering Economics, Estimation & Costing 3",ug-civil-2024.pdf,12
+FIRST_YEAR,BSC,Biology (Biology for Engineers),ug-civil-2024.pdf,52
+FIRST_YEAR,ESC,Digital Fabrication,ug-civil-2024.pdf,55
+FIRST_YEAR,ESC,Mechanics of Solids,ug-civil-2024.pdf,77
+FIRST_YEAR,BSC,Mathematics to Civil Engineering,ug-civil-2024.pdf,80
+CE,PCC,Hydrology and Water Resource Engineering,ug-civil-2024.pdf,133
+FIRST_YEAR,HSMC,Humanities – 1,ug-cse-2022.pdf,16
+FIRST_YEAR,HSMC,Humanities – II,ug-cse-2022.pdf,16
+FIRST_YEAR,ESC,Analog Electronic Circuits III,ug-cse-2022.pdf,17
+FIRST_YEAR,ESC,Digital Electronics,ug-cse-2022.pdf,17
+FIRST_YEAR,ESC,Signals and Systems,ug-cse-2022.pdf,17
+CSE,PCC,Data Structure and Algorithms,ug-cse-2022.pdf,17
+CSE,PCC,Discrete Mathematics,ug-cse-2022.pdf,17
+CSE,PCC,Operating Systems,ug-cse-2022.pdf,17
+CSE,PCC,Design and Analysis of Algorithms,ug-cse-2022.pdf,17
+CSE,PCC,Advanced Programming,ug-cse-2022.pdf,18
+CSE,PCC,Machine Learning,ug-cse-2022.pdf,18
+CSE,PCC,Theory of Computation,ug-cse-2022.pdf,18
+CSE,PEC,Introductory Cyber Security,ug-cse-2022.pdf,18
+CSE,PCC,Computer Networks,ug-cse-2022.pdf,18
+CSE,PCC,Compiler Design,ug-cse-2022.pdf,18
+FIRST_YEAR,BSC,Mathematics-III (Differential Calculus),ug-cse-2022.pdf,29
+FIRST_YEAR,HSMC,Humanities-I,ug-cse-2022.pdf,29
+CSE,PCC,Computer Organization & Architecture,ug-cse-2022.pdf,29
+FIRST_YEAR,HSMC,Management 1,ug-cse-2022.pdf,29
+FIRST_YEAR,ESC,) and have also been introduced in programming in one of the HDLs (VHD or Verilog).,ug-cse-2022.pdf,102
+CSE,PCC,Computer Organization and Computer Architecture,ug-cse-2022.pdf,129
+3D_PRINTING,UNIT,Artificial Intelligence,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Internet of Things (IoT),ug-emerging.pdf,4
+3D_PRINTING,UNIT,Blockchain,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Robotics,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Quantum Computing,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Data Sciences,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Cyber Security,ug-emerging.pdf,4
+3D_PRINTING,UNIT,Virtual Reality (VR),ug-emerging.pdf,4
+3D_PRINTING,UNIT,Introduction,ug-emerging.pdf,5
+3D_PRINTING,UNIT,Search Algorithms,ug-emerging.pdf,5
+AI,UNIT,Probabilistic Reasoning,ug-emerging.pdf,6
+AI,UNIT,Markov Decision process,ug-emerging.pdf,6
+AI,UNIT,Reinforcement Learning,ug-emerging.pdf,6
+IOT,UNIT,Introduction to IoT,ug-emerging.pdf,8
+IOT,UNIT,Elements of IoT,ug-emerging.pdf,8
+IOT,UNIT,IoT Application Development,ug-emerging.pdf,9
+IOT,UNIT,IoT Case Studies,ug-emerging.pdf,9
+IOT,UNIT,Understanding Block chain with Crypto currency,ug-emerging.pdf,12
+IOT,UNIT,Understanding Block chain for Enterprises,ug-emerging.pdf,12
+IOT,UNIT,Block chain application development,ug-emerging.pdf,12
+ROBOTICS,UNIT,Introduction to Robotics,ug-emerging.pdf,15
+ROBOTICS,UNIT,Robot Kinematics and Dynamics,ug-emerging.pdf,15
+ROBOTICS,UNIT,Sensors and Vision System,ug-emerging.pdf,15
+ROBOTICS,UNIT,Robot Control,ug-emerging.pdf,16
+ROBOTICS,UNIT,Robot Actuation Systems,ug-emerging.pdf,16
+ROBOTICS,UNIT,Control Hardware and Interfacing,ug-emerging.pdf,16
+QUANTUM,UNIT,Introduction to Quantum Computing,ug-emerging.pdf,18
+QUANTUM,UNIT,Math Foundation for Quantum Computing,ug-emerging.pdf,18
+QUANTUM,UNIT,Building Blocks for Quantum Program,ug-emerging.pdf,19
+QUANTUM,UNIT,Quantum Algorithms,ug-emerging.pdf,19
+DATA_SCIENCE,UNIT,Introduction to Data Science,ug-emerging.pdf,21
+DATA_SCIENCE,UNIT,Introduction to Programming Tools for Data Science,ug-emerging.pdf,21
+DATA_SCIENCE,UNIT,Mathematical Foundations,ug-emerging.pdf,22
+DATA_SCIENCE,UNIT,Machine Learning,ug-emerging.pdf,22
+DATA_SCIENCE,UNIT,Case Studies of Data Science Application,ug-emerging.pdf,22
+CYBER_SECURITY,UNIT,Cyber Security Concepts,ug-emerging.pdf,24
+CYBER_SECURITY,UNIT,Cryptography and Cryptanalysis,ug-emerging.pdf,25
+CYBER_SECURITY,UNIT,Infrastructure and Network Security,ug-emerging.pdf,25
+CYBER_SECURITY,UNIT,Cyber Security Vulnerabilities& Safe Guards,ug-emerging.pdf,25
+CYBER_SECURITY,UNIT,Malware,ug-emerging.pdf,26
+CYBER_SECURITY,UNIT,Security in Evolving Technology,ug-emerging.pdf,26
+CYBER_SECURITY,UNIT,Cyber Laws and Forensics,ug-emerging.pdf,26
+3D_PRINTING,UNIT,CAD for Additive Manufacturing,ug-emerging.pdf,28
+3D_PRINTING,UNIT,Additive Manufacturing Techniques,ug-emerging.pdf,28
+3D_PRINTING,UNIT,Materials,ug-emerging.pdf,29
+3D_PRINTING,UNIT,Additive Manufacturing Equipment,ug-emerging.pdf,29
+3D_PRINTING,UNIT,Product Quality,ug-emerging.pdf,29
+VR,UNIT,Virtual Environment,ug-emerging.pdf,32
+VR,UNIT,VR Hardware and Software,ug-emerging.pdf,32
+VR,UNIT,VR Applications,ug-emerging.pdf,32
+FIRST_YEAR,HSMC,Communication Skills / English,ug-mechanical.pdf,20
+FIRST_YEAR,HSMC,Universal Human Values-2 (Compulsory course),ug-mechanical.pdf,20
+FIRST_YEAR,HSMC,Industrial Psychology,ug-mechanical.pdf,20
+FIRST_YEAR,HSMC,Operations Research,ug-mechanical.pdf,20
+FIRST_YEAR,HSMC,Finance & Accounting,ug-mechanical.pdf,20
+FIRST_YEAR,BSC,Physics-1 (Electromagnetism),ug-mechanical.pdf,20
+FIRST_YEAR,BSC,Physics-2 (Optics & Waves),ug-mechanical.pdf,20
+FIRST_YEAR,BSC,Mathematics-1 (Calculus & Linear Algebra),ug-mechanical.pdf,20
+FIRST_YEAR,BSC,Chemistry-1,ug-mechanical.pdf,20
+FIRST_YEAR,BSC,"Mathematics-2 (ODE, Complex variables)",ug-mechanical.pdf,20
+FIRST_YEAR,BSC,"Mathematics-3 (PDE, Prob/Stat)",ug-mechanical.pdf,20
+FIRST_YEAR,BSC,Environment Science (Audit),ug-mechanical.pdf,20
+FIRST_YEAR,ESC,Basic Electronic Engineering,ug-mechanical.pdf,20
+FIRST_YEAR,ESC,Applied Thermodynamics,ug-mechanical.pdf,20
+ME,PCC,Heat Transfer & Thermal Machines,ug-mechanical.pdf,21
+ME,PCC,Fluid Mechanics & Hydraulic Machines,ug-mechanical.pdf,21
+ME,PCC,Mechanics of Deformable Solids,ug-mechanical.pdf,21
+ME,PCC,Kinematics & Dynamics of Machines,ug-mechanical.pdf,21
+ME,PCC,Engineering Materials & Applications,ug-mechanical.pdf,21
+ME,PCC,Machine Element & System Design,ug-mechanical.pdf,21
+ME,PCC,"Mechatronics, Robotics & Control",ug-mechanical.pdf,21
+ME,PCC,Manufacturing Processes,ug-mechanical.pdf,21
+ME,PCC,Measurements & Metrology,ug-mechanical.pdf,21
+ME,PCC,Computer Aided Design & Analysis,ug-mechanical.pdf,21
+ME,PCC,Manufacturing Automation,ug-mechanical.pdf,21
+ME,PCC,Production & Operation Management,ug-mechanical.pdf,21
+ME,PCC,Product Innovation & Entrepreneurship,ug-mechanical.pdf,21
+ME,PEC,Refrigeration & Air Conditioning,ug-mechanical.pdf,21
+ME,PEC,Power Plant Engineering,ug-mechanical.pdf,21
+ME,PEC,Renewable Energy Engineering,ug-mechanical.pdf,21
+ME,PEC,Finite Element Analysis,ug-mechanical.pdf,21
+ME,PEC,Computational Fluid Dynamics,ug-mechanical.pdf,21
+ME,PEC,Design for Manufacturing & Assembly,ug-mechanical.pdf,21
+ME,PEC,Additive Manufacturing,ug-mechanical.pdf,21
+ME,PEC,"Die, Mould and Tool Engineering",ug-mechanical.pdf,21
+ME,PEC,Automobile Engineering,ug-mechanical.pdf,21
+ME,PEC,Aerospace Engineering,ug-mechanical.pdf,21
+ME,PEC,Agricultural Engineering,ug-mechanical.pdf,21
+ME,PEC,Biomedical Engineering,ug-mechanical.pdf,21
+ME,PEC,Food Technology,ug-mechanical.pdf,21
+ME,PEC,Marine Engineering,ug-mechanical.pdf,21
+ME,PEC,Nuclear Engineering,ug-mechanical.pdf,21
+ME,PEC,Textile Engineering,ug-mechanical.pdf,21
+FIRST_YEAR,ESC,Basic Electronics Engineering,ug-mechanical.pdf,22
+FIRST_YEAR,BSC,Physics-I ( Electromagnetism),ug-mechanical.pdf,31
+FIRST_YEAR,HSMC,Universal Human Values-II,ug-mechanical.pdf,68
+FIRST_YEAR,BSC,Physics-II (Optics and Waves),ug-mechanical.pdf,81
+ME,PCC,Production & Operations Management,ug-mechanical.pdf,125
+FIRST_YEAR,HSMC,Innovation and Creativity,ug-robotics-ai.pdf,16
+FIRST_YEAR,HSMC,Entrepreneurship,ug-robotics-ai.pdf,16
+FIRST_YEAR,HSMC,Intellectual Property Rights,ug-robotics-ai.pdf,16
+FIRST_YEAR,BSC,Maths-I (Linear Algebra and Univariate calculus),ug-robotics-ai.pdf,17
+FIRST_YEAR,BSC,Maths–II,ug-robotics-ai.pdf,17
+FIRST_YEAR,BSC,Vector Calculus and Partial,ug-robotics-ai.pdf,17
+FIRST_YEAR,BSC,Probability & Statistics,ug-robotics-ai.pdf,17
+FIRST_YEAR,BSC,Biology for Engineers & Biomimetics,ug-robotics-ai.pdf,17
+FIRST_YEAR,ESC,Fundamentals of Mechanical,ug-robotics-ai.pdf,17
+FIRST_YEAR,ESC,Electrical Machines & Drives,ug-robotics-ai.pdf,17
+ROBO,PCC,Analog & Digital Electronics,ug-robotics-ai.pdf,18
+ROBO,PCC,Fundamentals of Robotics & AI,ug-robotics-ai.pdf,18
+ROBO,PCC,Wireless Networks,ug-robotics-ai.pdf,18
+ROBO,PCC,Machine Learning,ug-robotics-ai.pdf,18
+ROBO,PCC,Sensors and Actuators for Robotics,ug-robotics-ai.pdf,18
+ROBO,PCC,Microcontrollers and its Applications,ug-robotics-ai.pdf,18
+ROBO,PCC,Signals and Systems,ug-robotics-ai.pdf,18
+ROBO,PCC,Robot Safety and Maintenance,ug-robotics-ai.pdf,18
+ROBO,PCC,"Data Structures, Files and Algorithms",ug-robotics-ai.pdf,18
+ROBO,PCC,Theory of Machines & Machine Design,ug-robotics-ai.pdf,18
+ROBO,PCC,Industrial Electronics and Power,ug-robotics-ai.pdf,18
+ROBO,PCC,Advances in Robotics and Artificial Intelligence,ug-robotics-ai.pdf,18
+ROBO,PCC,Control Systems,ug-robotics-ai.pdf,18
+ROBO,PCC,Hydraulic & Pneumatic Drives for Robots,ug-robotics-ai.pdf,18
+ROBO,PCC,Kinematics of Robotics,ug-robotics-ai.pdf,18
+ROBO,PCC,Embedded Systems Design,ug-robotics-ai.pdf,18
+ROBO,PCC,Data Science,ug-robotics-ai.pdf,18
+ROBO,PCC,Robot Operating Systems,ug-robotics-ai.pdf,18
+ROBO,PCC,Knowledge Engineering and Expert System,ug-robotics-ai.pdf,18
+ROBO,PCC,Smart Manufacturing,ug-robotics-ai.pdf,18
+ROBO,PCC,Internet of Robotic Things (RIoT),ug-robotics-ai.pdf,18
+ROBO,PCC,Data Modeling and Visualization,ug-robotics-ai.pdf,18
+ROBO,PCC,Robot System Design and SLAM,ug-robotics-ai.pdf,18
+ROBO,PEC,Robotics,ug-robotics-ai.pdf,30
+ROBO,PEC,AI Data Analytics,ug-robotics-ai.pdf,30
+ROBO,PEC,Mechatronics,ug-robotics-ai.pdf,30
+ROBO,PEC,AI Advanced Artificial Intelligence,ug-robotics-ai.pdf,31
+ROBO,PCC,Fundamentals of Materials Science & Smart Materials,ug-robotics-ai.pdf,93
+ROBO,PCC,Dynamics and Trajectory Planning,ug-robotics-ai.pdf,155
+ROBO,PCC,Image Processing & Computer Vision,ug-robotics-ai.pdf,179
+FIRST_YEAR,BSC,Category,ug-vol1.pdf,32
+FIRST_YEAR,HSMC,Effective Technical Communication,ug-vol1.pdf,66
+FIRST_YEAR,HSMC,Civil Engineering – Societal & Global Impact,ug-vol1.pdf,66
+FIRST_YEAR,HSMC,"Professional Practice, Law & Ethics",ug-vol1.pdf,66
+FIRST_YEAR,BSC,Biology-I (Biology for Engineers),ug-vol1.pdf,66
+FIRST_YEAR,BSC,"Mathematics-I (Calculus, Multivariable Calculus & Linear Algebra)",ug-vol1.pdf,66
+FIRST_YEAR,BSC,Mathematics-II (Differential equations),ug-vol1.pdf,66
+FIRST_YEAR,BSC,Life Science,ug-vol1.pdf,66
+FIRST_YEAR,ESC,Computer-aided Civil Engineering Drawing,ug-vol1.pdf,66
+FIRST_YEAR,ESC,Energy Science & Engineering,ug-vol1.pdf,66
+CE,PCC,Engineering Geology,ug-vol1.pdf,67
+CE,PCC,Disaster Preparedness & Planning Management,ug-vol1.pdf,67
+CE,PCC,"Materials, Testing & Evaluation",ug-vol1.pdf,67
+CE,PCC,Structural Engineering,ug-vol1.pdf,67
+CE,PCC,"Engineering Economy, Estimation & Costing",ug-vol1.pdf,67
+CE,PCC,Instrumentation & Sensor Technologies for Civil Engineering Applications,ug-vol1.pdf,70
+FIRST_YEAR,BSC,Mathematics-III (Transform & Discrete Mathematics),ug-vol1.pdf,73
+FIRST_YEAR,HSMC,) Management I (Organizational,ug-vol1.pdf,74
+CE,PCC,Mechanics of Materials 3,ug-vol1.pdf,75
+FIRST_YEAR,BSC,Mathematics – I (Calculus and Differential Equations),ug-vol1.pdf,192
+FIRST_YEAR,BSC,Mathematics–III (Probability and Statistics),ug-vol1.pdf,192
+FIRST_YEAR,ESC,Problem Solving through Programming (with C),ug-vol1.pdf,192
+EE,PCC,Electrical Circuit Analysis,ug-vol1.pdf,192
+EE,PCC,Analog Electronic Circuits,ug-vol1.pdf,192
+EE,PCC,Electrical Machines-I,ug-vol1.pdf,192
+EE,PCC,Electromagnetic Fields,ug-vol1.pdf,192
+EE,PCC,Digital Electronics,ug-vol1.pdf,192
+EE,PCC,Electrical Machines – II,ug-vol1.pdf,192
+EE,PCC,Power Electronics,ug-vol1.pdf,192
+EE,PCC,Signals and Systems,ug-vol1.pdf,192
+EE,PCC,Power Systems-I,ug-vol1.pdf,193
+EE,PCC,Microprocessors,ug-vol1.pdf,193
+EE,PCC,Power Systems – II,ug-vol1.pdf,193
+EE,PEC,Wind and Solar Energy Systems,ug-vol1.pdf,193
+EE,PEC,Line-Commutated and Active PWM Rectifiers,ug-vol1.pdf,193
+EE,PEC,Electrical Drives,ug-vol1.pdf,193
+EE,PEC,Electrical and Hybrid Vehicles,ug-vol1.pdf,193
+EE,PEC,Electrical Machine Design,ug-vol1.pdf,193
+EE,PEC,Power System Protection,ug-vol1.pdf,193
+EE,PEC,HVdc Transmission Systems,ug-vol1.pdf,193
+EE,PEC,Power Quality and FACTS,ug-vol1.pdf,193
+EE,PEC,High Voltage Engineering,ug-vol1.pdf,193
+EE,PEC,Electrical Energy Conservation and Auditing,ug-vol1.pdf,193
+EE,PEC,Industrial Electrical Systems,ug-vol1.pdf,193
+EE,PEC,Power System Dynamics and Control,ug-vol1.pdf,193
+EE,PEC,Digital Control Systems,ug-vol1.pdf,193
+EE,PEC,Digital Signal Processing,ug-vol1.pdf,193
+EE,PEC,Computer Architecture,ug-vol1.pdf,193
+EE,PEC,Electromagnetic waves,ug-vol1.pdf,193
+EE,PEC,Computational Electromagnetics,ug-vol1.pdf,193
+EE,PEC,Control Systems Design,ug-vol1.pdf,193
+EE,PEC,Advanced Electric Drives,ug-vol1.pdf,193
+FIRST_YEAR,HSMC,To be selected by,ug-vol1.pdf,196
+FIRST_YEAR,HSMC,Individual Institutions,ug-vol1.pdf,196
+EE,PCC,Analog Electronics,ug-vol1.pdf,197
+EE,PEC,Program Elective - 1,ug-vol1.pdf,202
+FIRST_YEAR,HSMC,Slot for HS,ug-vol1.pdf,202
+EE,PCC,Measurements and Instrumentation,ug-vol1.pdf,203
+EE,PCC,Electronics Design,ug-vol1.pdf,203
+EE,PEC,Program Elective - 2,ug-vol1.pdf,203
+EE,PEC,Program Elective - 3,ug-vol1.pdf,203
+EE,PEC,Program Elective -4,ug-vol1.pdf,203
+EE,PEC,Program Elective -5,ug-vol1.pdf,203
+EE,PEC,Program Elective -6 3,ug-vol1.pdf,204
+FIRST_YEAR,BSC,MATHEMATICS I1,ug-vol1.pdf,270
+FIRST_YEAR,BSC,"Mathematics III (PDE, Probability & Statistics)",ug-vol1.pdf,270
+ME,PCC,Thermodynamics,ug-vol1.pdf,270
+ME,PCC,Applied Thermodynamics,ug-vol1.pdf,270
+ME,PCC,Fluid Mechanics And Fluid Machines,ug-vol1.pdf,270
+ME,PCC,Strength of Materials,ug-vol1.pdf,270
+ME,PCC,Materials Engineering,ug-vol1.pdf,270
+ME,PCC,Instrumentation and Control,ug-vol1.pdf,270
+ME,PCC,Solid Mechanics,ug-vol1.pdf,270
+ME,PCC,Kinematics and Theory of Machines,ug-vol1.pdf,270
+ME,PCC,Manufacturing Technology,ug-vol1.pdf,270
+ME,PCC,Design of Machine Elements,ug-vol1.pdf,270
+ME,PCC,Automation in manufacturing,ug-vol1.pdf,270
+FIRST_YEAR,BSC,Mathematics I (Calculus & Linear Algebra),ug-vol1.pdf,273
+FIRST_YEAR,BSC,"Mathematics II ( ODE, Complex variables)",ug-vol1.pdf,273
+FIRST_YEAR,BSC,"Mathematics III (PDE, Prob/Stat)",ug-vol1.pdf,273
+ME,PCC,Material Engineering,ug-vol1.pdf,274
+FIRST_YEAR,HSMC,(OEL I),ug-vol1.pdf,279
+CSE,PCC,Database Management Systems,ug-vol1.pdf,321
+CSE,PCC,Formal Language & Automata Theory,ug-vol1.pdf,321
+CSE,PCC,Object Oriented Programming,ug-vol1.pdf,321
+FIRST_YEAR,ESC,Engineeri,ug-vol1.pdf,327
+ECE,PCC,Electronic Devices,ug-vol1.pdf,353
+ECE,PCC,Digital System Design,ug-vol1.pdf,353
+ECE,PCC,Signals and System,ug-vol1.pdf,353
+ECE,PCC,Network Theory,ug-vol1.pdf,353
+ECE,PCC,Analog and Digital Communication,ug-vol1.pdf,353
+ECE,PCC,Analog circuits,ug-vol1.pdf,353
+ECE,PCC,Microcontrollers,ug-vol1.pdf,353
+ECE,PCC,Electromagnetic Waves,ug-vol1.pdf,353
+ECE,PCC,Computer Architecture,ug-vol1.pdf,353
+ECE,PCC,Probability and Stochastic Processes,ug-vol1.pdf,353
+ECE,PCC,Digital Signal Processing,ug-vol1.pdf,353
+ECE,PCC,Control Systems,ug-vol1.pdf,353
+ECE,PCC,Computer Network,ug-vol1.pdf,353
+FIRST_YEAR,ESC,Thermodynamics-1,ug-vol2.pdf,24
+FIRST_YEAR,ESC,Electrical & Electronics Engineering,ug-vol2.pdf,24
+FIRST_YEAR,ESC,Engineering and Solid Mechanics,ug-vol2.pdf,24
+FIRST_YEAR,ESC,Material Science,ug-vol2.pdf,24
+CHE,PCC,Material and Energy Balance Computations,ug-vol2.pdf,24
+CHE,PCC,Transport Phenomena,ug-vol2.pdf,24
+CHE,PCC,Thermodynamics-II,ug-vol2.pdf,24
+CHE,PCC,Heat Transfer,ug-vol2.pdf,24
+CHE,PCC,Mass Transfer -I,ug-vol2.pdf,24
+CHE,PCC,Fluid Mechanics,ug-vol2.pdf,24
+CHE,PCC,Numerical Methods in Chemical Engineering,ug-vol2.pdf,24
+CHE,PCC,Chemical Reaction Engineering - I,ug-vol2.pdf,24
+CHE,PCC,Mass Transfer –II,ug-vol2.pdf,24
+CHE,PCC,Particle and Fluid-Particle Processing,ug-vol2.pdf,24
+CHE,PCC,Chemical Reaction Engineering – II,ug-vol2.pdf,24
+CHE,PCC,Process Technology and Economics,ug-vol2.pdf,25
+CHE,PCC,Process Control,ug-vol2.pdf,25
+MET,PCC,Phase Transformations,ug-vol2.pdf,79
+MET,PCC,Materials Thermodynamics,ug-vol2.pdf,79
+MET,PCC,Mechanical Properties of Materials,ug-vol2.pdf,79
+MET,PCC,Physical Metallurgy,ug-vol2.pdf,79
+MET,PCC,Physics of Materials,ug-vol2.pdf,79
+MET,PCC,Materials Characterization,ug-vol2.pdf,79
+MET,PCC,Environmental Degradation of Materials,ug-vol2.pdf,79
+MET,PCC,Non Ferrous Extractive Metallurgy,ug-vol2.pdf,79
+MET,PCC,Non Metallic Materials,ug-vol2.pdf,79
+MET,PCC,Iron Making and Steel Making Technologies,ug-vol2.pdf,79
+MET,PCC,Materials Processing,ug-vol2.pdf,79
+FIRST_YEAR,HSMC,Economics for Engineers,ug-vol2.pdf,83
+FIRST_YEAR,ESC,"Analog Electronic Circuits 1. Analog Electronics, L.K. Maheshwari, Laxmi Publications",ug-vol2.pdf,231
+FIRST_YEAR,ESC,Thermodynamics - I,ug-vol2.pdf,238
+FIRST_YEAR,ESC,Materials Thermodynamics,ug-vol2.pdf,241
+MET,PCC,Mechanical Properties for Materials,ug-vol2.pdf,241

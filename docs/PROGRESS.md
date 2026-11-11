@@ -235,6 +235,47 @@ of other-branch questions, which are now in domain.
 The same caveat applies: the threshold was fitted on these questions, so a
 held-out check is needed.
 
+### 7.5 Catalogue compared with the AICTE model curriculum (11 Nov 2026)
+
+**Reference documents.** Seven official AICTE PDFs (aicte.gov.in; stored in `data/raw/aicte/`, not committed):
+- the UG model curriculum Vol. I (2018: first year, Civil, Electrical, Mechanical, ECE, CSE) and Vol. II (2018: Chemical, Metallurgical);
+- the revised CSE (2022), Civil (2024) and Mechanical curricula;
+- Robotics & AI Engineering;
+- the course outlines for emerging areas (AI, data science, cyber security, IoT and others).
+
+**Method.** `src/data_collection/compare_aicte.py` extracts 325 course titles,
+with document and page for each. It matches every catalogue subject (name plus
+topics) to the closest AICTE course for its branch, using the app's MiniLM
+embeddings: a score of 0.60 or above is a match and 0.45 or above a partial
+match. It then lists the AICTE core courses that no catalogue subject covers.
+The parser handles AICTE's own quirks: Vol. II codes its Chemical courses
+`PCC-CS1xx`; ECE uses `EC01:`-style codes; and the PDFs contain typos such as
+"Complier Design". **This is a screening aid for human review, not a verdict.**
+
+**AICTE has a model curriculum for 14 of the 26 groups: 167 subjects.**
+- **116 of those (69%) match or partly match an AICTE course**: 80 matches and 36 partial matches.
+- 51 have no close AICTE core course. Most are mainstream electives that AICTE does not list as core, such as Cloud Computing, Web Technologies, Software Engineering, VLSI Design, Wireless Communication and IC Engines.
+
+**12 groups (122 subjects) have no AICTE model curriculum:** aerospace,
+agriculture, automobile, biomedical, biotechnology, instrumentation, marine,
+mechatronics, mining, ocean, petroleum and textile. They must be validated
+against a university syllabus.
+
+**64 AICTE core courses are missing from the catalogue** (`data/metadata/aicte_gaps.csv`):
+
+| Group | Missing core courses | Notes |
+|---|---|---|
+| Robotics | 18 | |
+| IT | 11 | Data structures, operating systems, DBMS and compilers. The IT list duplicates little of CSE, so IT students currently rely on the CSE subjects |
+| Civil | 7 | e.g. engineering economy and estimation, disaster preparedness |
+| Electrical / EEE | 11 | e.g. microprocessors, signals and systems, analog electronics |
+| ECE | 3 | Probability and stochastic processes, control systems, computer networks |
+| Other groups | 14 | |
+
+The evaluation studio's *Review syllabus* tab shows the AICTE match next to
+every subject, so reviewers can confirm or correct each one. Their decisions
+are saved in `config/branches_review/<group>.csv`.
+
 ## 8. System benchmark with Qwen2.5-3B (report §22)
 
 **Run setup:**
@@ -530,14 +571,17 @@ Its partial file, `system_benchmark_partial_cpu_run1.jsonl`, is kept.
 
 ## 10. What remains (report §25)
 
-| Item | Who | Notes |
-|---|---|---|
-| ~~Run the rebuilt Colab notebook~~ (done 11 Nov). Optional: re-run the image step only (defaults, ~15 min) to measure the hybrid image fix on the GPU | Team | Copy the zip's files **into** `evaluation/results/` |
-| Grade the blind answer sheet (2 raters, rubric) | Team | Then `python -m evaluation.analyse_grading --key ... rater1.csv rater2.csv` |
-| Label about 120 claims from the export | Team | Then `python -m evaluation.claim_labels score <csv>`. Change thresholds only if a second sample agrees |
-| Record 20–30 student questions (with consent), plus `references.csv` | Team | `python -m evaluation.evaluate_asr <folder>`, locally or on Colab |
-| Add real images (circuits, handwritten notes, textbook figures) to `evaluation/image_eval/` | Team | Same CSV format; rebuild the bundle |
-| Validate the 23 branch catalogues against the real syllabus; review the topic-resolution audit and benchmark labels | Team | |
-| Corpus update: add uncovered topics such as *Phase-locked loop*; rebuild the index on a GPU | Team decides, then me | The rebuild takes minutes on Colab, hours on the laptop |
-| Deployment: choose hosting and secrets handling | Team decides, then me | The privacy notice and retention are done |
-| Optional: full 130-question benchmark (`SAMPLE = None`); a larger NLI model or an LLM judge for reasoning errors | – | |
+Everything below is done in the **evaluation studio** (`streamlit run app.py`,
+then the *Evaluation Studio* page in the sidebar). Each person works under
+their own name, and the files are saved in the formats the analysis scripts read.
+
+| Item | Studio tab | Who | Then run |
+|---|---|---|---|
+| Grade the 250 answers of the 11 Nov run, blind, 2 raters | Grade answers | Team (2 people, ~3–4 h each) | `python -m evaluation.analyse_grading --key evaluation/results/grading_key_20261111_042423.json --benchmark evaluation/results/system_benchmark_20261111_042423.json evaluation/results/grading/*.csv` |
+| Label the 120 claims | Label claims | Team (~1 h) | `python -m evaluation.claim_labels score evaluation/results/claim_labelling/<file>.csv` |
+| Record 20–30 questions per speaker (with consent) | Record voice | Team | `python -m evaluation.evaluate_asr evaluation/voice_eval` |
+| Add real images with their expected facts | Add images | Team | Run the image step on Colab (notebook defaults) |
+| Confirm or correct each subject; the AICTE match is shown (§7.5) | Review syllabus | Team; branches without an AICTE reference need the university syllabus | – |
+| Push to GitHub and create the Streamlit app | – | Team (`docs/DEPLOYMENT.md`, ~20 min) | – |
+| Corpus update for gaps found (AICTE core gaps; *Phase-locked loop*); rebuild the index on a GPU | – | Team decides, then me | – |
+| Optional: full 130-question benchmark; a larger NLI model or an LLM judge for reasoning errors | – | – | – |

@@ -1,0 +1,290 @@
+branch,subject_id,subject,aicte_course,aicte_branch,similarity,status,document,page
+COMMON,COM001,Engineering Mathematics,Mathematics I (Calculus & Linear Algebra),FIRST_YEAR,0.759,match,ug-vol1.pdf,273
+COMMON,COM002,Engineering Physics,Physics (Mechanics & Mechanics of Solids),FIRST_YEAR,0.589,partial,ug-civil-2024.pdf,6
+COMMON,COM003,Engineering Chemistry,Electrical & Electronics Engineering,FIRST_YEAR,0.51,partial,ug-vol2.pdf,24
+COMMON,COM004,Programming for Problem Solving,Programming for Problem Solving,FIRST_YEAR,1.0,match,ug-civil-2024.pdf,6
+COMMON,COM005,Basic Electrical Engineering,Basic Electrical Engineering,FIRST_YEAR,1.0,match,ug-civil-2024.pdf,6
+COMMON,COM006,Basic Electronics Engineering,Basic Electronics Engineering,FIRST_YEAR,1.0,match,ug-mechanical.pdf,22
+COMMON,COM007,Engineering Graphics,Engineering Graphics & Design,FIRST_YEAR,0.91,match,ug-civil-2024.pdf,6
+COMMON,COM008,Engineering Mechanics,Engineering Mechanics and Solid Mechanics,FIRST_YEAR,0.836,match,ug-civil-2024.pdf,6
+COMMON,COM009,Environmental Studies,Environment Science (Audit),FIRST_YEAR,0.389,no close AICTE course,ug-mechanical.pdf,20
+COMMON,COM010,Communicative English,Communication Skills / English,FIRST_YEAR,0.766,match,ug-mechanical.pdf,20
+COMMON,COM011,Data Structures and Algorithms,Problem Solving through Programming (with C),FIRST_YEAR,0.349,no close AICTE course,ug-vol1.pdf,192
+COMMON,COM012,Discrete Mathematics,Mathematics-III (Transform & Discrete Mathematics),FIRST_YEAR,0.499,partial,ug-vol1.pdf,73
+COMMON,COM013,Database Management Systems,Operations Research,FIRST_YEAR,0.339,no close AICTE course,ug-mechanical.pdf,20
+COMMON,COM014,Computer Networks Fundamentals,Basic Electronic Engineering,FIRST_YEAR,0.32,no close AICTE course,ug-mechanical.pdf,20
+COMMON,COM015,Engineering Economics and Management,Economics for Engineers,FIRST_YEAR,0.866,match,ug-vol2.pdf,83
+CSE,CSE001,Object Oriented Programming,Object Oriented Programming,CSE,1.0,match,ug-vol1.pdf,321
+CSE,CSE002,Data Structures and Algorithms,Data Structure and Algorithms,CSE,0.973,match,ug-cse-2022.pdf,17
+CSE,CSE003,Database Management Systems,Database Management Systems,CSE,1.0,match,ug-vol1.pdf,321
+CSE,CSE004,Operating Systems,Operating Systems,CSE,1.0,match,ug-cse-2022.pdf,17
+CSE,CSE005,Computer Organization and Architecture,Computer Organization & Architecture,CSE,0.984,match,ug-cse-2022.pdf,29
+CSE,CSE006,Theory of Computation,Theory of Computation,CSE,1.0,match,ug-cse-2022.pdf,18
+CSE,CSE007,Compiler Design,Compiler Design,CSE,1.0,match,ug-cse-2022.pdf,18
+CSE,CSE008,Computer Networks,Computer Networks,CSE,1.0,match,ug-cse-2022.pdf,18
+CSE,CSE009,Software Engineering,Object Oriented Programming,CSE,0.321,no close AICTE course,ug-vol1.pdf,321
+CSE,CSE010,Design and Analysis of Algorithms,Design and Analysis of Algorithms,CSE,1.0,match,ug-cse-2022.pdf,17
+CSE,CSE011,Web Technologies,Advanced Programming,CSE,0.317,no close AICTE course,ug-cse-2022.pdf,18
+CSE,CSE012,Information Security,Introductory Cyber Security,CSE,0.483,partial,ug-cse-2022.pdf,18
+CSE,CSE013,Distributed Systems,Computer Organization & Architecture,CSE,0.379,no close AICTE course,ug-cse-2022.pdf,29
+CSE,CSE014,Cloud Computing,Computer Organization & Architecture,CSE,0.246,no close AICTE course,ug-cse-2022.pdf,29
+CSE,CSE015,Internet of Things,Introductory Cyber Security,CSE,0.237,no close AICTE course,ug-cse-2022.pdf,18
+AIML,AIML001,Introduction to Artificial Intelligence,Design and Analysis of Algorithms,CSE,0.347,no close AICTE course,ug-cse-2022.pdf,17
+AIML,AIML002,Machine Learning,Machine Learning,CSE,1.0,match,ug-cse-2022.pdf,18
+AIML,AIML003,Probability and Statistics for AI,Probabilistic Reasoning,AI,0.472,partial,ug-emerging.pdf,6
+AIML,AIML004,Data Mining,Data Structure and Algorithms,CSE,0.403,no close AICTE course,ug-cse-2022.pdf,17
+AIML,AIML005,Deep Learning,Computer Networks,CSE,0.423,no close AICTE course,ug-cse-2022.pdf,18
+AIML,AIML006,Natural Language Processing,Formal Language & Automata Theory,CSE,0.308,no close AICTE course,ug-vol1.pdf,321
+AIML,AIML007,Computer Vision,Machine Learning,CSE,0.336,no close AICTE course,ug-cse-2022.pdf,18
+AIML,AIML008,Reinforcement Learning,Reinforcement Learning,AI,1.0,match,ug-emerging.pdf,6
+AIML,AIML009,Big Data Analytics,Database Management Systems,CSE,0.338,no close AICTE course,ug-vol1.pdf,321
+AIML,AIML010,Generative Artificial Intelligence,Reinforcement Learning,AI,0.332,no close AICTE course,ug-emerging.pdf,6
+AIML,AIML011,MLOps and Model Deployment,Computer Organization & Architecture,CSE,0.255,no close AICTE course,ug-cse-2022.pdf,29
+AIML,AIML012,Explainable Artificial Intelligence,Machine Learning,CSE,0.402,no close AICTE course,ug-cse-2022.pdf,18
+AIML,AIML013,AI Ethics and Responsible AI,Computer Organization & Architecture,CSE,0.237,no close AICTE course,ug-cse-2022.pdf,29
+DS,DS001,Probability and Statistics for Data Science,Introduction to Programming Tools for Data Science,DATA_SCIENCE,0.363,no close AICTE course,ug-emerging.pdf,21
+DS,DS002,Linear Algebra for Data Science,Data Structure and Algorithms,CSE,0.38,no close AICTE course,ug-cse-2022.pdf,17
+DS,DS003,Data Wrangling and Preprocessing,Introduction to Data Science,DATA_SCIENCE,0.44,no close AICTE course,ug-emerging.pdf,21
+DS,DS004,Data Visualization,Introduction to Data Science,DATA_SCIENCE,0.447,no close AICTE course,ug-emerging.pdf,21
+DS,DS005,Exploratory Data Analysis,Introduction to Data Science,DATA_SCIENCE,0.425,no close AICTE course,ug-emerging.pdf,21
+DS,DS006,Statistical Learning,Machine Learning,DATA_SCIENCE,0.399,no close AICTE course,ug-emerging.pdf,22
+DS,DS007,Data Warehousing,Case Studies of Data Science Application,DATA_SCIENCE,0.511,partial,ug-emerging.pdf,22
+DS,DS008,Big Data Technologies,Case Studies of Data Science Application,DATA_SCIENCE,0.409,no close AICTE course,ug-emerging.pdf,22
+DS,DS009,Time Series Analysis,Introduction to Data Science,DATA_SCIENCE,0.325,no close AICTE course,ug-emerging.pdf,21
+DS,DS010,Text Mining,Machine Learning,DATA_SCIENCE,0.368,no close AICTE course,ug-emerging.pdf,22
+DS,DS011,Recommender Systems,Data Structure and Algorithms,CSE,0.296,no close AICTE course,ug-cse-2022.pdf,17
+DS,DS012,Data Ethics and Governance,Introduction to Data Science,DATA_SCIENCE,0.37,no close AICTE course,ug-emerging.pdf,21
+IT,IT001,Web Programming,Advanced Programming,CSE,0.457,partial,ug-cse-2022.pdf,18
+IT,IT002,Object Oriented Analysis and Design,Object Oriented Programming,CSE,0.819,match,ug-vol1.pdf,321
+IT,IT003,Computer Graphics,Advanced Programming,CSE,0.413,no close AICTE course,ug-cse-2022.pdf,18
+IT,IT004,Mobile Application Development,Operating Systems,CSE,0.347,no close AICTE course,ug-cse-2022.pdf,17
+IT,IT005,Information Retrieval,Data Structure and Algorithms,CSE,0.294,no close AICTE course,ug-cse-2022.pdf,17
+IT,IT006,Enterprise Resource Planning,Database Management Systems,CSE,0.33,no close AICTE course,ug-vol1.pdf,321
+IT,IT007,Software Testing,Advanced Programming,CSE,0.279,no close AICTE course,ug-cse-2022.pdf,18
+IT,IT008,System Administration,Operating Systems,CSE,0.432,no close AICTE course,ug-cse-2022.pdf,17
+IT,IT009,Human Computer Interaction,Advanced Programming,CSE,0.332,no close AICTE course,ug-cse-2022.pdf,18
+IT,IT010,DevOps,Computer Organization & Architecture,CSE,0.291,no close AICTE course,ug-cse-2022.pdf,29
+IT,IT011,E-Commerce,Computer Networks,CSE,0.257,no close AICTE course,ug-cse-2022.pdf,18
+CYBER,CYBER001,Cryptography,Cryptography and Cryptanalysis,CYBER_SECURITY,0.846,match,ug-emerging.pdf,25
+CYBER,CYBER002,Network Security,Infrastructure and Network Security,CYBER_SECURITY,0.82,match,ug-emerging.pdf,25
+CYBER,CYBER003,Ethical Hacking,Introductory Cyber Security,CSE,0.433,no close AICTE course,ug-cse-2022.pdf,18
+CYBER,CYBER004,Malware Analysis,Malware,CYBER_SECURITY,0.835,match,ug-emerging.pdf,26
+CYBER,CYBER005,Digital Forensics,Cyber Laws and Forensics,CYBER_SECURITY,0.623,match,ug-emerging.pdf,26
+CYBER,CYBER006,Web Application Security,Security in Evolving Technology,CYBER_SECURITY,0.289,no close AICTE course,ug-emerging.pdf,26
+CYBER,CYBER007,Security Operations,Cyber Security Concepts,CYBER_SECURITY,0.565,partial,ug-emerging.pdf,24
+CYBER,CYBER008,Identity and Access Management,Infrastructure and Network Security,CYBER_SECURITY,0.338,no close AICTE course,ug-emerging.pdf,25
+CYBER,CYBER009,Cloud Security,Cyber Security Vulnerabilities& Safe Guards,CYBER_SECURITY,0.407,no close AICTE course,ug-emerging.pdf,25
+CYBER,CYBER010,Cyber Law and Ethics,Cyber Laws and Forensics,CYBER_SECURITY,0.696,match,ug-emerging.pdf,26
+CYBER,CYBER011,Blockchain Security,Cryptography and Cryptanalysis,CYBER_SECURITY,0.447,no close AICTE course,ug-emerging.pdf,25
+CYBER,CYBER012,Risk Management and Compliance,Cyber Security Vulnerabilities& Safe Guards,CYBER_SECURITY,0.479,partial,ug-emerging.pdf,25
+ECE,ECE001,Electronic Devices and Circuits,Electronic Devices,ECE,0.856,match,ug-vol1.pdf,353
+ECE,ECE002,Network Analysis,Network Theory,ECE,0.455,partial,ug-vol1.pdf,353
+ECE,ECE003,Signals and Systems,Signals and System,ECE,0.953,match,ug-vol1.pdf,353
+ECE,ECE004,Digital Logic Design,Digital System Design,ECE,0.555,partial,ug-vol1.pdf,353
+ECE,ECE005,Analog Circuits,Analog circuits,ECE,1.0,match,ug-vol1.pdf,353
+ECE,ECE006,Analog Communication,Analog and Digital Communication,ECE,0.907,match,ug-vol1.pdf,353
+ECE,ECE007,Digital Communication,Analog and Digital Communication,ECE,0.616,match,ug-vol1.pdf,353
+ECE,ECE008,Electromagnetic Waves,Electromagnetic Waves,ECE,1.0,match,ug-vol1.pdf,353
+ECE,ECE009,Microprocessors and Microcontrollers,Microcontrollers,ECE,0.837,match,ug-vol1.pdf,353
+ECE,ECE010,Digital Signal Processing,Digital Signal Processing,ECE,1.0,match,ug-vol1.pdf,353
+ECE,ECE011,VLSI Design,Computer Architecture,ECE,0.429,no close AICTE course,ug-vol1.pdf,353
+ECE,ECE012,Wireless Communication,Analog and Digital Communication,ECE,0.447,no close AICTE course,ug-vol1.pdf,353
+ECE,ECE013,Embedded Systems,Microcontrollers,ECE,0.503,partial,ug-vol1.pdf,353
+EEE,EEE001,Electrical Circuit Analysis,Electrical Circuit Analysis,EE,1.0,match,ug-vol1.pdf,192
+EEE,EEE002,Electrical Machines I,Electrical Machines-I,EE,0.969,match,ug-vol1.pdf,192
+EEE,EEE003,Electrical Machines II,Electrical Machines – II,EE,0.982,match,ug-vol1.pdf,192
+EEE,EEE004,Power Systems I,Power Systems-I,EE,0.947,match,ug-vol1.pdf,193
+EEE,EEE005,Power Systems II,Power Systems – II,EE,0.963,match,ug-vol1.pdf,193
+EEE,EEE006,Power Electronics,Power Electronics,EE,1.0,match,ug-vol1.pdf,192
+EEE,EEE007,Control Systems,Control Systems Design,EE,0.835,match,ug-vol1.pdf,193
+EEE,EEE008,Electrical Measurements,Measurements and Instrumentation,EE,0.541,partial,ug-vol1.pdf,203
+EEE,EEE009,Renewable Energy Systems,Wind and Solar Energy Systems,EE,0.629,match,ug-vol1.pdf,193
+EEE,EEE010,Electric Drives,Electrical Drives,EE,0.952,match,ug-vol1.pdf,193
+EEE,EEE011,High Voltage Engineering,High Voltage Engineering,EE,1.0,match,ug-vol1.pdf,193
+EE,EE001,Electromagnetic Field Theory,Electromagnetic Fields,EE,0.845,match,ug-vol1.pdf,192
+EE,EE002,Circuit Theory,Electrical Circuit Analysis,EE,0.534,partial,ug-vol1.pdf,192
+EE,EE003,Electrical Machine Design,Electrical Machine Design,EE,1.0,match,ug-vol1.pdf,193
+EE,EE004,Switchgear and Protection,Power System Protection,EE,0.53,partial,ug-vol1.pdf,193
+EE,EE005,Utilisation of Electrical Energy,Electrical Energy Conservation and Auditing,EE,0.535,partial,ug-vol1.pdf,193
+EE,EE006,Power System Operation and Control,Power System Dynamics and Control,EE,0.813,match,ug-vol1.pdf,193
+EE,EE007,Smart Grid,Power Systems – II,EE,0.448,no close AICTE course,ug-vol1.pdf,193
+EE,EE008,Electric Vehicles,Electrical and Hybrid Vehicles,EE,0.549,partial,ug-vol1.pdf,193
+EE,EE009,Digital Control Systems,Digital Control Systems,EE,1.0,match,ug-vol1.pdf,193
+EE,EE010,HVDC and FACTS,HVdc Transmission Systems,EE,0.768,match,ug-vol1.pdf,193
+ME,ME001,Engineering Thermodynamics,Thermodynamics,ME,0.843,match,ug-vol1.pdf,270
+ME,ME002,Fluid Mechanics,Fluid Mechanics And Fluid Machines,ME,0.813,match,ug-vol1.pdf,270
+ME,ME003,Strength of Materials,Strength of Materials,ME,1.0,match,ug-vol1.pdf,270
+ME,ME004,Theory of Machines,Kinematics and Theory of Machines,ME,0.727,match,ug-vol1.pdf,270
+ME,ME005,Manufacturing Processes,Manufacturing Processes,ME,1.0,match,ug-mechanical.pdf,21
+ME,ME006,Heat Transfer,Heat Transfer & Thermal Machines,ME,0.683,match,ug-mechanical.pdf,21
+ME,ME007,Design of Machine Elements,Design of Machine Elements,ME,1.0,match,ug-vol1.pdf,270
+ME,ME008,Applied Thermodynamics,Applied Thermodynamics,ME,1.0,match,ug-vol1.pdf,270
+ME,ME009,Internal Combustion Engines,Automobile Engineering,ME,0.395,no close AICTE course,ug-mechanical.pdf,21
+ME,ME010,CAD/CAM,Computer Aided Design & Analysis,ME,0.636,match,ug-mechanical.pdf,21
+ME,ME011,Refrigeration and Air Conditioning,Refrigeration & Air Conditioning,ME,0.99,match,ug-mechanical.pdf,21
+ME,ME012,Industrial Engineering,Production & Operations Management,ME,0.484,partial,ug-mechanical.pdf,125
+CE,CE001,Surveying,Surveying and Geomatics,CE,0.744,match,ug-civil-2024.pdf,6
+CE,CE002,Building Materials and Construction,Concrete Technology,CE,0.582,partial,ug-civil-2024.pdf,6
+CE,CE003,Mechanics of Solids,Mechanics of Materials 3,CE,0.592,partial,ug-vol1.pdf,75
+CE,CE004,Fluid Mechanics and Hydraulics,Fluid Mechanics,CE,0.836,match,ug-civil-2024.pdf,6
+CE,CE005,Structural Analysis,Structural Analysis,CE,1.0,match,ug-civil-2024.pdf,7
+CE,CE006,Geotechnical Engineering,Geotechnical Engineering,CE,1.0,match,ug-civil-2024.pdf,6
+CE,CE007,Reinforced Concrete Design,Concrete Technology,CE,0.528,partial,ug-civil-2024.pdf,6
+CE,CE008,Transportation Engineering,Transportation Engineering,CE,1.0,match,ug-civil-2024.pdf,6
+CE,CE009,Environmental Engineering,Environmental Engineering,CE,1.0,match,ug-civil-2024.pdf,7
+CE,CE010,Hydrology and Water Resources,Hydrology and Water Resource Engineering,CE,0.886,match,ug-civil-2024.pdf,133
+CE,CE011,Steel Structures,Structural Engineering,CE,0.581,partial,ug-vol1.pdf,67
+CE,CE012,Foundation Engineering,Geotechnical Engineering,CE,0.514,partial,ug-civil-2024.pdf,6
+CHE,CHE001,Chemical Process Calculations,Chemical Reaction Engineering – II,CHE,0.565,partial,ug-vol2.pdf,24
+CHE,CHE002,Fluid Flow Operations,Fluid Mechanics,CHE,0.501,partial,ug-vol2.pdf,24
+CHE,CHE003,Mechanical Operations,Particle and Fluid-Particle Processing,CHE,0.622,match,ug-vol2.pdf,24
+CHE,CHE004,Heat Transfer Operations,Heat Transfer,CHE,0.92,match,ug-vol2.pdf,24
+CHE,CHE005,Mass Transfer,Mass Transfer -I,CHE,0.919,match,ug-vol2.pdf,24
+CHE,CHE006,Chemical Reaction Engineering,Chemical Reaction Engineering – II,CHE,0.925,match,ug-vol2.pdf,24
+CHE,CHE007,Chemical Engineering Thermodynamics,Thermodynamics-II,CHE,0.519,partial,ug-vol2.pdf,24
+CHE,CHE008,Process Control and Instrumentation,Process Control,CHE,0.715,match,ug-vol2.pdf,25
+CHE,CHE009,Process Equipment Design,Process Technology and Economics,CHE,0.413,no close AICTE course,ug-vol2.pdf,25
+CHE,CHE010,Petrochemical Technology,Chemical Reaction Engineering - I,CHE,0.462,partial,ug-vol2.pdf,24
+CHE,CHE011,Process Safety,Process Control,CHE,0.426,no close AICTE course,ug-vol2.pdf,25
+BT,BT001,Cell Biology,,,,no AICTE reference,,
+BT,BT002,Biochemistry,,,,no AICTE reference,,
+BT,BT003,Microbiology,,,,no AICTE reference,,
+BT,BT004,Molecular Biology,,,,no AICTE reference,,
+BT,BT005,Genetics,,,,no AICTE reference,,
+BT,BT006,Genetic Engineering,,,,no AICTE reference,,
+BT,BT007,Bioprocess Engineering,,,,no AICTE reference,,
+BT,BT008,Immunology,,,,no AICTE reference,,
+BT,BT009,Bioinformatics,,,,no AICTE reference,,
+BT,BT010,Enzyme Technology,,,,no AICTE reference,,
+BT,BT011,Plant and Animal Biotechnology,,,,no AICTE reference,,
+BT,BT012,Bioethics and IPR,,,,no AICTE reference,,
+BME,BME001,Human Anatomy and Physiology,,,,no AICTE reference,,
+BME,BME002,Biomedical Instrumentation,,,,no AICTE reference,,
+BME,BME003,Biomaterials,,,,no AICTE reference,,
+BME,BME004,Medical Imaging,,,,no AICTE reference,,
+BME,BME005,Biomechanics,,,,no AICTE reference,,
+BME,BME006,Biosignal Processing,,,,no AICTE reference,,
+BME,BME007,Medical Devices and Regulation,,,,no AICTE reference,,
+BME,BME008,Rehabilitation Engineering,,,,no AICTE reference,,
+BME,BME009,Tissue Engineering,,,,no AICTE reference,,
+BME,BME010,Healthcare Informatics,,,,no AICTE reference,,
+AE,AE001,Aerodynamics,,,,no AICTE reference,,
+AE,AE002,Aircraft Structures,,,,no AICTE reference,,
+AE,AE003,Propulsion,,,,no AICTE reference,,
+AE,AE004,Flight Mechanics,,,,no AICTE reference,,
+AE,AE005,Gas Dynamics,,,,no AICTE reference,,
+AE,AE006,Space Mechanics,,,,no AICTE reference,,
+AE,AE007,Avionics,,,,no AICTE reference,,
+AE,AE008,Computational Fluid Dynamics,,,,no AICTE reference,,
+AE,AE009,Rockets and Missiles,,,,no AICTE reference,,
+AE,AE010,Aircraft Design,,,,no AICTE reference,,
+AUTO,AUTO001,Automotive Engines,,,,no AICTE reference,,
+AUTO,AUTO002,Automotive Chassis,,,,no AICTE reference,,
+AUTO,AUTO003,Automotive Transmission,,,,no AICTE reference,,
+AUTO,AUTO004,Automotive Electrical and Electronics,,,,no AICTE reference,,
+AUTO,AUTO005,Vehicle Dynamics,,,,no AICTE reference,,
+AUTO,AUTO006,Automotive Pollution and Control,,,,no AICTE reference,,
+AUTO,AUTO007,Hybrid and Electric Vehicles,,,,no AICTE reference,,
+AUTO,AUTO008,Automotive Safety,,,,no AICTE reference,,
+AUTO,AUTO009,Autonomous Vehicles,,,,no AICTE reference,,
+AUTO,AUTO010,Vehicle Body Engineering,,,,no AICTE reference,,
+MCT,MCT001,Sensors and Actuators,,,,no AICTE reference,,
+MCT,MCT002,Microcontroller Systems,,,,no AICTE reference,,
+MCT,MCT003,Hydraulics and Pneumatics,,,,no AICTE reference,,
+MCT,MCT004,Programmable Logic Controllers,,,,no AICTE reference,,
+MCT,MCT005,Mechatronic System Design,,,,no AICTE reference,,
+MCT,MCT006,Motion Control,,,,no AICTE reference,,
+MCT,MCT007,Industrial Automation,,,,no AICTE reference,,
+MCT,MCT008,Machine Vision,,,,no AICTE reference,,
+MCT,MCT009,MEMS,,,,no AICTE reference,,
+MCT,MCT010,Condition Monitoring,,,,no AICTE reference,,
+ROBO,ROBO001,Robot Kinematics,Kinematics of Robotics,ROBO,0.947,match,ug-robotics-ai.pdf,18
+ROBO,ROBO002,Robot Dynamics and Control,Robot Kinematics and Dynamics,ROBOTICS,0.834,match,ug-emerging.pdf,15
+ROBO,ROBO003,Robot Sensors and Perception,Sensors and Vision System,ROBOTICS,0.589,partial,ug-emerging.pdf,15
+ROBO,ROBO004,Mobile Robotics,Robotics,ROBO,0.537,partial,ug-robotics-ai.pdf,30
+ROBO,ROBO005,Robot Programming,Robotics,ROBO,0.582,partial,ug-robotics-ai.pdf,30
+ROBO,ROBO006,Manipulators and Grippers,Kinematics of Robotics,ROBO,0.558,partial,ug-robotics-ai.pdf,18
+ROBO,ROBO007,Humanoid and Legged Robots,Robot Kinematics and Dynamics,ROBOTICS,0.519,partial,ug-emerging.pdf,15
+ROBO,ROBO008,Swarm Robotics,Fundamentals of Robotics & AI,ROBO,0.501,partial,ug-robotics-ai.pdf,18
+ROBO,ROBO009,Robot Learning,Robotics,ROBO,0.591,partial,ug-robotics-ai.pdf,30
+ROBO,ROBO010,Robot Ethics and Safety,Robot Safety and Maintenance,ROBO,0.625,match,ug-robotics-ai.pdf,18
+ICE,ICE001,Transducers and Measurement,,,,no AICTE reference,,
+ICE,ICE002,Electronic Instrumentation,,,,no AICTE reference,,
+ICE,ICE003,Linear Control Systems,,,,no AICTE reference,,
+ICE,ICE004,Process Instrumentation,,,,no AICTE reference,,
+ICE,ICE005,Industrial Instrumentation,,,,no AICTE reference,,
+ICE,ICE006,Analytical Instrumentation,,,,no AICTE reference,,
+ICE,ICE007,Advanced Control Systems,,,,no AICTE reference,,
+ICE,ICE008,Medical Instrumentation,,,,no AICTE reference,,
+ICE,ICE009,Virtual Instrumentation,,,,no AICTE reference,,
+ICE,ICE010,Optoelectronics and Laser Instrumentation,,,,no AICTE reference,,
+AGRI,AGRI001,Soil and Water Conservation,,,,no AICTE reference,,
+AGRI,AGRI002,Farm Machinery,,,,no AICTE reference,,
+AGRI,AGRI003,Irrigation Engineering,,,,no AICTE reference,,
+AGRI,AGRI004,Post-Harvest Technology,,,,no AICTE reference,,
+AGRI,AGRI005,Dairy and Food Engineering,,,,no AICTE reference,,
+AGRI,AGRI006,Renewable Energy in Agriculture,,,,no AICTE reference,,
+AGRI,AGRI007,Agricultural Structures,,,,no AICTE reference,,
+AGRI,AGRI008,Precision Agriculture,,,,no AICTE reference,,
+AGRI,AGRI009,Groundwater Engineering,,,,no AICTE reference,,
+AGRI,AGRI010,Agricultural Process Engineering,,,,no AICTE reference,,
+MINING,MINING001,Mining Geology,,,,no AICTE reference,,
+MINING,MINING002,Mine Surveying,,,,no AICTE reference,,
+MINING,MINING003,Surface Mining,,,,no AICTE reference,,
+MINING,MINING004,Underground Mining,,,,no AICTE reference,,
+MINING,MINING005,Rock Mechanics,,,,no AICTE reference,,
+MINING,MINING006,Drilling and Blasting,,,,no AICTE reference,,
+MINING,MINING007,Mine Ventilation,,,,no AICTE reference,,
+MINING,MINING008,Mineral Processing,,,,no AICTE reference,,
+MINING,MINING009,Mine Safety and Legislation,,,,no AICTE reference,,
+MINING,MINING010,Mine Environment and Reclamation,,,,no AICTE reference,,
+PETRO,PETRO001,Petroleum Geology,,,,no AICTE reference,,
+PETRO,PETRO002,Drilling Engineering,,,,no AICTE reference,,
+PETRO,PETRO003,Reservoir Engineering,,,,no AICTE reference,,
+PETRO,PETRO004,Production Engineering,,,,no AICTE reference,,
+PETRO,PETRO005,Petroleum Refining,,,,no AICTE reference,,
+PETRO,PETRO006,Well Logging,,,,no AICTE reference,,
+PETRO,PETRO007,Enhanced Oil Recovery,,,,no AICTE reference,,
+PETRO,PETRO008,Natural Gas Engineering,,,,no AICTE reference,,
+PETRO,PETRO009,Offshore Engineering,,,,no AICTE reference,,
+PETRO,PETRO010,Health Safety and Environment in Petroleum,,,,no AICTE reference,,
+MARINE,MARINE001,Naval Architecture,,,,no AICTE reference,,
+MARINE,MARINE002,Marine Engines,,,,no AICTE reference,,
+MARINE,MARINE003,Ship Construction,,,,no AICTE reference,,
+MARINE,MARINE004,Marine Auxiliary Machinery,,,,no AICTE reference,,
+MARINE,MARINE005,Marine Electrical Systems,,,,no AICTE reference,,
+MARINE,MARINE006,Ship Resistance and Propulsion,,,,no AICTE reference,,
+MARINE,MARINE007,Marine Heat Engines and Refrigeration,,,,no AICTE reference,,
+MARINE,MARINE008,Maritime Law and Safety,,,,no AICTE reference,,
+MARINE,MARINE009,Marine Navigation,,,,no AICTE reference,,
+MARINE,MARINE010,Ship Operation and Management,,,,no AICTE reference,,
+MET,MET001,Physical Metallurgy,Physical Metallurgy,MET,1.0,match,ug-vol2.pdf,79
+MET,MET002,Mechanical Metallurgy,Physical Metallurgy,MET,0.891,match,ug-vol2.pdf,79
+MET,MET003,Extractive Metallurgy,Non Ferrous Extractive Metallurgy,MET,0.819,match,ug-vol2.pdf,79
+MET,MET004,Iron and Steel Making,Iron Making and Steel Making Technologies,MET,0.911,match,ug-vol2.pdf,79
+MET,MET005,Heat Treatment,Physical Metallurgy,MET,0.486,partial,ug-vol2.pdf,79
+MET,MET006,Materials Characterization,Materials Characterization,MET,1.0,match,ug-vol2.pdf,79
+MET,MET007,Corrosion Engineering,Iron Making and Steel Making Technologies,MET,0.398,no close AICTE course,ug-vol2.pdf,79
+MET,MET008,Powder Metallurgy,Physical Metallurgy,MET,0.645,match,ug-vol2.pdf,79
+MET,MET009,Welding Metallurgy,Physical Metallurgy,MET,0.507,partial,ug-vol2.pdf,79
+MET,MET010,Non-Ferrous and Advanced Materials,Non Metallic Materials,MET,0.624,match,ug-vol2.pdf,79
+TEXTILE,TEXTILE001,Textile Fibres,,,,no AICTE reference,,
+TEXTILE,TEXTILE002,Yarn Manufacturing,,,,no AICTE reference,,
+TEXTILE,TEXTILE003,Fabric Manufacturing,,,,no AICTE reference,,
+TEXTILE,TEXTILE004,Textile Chemical Processing,,,,no AICTE reference,,
+TEXTILE,TEXTILE005,Textile Testing,,,,no AICTE reference,,
+TEXTILE,TEXTILE006,Garment Technology,,,,no AICTE reference,,
+TEXTILE,TEXTILE007,Technical Textiles,,,,no AICTE reference,,
+TEXTILE,TEXTILE008,Textile Machinery,,,,no AICTE reference,,
+TEXTILE,TEXTILE009,Textile Composites,,,,no AICTE reference,,
+TEXTILE,TEXTILE010,Sustainable Textiles,,,,no AICTE reference,,
+OCEAN,OCEAN001,Ocean Wave Mechanics,,,,no AICTE reference,,
+OCEAN,OCEAN002,Physical Oceanography,,,,no AICTE reference,,
+OCEAN,OCEAN003,Coastal Engineering,,,,no AICTE reference,,
+OCEAN,OCEAN004,Offshore Structures,,,,no AICTE reference,,
+OCEAN,OCEAN005,Marine Hydrodynamics,,,,no AICTE reference,,
+OCEAN,OCEAN006,Ocean Energy,,,,no AICTE reference,,
+OCEAN,OCEAN007,Underwater Acoustics and Instrumentation,,,,no AICTE reference,,
+OCEAN,OCEAN008,Marine Geotechnics,,,,no AICTE reference,,
+OCEAN,OCEAN009,Port and Harbour Engineering,,,,no AICTE reference,,
+OCEAN,OCEAN010,Ocean Observation and Remote Sensing,,,,no AICTE reference,,

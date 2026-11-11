@@ -95,3 +95,14 @@ def test_claim_label_export_refuses_old_runs(tmp_path, monkeypatch):
     old.write_text(json.dumps({"id": "R1", "strategy": "direct"}) + "\n", encoding="utf-8")
     with pytest.raises(SystemExit):
         claim_labels.export([old], n=10, seed=1)
+
+
+def test_aicte_title_cleaning():
+    from src.data_collection.compare_aicte import BRANCH_NAME_ONLY, NOT_A_COURSE, clean, normalise_title
+    assert clean("Complier Design (New)") == "Compiler Design"          # AICTE's typo
+    assert clean("Analog Circuit Laboratory[0L:0T:2P 1 credit]") == "Analog Circuit Laboratory"
+    assert clean("IT Workshop (Sci") == "IT Workshop"                     # wrapped fragment
+    assert normalise_title("Measurements & Metrology") == normalise_title("Measurements and Metrology")
+    assert NOT_A_COURSE.search("Electronic Devices Lab") and NOT_A_COURSE.search("Introduction")
+    assert not NOT_A_COURSE.search("Digital System Design")
+    assert BRANCH_NAME_ONLY.match("Mechanical Engineering") and not BRANCH_NAME_ONLY.match("Automobile Engineering")
