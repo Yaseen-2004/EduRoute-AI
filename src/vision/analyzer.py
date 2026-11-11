@@ -31,7 +31,7 @@ class VisionAnalyzer:
             images=[(prepared_image.data, prepared_image.mime)],
         )
 
-    def answer(self, prepared_image, question, answer_mode="5-mark"):
+    def answer(self, prepared_image, question, answer_mode="5-mark", on_token=None):
         mode = ANSWER_MODES[answer_mode]
         prompt = VISION_ANSWER_PROMPT.format(
             question=question or "Explain this image.",
@@ -41,5 +41,5 @@ class VisionAnalyzer:
                     {"role": "user", "content": prompt}]
         return self.backend.generate(
             messages, max_new_tokens=mode["max_new_tokens"], temperature=0.2,
-            images=[(prepared_image.data, prepared_image.mime)],
+            images=[(prepared_image.data, prepared_image.mime)], on_token=on_token,
         )

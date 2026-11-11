@@ -6,12 +6,14 @@ Run from the project root:
 """
 
 import hashlib
+import threading
+import time
 from datetime import datetime, timezone
 
 import streamlit as st
 
 from config import settings
-from src.llm.prompts import ANSWER_MODES
+from src.llm.prompts import ANSWER_MODES, strip_prompt_echo
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
@@ -168,6 +170,28 @@ if "voice_pending" not in st.session_state:
     st.session_state.voice_pending = False
 
 status = system_status()
+
+
+@st.cache_resource(show_spinner=False)
+def warm_up_models():
+    """Load the models into memory in the background when the app starts, so the
+    first student question does not wait for it (a cold load took ~48 s on the
+    laptop CPU and several seconds on a GPU)."""
+    def run():
+        from src.llm.backends import build_backend
+        for role in ("text", "vision"):
+            try:
+                backend = build_backend(settings, role)
+                if backend is not None and backend.name != "extractive" and backend.is_available():
+                    backend.generate([{"role": "user", "content": "OK"}], max_new_tokens=1)
+            except Exception:
+                pass  # warm-up is best effort; a real question reports real errors
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+if status["llm"][0]:
+    warm_up_models()
 
 
 # ------------------------------------------------------------------ sidebar
@@ -410,23 +434,37 @@ if prompt:
     } if branch else None
 
     with st.chat_message("assistant"):
-        with st.status(":shimmer[Thinking]", type="compact") as thinking:
-            pipeline = get_pipeline(strategy, cost_preference)
-            try:
-                response = pipeline.ask(
-                    text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
-                    filters=filters, subject_context=subject_context, from_voice=from_voice,
-                    fallback_filters=fallback_filters,
-                ).to_dict()
-            except ValueError as error:
-                thinking.update(label="Could not answer", state="error")
-                st.error(str(error))
-                st.stop()
-            thinking.update(
-                label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} - "
-                      f"{response['telemetry']['total_ms'] / 1000:.1f} s",
-                state="complete",
-            )
+        thinking = st.status(":shimmer[Thinking]", type="compact")
+        # The answer appears word by word while it is generated; sources and
+        # verification are added when it is complete.
+        live = st.empty()
+        last_draw = [0.0]
+
+        def show_partial(text_so_far):
+            now = time.monotonic()
+            if now - last_draw[0] >= 0.08:          # ~12 refreshes a second
+                live.markdown(strip_prompt_echo(text_so_far) + " ▌")
+                last_draw[0] = now
+
+        pipeline = get_pipeline(strategy, cost_preference)
+        try:
+            response = pipeline.ask(
+                text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
+                filters=filters, subject_context=subject_context, from_voice=from_voice,
+                fallback_filters=fallback_filters, on_token=show_partial,
+            ).to_dict()
+        except ValueError as error:
+            thinking.update(label="Could not answer", state="error")
+            st.error(str(error))
+            st.stop()
+        live.empty()
+        first = response["telemetry"]["stages_ms"].get("first_token")
+        thinking.update(
+            label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} - "
+                  f"{response['telemetry']['total_ms'] / 1000:.1f} s"
+                  + (f" (first words after {first / 1000:.1f} s)" if first else ""),
+            state="complete",
+        )
 
         audio_bytes = None
         if speak:

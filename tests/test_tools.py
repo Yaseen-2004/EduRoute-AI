@@ -106,3 +106,30 @@ def test_aicte_title_cleaning():
     assert NOT_A_COURSE.search("Electronic Devices Lab") and NOT_A_COURSE.search("Introduction")
     assert not NOT_A_COURSE.search("Digital System Design")
     assert BRANCH_NAME_ONLY.match("Mechanical Engineering") and not BRANCH_NAME_ONLY.match("Automobile Engineering")
+
+
+def test_streaming_reads_server_sent_events():
+    from src.llm.backends import OpenAICompatibleBackend
+
+    class FakeResponse:
+        status_code = 200
+        lines = ['data: {"model":"m","choices":[{"delta":{"content":"Ohm"}}]}', "",
+                 'data: {"choices":[{"delta":{"content":"s law"}}]}',
+                 'data: {"choices":[],"usage":{"prompt_tokens":12,"completion_tokens":3}}',
+                 "data: [DONE]"]
+
+        def iter_lines(self, decode_unicode=True):
+            return iter(self.lines)
+
+    class FakeSession:
+        def post(self, *args, **kwargs):
+            assert kwargs["stream"] and kwargs["json"]["stream"]
+            return FakeResponse()
+
+    backend = OpenAICompatibleBackend("http://x/v1", "m")
+    backend._session = FakeSession()
+    seen = []
+    result = backend.generate([{"role": "user", "content": "q"}], on_token=seen.append)
+    assert seen == ["Ohm", "Ohms law"]
+    assert result.text == "Ohms law" and result.output_tokens == 3 and result.input_tokens == 12
+    assert result.extra["first_token_s"] is not None

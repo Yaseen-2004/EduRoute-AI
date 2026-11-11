@@ -162,13 +162,16 @@ class EduRoutePipeline:
         return (vectors[1:] @ vectors[0]).tolist()
 
     def _generate(self, messages, telemetry, answer_mode, passages=None, question="",
-                  notices=None, max_new_tokens=None):
+                  notices=None, max_new_tokens=None, on_token=None):
         """Call the LLM; on failure fall back to extractive evidence (never silently)."""
         max_new = max_new_tokens or ANSWER_MODES[answer_mode]["max_new_tokens"]
         evidence = {"question": question, "passages": passages or []}
         try:
             result = self.llm.generate(messages, max_new_tokens=max_new,
-                                       temperature=settings.TEMPERATURE, evidence=evidence)
+                                       temperature=settings.TEMPERATURE, evidence=evidence,
+                                       on_token=on_token)
+            if result.extra.get("first_token_s") is not None:
+                telemetry.stages_ms["first_token"] = round(result.extra["first_token_s"] * 1000, 1)
         except LLMUnavailableError as error:
             if notices is not None:
                 notices.append(
@@ -194,7 +197,8 @@ class EduRoutePipeline:
     # --------------------------------------------------------------- main
 
     def ask(self, question, image_bytes=None, answer_mode="5-mark", history=None,
-            filters=None, subject_context=None, from_voice=False, fallback_filters=None):
+            filters=None, subject_context=None, from_voice=False, fallback_filters=None,
+            on_token=None):
         """`fallback_filters`: wider scopes tried in order when `filters` has no
         in-domain match (default: the whole index). Pass [] to keep the filter strict."""
         if answer_mode not in ANSWER_MODES:
@@ -251,7 +255,7 @@ class EduRoutePipeline:
             try:
                 if workflow == "vision_llm":
                     with _Timer(telemetry, "vision"):
-                        result = analyzer.answer(prepared, question, answer_mode)
+                        result = analyzer.answer(prepared, question, answer_mode, on_token=on_token)
                     telemetry.add_generation(result)
                 else:
                     with _Timer(telemetry, "vision"):
@@ -266,7 +270,7 @@ class EduRoutePipeline:
                     )
                     with _Timer(telemetry, "generation"):
                         result = self._generate(messages, telemetry, answer_mode, passages,
-                                                question, notices)
+                                                question, notices, on_token=on_token)
             except LLMUnavailableError as error:
                 notices.append(f"Vision model unavailable: {error}")
                 if not question or depends_on_image(question):
@@ -287,7 +291,7 @@ class EduRoutePipeline:
                 messages = build_rag_messages(question, passages, answer_mode, history, subject_context)
                 with _Timer(telemetry, "generation"):
                     result = self._generate(messages, telemetry, answer_mode, passages,
-                                            question, notices)
+                                            question, notices, on_token=on_token)
 
         if workflow == "direct_llm":
             messages = build_direct_messages(question, answer_mode, history, subject_context)
@@ -298,7 +302,7 @@ class EduRoutePipeline:
                 fallback_passages = probe or self._retrieve(question, filters, telemetry)
             with _Timer(telemetry, "generation"):
                 result = self._generate(messages, telemetry, answer_mode, fallback_passages,
-                                        question, notices)
+                                        question, notices, on_token=on_token)
             if not result.is_model_output and fallback_passages:
                 passages = fallback_passages
 

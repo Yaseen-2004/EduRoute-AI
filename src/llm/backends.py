@@ -44,7 +44,8 @@ class LLMBackend:
     name = "base"
     supports_images = False
 
-    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None):
+    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None,
+                 on_token=None):
         """`evidence` is only used by the extractive fallback; model backends ignore it."""
         raise NotImplementedError
 
@@ -107,7 +108,10 @@ class OpenAICompatibleBackend(LLMBackend):
         last["content"] = content
         return messages
 
-    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None):
+    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None,
+                 on_token=None):
+        """`on_token(text_so_far)` is called while the answer streams in, so the
+        interface can show it immediately instead of after the whole answer."""
         if images and not self.supports_images:
             raise LLMUnavailableError(f"Model '{self.model}' is not configured for images.")
         payload = {
@@ -116,6 +120,9 @@ class OpenAICompatibleBackend(LLMBackend):
             "max_tokens": max_new_tokens,
             "temperature": temperature,
         }
+        if on_token is not None:
+            payload["stream"] = True
+            payload["stream_options"] = {"include_usage": True}
         if time.monotonic() < self._down_until:
             raise LLMUnavailableError(self._down_reason)
         started = time.perf_counter()
@@ -123,6 +130,7 @@ class OpenAICompatibleBackend(LLMBackend):
             response = self.session.post(
                 f"{self.base_url}/chat/completions", json=payload,
                 timeout=(3.05, self.timeout),  # (connect, read)
+                stream=on_token is not None,
             )
         except Exception as error:  # connection refused, DNS, TLS, timeout
             self._down_reason = f"Cannot reach {self.base_url} ({type(error).__name__})"
@@ -132,6 +140,8 @@ class OpenAICompatibleBackend(LLMBackend):
             raise LLMUnavailableError(
                 f"{self.base_url} returned HTTP {response.status_code}: {response.text[:300]}"
             )
+        if on_token is not None:
+            return self._read_stream(response, on_token, started)
         data = response.json()
         usage = data.get("usage") or {}
         return GenerationResult(
@@ -142,6 +152,44 @@ class OpenAICompatibleBackend(LLMBackend):
             output_tokens=int(usage.get("completion_tokens", 0)),
             latency_s=time.perf_counter() - started,
         )
+
+    def _read_stream(self, response, on_token, started):
+        """Server-sent events from an OpenAI-compatible /chat/completions stream."""
+        import json as _json
+        parts, usage, model, chunks = [], {}, self.model, 0
+        first_token_s = None
+        try:
+            for raw in response.iter_lines(decode_unicode=True):
+                if not raw or not raw.startswith("data:"):
+                    continue
+                data = raw[5:].strip()
+                if data == "[DONE]":
+                    break
+                event = _json.loads(data)
+                model = event.get("model", model)
+                usage = event.get("usage") or usage
+                for choice in event.get("choices") or []:
+                    delta = (choice.get("delta") or {}).get("content")
+                    if delta:
+                        if first_token_s is None:
+                            first_token_s = time.perf_counter() - started
+                        parts.append(delta)
+                        chunks += 1
+                        on_token("".join(parts))
+        except Exception as error:  # dropped connection mid-answer
+            if not parts:
+                raise LLMUnavailableError(f"Stream from {self.base_url} failed: {error}") from error
+        result = GenerationResult(
+            text="".join(parts).strip(),
+            model=model,
+            backend=self.name,
+            input_tokens=int(usage.get("prompt_tokens", 0)),
+            # Servers without usage in streams: one chunk is about one token.
+            output_tokens=int(usage.get("completion_tokens", chunks)),
+            latency_s=time.perf_counter() - started,
+        )
+        result.extra["first_token_s"] = first_token_s
+        return result
 
     def is_available(self):
         if time.monotonic() < self._down_until:
@@ -212,7 +260,8 @@ class TransformersBackend(LLMBackend):
             raise LLMUnavailableError(f"Could not load {self.model_name}: {error}") from error
         self._model.eval()
 
-    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None):
+    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None,
+                 on_token=None):
         if images:
             raise LLMUnavailableError("The text LLM backend cannot process images.")
         import torch
@@ -271,7 +320,8 @@ class ExtractiveBackend(LLMBackend):
     def __init__(self, sentence_scorer=None):
         self.sentence_scorer = sentence_scorer
 
-    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None):
+    def generate(self, messages, max_new_tokens=512, temperature=0.3, images=None, evidence=None,
+                 on_token=None):
         started = time.perf_counter()
         # `evidence` is {"question": str, "passages": [retrieved chunk dicts]}.
         evidence = evidence or {}
