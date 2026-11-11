@@ -1,0 +1,450 @@
+{
+    "generated_at": "2026-11-07T09:33:42.108741+00:00",
+    "dataset_version": "V4",
+    "source_file": "data\\processed\\wikipedia\\aiml_wikipedia_v3.jsonl",
+    "output_file": "data\\processed\\wikipedia\\aiml_wikipedia_v4.jsonl",
+    "v3_articles": 92,
+    "removed_wrong_pages": [
+        {
+            "title": "Regression",
+            "reason": "Disambiguation page"
+        },
+        {
+            "title": "Clustering",
+            "reason": "Disambiguation page"
+        },
+        {
+            "title": "CNN",
+            "reason": "Cable News Network article, not convolutional neural networks"
+        },
+        {
+            "title": "RNN",
+            "reason": "Disambiguation page"
+        },
+        {
+            "title": "Spark",
+            "reason": "Disambiguation page, not Apache Spark"
+        },
+        {
+            "title": "Lime",
+            "reason": "Disambiguation page (fruit/material), not the LIME explainer"
+        },
+        {
+            "title": "Transparency",
+            "reason": "Disambiguation page (optics etc.)"
+        }
+    ],
+    "added_replacements": [
+        "Regression analysis",
+        "Cluster analysis",
+        "Statistical classification",
+        "Long short-term memory",
+        "Gradient descent",
+        "Attention (machine learning)",
+        "Lexical analysis",
+        "Image segmentation",
+        "Apache Spark",
+        "Shapley value",
+        "Algorithmic transparency"
+    ],
+    "subject_fixes": [
+        "Transformer (deep learning)",
+        "Attention Is All You Need"
+    ],
+    "final_articles": 96,
+    "min_text_chars": 1636,
+    "max_text_chars": 73072,
+    "dropped_by_article": {
+        "Search algorithm": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Knowledge representation and reasoning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Applications of artificial intelligence": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Supervised learning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Unsupervised learning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Classification": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Probability theory": {
+            "sections": [
+                "See also",
+                "See also > Lists"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Probability distribution": {
+            "sections": [
+                "See also",
+                "See also > Lists"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Statistical hypothesis test": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Association rule learning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "K-means clustering": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Anomaly detection": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Backpropagation": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Large language model": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Word embedding": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Feature engineering": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Object detection": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Computer vision": {
+            "sections": [
+                "See also > Lists"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Q-learning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Proximal policy optimization": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Reinforcement learning from human feedback": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Apache Hadoop": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Generative model": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Mechanistic interpretability": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Feature Importance": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Fairness (machine learning)": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Algorithmic bias": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "AI observability": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Autoencoder": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Automated machine learning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Byte-pair encoding": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Convolutional layer": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Convolutional neural network": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Decision tree pruning": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Diffusion model": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Explainable artificial intelligence": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Generative adversarial network": {
+            "sections": [
+                "Other uses",
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "ImageNet": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Information gain (decision tree)": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Latent diffusion model": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "MLOps": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Natural language": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Policy gradient method": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Random forest": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Relevance vector machine": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Reparameterization trick": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Seq2seq": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "You Only Look Once": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Transformer (deep learning)": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Attention Is All You Need": {
+            "sections": [
+                "See also",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Regression analysis": {
+            "sections": [
+                "Further reading",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Cluster analysis": {
+            "sections": [
+                "See also > Specialized types of cluster analysis",
+                "See also > Techniques used in cluster analysis",
+                "See also > Data projection and preprocessing",
+                "See also > Other"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Long short-term memory": {
+            "sections": [
+                "Further reading",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Gradient descent": {
+            "sections": [
+                "Further reading",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Attention (machine learning)": {
+            "sections": [
+                "See also",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Lexical analysis": {
+            "sections": [
+                "See also",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Image segmentation": {
+            "sections": [
+                "See also",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Apache Spark": {
+            "sections": [
+                "See also",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Shapley value": {
+            "sections": [
+                "See also",
+                "Further reading",
+                "External links"
+            ],
+            "citation_paragraphs": 0
+        },
+        "Algorithmic transparency": {
+            "sections": [
+                "See also"
+            ],
+            "citation_paragraphs": 0
+        }
+    },
+    "subject_distribution": {
+        "AIML001": 4,
+        "AIML002": 15,
+        "AIML003": 5,
+        "AIML004": 4,
+        "AIML005": 12,
+        "AIML006": 9,
+        "AIML007": 8,
+        "AIML008": 9,
+        "AIML009": 5,
+        "AIML010": 9,
+        "AIML011": 6,
+        "AIML012": 5,
+        "AIML013": 5
+    }
+}

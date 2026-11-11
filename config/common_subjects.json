@@ -1,0 +1,97 @@
+
+{
+  "category": "COMMON",
+  "description": "Foundational subjects used across multiple B.Tech engineering disciplines",
+  "subjects": [
+    {
+      "id": "COM001",
+      "name": "Engineering Mathematics",
+      "year": 1,
+      "topics": ["Calculus", "Linear Algebra", "Differential Equations", "Vector Calculus"]
+    },
+    {
+      "id": "COM002",
+      "name": "Engineering Physics",
+      "year": 1,
+      "topics": ["Mechanics", "Optics", "Quantum Physics", "Semiconductor Physics"]
+    },
+    {
+      "id": "COM003",
+      "name": "Engineering Chemistry",
+      "year": 1,
+      "topics": ["Electrochemistry", "Corrosion", "Polymers", "Material Chemistry"]
+    },
+    {
+      "id": "COM004",
+      "name": "Programming for Problem Solving",
+      "year": 1,
+      "topics": ["Programming Fundamentals", "Control Structures", "Functions", "Arrays"]
+    },
+    {
+      "id": "COM005",
+      "name": "Basic Electrical Engineering",
+      "year": 1,
+      "topics": ["DC Circuits", "AC Circuits", "Transformers", "Electrical Machines"]
+    },
+    {
+      "id": "COM006",
+      "name": "Basic Electronics Engineering",
+      "year": 1,
+      "topics": ["Semiconductor Devices", "Diodes", "Transistors", "Digital Electronics"]
+    },
+    {
+      "id": "COM007",
+      "name": "Engineering Graphics",
+      "year": 1,
+      "topics": ["Orthographic Projection", "Isometric Projection", "Engineering Drawing", "CAD Fundamentals"]
+    },
+    {
+      "id": "COM008",
+      "name": "Engineering Mechanics",
+      "year": 1,
+      "topics": ["Statics", "Dynamics", "Force Systems", "Friction"]
+    },
+    {
+      "id": "COM009",
+      "name": "Environmental Studies",
+      "year": 1,
+      "topics": ["Ecosystems", "Pollution", "Natural Resources", "Sustainable Development"]
+    },
+    {
+      "id": "COM010",
+      "name": "Communicative English",
+      "year": 1,
+      "topics": ["Technical Writing", "Communication Skills", "Presentations", "Professional Communication"]
+    },
+    {
+      "id": "COM011",
+      "name": "Data Structures and Algorithms",
+      "year": 2,
+      "topics": ["Arrays", "Linked Lists", "Trees", "Graphs", "Sorting", "Searching"]
+    },
+    {
+      "id": "COM012",
+      "name": "Discrete Mathematics",
+      "year": 2,
+      "topics": ["Logic", "Set Theory", "Relations", "Combinatorics", "Graph Theory"]
+    },
+    {
+      "id": "COM013",
+      "name": "Database Management Systems",
+      "year": 2,
+      "topics": ["Relational Models", "SQL", "Normalization", "Transactions"]
+    },
+    {
+      "id": "COM014",
+      "name": "Computer Networks Fundamentals",
+      "year": 2,
+      "topics": ["Network Models", "TCP/IP", "Routing", "Network Security"]
+    },
+    {
+      "id": "COM015",
+      "name": "Engineering Economics and Management",
+      "year": 3,
+      "topics": ["Engineering Economics", "Cost Analysis", "Project Management", "Decision Making"]
+    }
+  ]
+}

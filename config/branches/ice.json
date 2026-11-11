@@ -1,0 +1,127 @@
+{
+  "branch_code": "ICE",
+  "branch_name": "Instrumentation and Control Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "ICE001",
+      "name": "Transducers and Measurement",
+      "year": 2,
+      "topics": [
+        "Measurement",
+        "Accuracy and precision",
+        "Thermocouple",
+        "Resistance thermometer",
+        "Pressure sensor"
+      ]
+    },
+    {
+      "id": "ICE002",
+      "name": "Electronic Instrumentation",
+      "year": 2,
+      "topics": [
+        "Instrumentation",
+        "Signal conditioning",
+        "Instrumentation amplifier",
+        "Data acquisition",
+        "Spectrum analyzer"
+      ]
+    },
+    {
+      "id": "ICE003",
+      "name": "Linear Control Systems",
+      "year": 3,
+      "topics": [
+        "Control system",
+        "Nyquist stability criterion",
+        "Routh-Hurwitz stability criterion",
+        "Steady state",
+        "Lead-lag compensator"
+      ]
+    },
+    {
+      "id": "ICE004",
+      "name": "Process Instrumentation",
+      "year": 3,
+      "topics": [
+        "Level sensor",
+        "Orifice plate",
+        "Rotameter",
+        "Differential pressure",
+        "Pyrometer"
+      ]
+    },
+    {
+      "id": "ICE005",
+      "name": "Industrial Instrumentation",
+      "year": 3,
+      "topics": [
+        "Industrial control system",
+        "Fieldbus",
+        "Highway Addressable Remote Transducer Protocol",
+        "Current loop",
+        "Profibus"
+      ]
+    },
+    {
+      "id": "ICE006",
+      "name": "Analytical Instrumentation",
+      "year": 3,
+      "topics": [
+        "Spectroscopy",
+        "Gas chromatography",
+        "Mass spectrometry",
+        "PH meter",
+        "Ultraviolet-visible spectroscopy"
+      ]
+    },
+    {
+      "id": "ICE007",
+      "name": "Advanced Control Systems",
+      "year": 4,
+      "topics": [
+        "Model predictive control",
+        "Adaptive control",
+        "Optimal control",
+        "Robust control",
+        "Nonlinear control"
+      ]
+    },
+    {
+      "id": "ICE008",
+      "name": "Medical Instrumentation",
+      "year": 4,
+      "topics": [
+        "Monitoring (medicine)",
+        "Mechanical ventilation",
+        "Infusion pump",
+        "Capnography",
+        "Pulse oximeter"
+      ]
+    },
+    {
+      "id": "ICE009",
+      "name": "Virtual Instrumentation",
+      "year": 4,
+      "topics": [
+        "Virtual instrumentation",
+        "LabVIEW",
+        "Data logger",
+        "Visual programming language",
+        "Test automation"
+      ]
+    },
+    {
+      "id": "ICE010",
+      "name": "Optoelectronics and Laser Instrumentation",
+      "year": 4,
+      "topics": [
+        "Optoelectronics",
+        "Laser",
+        "Optical fiber",
+        "Photodiode",
+        "Interferometry"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# EduRoute AI - what the app needs to run (also used by Streamlit Community Cloud).
+# Development, data-collection and test tools: requirements-dev.txt
+
+# CPU-only PyTorch on Linux hosts (avoids a ~2 GB CUDA download on Streamlit Cloud).
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+streamlit>=1.66,<1.67
+sentence-transformers>=5.0
+torch>=2.5
+faiss-cpu>=1.8
+numpy>=1.26
+pandas>=2.2
+Pillow>=10.0
+requests>=2.31
+python-dotenv>=1.0
+truststore>=0.9
+
+# Voice questions and spoken answers
+faster-whisper>=1.1
+av>=12.0
+edge-tts>=6.1
+gTTS>=2.5

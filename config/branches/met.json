@@ -1,0 +1,127 @@
+{
+  "branch_code": "MET",
+  "branch_name": "Metallurgical Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "MET001",
+      "name": "Physical Metallurgy",
+      "year": 2,
+      "topics": [
+        "Metallurgy",
+        "Crystal structure",
+        "Allotropes of iron",
+        "Grain boundary",
+        "Dislocation"
+      ]
+    },
+    {
+      "id": "MET002",
+      "name": "Mechanical Metallurgy",
+      "year": 3,
+      "topics": [
+        "Plasticity (physics)",
+        "Yield (engineering)",
+        "Creep (deformation)",
+        "Work hardening",
+        "Fracture mechanics"
+      ]
+    },
+    {
+      "id": "MET003",
+      "name": "Extractive Metallurgy",
+      "year": 3,
+      "topics": [
+        "Extractive metallurgy",
+        "Smelting",
+        "Blast furnace",
+        "Hydrometallurgy",
+        "Electrowinning"
+      ]
+    },
+    {
+      "id": "MET004",
+      "name": "Iron and Steel Making",
+      "year": 3,
+      "topics": [
+        "Steelmaking",
+        "Basic oxygen steelmaking",
+        "Continuous casting",
+        "Pig iron",
+        "Direct reduced iron"
+      ]
+    },
+    {
+      "id": "MET005",
+      "name": "Heat Treatment",
+      "year": 3,
+      "topics": [
+        "Heat treating",
+        "Annealing (materials science)",
+        "Quenching",
+        "Tempering (metallurgy)",
+        "Case-hardening"
+      ]
+    },
+    {
+      "id": "MET006",
+      "name": "Materials Characterization",
+      "year": 3,
+      "topics": [
+        "Characterization (materials science)",
+        "X-ray crystallography",
+        "Scanning electron microscope",
+        "Transmission electron microscopy",
+        "Hardness"
+      ]
+    },
+    {
+      "id": "MET007",
+      "name": "Corrosion Engineering",
+      "year": 3,
+      "topics": [
+        "Corrosion",
+        "Galvanic corrosion",
+        "Cathodic protection",
+        "Passivation (chemistry)",
+        "Galvanization"
+      ]
+    },
+    {
+      "id": "MET008",
+      "name": "Powder Metallurgy",
+      "year": 4,
+      "topics": [
+        "Powder metallurgy",
+        "Sintering",
+        "Metal injection molding",
+        "Metal powder",
+        "Hot isostatic pressing"
+      ]
+    },
+    {
+      "id": "MET009",
+      "name": "Welding Metallurgy",
+      "year": 4,
+      "topics": [
+        "Heat-affected zone",
+        "Gas metal arc welding",
+        "Gas tungsten arc welding",
+        "Shielded metal arc welding",
+        "Weldability"
+      ]
+    },
+    {
+      "id": "MET010",
+      "name": "Non-Ferrous and Advanced Materials",
+      "year": 4,
+      "topics": [
+        "Aluminium alloy",
+        "Titanium alloy",
+        "Superalloy",
+        "Shape-memory alloy",
+        "Nanomaterials"
+      ]
+    }
+  ]
+}

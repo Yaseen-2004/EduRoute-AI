@@ -1,0 +1,163 @@
+{
+  "branch_code": "ECE",
+  "branch_name": "Electronics and Communication Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "ECE001",
+      "name": "Electronic Devices and Circuits",
+      "year": 2,
+      "topics": [
+        "Bipolar junction transistor",
+        "MOSFET",
+        "Rectifier",
+        "Zener diode",
+        "Amplifier"
+      ]
+    },
+    {
+      "id": "ECE002",
+      "name": "Network Analysis",
+      "year": 2,
+      "topics": [
+        "Thevenin's theorem",
+        "Norton's theorem",
+        "Kirchhoff's circuit laws",
+        "Two-port network",
+        "RLC circuit"
+      ]
+    },
+    {
+      "id": "ECE003",
+      "name": "Signals and Systems",
+      "year": 2,
+      "topics": [
+        "Signal (information theory)",
+        "Fourier transform",
+        "Laplace transform",
+        "Z-transform",
+        "Convolution"
+      ]
+    },
+    {
+      "id": "ECE004",
+      "name": "Digital Logic Design",
+      "year": 2,
+      "topics": [
+        "Logic gate",
+        "Boolean algebra",
+        "Karnaugh map",
+        "Flip-flop (electronics)",
+        "Finite-state machine"
+      ]
+    },
+    {
+      "id": "ECE005",
+      "name": "Analog Circuits",
+      "year": 3,
+      "topics": [
+        "Operational amplifier",
+        "Negative feedback amplifier",
+        "Electronic oscillator",
+        "Active filter",
+        "Differential amplifier"
+      ]
+    },
+    {
+      "id": "ECE006",
+      "name": "Analog Communication",
+      "year": 3,
+      "topics": [
+        "Amplitude modulation",
+        "Frequency modulation",
+        "Superheterodyne receiver",
+        "Noise (electronics)",
+        "Phase modulation"
+      ]
+    },
+    {
+      "id": "ECE007",
+      "name": "Digital Communication",
+      "year": 3,
+      "topics": [
+        "Pulse-code modulation",
+        "Phase-shift keying",
+        "Quadrature amplitude modulation",
+        "Nyquist-Shannon sampling theorem",
+        "Channel capacity"
+      ]
+    },
+    {
+      "id": "ECE008",
+      "name": "Electromagnetic Waves",
+      "year": 3,
+      "topics": [
+        "Maxwell's equations",
+        "Electromagnetic radiation",
+        "Transmission line",
+        "Waveguide",
+        "Antenna (radio)"
+      ]
+    },
+    {
+      "id": "ECE009",
+      "name": "Microprocessors and Microcontrollers",
+      "year": 3,
+      "topics": [
+        "Microprocessor",
+        "Intel 8085",
+        "Intel 8086",
+        "Microcontroller",
+        "Interrupt"
+      ]
+    },
+    {
+      "id": "ECE010",
+      "name": "Digital Signal Processing",
+      "year": 3,
+      "topics": [
+        "Digital signal processing",
+        "Discrete Fourier transform",
+        "Fast Fourier transform",
+        "Finite impulse response",
+        "Infinite impulse response"
+      ]
+    },
+    {
+      "id": "ECE011",
+      "name": "VLSI Design",
+      "year": 4,
+      "topics": [
+        "Very-large-scale integration",
+        "CMOS",
+        "Hardware description language",
+        "Field-programmable gate array",
+        "Semiconductor device fabrication"
+      ]
+    },
+    {
+      "id": "ECE012",
+      "name": "Wireless Communication",
+      "year": 4,
+      "topics": [
+        "Cellular network",
+        "Orthogonal frequency-division multiplexing",
+        "MIMO",
+        "Fading",
+        "5G"
+      ]
+    },
+    {
+      "id": "ECE013",
+      "name": "Embedded Systems",
+      "year": 4,
+      "topics": [
+        "Embedded system",
+        "Real-time operating system",
+        "ARM architecture family",
+        "I2C",
+        "Serial Peripheral Interface"
+      ]
+    }
+  ]
+}

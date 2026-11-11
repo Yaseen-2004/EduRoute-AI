@@ -1,0 +1,127 @@
+{
+  "branch_code": "EE",
+  "branch_name": "Electrical Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "EE001",
+      "name": "Electromagnetic Field Theory",
+      "year": 2,
+      "topics": [
+        "Electric field",
+        "Magnetic field",
+        "Gauss's law",
+        "Ampere's circuital law",
+        "Faraday's law of induction"
+      ]
+    },
+    {
+      "id": "EE002",
+      "name": "Circuit Theory",
+      "year": 2,
+      "topics": [
+        "Mesh analysis",
+        "Nodal analysis",
+        "Maximum power transfer theorem",
+        "Electrical resonance",
+        "Transient response"
+      ]
+    },
+    {
+      "id": "EE003",
+      "name": "Electrical Machine Design",
+      "year": 3,
+      "topics": [
+        "Magnetic circuit",
+        "Magnetic hysteresis",
+        "Eddy current",
+        "Electrical steel",
+        "Electromagnetic coil"
+      ]
+    },
+    {
+      "id": "EE004",
+      "name": "Switchgear and Protection",
+      "year": 3,
+      "topics": [
+        "Switchgear",
+        "Fuse (electrical)",
+        "Earthing system",
+        "Relay",
+        "Arc flash"
+      ]
+    },
+    {
+      "id": "EE005",
+      "name": "Utilisation of Electrical Energy",
+      "year": 3,
+      "topics": [
+        "Induction heating",
+        "Electric arc furnace",
+        "Lighting",
+        "Railway electrification",
+        "Electroplating"
+      ]
+    },
+    {
+      "id": "EE006",
+      "name": "Power System Operation and Control",
+      "year": 3,
+      "topics": [
+        "Economic dispatch",
+        "Automatic generation control",
+        "Unit commitment problem in electrical power production",
+        "Power factor",
+        "Load profile"
+      ]
+    },
+    {
+      "id": "EE007",
+      "name": "Smart Grid",
+      "year": 4,
+      "topics": [
+        "Smart grid",
+        "Smart meter",
+        "Demand response",
+        "Distributed generation",
+        "Microgrid"
+      ]
+    },
+    {
+      "id": "EE008",
+      "name": "Electric Vehicles",
+      "year": 4,
+      "topics": [
+        "Electric vehicle",
+        "Battery electric vehicle",
+        "Lithium-ion battery",
+        "Battery management system",
+        "Charging station"
+      ]
+    },
+    {
+      "id": "EE009",
+      "name": "Digital Control Systems",
+      "year": 4,
+      "topics": [
+        "Digital control",
+        "Zero-order hold",
+        "State-space representation",
+        "Controllability",
+        "Observability"
+      ]
+    },
+    {
+      "id": "EE010",
+      "name": "HVDC and FACTS",
+      "year": 4,
+      "topics": [
+        "High-voltage direct current",
+        "Flexible AC transmission system",
+        "Static VAR compensator",
+        "STATCOM",
+        "Reactive power"
+      ]
+    }
+  ]
+}

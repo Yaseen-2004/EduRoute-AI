@@ -1,0 +1,127 @@
+{
+  "branch_code": "PETRO",
+  "branch_name": "Petroleum Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "PETRO001",
+      "name": "Petroleum Geology",
+      "year": 2,
+      "topics": [
+        "Petroleum geology",
+        "Petroleum reservoir",
+        "Source rock",
+        "Structural trap",
+        "Porosity"
+      ]
+    },
+    {
+      "id": "PETRO002",
+      "name": "Drilling Engineering",
+      "year": 3,
+      "topics": [
+        "Oil well",
+        "Drilling fluid",
+        "Blowout preventer",
+        "Directional drilling",
+        "Casing (borehole)"
+      ]
+    },
+    {
+      "id": "PETRO003",
+      "name": "Reservoir Engineering",
+      "year": 3,
+      "topics": [
+        "Petroleum engineering",
+        "Permeability (Earth sciences)",
+        "Oil in place",
+        "Reservoir simulation",
+        "Relative permeability"
+      ]
+    },
+    {
+      "id": "PETRO004",
+      "name": "Production Engineering",
+      "year": 3,
+      "topics": [
+        "Extraction of petroleum",
+        "Artificial lift",
+        "Gas lift",
+        "Hydraulic fracturing",
+        "Well stimulation"
+      ]
+    },
+    {
+      "id": "PETRO005",
+      "name": "Petroleum Refining",
+      "year": 3,
+      "topics": [
+        "Oil refinery",
+        "Fractional distillation",
+        "Fluid catalytic cracking",
+        "Hydrocracking",
+        "Catalytic reforming"
+      ]
+    },
+    {
+      "id": "PETRO006",
+      "name": "Well Logging",
+      "year": 3,
+      "topics": [
+        "Well logging",
+        "Gamma ray logging",
+        "Resistivity logging",
+        "Neutron porosity",
+        "Sonic logging"
+      ]
+    },
+    {
+      "id": "PETRO007",
+      "name": "Enhanced Oil Recovery",
+      "year": 4,
+      "topics": [
+        "Enhanced oil recovery",
+        "Water injection (oil production)",
+        "Steam injection (oil industry)",
+        "Polymer flooding",
+        "Carbon capture and storage"
+      ]
+    },
+    {
+      "id": "PETRO008",
+      "name": "Natural Gas Engineering",
+      "year": 4,
+      "topics": [
+        "Natural gas",
+        "Natural-gas processing",
+        "Liquefied natural gas",
+        "Gas compressor",
+        "Pipeline transport"
+      ]
+    },
+    {
+      "id": "PETRO009",
+      "name": "Offshore Engineering",
+      "year": 4,
+      "topics": [
+        "Offshore drilling",
+        "Oil platform",
+        "Subsea (technology)",
+        "Floating production storage and offloading",
+        "Jackup rig"
+      ]
+    },
+    {
+      "id": "PETRO010",
+      "name": "Health Safety and Environment in Petroleum",
+      "year": 4,
+      "topics": [
+        "Oil spill",
+        "Deepwater Horizon oil spill",
+        "Gas flare",
+        "Hydrogen sulfide",
+        "Environmental impact of the petroleum industry"
+      ]
+    }
+  ]
+}

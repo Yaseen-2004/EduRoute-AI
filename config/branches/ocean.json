@@ -1,0 +1,127 @@
+{
+  "branch_code": "OCEAN",
+  "branch_name": "Ocean Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "OCEAN001",
+      "name": "Ocean Wave Mechanics",
+      "year": 2,
+      "topics": [
+        "Wind wave",
+        "Airy wave theory",
+        "Stokes wave",
+        "Tide",
+        "Tsunami"
+      ]
+    },
+    {
+      "id": "OCEAN002",
+      "name": "Physical Oceanography",
+      "year": 2,
+      "topics": [
+        "Physical oceanography",
+        "Ocean current",
+        "Thermohaline circulation",
+        "Upwelling",
+        "Salinity"
+      ]
+    },
+    {
+      "id": "OCEAN003",
+      "name": "Coastal Engineering",
+      "year": 3,
+      "topics": [
+        "Coastal engineering",
+        "Breakwater (structure)",
+        "Seawall",
+        "Groyne",
+        "Coastal erosion"
+      ]
+    },
+    {
+      "id": "OCEAN004",
+      "name": "Offshore Structures",
+      "year": 3,
+      "topics": [
+        "Offshore construction",
+        "Tension-leg platform",
+        "Spar (platform)",
+        "Offshore wind power",
+        "Mooring"
+      ]
+    },
+    {
+      "id": "OCEAN005",
+      "name": "Marine Hydrodynamics",
+      "year": 3,
+      "topics": [
+        "Fluid dynamics",
+        "Added mass",
+        "Morison equation",
+        "Vortex shedding",
+        "Seakeeping"
+      ]
+    },
+    {
+      "id": "OCEAN006",
+      "name": "Ocean Energy",
+      "year": 3,
+      "topics": [
+        "Marine energy",
+        "Tidal power",
+        "Wave power",
+        "Ocean thermal energy conversion",
+        "Osmotic power"
+      ]
+    },
+    {
+      "id": "OCEAN007",
+      "name": "Underwater Acoustics and Instrumentation",
+      "year": 4,
+      "topics": [
+        "Underwater acoustics",
+        "Sonar",
+        "Hydrophone",
+        "Acoustic Doppler current profiler",
+        "Echo sounding"
+      ]
+    },
+    {
+      "id": "OCEAN008",
+      "name": "Marine Geotechnics",
+      "year": 4,
+      "topics": [
+        "Seabed",
+        "Marine sediment",
+        "Suction caisson",
+        "Bathymetry",
+        "Submarine landslide"
+      ]
+    },
+    {
+      "id": "OCEAN009",
+      "name": "Port and Harbour Engineering",
+      "year": 4,
+      "topics": [
+        "Harbor",
+        "Dredging",
+        "Wharf",
+        "Dry dock",
+        "Lock (water navigation)"
+      ]
+    },
+    {
+      "id": "OCEAN010",
+      "name": "Ocean Observation and Remote Sensing",
+      "year": 4,
+      "topics": [
+        "Argo (oceanography)",
+        "Radar altimeter",
+        "Ocean color",
+        "Buoy",
+        "Autonomous underwater vehicle"
+      ]
+    }
+  ]
+}

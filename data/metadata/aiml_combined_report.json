@@ -1,0 +1,27 @@
+{
+    "total_articles": 92,
+    "unique_titles": 92,
+    "duplicate_titles": 0,
+    "subject_distribution": {
+        "AIML001": 4,
+        "AIML002": 14,
+        "AIML003": 5,
+        "AIML004": 4,
+        "AIML005": 12,
+        "AIML006": 6,
+        "AIML007": 7,
+        "AIML008": 9,
+        "AIML009": 5,
+        "AIML010": 9,
+        "AIML011": 6,
+        "AIML012": 6,
+        "AIML013": 5
+    },
+    "status_distribution": {
+        "passed_basic_cleaning": 56,
+        "fetched_pending_review": 36
+    },
+    "explainable_ai_mapping_corrected": true,
+    "output_file": "data\\processed\\wikipedia\\aiml_wikipedia_combined.jsonl",
+    "note": "Newly fetched articles remain pending review. Basic structural validation does not establish factual accuracy."
+}

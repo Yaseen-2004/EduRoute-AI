@@ -1,0 +1,9 @@
+file,question,answer_mode,expected,kind,source
+truth_table.png,Which logic gate does this truth table represent? Explain.,2-mark,AND gate|AND|and gate|and-gate,truth table,synthetic starter set
+block_diagram.png,What system does this block diagram show? Explain the role of each block.,5-mark,communication;encoder|encoding|encodes|encode;decoder|decoding|decodes|decode;channel;noise|noisy,block diagram,synthetic starter set
+sine_plot.png,What are the amplitude and frequency of this signal?,2-mark,5 v|5v|5 volt;50 hz|50hz|50 hertz,graph,synthetic starter set
+bar_chart.png,"Which pump has the highest flow rate, and what is it?",2-mark,pump b;50,chart,synthetic starter set
+equation.png,Solve the problem shown in the image.,2-mark,10 v|10v|10 volt,equation,synthetic starter set
+series_circuit.png,Find the total resistance and the current in this circuit.,5-mark,30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,circuit,synthetic starter set
+code_snippet.png,What does this code print? Explain why.,2-mark,15,code,synthetic starter set
+flowchart.png,What does this flowchart do?,2-mark,even;odd,flowchart,synthetic starter set

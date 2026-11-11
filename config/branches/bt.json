@@ -1,0 +1,151 @@
+{
+  "branch_code": "BT",
+  "branch_name": "Biotechnology",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "BT001",
+      "name": "Cell Biology",
+      "year": 2,
+      "topics": [
+        "Cell (biology)",
+        "Cell membrane",
+        "Mitochondrion",
+        "Cell cycle",
+        "Mitosis"
+      ]
+    },
+    {
+      "id": "BT002",
+      "name": "Biochemistry",
+      "year": 2,
+      "topics": [
+        "Biochemistry",
+        "Protein",
+        "Enzyme",
+        "Carbohydrate",
+        "Lipid"
+      ]
+    },
+    {
+      "id": "BT003",
+      "name": "Microbiology",
+      "year": 2,
+      "topics": [
+        "Microbiology",
+        "Bacteria",
+        "Virus",
+        "Bacterial growth",
+        "Sterilization (microbiology)"
+      ]
+    },
+    {
+      "id": "BT004",
+      "name": "Molecular Biology",
+      "year": 2,
+      "topics": [
+        "Molecular biology",
+        "DNA replication",
+        "Transcription (biology)",
+        "Translation (biology)",
+        "Central dogma of molecular biology"
+      ]
+    },
+    {
+      "id": "BT005",
+      "name": "Genetics",
+      "year": 2,
+      "topics": [
+        "Genetics",
+        "Mendelian inheritance",
+        "Mutation",
+        "Gene expression",
+        "Chromosome"
+      ]
+    },
+    {
+      "id": "BT006",
+      "name": "Genetic Engineering",
+      "year": 3,
+      "topics": [
+        "Genetic engineering",
+        "Recombinant DNA",
+        "Polymerase chain reaction",
+        "CRISPR gene editing",
+        "Vector (molecular biology)"
+      ]
+    },
+    {
+      "id": "BT007",
+      "name": "Bioprocess Engineering",
+      "year": 3,
+      "topics": [
+        "Bioprocess engineering",
+        "Bioreactor",
+        "Fermentation",
+        "Downstream processing",
+        "Monod equation"
+      ]
+    },
+    {
+      "id": "BT008",
+      "name": "Immunology",
+      "year": 3,
+      "topics": [
+        "Immunology",
+        "Antibody",
+        "Antigen",
+        "Immune system",
+        "Vaccine"
+      ]
+    },
+    {
+      "id": "BT009",
+      "name": "Bioinformatics",
+      "year": 3,
+      "topics": [
+        "Bioinformatics",
+        "Sequence alignment",
+        "BLAST (biotechnology)",
+        "Phylogenetic tree",
+        "Protein structure prediction"
+      ]
+    },
+    {
+      "id": "BT010",
+      "name": "Enzyme Technology",
+      "year": 3,
+      "topics": [
+        "Enzyme kinetics",
+        "Michaelis-Menten kinetics",
+        "Enzyme inhibitor",
+        "Immobilized enzyme",
+        "Biocatalysis"
+      ]
+    },
+    {
+      "id": "BT011",
+      "name": "Plant and Animal Biotechnology",
+      "year": 4,
+      "topics": [
+        "Plant tissue culture",
+        "Genetically modified crops",
+        "Transgene",
+        "Cell culture",
+        "Somatic cell nuclear transfer"
+      ]
+    },
+    {
+      "id": "BT012",
+      "name": "Bioethics and IPR",
+      "year": 4,
+      "topics": [
+        "Bioethics",
+        "Patent",
+        "Biosafety",
+        "Intellectual property",
+        "Informed consent"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "generated_at": "2026-11-07T16:17:41.161374+00:00",
+    "index_version": "engineering_v1",
+    "calibration_sets": {
+        "in_domain": [
+            "retrieval_aiml_v1.jsonl",
+            "retrieval_engineering_v1.jsonl"
+        ],
+        "out_of_domain": "router_out_of_domain_v2.jsonl"
+    },
+    "retrieval_mode": "dense",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "in_domain_threshold": 0.4914,
+    "strong_threshold": 0.7009,
+    "youden_j": 0.98,
+    "auc": 0.999,
+    "in_domain_recall_at_threshold": 0.98,
+    "out_of_domain_false_accept_rate": 0.0,
+    "in_domain_scores": {
+        "n": 100,
+        "min": 0.4537,
+        "median": 0.7502,
+        "max": 0.8855
+    },
+    "out_of_domain_scores": {
+        "n": 30,
+        "min": 0.2361,
+        "median": 0.3318,
+        "max": 0.4805
+    },
+    "out_of_domain_false_accepts": [],
+    "note": "Fitted on the calibration questions; validate on held-out questions before reporting."
+}

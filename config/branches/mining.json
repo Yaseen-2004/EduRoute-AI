@@ -1,0 +1,127 @@
+{
+  "branch_code": "MINING",
+  "branch_name": "Mining Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "MINING001",
+      "name": "Mining Geology",
+      "year": 2,
+      "topics": [
+        "Economic geology",
+        "Ore",
+        "Mineral",
+        "Ore genesis",
+        "Mineral exploration"
+      ]
+    },
+    {
+      "id": "MINING002",
+      "name": "Mine Surveying",
+      "year": 2,
+      "topics": [
+        "Mining engineering",
+        "Geodesy",
+        "Photogrammetry",
+        "Satellite navigation",
+        "Laser scanning"
+      ]
+    },
+    {
+      "id": "MINING003",
+      "name": "Surface Mining",
+      "year": 3,
+      "topics": [
+        "Surface mining",
+        "Open-pit mining",
+        "Strip mining",
+        "Dragline excavator",
+        "Overburden"
+      ]
+    },
+    {
+      "id": "MINING004",
+      "name": "Underground Mining",
+      "year": 3,
+      "topics": [
+        "Underground mining (hard rock)",
+        "Longwall mining",
+        "Room and pillar mining",
+        "Shaft mining",
+        "Stoping"
+      ]
+    },
+    {
+      "id": "MINING005",
+      "name": "Rock Mechanics",
+      "year": 3,
+      "topics": [
+        "Rock mechanics",
+        "Rock mass classification",
+        "Compressive strength",
+        "Slope stability",
+        "Rockburst"
+      ]
+    },
+    {
+      "id": "MINING006",
+      "name": "Drilling and Blasting",
+      "year": 3,
+      "topics": [
+        "Drilling and blasting",
+        "Explosive",
+        "ANFO",
+        "Drilling rig",
+        "Detonator"
+      ]
+    },
+    {
+      "id": "MINING007",
+      "name": "Mine Ventilation",
+      "year": 3,
+      "topics": [
+        "Mine ventilation",
+        "Firedamp",
+        "Coalbed methane",
+        "Dust explosion",
+        "Carbon monoxide poisoning"
+      ]
+    },
+    {
+      "id": "MINING008",
+      "name": "Mineral Processing",
+      "year": 3,
+      "topics": [
+        "Mineral processing",
+        "Froth flotation",
+        "Comminution",
+        "Gravity separation",
+        "Hydrocyclone"
+      ]
+    },
+    {
+      "id": "MINING009",
+      "name": "Mine Safety and Legislation",
+      "year": 4,
+      "topics": [
+        "Mining accident",
+        "Mine Safety and Health Administration",
+        "Mine rescue",
+        "Personal protective equipment",
+        "Occupational safety and health"
+      ]
+    },
+    {
+      "id": "MINING010",
+      "name": "Mine Environment and Reclamation",
+      "year": 4,
+      "topics": [
+        "Environmental impact of mining",
+        "Acid mine drainage",
+        "Mine reclamation",
+        "Tailings",
+        "Land rehabilitation"
+      ]
+    }
+  ]
+}

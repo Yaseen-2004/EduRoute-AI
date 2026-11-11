@@ -1,0 +1,127 @@
+{
+  "branch_code": "MCT",
+  "branch_name": "Mechatronics Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "MCT001",
+      "name": "Sensors and Actuators",
+      "year": 2,
+      "topics": [
+        "Sensor",
+        "Actuator",
+        "Transducer",
+        "Strain gauge",
+        "Linear variable differential transformer"
+      ]
+    },
+    {
+      "id": "MCT002",
+      "name": "Microcontroller Systems",
+      "year": 3,
+      "topics": [
+        "Arduino",
+        "Pulse-width modulation",
+        "Analog-to-digital converter",
+        "Universal asynchronous receiver-transmitter",
+        "General-purpose input/output"
+      ]
+    },
+    {
+      "id": "MCT003",
+      "name": "Hydraulics and Pneumatics",
+      "year": 3,
+      "topics": [
+        "Hydraulic machinery",
+        "Pneumatics",
+        "Hydraulic cylinder",
+        "Solenoid valve",
+        "Pascal's law"
+      ]
+    },
+    {
+      "id": "MCT004",
+      "name": "Programmable Logic Controllers",
+      "year": 3,
+      "topics": [
+        "Programmable logic controller",
+        "Ladder logic",
+        "SCADA",
+        "IEC 61131-3",
+        "User interface"
+      ]
+    },
+    {
+      "id": "MCT005",
+      "name": "Mechatronic System Design",
+      "year": 3,
+      "topics": [
+        "Mechatronics",
+        "Systems engineering",
+        "Model-based design",
+        "Hardware-in-the-loop simulation",
+        "Rapid prototyping"
+      ]
+    },
+    {
+      "id": "MCT006",
+      "name": "Motion Control",
+      "year": 3,
+      "topics": [
+        "Motion control",
+        "Servomechanism",
+        "Rotary encoder",
+        "Brushless DC electric motor",
+        "Linear actuator"
+      ]
+    },
+    {
+      "id": "MCT007",
+      "name": "Industrial Automation",
+      "year": 4,
+      "topics": [
+        "Automation",
+        "Fourth Industrial Revolution",
+        "Industrial robot",
+        "Flexible manufacturing system",
+        "Computer-integrated manufacturing"
+      ]
+    },
+    {
+      "id": "MCT008",
+      "name": "Machine Vision",
+      "year": 4,
+      "topics": [
+        "Machine vision",
+        "Edge detection",
+        "Camera resectioning",
+        "Optical character recognition",
+        "Image sensor"
+      ]
+    },
+    {
+      "id": "MCT009",
+      "name": "MEMS",
+      "year": 4,
+      "topics": [
+        "MEMS",
+        "Accelerometer",
+        "Gyroscope",
+        "Photolithography",
+        "Piezoelectricity"
+      ]
+    },
+    {
+      "id": "MCT010",
+      "name": "Condition Monitoring",
+      "year": 4,
+      "topics": [
+        "Condition monitoring",
+        "Vibration",
+        "Predictive maintenance",
+        "Thermography",
+        "Nondestructive testing"
+      ]
+    }
+  ]
+}

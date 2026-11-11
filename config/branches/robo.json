@@ -1,0 +1,127 @@
+{
+  "branch_code": "ROBO",
+  "branch_name": "Robotics Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "ROBO001",
+      "name": "Robot Kinematics",
+      "year": 2,
+      "topics": [
+        "Robot kinematics",
+        "Forward kinematics",
+        "Inverse kinematics",
+        "Denavit-Hartenberg parameters",
+        "Degrees of freedom (mechanics)"
+      ]
+    },
+    {
+      "id": "ROBO002",
+      "name": "Robot Dynamics and Control",
+      "year": 3,
+      "topics": [
+        "Robot control",
+        "Jacobian matrix and determinant",
+        "Lagrangian mechanics",
+        "Impedance control",
+        "Motion planning"
+      ]
+    },
+    {
+      "id": "ROBO003",
+      "name": "Robot Sensors and Perception",
+      "year": 3,
+      "topics": [
+        "Robotic sensing",
+        "Odometry",
+        "Inertial measurement unit",
+        "Computer stereo vision",
+        "Time-of-flight camera"
+      ]
+    },
+    {
+      "id": "ROBO004",
+      "name": "Mobile Robotics",
+      "year": 3,
+      "topics": [
+        "Mobile robot",
+        "Simultaneous localization and mapping",
+        "Robot navigation",
+        "Pathfinding",
+        "Differential wheeled robot"
+      ]
+    },
+    {
+      "id": "ROBO005",
+      "name": "Robot Programming",
+      "year": 3,
+      "topics": [
+        "Robot Operating System",
+        "Robot software",
+        "Teach pendant",
+        "Gazebo (simulator)",
+        "Behavior tree (artificial intelligence, robotics and control)"
+      ]
+    },
+    {
+      "id": "ROBO006",
+      "name": "Manipulators and Grippers",
+      "year": 3,
+      "topics": [
+        "Robotic arm",
+        "Robot end effector",
+        "SCARA",
+        "Cartesian coordinate robot",
+        "Parallel manipulator"
+      ]
+    },
+    {
+      "id": "ROBO007",
+      "name": "Humanoid and Legged Robots",
+      "year": 4,
+      "topics": [
+        "Humanoid robot",
+        "Legged robot",
+        "Zero moment point",
+        "Bipedalism",
+        "Passive dynamics"
+      ]
+    },
+    {
+      "id": "ROBO008",
+      "name": "Swarm Robotics",
+      "year": 4,
+      "topics": [
+        "Swarm robotics",
+        "Swarm intelligence",
+        "Multi-agent system",
+        "Particle swarm optimization",
+        "Ant colony optimization algorithms"
+      ]
+    },
+    {
+      "id": "ROBO009",
+      "name": "Robot Learning",
+      "year": 4,
+      "topics": [
+        "Robot learning",
+        "Imitation learning",
+        "Reinforcement learning",
+        "Cognitive robotics",
+        "Developmental robotics"
+      ]
+    },
+    {
+      "id": "ROBO010",
+      "name": "Robot Ethics and Safety",
+      "year": 4,
+      "topics": [
+        "Robot ethics",
+        "Three Laws of Robotics",
+        "Cobot",
+        "Lethal autonomous weapon",
+        "Robot safety"
+      ]
+    }
+  ]
+}

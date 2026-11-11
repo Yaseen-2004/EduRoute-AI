@@ -1,0 +1,20 @@
+{
+    "dataset_version": "V3",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cpu",
+    "total_chunks": 2410,
+    "embedding_count": 2410,
+    "embedding_dimension": 384,
+    "embedding_dtype": "float32",
+    "batch_size": 32,
+    "normalized": true,
+    "similarity_metric_recommended": "cosine_similarity",
+    "generation_time_seconds": 187.9,
+    "review_status_distribution": {
+        "reference_sections_removed": 2306,
+        "no_reference_section_detected": 19,
+        "targeted_article_enrichment": 85
+    },
+    "embedding_file": "models\\embeddings\\aiml_embeddings_v3.npy",
+    "metadata_file": "data\\metadata\\aiml_embeddings_metadata_v3.jsonl"
+}

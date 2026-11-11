@@ -1,0 +1,26 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.streamlit/secrets.toml
+outputs/logs/
+*.tmp
+
+# Colab upload bundle (regenerate with colab/make_bundle.py)
+colab/*.zip
+
+# Large or regenerable data (rebuild with the scripts in src/)
+data/raw/
+models/embeddings/
+outputs/
+
+# Personal data: student voice recordings never go into the repository
+evaluation/voice_eval/
+
+# Blind grading: the keys map system codes to strategies; keep them away from raters
+evaluation/results/grading_key_*.json
+
+# Intermediate chunk files (their content is in vector_store/*_metadata.jsonl)
+data/processed/wikipedia/*_chunks_*.jsonl

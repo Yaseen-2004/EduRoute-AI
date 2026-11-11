@@ -1,0 +1,13 @@
+{
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cpu",
+    "total_chunks": 1552,
+    "embedding_count": 1552,
+    "embedding_dimension": 384,
+    "batch_size": 32,
+    "normalized": true,
+    "similarity_metric_recommended": "cosine_similarity",
+    "generation_time_seconds": 139.99,
+    "embedding_file": "models\\embeddings\\aiml_embeddings.npy",
+    "metadata_file": "data\\metadata\\aiml_embeddings_metadata.jsonl"
+}

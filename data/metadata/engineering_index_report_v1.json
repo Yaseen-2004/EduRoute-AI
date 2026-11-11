@@ -1,0 +1,25 @@
+{
+    "generated_at": "2026-11-07T15:48:56.956228+00:00",
+    "dataset_version": "engineering_v1",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "min_section_tokens": 60,
+    "context_prefix": true,
+    "articles": 1425,
+    "total_chunks": 35567,
+    "minimum_chunk_tokens": 28,
+    "maximum_chunk_tokens": 220,
+    "average_chunk_tokens": 168.74,
+    "embedding_dimension": 384,
+    "embedding_seconds": 13222.17,
+    "index_type": "IndexFlatIP",
+    "similarity_metric": "cosine_similarity",
+    "index_reload_verified": true,
+    "files": {
+        "chunks": "data\\processed\\wikipedia\\engineering_chunks_v1.jsonl",
+        "embeddings": "models\\embeddings\\engineering_embeddings_v1.npy",
+        "index": "vector_store\\engineering_faiss_v1.index",
+        "metadata": "vector_store\\engineering_faiss_v1_metadata.jsonl"
+    }
+}

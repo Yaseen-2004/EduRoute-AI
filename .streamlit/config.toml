@@ -1,0 +1,6 @@
+[server]
+# Images are limited to 8 MB in the app itself (config/settings.py).
+maxUploadSize = 10
+
+[browser]
+gatherUsageStats = false

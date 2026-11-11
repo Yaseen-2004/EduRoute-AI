@@ -1,0 +1,95 @@
+file,strategy,question,answer,expected,correct_0_3,notes
+truth_table.png,adaptive,Which logic gate does this truth table represent? Explain.,The knowledge base does not contain enough information about this. [1],AND gate|AND|and gate|and-gate,,
+truth_table.png,modality,Which logic gate does this truth table represent? Explain.,"This truth table represents a NAND gate. Key points: The output 'Y' is '0' when both inputs 'A' and 'B' are '1', which is the condition for a NAND gate to output '0'.",AND gate|AND|and gate|and-gate,,
+block_diagram.png,adaptive,What system does this block diagram show? Explain the role of each block.,"This block diagram shows a communication system, specifically a communication model. The roles of each block in this model are as follows:
+
+- **Source**: This is the origin of the information or message. It could be any device or system that generates the data to be transmitted.
+- **Encoder**: This block converts the raw data from the source into a format that can be transmitted over the channel. This could include encoding the data into a digital signal, a voice signal, or any other form of data that can be transmitted.
+- **Channel**: This is the medium through which the encoded data is transmitted. It could be a physical medium like a wire, a fiber optic cable, or a wireless medium like radio waves or light waves.
+- **Decoder**: This block converts the encoded data back into its original form. It decodes the signal to retrieve the original message or data.
+- **Destination**: This is the point where the decoded message is received and processed. It could be a computer, a phone, a television, or any other device that can interpret and display the data.
+
+[1] The knowledge base does not contain enough information about this.",communication;encod;decod;channel;noise,,
+block_diagram.png,modality,What system does this block diagram show? Explain the role of each block.,"**Introduction:**
+The block diagram in the image represents a basic communication system, commonly used in various fields such as telecommunications, computer networks, and data transmission. This system is designed to transmit information from a source to a destination, often over a noisy channel.
+
+**Explanation:**
+- **Source:** This is the origin of the information. It could be any device or system that generates the data to be transmitted.
+- **Encoder:** The encoder processes the source's data into a format suitable for transmission over the channel. This might involve encoding the data into a digital signal or preparing it for modulation.
+- **Channel:** The channel is the medium through which the encoded signal travels. It can be physical, such as a wire or optical fiber, or it can be a virtual channel in a network.
+- **Decoder:** The decoder is responsible for converting the received signal back into its original form. It decodes the signal to extract the original data.
+- **Destination:** This is the point where the decoded information is received and processed. It could be a computer, a human operator, or another device.
+
+**Example:**
+Imagine a simple telephone system. The source is the person speaking, the encoder is the microphone converting sound into an electrical signal, the channel is the wire or cable connecting the microphone to the telephone exchange, the decoder is the telephone receiver converting the electrical signal back into sound, and the destination is the person listening on the other end.",communication;encod;decod;channel;noise,,
+sine_plot.png,adaptive,What are the amplitude and frequency of this signal?,"The knowledge base does not contain enough information about this signal's amplitude and frequency. [1] [2][3] The amplitude modulation process involves a carrier wave with a constant amplitude and a modulating signal that varies the amplitude of the carrier. The frequency of the carrier remains constant, while the modulation frequency content varies, creating sidebands above and below the carrier frequency. [1] [2][3] Without specific values, the amplitude and frequency cannot be definitively stated. [1] [2][3]",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+sine_plot.png,modality,What are the amplitude and frequency of this signal?,"The amplitude of the signal is 5V, and the frequency is 0.25 Hz. The amplitude is the maximum deviation from the zero voltage line, which in this case is 5V. The frequency is the number of cycles per second, which can be calculated as the reciprocal of the period (time between two consecutive peaks or troughs). In this case, the period is 20 ms, so the frequency is 0.25 Hz.",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+bar_chart.png,adaptive,"Which pump has the highest flow rate, and what is it?","The pump with the highest flow rate is Pump B with a flow rate of 50 litres per minute [1]. The flow rates of Pump A and Pump C are 30 litres per minute and 20 litres per minute, respectively. [1]",pump b;50,,
+bar_chart.png,modality,"Which pump has the highest flow rate, and what is it?","Pump B has the highest flow rate, which is 50 litres per minute. Pump A has a flow rate of 30 litres per minute, and Pump C has a flow rate of 20 litres per minute. The flow rate is measured in litres per minute, a unit used to quantify the volume of a fluid passing through a system per unit time.",pump b;50,,
+equation.png,adaptive,Solve the problem shown in the image.,"To solve this problem, we use Ohm's law, which states that the voltage (V) across a resistor is equal to the current (I) flowing through it multiplied by the resistance (R). Given I = 2 A and R = 5 Ω, we can calculate V as follows:
+
+V = I × R
+V = 2 A × 5 Ω
+V = 10 V
+
+Therefore, the voltage V is 10 volts.",10 v|10v|10 volt,,
+equation.png,modality,Solve the problem shown in the image.,"To solve this problem, we use Ohm's law, which states that the voltage (V) across a resistor is equal to the current (I) through the resistor multiplied by the resistance (R). Given I = 2 A and R = 5 Ω, we can calculate V as follows:
+V = I × R
+V = 2 A × 5 Ω
+V = 10 V
+Therefore, the voltage across the resistor is 10 volts.",10 v|10v|10 volt,,
+series_circuit.png,adaptive,Find the total resistance and the current in this circuit.,"### Introduction
+To find the total resistance and the current in the given circuit, we need to follow a systematic approach. The circuit consists of two resistors in series, connected to a voltage source.
+
+### Key Concepts and Steps
+1. **Series Circuit**: In a series circuit, the current is the same through all components. The total resistance is the sum of the individual resistances.
+2. **Ohm's Law**: The current can be calculated using the formula \( I = \frac{V}{R} \), where \( V \) is the voltage and \( R \) is the total resistance.
+3. **Total Resistance**: The total resistance \( R_{\text{total}} \) is the sum of the individual resistances \( R_1 \) and \( R_2 \).
+
+### Calculation
+1. **Total Resistance**:
+   \[
+   R_{\text{total}} = R_1 + R_2 = 10 \, \Omega + 20 \, \Omega = 30 \, \Omega
+   \]
+
+2. **Current**:
+   Using Ohm's Law:
+   \[
+   I = \frac{V}{R_{\text{total}}} = \frac{12 \, V}{30 \, \Omega} = 0.4 \, A
+   \]
+
+### Example
+Consider a different scenario where the resistors are in parallel:
+- \( R_1 = 10 \, \Omega \)
+- \( R_2 = 20 \, \Omega \)
+- Voltage \( V = 12 \, V \)
+
+**Total Resistance in Parallel**:
+\[
+\frac{1}{R_{\text{total}}} = \frac{1}{R_1} + \frac{1}{R_2} = \frac{1}{10 \, \Omega} + \frac{1}{20 \, \Omega} = \frac{2}{20 \, \Omega} +",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+series_circuit.png,modality,Find the total resistance and the current in this circuit.,"### Introduction
+To find the total resistance and the current in the given circuit, we need to understand the basic principles of electrical circuits. Specifically, we will use Ohm's Law and the concept of series and parallel circuits.
+
+### Explanation
+#### Key Concepts
+1. **Series Circuit**: In a series circuit, the current is the same through all components, and the total resistance is the sum of the individual resistances.
+2. **Parallel Circuit**: In a parallel circuit, the voltage across each component is the same, and the total current is the sum of the currents through each component.
+
+#### Steps to Solve
+1. **Identify the Circuit Type**: The circuit in the image is a series circuit because the two resistors are connected end-to-end without any branches.
+2. **Calculate Total Resistance**: Since the resistors are in series, the total resistance \( R_{total} \) is the sum of the individual resistances.
+3. **Calculate Total Current**: Use Ohm's Law to find the total current, which is the voltage divided by the total resistance.
+
+### Example
+Let's solve the problem step by step.
+
+1. **Identify the resistances**: \( R1 = 10 \, \Omega \) and \( R2 = 20 \, \Omega \).
+2. **Calculate total resistance**: \( R_{total} = R1 + R2 = 10 \, \Omega + 20 \, \Omega = 30 \, \Omega \).
+3. **Calculate total current**: Using Ohm's Law, \( I = \frac{V}{R_{total}} = \frac{12 \, V}{30 \, \Omega} = 0.4 \, A \).
+
+### Conclusion
+The total resistance in the circuit is \( 30 \, \Omega \) and the current is \( 0.4 \, A \).",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+code_snippet.png,adaptive,What does this code print? Explain why.,"The code prints the sum of the numbers from 1 to 5. The variable `total` is initialized to 0. The `for` loop iterates over the range from 1 to 6 (exclusive), and in each iteration, it adds the current value of `i` to `total`. After the loop, the final value of `total` is printed. Therefore, the output will be the sum of 1, 2, 3, 4, and 5, which is 15.",15,,
+code_snippet.png,modality,What does this code print? Explain why.,"The code prints the sum of the first 5 natural numbers. The `range(1, 6)` generates numbers from 1 to 5, and the loop iterates over these numbers, adding each to the `total` variable. After the loop, the `print(total)` statement outputs the sum of these numbers, which is 15.",15,,
+flowchart.png,adaptive,What does this flowchart do?,"This flowchart does a simple algorithm to determine if a number is even or odd. [1] It starts with ""Start"", reads a number ""n"", checks if ""n mod 2 = 0"" (n is divisible by 2 without a remainder), and prints ""Even"" if true, or ""Odd"" if false. [2] The flowchart ends with ""End"". [1]",even;odd,,
+flowchart.png,modality,What does this flowchart do?,"This flowchart checks if a number is even or odd. It starts by reading an integer value of n. If n is divisible by 2 (n mod 2 = 0), it prints ""Even"". Otherwise, it prints ""Odd"". The flowchart ends after these checks. The flowchart infers the parity of the input number based on the remainder when divided by 2.",even;odd,,

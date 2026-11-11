@@ -1,0 +1,139 @@
+{
+  "branch_code": "IT",
+  "branch_name": "Information Technology",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "IT001",
+      "name": "Web Programming",
+      "year": 2,
+      "topics": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Document Object Model",
+        "Responsive web design"
+      ]
+    },
+    {
+      "id": "IT002",
+      "name": "Object Oriented Analysis and Design",
+      "year": 2,
+      "topics": [
+        "Object-oriented analysis and design",
+        "Unified Modeling Language",
+        "Use case",
+        "Class diagram",
+        "Sequence diagram"
+      ]
+    },
+    {
+      "id": "IT003",
+      "name": "Computer Graphics",
+      "year": 3,
+      "topics": [
+        "Computer graphics",
+        "Rasterisation",
+        "Bresenham's line algorithm",
+        "3D projection",
+        "Shading"
+      ]
+    },
+    {
+      "id": "IT004",
+      "name": "Mobile Application Development",
+      "year": 3,
+      "topics": [
+        "Mobile app development",
+        "Android (operating system)",
+        "iOS",
+        "Mobile app",
+        "Flutter (software)"
+      ]
+    },
+    {
+      "id": "IT005",
+      "name": "Information Retrieval",
+      "year": 3,
+      "topics": [
+        "Information retrieval",
+        "Inverted index",
+        "Vector space model",
+        "Okapi BM25",
+        "PageRank"
+      ]
+    },
+    {
+      "id": "IT006",
+      "name": "Enterprise Resource Planning",
+      "year": 3,
+      "topics": [
+        "Enterprise resource planning",
+        "Supply chain management",
+        "Customer relationship management",
+        "Business process",
+        "SAP ERP"
+      ]
+    },
+    {
+      "id": "IT007",
+      "name": "Software Testing",
+      "year": 3,
+      "topics": [
+        "Software testing",
+        "Unit testing",
+        "Integration testing",
+        "Black-box testing",
+        "White-box testing"
+      ]
+    },
+    {
+      "id": "IT008",
+      "name": "System Administration",
+      "year": 3,
+      "topics": [
+        "System administrator",
+        "Linux",
+        "Shell script",
+        "Domain Name System",
+        "Dynamic Host Configuration Protocol"
+      ]
+    },
+    {
+      "id": "IT009",
+      "name": "Human Computer Interaction",
+      "year": 4,
+      "topics": [
+        "Human-computer interaction",
+        "Usability",
+        "User experience design",
+        "Fitts's law",
+        "Heuristic evaluation"
+      ]
+    },
+    {
+      "id": "IT010",
+      "name": "DevOps",
+      "year": 4,
+      "topics": [
+        "DevOps",
+        "Continuous integration",
+        "Docker (software)",
+        "Kubernetes",
+        "Infrastructure as code"
+      ]
+    },
+    {
+      "id": "IT011",
+      "name": "E-Commerce",
+      "year": 4,
+      "topics": [
+        "E-commerce",
+        "Payment gateway",
+        "Electronic data interchange",
+        "Digital marketing",
+        "Online banking"
+      ]
+    }
+  ]
+}

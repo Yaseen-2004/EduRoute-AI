@@ -1,0 +1,151 @@
+{
+  "branch_code": "DS",
+  "branch_name": "Data Science",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "DS001",
+      "name": "Probability and Statistics for Data Science",
+      "year": 2,
+      "topics": [
+        "Descriptive statistics",
+        "Probability distribution",
+        "Sampling (statistics)",
+        "Statistical hypothesis test",
+        "Confidence interval"
+      ]
+    },
+    {
+      "id": "DS002",
+      "name": "Linear Algebra for Data Science",
+      "year": 2,
+      "topics": [
+        "Matrix (mathematics)",
+        "Eigenvalues and eigenvectors",
+        "Singular value decomposition",
+        "Principal component analysis",
+        "Vector space"
+      ]
+    },
+    {
+      "id": "DS003",
+      "name": "Data Wrangling and Preprocessing",
+      "year": 2,
+      "topics": [
+        "Data cleansing",
+        "Missing data",
+        "Feature scaling",
+        "Data transformation (statistics)",
+        "Outlier"
+      ]
+    },
+    {
+      "id": "DS004",
+      "name": "Data Visualization",
+      "year": 2,
+      "topics": [
+        "Data and information visualization",
+        "Histogram",
+        "Scatter plot",
+        "Box plot",
+        "Dashboard (computing)"
+      ]
+    },
+    {
+      "id": "DS005",
+      "name": "Exploratory Data Analysis",
+      "year": 3,
+      "topics": [
+        "Exploratory data analysis",
+        "Correlation",
+        "Summary statistics",
+        "Kernel density estimation",
+        "Quantile"
+      ]
+    },
+    {
+      "id": "DS006",
+      "name": "Statistical Learning",
+      "year": 3,
+      "topics": [
+        "Linear regression",
+        "Logistic regression",
+        "Bias-variance tradeoff",
+        "Cross-validation (statistics)",
+        "Regularization (mathematics)"
+      ]
+    },
+    {
+      "id": "DS007",
+      "name": "Data Warehousing",
+      "year": 3,
+      "topics": [
+        "Data warehouse",
+        "Extract, transform, load",
+        "Online analytical processing",
+        "Star schema",
+        "Data mart"
+      ]
+    },
+    {
+      "id": "DS008",
+      "name": "Big Data Technologies",
+      "year": 3,
+      "topics": [
+        "Big data",
+        "MapReduce",
+        "Apache Hadoop",
+        "Apache Kafka",
+        "NoSQL"
+      ]
+    },
+    {
+      "id": "DS009",
+      "name": "Time Series Analysis",
+      "year": 3,
+      "topics": [
+        "Time series",
+        "Autoregressive integrated moving average",
+        "Stationary process",
+        "Exponential smoothing",
+        "Seasonality"
+      ]
+    },
+    {
+      "id": "DS010",
+      "name": "Text Mining",
+      "year": 4,
+      "topics": [
+        "Text mining",
+        "Tf-idf",
+        "Sentiment analysis",
+        "Topic model",
+        "Named-entity recognition"
+      ]
+    },
+    {
+      "id": "DS011",
+      "name": "Recommender Systems",
+      "year": 4,
+      "topics": [
+        "Recommender system",
+        "Collaborative filtering",
+        "Matrix factorization (recommender systems)",
+        "Cold start (recommender systems)",
+        "Cosine similarity"
+      ]
+    },
+    {
+      "id": "DS012",
+      "name": "Data Ethics and Governance",
+      "year": 4,
+      "topics": [
+        "Data governance",
+        "Information privacy",
+        "General Data Protection Regulation",
+        "Data quality",
+        "Data lineage"
+      ]
+    }
+  ]
+}

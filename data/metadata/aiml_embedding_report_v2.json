@@ -1,0 +1,18 @@
+{
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cpu",
+    "total_chunks": 2470,
+    "embedding_count": 2470,
+    "embedding_dimension": 384,
+    "embedding_dtype": "float32",
+    "batch_size": 32,
+    "normalized": true,
+    "similarity_metric_recommended": "cosine_similarity",
+    "generation_time_seconds": 215.21,
+    "review_status_distribution": {
+        "passed_basic_cleaning": 1552,
+        "fetched_pending_review": 918
+    },
+    "embedding_file": "models\\embeddings\\aiml_embeddings_v2.npy",
+    "metadata_file": "data\\metadata\\aiml_embeddings_metadata_v2.jsonl"
+}

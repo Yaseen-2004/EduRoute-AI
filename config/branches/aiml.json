@@ -1,0 +1,85 @@
+
+{
+  "branch_code": "AIML",
+  "branch_name": "Artificial Intelligence and Machine Learning",
+  "subjects": [
+    {
+      "id": "AIML001",
+      "name": "Introduction to Artificial Intelligence",
+      "year": 2,
+      "topics": ["AI Fundamentals", "Intelligent Agents", "Search Algorithms", "Knowledge Representation", "AI Applications"]
+    },
+    {
+      "id": "AIML002",
+      "name": "Machine Learning",
+      "year": 2,
+      "topics": ["Supervised Learning", "Unsupervised Learning", "Regression", "Classification", "Clustering"]
+    },
+    {
+      "id": "AIML003",
+      "name": "Probability and Statistics for AI",
+      "year": 2,
+      "topics": ["Probability Theory", "Random Variables", "Probability Distributions", "Bayesian Inference", "Statistical Testing"]
+    },
+    {
+      "id": "AIML004",
+      "name": "Data Mining",
+      "year": 3,
+      "topics": ["Data Preprocessing", "Association Rules", "Classification", "Clustering", "Anomaly Detection"]
+    },
+    {
+      "id": "AIML005",
+      "name": "Deep Learning",
+      "year": 3,
+      "topics": ["Artificial Neural Networks", "Backpropagation", "CNN", "RNN", "Optimization"]
+    },
+    {
+      "id": "AIML006",
+      "name": "Natural Language Processing",
+      "year": 3,
+      "topics": ["Text Preprocessing", "Tokenization", "Language Models", "Word Embeddings", "Transformers"]
+    },
+    {
+      "id": "AIML007",
+      "name": "Computer Vision",
+      "year": 3,
+      "topics": ["Image Processing", "Feature Extraction", "Object Detection", "Image Classification", "Segmentation"]
+    },
+    {
+      "id": "AIML008",
+      "name": "Reinforcement Learning",
+      "year": 3,
+      "topics": ["Markov Decision Processes", "Q-Learning", "Policy Optimization", "Reward Functions", "Deep Reinforcement Learning"]
+    },
+    {
+      "id": "AIML009",
+      "name": "Big Data Analytics",
+      "year": 3,
+      "topics": ["Big Data Concepts", "Hadoop", "Spark", "Distributed Processing", "Data Analytics"]
+    },
+    {
+      "id": "AIML010",
+      "name": "Generative Artificial Intelligence",
+      "year": 4,
+      "topics": ["Generative Models", "GANs", "Variational Autoencoders", "Large Language Models", "Prompt Engineering"]
+    },
+    {
+      "id": "AIML011",
+      "name": "MLOps and Model Deployment",
+      "year": 4,
+      "topics": ["Model Lifecycle", "Experiment Tracking", "Model Serving", "Model Monitoring", "Deployment Pipelines"]
+    },
+    {
+      "id": "AIML012",
+      "name": "Explainable Artificial Intelligence",
+      "year": 4,
+      "topics": ["Model Interpretability", "Feature Importance", "SHAP", "LIME", "Grad-CAM"]
+    },
+    {
+      "id": "AIML013",
+      "name": "AI Ethics and Responsible AI",
+      "year": 4,
+      "topics": ["AI Fairness", "Algorithmic Bias", "Privacy", "Transparency", "Responsible AI Governance"]
+    }
+  ]
+}

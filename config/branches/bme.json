@@ -1,0 +1,127 @@
+{
+  "branch_code": "BME",
+  "branch_name": "Biomedical Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "BME001",
+      "name": "Human Anatomy and Physiology",
+      "year": 2,
+      "topics": [
+        "Human body",
+        "Circulatory system",
+        "Nervous system",
+        "Respiratory system",
+        "Musculoskeletal system"
+      ]
+    },
+    {
+      "id": "BME002",
+      "name": "Biomedical Instrumentation",
+      "year": 3,
+      "topics": [
+        "Electrocardiography",
+        "Electroencephalography",
+        "Electromyography",
+        "Pulse oximetry",
+        "Sphygmomanometer"
+      ]
+    },
+    {
+      "id": "BME003",
+      "name": "Biomaterials",
+      "year": 3,
+      "topics": [
+        "Biomaterial",
+        "Biocompatibility",
+        "Hydroxyapatite",
+        "Implant (medicine)",
+        "Biodegradable polymer"
+      ]
+    },
+    {
+      "id": "BME004",
+      "name": "Medical Imaging",
+      "year": 3,
+      "topics": [
+        "Medical imaging",
+        "X-ray",
+        "CT scan",
+        "Magnetic resonance imaging",
+        "Medical ultrasound"
+      ]
+    },
+    {
+      "id": "BME005",
+      "name": "Biomechanics",
+      "year": 3,
+      "topics": [
+        "Biomechanics",
+        "Gait analysis",
+        "Bone remodeling",
+        "Hemodynamics",
+        "Synovial joint"
+      ]
+    },
+    {
+      "id": "BME006",
+      "name": "Biosignal Processing",
+      "year": 3,
+      "topics": [
+        "Biosignal",
+        "Heart rate variability",
+        "Wavelet transform",
+        "Band-pass filter",
+        "QRS complex"
+      ]
+    },
+    {
+      "id": "BME007",
+      "name": "Medical Devices and Regulation",
+      "year": 4,
+      "topics": [
+        "Medical device",
+        "Artificial cardiac pacemaker",
+        "Defibrillation",
+        "Food and Drug Administration",
+        "ISO 13485"
+      ]
+    },
+    {
+      "id": "BME008",
+      "name": "Rehabilitation Engineering",
+      "year": 4,
+      "topics": [
+        "Rehabilitation engineering",
+        "Prosthesis",
+        "Orthotics",
+        "Powered exoskeleton",
+        "Brain-computer interface"
+      ]
+    },
+    {
+      "id": "BME009",
+      "name": "Tissue Engineering",
+      "year": 4,
+      "topics": [
+        "Tissue engineering",
+        "Stem cell",
+        "Extracellular matrix",
+        "Regenerative medicine",
+        "3D bioprinting"
+      ]
+    },
+    {
+      "id": "BME010",
+      "name": "Healthcare Informatics",
+      "year": 4,
+      "topics": [
+        "Health informatics",
+        "Electronic health record",
+        "Picture archiving and communication system",
+        "Telehealth",
+        "Health Level 7"
+      ]
+    }
+  ]
+}

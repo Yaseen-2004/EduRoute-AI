@@ -1,0 +1,7 @@
+{
+  "approved": 36,
+  "fetched": 36,
+  "failed": 0,
+  "output_file": "data\\processed\\wikipedia\\aiml_replacement_articles.jsonl",
+  "failures": []
+}

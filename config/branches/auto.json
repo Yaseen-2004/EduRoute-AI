@@ -1,0 +1,127 @@
+{
+  "branch_code": "AUTO",
+  "branch_name": "Automobile Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "AUTO001",
+      "name": "Automotive Engines",
+      "year": 2,
+      "topics": [
+        "Petrol engine",
+        "Diesel engine",
+        "Engine displacement",
+        "Compression ratio",
+        "Carburetor"
+      ]
+    },
+    {
+      "id": "AUTO002",
+      "name": "Automotive Chassis",
+      "year": 3,
+      "topics": [
+        "Vehicle frame",
+        "Suspension (vehicle)",
+        "Steering",
+        "Ackermann steering geometry",
+        "Wheel alignment"
+      ]
+    },
+    {
+      "id": "AUTO003",
+      "name": "Automotive Transmission",
+      "year": 3,
+      "topics": [
+        "Transmission (mechanical device)",
+        "Clutch",
+        "Manual transmission",
+        "Automatic transmission",
+        "Differential (mechanical device)"
+      ]
+    },
+    {
+      "id": "AUTO004",
+      "name": "Automotive Electrical and Electronics",
+      "year": 3,
+      "topics": [
+        "Engine control unit",
+        "Alternator (automotive)",
+        "Ignition system",
+        "Starter (engine)",
+        "CAN bus"
+      ]
+    },
+    {
+      "id": "AUTO005",
+      "name": "Vehicle Dynamics",
+      "year": 3,
+      "topics": [
+        "Vehicle dynamics",
+        "Understeer and oversteer",
+        "Rolling resistance",
+        "Slip angle",
+        "Weight transfer"
+      ]
+    },
+    {
+      "id": "AUTO006",
+      "name": "Automotive Pollution and Control",
+      "year": 3,
+      "topics": [
+        "Exhaust gas",
+        "Catalytic converter",
+        "Exhaust gas recirculation",
+        "Diesel particulate filter",
+        "Bharat stage emission standards"
+      ]
+    },
+    {
+      "id": "AUTO007",
+      "name": "Hybrid and Electric Vehicles",
+      "year": 4,
+      "topics": [
+        "Hybrid electric vehicle",
+        "Plug-in hybrid",
+        "Electric motor",
+        "Fuel cell vehicle",
+        "Vehicle-to-grid"
+      ]
+    },
+    {
+      "id": "AUTO008",
+      "name": "Automotive Safety",
+      "year": 4,
+      "topics": [
+        "Automobile safety",
+        "Anti-lock braking system",
+        "Airbag",
+        "Electronic stability control",
+        "Crumple zone"
+      ]
+    },
+    {
+      "id": "AUTO009",
+      "name": "Autonomous Vehicles",
+      "year": 4,
+      "topics": [
+        "Self-driving car",
+        "Lidar",
+        "Advanced driver-assistance system",
+        "Adaptive cruise control",
+        "Sensor fusion"
+      ]
+    },
+    {
+      "id": "AUTO010",
+      "name": "Vehicle Body Engineering",
+      "year": 4,
+      "topics": [
+        "Body-on-frame",
+        "Automotive aerodynamics",
+        "Car body style",
+        "Crash test",
+        "Automotive design"
+      ]
+    }
+  ]
+}

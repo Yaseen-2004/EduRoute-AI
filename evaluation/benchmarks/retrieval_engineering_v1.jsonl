@@ -1,0 +1,50 @@
+{"id": "E01", "subject_id": "COM001", "question": "What is a differential equation?", "relevant_articles": ["Differential equation"], "evidence_terms": ["differential equation"]}
+{"id": "E02", "subject_id": "COM003", "question": "What causes corrosion of metals and how can it be prevented?", "relevant_articles": ["Corrosion", "Galvanic corrosion", "Cathodic protection"], "evidence_terms": ["corrosion"]}
+{"id": "E03", "subject_id": "CSE004", "question": "What is a deadlock in operating systems and how can it be prevented?", "relevant_articles": ["Deadlock (computer science)", "Deadlock"], "evidence_terms": ["deadlock"]}
+{"id": "E04", "subject_id": "CSE008", "question": "Explain the TCP/IP protocol suite.", "relevant_articles": ["Internet protocol suite"], "evidence_terms": ["tcp"]}
+{"id": "E05", "subject_id": "DS002", "question": "What is principal component analysis?", "relevant_articles": ["Principal component analysis"], "evidence_terms": ["principal component"]}
+{"id": "E06", "subject_id": "DS009", "question": "Explain the ARIMA model for time series forecasting.", "relevant_articles": ["Autoregressive integrated moving average"], "evidence_terms": ["arima"]}
+{"id": "E07", "subject_id": "IT001", "question": "What is the Document Object Model in web pages?", "relevant_articles": ["Document Object Model"], "evidence_terms": ["dom", "document object model"]}
+{"id": "E08", "subject_id": "IT010", "question": "What is continuous integration in DevOps?", "relevant_articles": ["Continuous integration", "DevOps"], "evidence_terms": ["continuous integration"]}
+{"id": "E09", "subject_id": "CYBER006", "question": "How does SQL injection work?", "relevant_articles": ["SQL injection"], "evidence_terms": ["sql injection", "injection"]}
+{"id": "E10", "subject_id": "CYBER001", "question": "Explain how the RSA algorithm works.", "relevant_articles": ["RSA cryptosystem", "RSA (cryptosystem)", "Public-key cryptography"], "evidence_terms": ["rsa"]}
+{"id": "E11", "subject_id": "ECE006", "question": "Explain amplitude modulation.", "relevant_articles": ["Amplitude modulation"], "evidence_terms": ["amplitude"]}
+{"id": "E12", "subject_id": "ECE007", "question": "What is the Nyquist sampling theorem?", "relevant_articles": ["Nyquist-Shannon sampling theorem"], "evidence_terms": ["sampling", "nyquist"]}
+{"id": "E13", "subject_id": "EEE003", "question": "How does a three-phase induction motor work?", "relevant_articles": ["Induction motor"], "evidence_terms": ["induction"]}
+{"id": "E14", "subject_id": "EEE001", "question": "State and explain Ohm's law.", "relevant_articles": ["Ohm's law"], "evidence_terms": ["ohm"]}
+{"id": "E15", "subject_id": "EE001", "question": "Explain Faraday's law of electromagnetic induction.", "relevant_articles": ["Faraday's law of induction"], "evidence_terms": ["faraday", "induction"]}
+{"id": "E16", "subject_id": "EE007", "question": "What is a smart grid?", "relevant_articles": ["Smart grid"], "evidence_terms": ["smart grid"]}
+{"id": "E17", "subject_id": "ME008", "question": "Explain the Rankine cycle used in steam power plants.", "relevant_articles": ["Rankine cycle"], "evidence_terms": ["rankine"]}
+{"id": "E18", "subject_id": "ME002", "question": "What is Bernoulli's principle in fluid mechanics?", "relevant_articles": ["Bernoulli's principle"], "evidence_terms": ["bernoulli"]}
+{"id": "E19", "subject_id": "CE002", "question": "What is the curing of concrete and why is it important?", "relevant_articles": ["Concrete"], "evidence_terms": ["curing", "cure"]}
+{"id": "E20", "subject_id": "CE012", "question": "What are the different types of foundations in building construction?", "relevant_articles": ["Foundation (engineering)", "Shallow foundation", "Deep foundation"], "evidence_terms": ["foundation"]}
+{"id": "E21", "subject_id": "CHE010", "question": "What is fractional distillation?", "relevant_articles": ["Fractional distillation", "Distillation", "Fractionating column"], "evidence_terms": ["fractional"]}
+{"id": "E22", "subject_id": "CHE006", "question": "Explain the working of a continuous stirred-tank reactor.", "relevant_articles": ["Continuous stirred-tank reactor", "Chemical reactor"], "evidence_terms": ["stirred", "cstr"]}
+{"id": "E23", "subject_id": "BT004", "question": "Explain the process of DNA replication.", "relevant_articles": ["DNA replication"], "evidence_terms": ["replication"]}
+{"id": "E24", "subject_id": "BT006", "question": "How does the polymerase chain reaction work?", "relevant_articles": ["Polymerase chain reaction"], "evidence_terms": ["pcr", "polymerase"]}
+{"id": "E25", "subject_id": "BME002", "question": "How does an ECG machine record the heart's electrical activity?", "relevant_articles": ["Electrocardiography"], "evidence_terms": ["ecg", "electrocardio"]}
+{"id": "E26", "subject_id": "BME004", "question": "How does magnetic resonance imaging work?", "relevant_articles": ["Magnetic resonance imaging"], "evidence_terms": ["mri", "magnetic"]}
+{"id": "E27", "subject_id": "AE001", "question": "How do aircraft wings generate lift?", "relevant_articles": ["Lift (force)", "Airfoil", "Wing"], "evidence_terms": ["lift"]}
+{"id": "E28", "subject_id": "AE006", "question": "What is a Hohmann transfer orbit?", "relevant_articles": ["Hohmann transfer orbit"], "evidence_terms": ["hohmann"]}
+{"id": "E29", "subject_id": "AUTO008", "question": "How does an anti-lock braking system work?", "relevant_articles": ["Anti-lock braking system"], "evidence_terms": ["abs", "anti-lock"]}
+{"id": "E30", "subject_id": "AUTO006", "question": "What does a catalytic converter do?", "relevant_articles": ["Catalytic converter"], "evidence_terms": ["catalytic"]}
+{"id": "E31", "subject_id": "MCT004", "question": "What is a programmable logic controller?", "relevant_articles": ["Programmable logic controller"], "evidence_terms": ["plc", "programmable logic"]}
+{"id": "E32", "subject_id": "MCT001", "question": "How does a strain gauge measure strain?", "relevant_articles": ["Strain gauge"], "evidence_terms": ["strain"]}
+{"id": "E33", "subject_id": "ROBO001", "question": "What is inverse kinematics in robotics?", "relevant_articles": ["Inverse kinematics"], "evidence_terms": ["inverse kinematics"]}
+{"id": "E34", "subject_id": "ROBO004", "question": "Explain simultaneous localization and mapping (SLAM).", "relevant_articles": ["Simultaneous localization and mapping"], "evidence_terms": ["slam", "localization"]}
+{"id": "E35", "subject_id": "ICE001", "question": "How does a thermocouple measure temperature?", "relevant_articles": ["Thermocouple"], "evidence_terms": ["thermocouple"]}
+{"id": "E36", "subject_id": "ICE007", "question": "What is model predictive control?", "relevant_articles": ["Model predictive control"], "evidence_terms": ["mpc", "predictive"]}
+{"id": "E37", "subject_id": "AGRI003", "question": "How does drip irrigation save water?", "relevant_articles": ["Drip irrigation"], "evidence_terms": ["drip"]}
+{"id": "E38", "subject_id": "AGRI008", "question": "What is precision agriculture?", "relevant_articles": ["Precision agriculture"], "evidence_terms": ["precision"]}
+{"id": "E39", "subject_id": "MINING008", "question": "What is froth flotation in mineral processing?", "relevant_articles": ["Froth flotation"], "evidence_terms": ["flotation"]}
+{"id": "E40", "subject_id": "MINING004", "question": "Explain longwall mining.", "relevant_articles": ["Longwall mining"], "evidence_terms": ["longwall"]}
+{"id": "E41", "subject_id": "PETRO004", "question": "What is hydraulic fracturing?", "relevant_articles": ["Hydraulic fracturing", "Fracking"], "evidence_terms": ["fractur"], "label_note": "2026-11-07: Wikipedia now titles this page 'Fracking' (same article, renamed); alias added after the first run."}
+{"id": "E42", "subject_id": "PETRO002", "question": "What is the function of drilling fluid (mud) in oil wells?", "relevant_articles": ["Drilling fluid"], "evidence_terms": ["drilling fluid", "mud"]}
+{"id": "E43", "subject_id": "MARINE001", "question": "What is metacentric height and why does it matter for ship stability?", "relevant_articles": ["Metacentric height", "Ship stability"], "evidence_terms": ["metacent"]}
+{"id": "E44", "subject_id": "MARINE008", "question": "What is MARPOL?", "relevant_articles": ["MARPOL 73/78"], "evidence_terms": ["marpol"]}
+{"id": "E45", "subject_id": "MET005", "question": "What is the difference between annealing and tempering?", "relevant_articles": ["Annealing (materials science)", "Tempering (metallurgy)", "Heat treating"], "evidence_terms": ["anneal", "temper"]}
+{"id": "E46", "subject_id": "MET003", "question": "How does a blast furnace produce iron?", "relevant_articles": ["Blast furnace"], "evidence_terms": ["blast furnace"]}
+{"id": "E47", "subject_id": "TEXTILE002", "question": "How does ring spinning produce yarn?", "relevant_articles": ["Ring spinning", "Spinning (textiles)"], "evidence_terms": ["ring spinning", "ring"]}
+{"id": "E48", "subject_id": "TEXTILE003", "question": "What is a nonwoven fabric?", "relevant_articles": ["Nonwoven fabric"], "evidence_terms": ["nonwoven"]}
+{"id": "E49", "subject_id": "OCEAN006", "question": "How does ocean thermal energy conversion work?", "relevant_articles": ["Ocean thermal energy conversion"], "evidence_terms": ["otec", "thermal"]}
+{"id": "E50", "subject_id": "OCEAN003", "question": "What is a breakwater in coastal engineering?", "relevant_articles": ["Breakwater (structure)"], "evidence_terms": ["breakwater"]}

@@ -1,0 +1,127 @@
+{
+  "branch_code": "TEXTILE",
+  "branch_name": "Textile Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "TEXTILE001",
+      "name": "Textile Fibres",
+      "year": 2,
+      "topics": [
+        "Textile",
+        "Natural fiber",
+        "Synthetic fiber",
+        "Cotton",
+        "Polyester"
+      ]
+    },
+    {
+      "id": "TEXTILE002",
+      "name": "Yarn Manufacturing",
+      "year": 2,
+      "topics": [
+        "Spinning (textiles)",
+        "Ring spinning",
+        "Open-end spinning",
+        "Carding",
+        "Yarn"
+      ]
+    },
+    {
+      "id": "TEXTILE003",
+      "name": "Fabric Manufacturing",
+      "year": 3,
+      "topics": [
+        "Weaving",
+        "Loom",
+        "Knitting",
+        "Nonwoven fabric",
+        "Warp and weft"
+      ]
+    },
+    {
+      "id": "TEXTILE004",
+      "name": "Textile Chemical Processing",
+      "year": 3,
+      "topics": [
+        "Dyeing",
+        "Textile printing",
+        "Bleach",
+        "Mercerised cotton",
+        "Finishing (textiles)"
+      ]
+    },
+    {
+      "id": "TEXTILE005",
+      "name": "Textile Testing",
+      "year": 3,
+      "topics": [
+        "Units of textile measurement",
+        "Tensile testing",
+        "Colour fastness",
+        "Abrasion (mechanical)",
+        "Moisture regain"
+      ]
+    },
+    {
+      "id": "TEXTILE006",
+      "name": "Garment Technology",
+      "year": 3,
+      "topics": [
+        "Sewing machine",
+        "Pattern (sewing)",
+        "Seam (sewing)",
+        "Clothing industry",
+        "Textile manufacturing"
+      ]
+    },
+    {
+      "id": "TEXTILE007",
+      "name": "Technical Textiles",
+      "year": 4,
+      "topics": [
+        "Technical textile",
+        "Geotextile",
+        "Medical textiles",
+        "E-textiles",
+        "Kevlar"
+      ]
+    },
+    {
+      "id": "TEXTILE008",
+      "name": "Textile Machinery",
+      "year": 4,
+      "topics": [
+        "Textile machinery",
+        "Jacquard machine",
+        "Power loom",
+        "Spinning mule",
+        "Water frame"
+      ]
+    },
+    {
+      "id": "TEXTILE009",
+      "name": "Textile Composites",
+      "year": 4,
+      "topics": [
+        "Fibre-reinforced plastic",
+        "Carbon-fiber reinforced polymer",
+        "Glass fiber",
+        "Pre-preg",
+        "Composite laminate"
+      ]
+    },
+    {
+      "id": "TEXTILE010",
+      "name": "Sustainable Textiles",
+      "year": 4,
+      "topics": [
+        "Sustainable fashion",
+        "Textile recycling",
+        "Organic cotton",
+        "Environmental impact of fashion",
+        "Microplastics"
+      ]
+    }
+  ]
+}

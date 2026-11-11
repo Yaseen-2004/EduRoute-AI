@@ -1,0 +1,10 @@
+{
+    "index_type": "IndexFlatIP",
+    "similarity_metric": "cosine_similarity",
+    "total_vectors": 1552,
+    "vector_dimension": 384,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "index_file": "vector_store\\aiml_faiss.index",
+    "metadata_file": "vector_store\\aiml_faiss_metadata.jsonl",
+    "indexing_time_seconds": 0.01
+}

@@ -1,0 +1,25 @@
+{
+    "generated_at": "2026-11-07T09:40:51.500903+00:00",
+    "dataset_version": "V4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "min_section_tokens": 60,
+    "context_prefix": true,
+    "articles": 96,
+    "total_chunks": 3014,
+    "minimum_chunk_tokens": 28,
+    "maximum_chunk_tokens": 220,
+    "average_chunk_tokens": 170.94,
+    "embedding_dimension": 384,
+    "embedding_seconds": 313.12,
+    "index_type": "IndexFlatIP",
+    "similarity_metric": "cosine_similarity",
+    "index_reload_verified": true,
+    "files": {
+        "chunks": "data\\processed\\wikipedia\\aiml_chunks_v4.jsonl",
+        "embeddings": "models\\embeddings\\aiml_embeddings_v4.npy",
+        "index": "vector_store\\aiml_faiss_v4.index",
+        "metadata": "vector_store\\aiml_faiss_v4_metadata.jsonl"
+    }
+}

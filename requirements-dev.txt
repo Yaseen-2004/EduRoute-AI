@@ -1,0 +1,15 @@
+# Everything in requirements.txt plus data collection, PDF ingestion,
+# the in-process transformers backend, evaluation and tests.
+-r requirements.txt
+
+transformers>=4.45
+accelerate>=1.0
+safetensors>=0.4
+scikit-learn>=1.5
+scipy>=1.13
+tqdm>=4.66
+beautifulsoup4>=4.12
+PyMuPDF>=1.24
+pymupdf4llm>=0.0.17
+psutil>=5.9
+pytest>=8.0

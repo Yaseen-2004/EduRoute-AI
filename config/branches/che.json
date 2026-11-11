@@ -1,0 +1,139 @@
+{
+  "branch_code": "CHE",
+  "branch_name": "Chemical Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "CHE001",
+      "name": "Chemical Process Calculations",
+      "year": 2,
+      "topics": [
+        "Mass balance",
+        "Conservation of energy",
+        "Stoichiometry",
+        "Ideal gas law",
+        "Vapor pressure"
+      ]
+    },
+    {
+      "id": "CHE002",
+      "name": "Fluid Flow Operations",
+      "year": 2,
+      "topics": [
+        "Pump",
+        "Centrifugal pump",
+        "Fluidization",
+        "Flow measurement",
+        "Pressure drop"
+      ]
+    },
+    {
+      "id": "CHE003",
+      "name": "Mechanical Operations",
+      "year": 2,
+      "topics": [
+        "Particle size",
+        "Crusher",
+        "Sieve analysis",
+        "Filtration",
+        "Sedimentation"
+      ]
+    },
+    {
+      "id": "CHE004",
+      "name": "Heat Transfer Operations",
+      "year": 2,
+      "topics": [
+        "Shell-and-tube heat exchanger",
+        "Evaporator",
+        "Condenser (heat transfer)",
+        "Boiling",
+        "Logarithmic mean temperature difference"
+      ]
+    },
+    {
+      "id": "CHE005",
+      "name": "Mass Transfer",
+      "year": 3,
+      "topics": [
+        "Mass transfer",
+        "Molecular diffusion",
+        "Distillation",
+        "Liquid-liquid extraction",
+        "Adsorption"
+      ]
+    },
+    {
+      "id": "CHE006",
+      "name": "Chemical Reaction Engineering",
+      "year": 3,
+      "topics": [
+        "Chemical reaction engineering",
+        "Chemical reactor",
+        "Continuous stirred-tank reactor",
+        "Plug flow reactor model",
+        "Reaction rate"
+      ]
+    },
+    {
+      "id": "CHE007",
+      "name": "Chemical Engineering Thermodynamics",
+      "year": 3,
+      "topics": [
+        "Fugacity",
+        "Gibbs free energy",
+        "Phase diagram",
+        "Vapor-liquid equilibrium",
+        "Raoult's law"
+      ]
+    },
+    {
+      "id": "CHE008",
+      "name": "Process Control and Instrumentation",
+      "year": 3,
+      "topics": [
+        "Process control",
+        "Control loop",
+        "Feed forward (control)",
+        "Control valve",
+        "Distributed control system"
+      ]
+    },
+    {
+      "id": "CHE009",
+      "name": "Process Equipment Design",
+      "year": 4,
+      "topics": [
+        "Pressure vessel",
+        "Fractionating column",
+        "Process design",
+        "Piping and instrumentation diagram",
+        "Industrial mixer"
+      ]
+    },
+    {
+      "id": "CHE010",
+      "name": "Petrochemical Technology",
+      "year": 4,
+      "topics": [
+        "Petrochemical",
+        "Cracking (chemistry)",
+        "Steam reforming",
+        "Polymerization",
+        "Catalysis"
+      ]
+    },
+    {
+      "id": "CHE011",
+      "name": "Process Safety",
+      "year": 4,
+      "topics": [
+        "Process safety",
+        "Hazard and operability study",
+        "Fault tree analysis",
+        "Bhopal disaster",
+        "Safety data sheet"
+      ]
+    }
+  ]
+}

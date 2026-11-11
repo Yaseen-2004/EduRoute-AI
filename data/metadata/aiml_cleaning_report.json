@@ -1,0 +1,66 @@
+{
+    "input_file": "data\\processed\\wikipedia\\aiml_wikipedia_v2.jsonl",
+    "output_file": "data\\processed\\wikipedia\\aiml_wikipedia_clean.jsonl",
+    "original_article_count": 65,
+    "cleaned_article_count": 56,
+    "excluded_article_count": 9,
+    "excluded_articles": [
+        {
+            "title": "AI bubble",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "Köppen climate classification",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "PAQ",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "Tokenization (data security)",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "Segment",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "Gans",
+            "reason": "Article text too short"
+        },
+        {
+            "title": "List of large language models",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "V-model",
+            "reason": "Manually excluded for topic relevance"
+        },
+        {
+            "title": "Input hypothesis",
+            "reason": "Manually excluded for topic relevance"
+        }
+    ],
+    "articles_per_subject": {
+        "Introduction to Artificial Intelligence": 4,
+        "Machine Learning": 5,
+        "Probability and Statistics for AI": 5,
+        "Data Mining": 4,
+        "Deep Learning": 5,
+        "Natural Language Processing": 3,
+        "Computer Vision": 4,
+        "Reinforcement Learning": 5,
+        "Big Data Analytics": 5,
+        "Generative Artificial Intelligence": 3,
+        "MLOps and Model Deployment": 3,
+        "Explainable Artificial Intelligence": 5,
+        "AI Ethics and Responsible AI": 5
+    },
+    "cleaning_operations": [
+        "Whitespace normalization",
+        "Duplicate title removal",
+        "Short article removal",
+        "Manual relevance exclusions"
+    ]
+}

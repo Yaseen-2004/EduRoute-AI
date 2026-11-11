@@ -1,0 +1,1287 @@
+{
+    "generated_at": "2026-11-07T16:27:41.879690+00:00",
+    "benchmark": "evaluation\\benchmarks\\retrieval_engineering_v1.jsonl",
+    "relevance_protocol": "relevant article AND contains an evidence term",
+    "label_status": "Draft labels; require review by the project team before final reporting.",
+    "common_subset_size": 50,
+    "configs": {
+        "engineering_v1:dense:subject+widen": {
+            "overall": {
+                "questions": 50,
+                "success@1": 0.92,
+                "success@3": 1.0,
+                "success@5": 1.0,
+                "success@10": 1.0,
+                "recall@5": 0.207,
+                "mrr@10": 0.96,
+                "article@1": 0.96,
+                "median_latency_ms": 231.6
+            },
+            "common_subset": {
+                "questions": 50,
+                "success@1": 0.92,
+                "success@3": 1.0,
+                "success@5": 1.0,
+                "success@10": 1.0,
+                "recall@5": 0.207,
+                "mrr@10": 0.96,
+                "article@1": 0.96,
+                "median_latency_ms": 231.6
+            },
+            "not_answerable_in_index": [],
+            "misses_at_5": [],
+            "per_question": [
+                {
+                    "id": "E01",
+                    "question": "What is a differential equation?",
+                    "answerable": true,
+                    "relevant_in_index": 23,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Differential equation",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 430.0,
+                    "scope": {
+                        "subject_id": "COM001"
+                    }
+                },
+                {
+                    "id": "E02",
+                    "question": "What causes corrosion of metals and how can it be prevented?",
+                    "answerable": true,
+                    "relevant_in_index": 78,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Corrosion",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 187.6,
+                    "scope": {
+                        "subject_id": "COM003"
+                    }
+                },
+                {
+                    "id": "E03",
+                    "question": "What is a deadlock in operating systems and how can it be prevented?",
+                    "answerable": true,
+                    "relevant_in_index": 10,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Deadlock (computer science)",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 364.0,
+                    "scope": {
+                        "subject_id": "CSE004"
+                    }
+                },
+                {
+                    "id": "E04",
+                    "question": "Explain the TCP/IP protocol suite.",
+                    "answerable": true,
+                    "relevant_in_index": 22,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Internet protocol suite",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 321.5,
+                    "scope": {
+                        "subject_id": "CSE008"
+                    }
+                },
+                {
+                    "id": "E05",
+                    "question": "What is principal component analysis?",
+                    "answerable": true,
+                    "relevant_in_index": 26,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Principal component analysis",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 208.0,
+                    "scope": {
+                        "subject_id": "DS002"
+                    }
+                },
+                {
+                    "id": "E06",
+                    "question": "Explain the ARIMA model for time series forecasting.",
+                    "answerable": true,
+                    "relevant_in_index": 21,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Autoregressive integrated moving average",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 893.7,
+                    "scope": {
+                        "subject_id": "DS009"
+                    }
+                },
+                {
+                    "id": "E07",
+                    "question": "What is the Document Object Model in web pages?",
+                    "answerable": true,
+                    "relevant_in_index": 15,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Document Object Model",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false
+                    ],
+                    "latency_ms": 202.7,
+                    "scope": {
+                        "subject_id": "IT001"
+                    }
+                },
+                {
+                    "id": "E08",
+                    "question": "What is continuous integration in DevOps?",
+                    "answerable": true,
+                    "relevant_in_index": 4,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Continuous integration",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 214.3,
+                    "scope": {
+                        "subject_id": "IT010"
+                    }
+                },
+                {
+                    "id": "E09",
+                    "question": "How does SQL injection work?",
+                    "answerable": true,
+                    "relevant_in_index": 26,
+                    "first_relevant_rank": 1,
+                    "top1_article": "SQL injection",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 350.2,
+                    "scope": {
+                        "subject_id": "CYBER006"
+                    }
+                },
+                {
+                    "id": "E10",
+                    "question": "Explain how the RSA algorithm works.",
+                    "answerable": true,
+                    "relevant_in_index": 40,
+                    "first_relevant_rank": 1,
+                    "top1_article": "RSA cryptosystem",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 179.7,
+                    "scope": {
+                        "subject_id": "CYBER001"
+                    }
+                },
+                {
+                    "id": "E11",
+                    "question": "Explain amplitude modulation.",
+                    "answerable": true,
+                    "relevant_in_index": 19,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Amplitude modulation",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 189.4,
+                    "scope": {
+                        "subject_id": "ECE006"
+                    }
+                },
+                {
+                    "id": "E12",
+                    "question": "What is the Nyquist sampling theorem?",
+                    "answerable": true,
+                    "relevant_in_index": 31,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Nyquist–Shannon sampling theorem",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 426.9,
+                    "scope": {
+                        "subject_id": "ECE007"
+                    }
+                },
+                {
+                    "id": "E13",
+                    "question": "How does a three-phase induction motor work?",
+                    "answerable": true,
+                    "relevant_in_index": 24,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Induction motor",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 451.4,
+                    "scope": {
+                        "subject_id": "EEE003"
+                    }
+                },
+                {
+                    "id": "E14",
+                    "question": "State and explain Ohm's law.",
+                    "answerable": true,
+                    "relevant_in_index": 32,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Ohm's law",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 326.1,
+                    "scope": {
+                        "subject_id": "EEE001"
+                    }
+                },
+                {
+                    "id": "E15",
+                    "question": "Explain Faraday's law of electromagnetic induction.",
+                    "answerable": true,
+                    "relevant_in_index": 16,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Faraday's law of induction",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 219.4,
+                    "scope": {
+                        "subject_id": "EE001"
+                    }
+                },
+                {
+                    "id": "E16",
+                    "question": "What is a smart grid?",
+                    "answerable": true,
+                    "relevant_in_index": 18,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Smart grid",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 481.4,
+                    "scope": {
+                        "subject_id": "EE007"
+                    }
+                },
+                {
+                    "id": "E17",
+                    "question": "Explain the Rankine cycle used in steam power plants.",
+                    "answerable": true,
+                    "relevant_in_index": 10,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Rankine cycle",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 294.9,
+                    "scope": {
+                        "subject_id": "ME008"
+                    }
+                },
+                {
+                    "id": "E18",
+                    "question": "What is Bernoulli's principle in fluid mechanics?",
+                    "answerable": true,
+                    "relevant_in_index": 29,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Bernoulli's principle",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 633.3,
+                    "scope": {
+                        "subject_id": "ME002"
+                    }
+                },
+                {
+                    "id": "E19",
+                    "question": "What is the curing of concrete and why is it important?",
+                    "answerable": true,
+                    "relevant_in_index": 7,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Concrete",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                    ],
+                    "latency_ms": 425.8,
+                    "scope": {
+                        "subject_id": "CE002"
+                    }
+                },
+                {
+                    "id": "E20",
+                    "question": "What are the different types of foundations in building construction?",
+                    "answerable": true,
+                    "relevant_in_index": 18,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Foundation (engineering)",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 182.0,
+                    "scope": {
+                        "subject_id": "CE012"
+                    }
+                },
+                {
+                    "id": "E21",
+                    "question": "What is fractional distillation?",
+                    "answerable": true,
+                    "relevant_in_index": 17,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Distillation",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 382.1,
+                    "scope": {
+                        "discipline": "CHE"
+                    }
+                },
+                {
+                    "id": "E22",
+                    "question": "Explain the working of a continuous stirred-tank reactor.",
+                    "answerable": true,
+                    "relevant_in_index": 31,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Continuous stirred-tank reactor",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 186.8,
+                    "scope": {
+                        "subject_id": "CHE006"
+                    }
+                },
+                {
+                    "id": "E23",
+                    "question": "Explain the process of DNA replication.",
+                    "answerable": true,
+                    "relevant_in_index": 30,
+                    "first_relevant_rank": 1,
+                    "top1_article": "DNA replication",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 201.3,
+                    "scope": {
+                        "subject_id": "BT004"
+                    }
+                },
+                {
+                    "id": "E24",
+                    "question": "How does the polymerase chain reaction work?",
+                    "answerable": true,
+                    "relevant_in_index": 35,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Polymerase chain reaction",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 260.9,
+                    "scope": {
+                        "subject_id": "BT006"
+                    }
+                },
+                {
+                    "id": "E25",
+                    "question": "How does an ECG machine record the heart's electrical activity?",
+                    "answerable": true,
+                    "relevant_in_index": 28,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Electrocardiography",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 195.0,
+                    "scope": {
+                        "subject_id": "BME002"
+                    }
+                },
+                {
+                    "id": "E26",
+                    "question": "How does magnetic resonance imaging work?",
+                    "answerable": true,
+                    "relevant_in_index": 37,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Magnetic resonance imaging",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 202.7,
+                    "scope": {
+                        "subject_id": "BME004"
+                    }
+                },
+                {
+                    "id": "E27",
+                    "question": "How do aircraft wings generate lift?",
+                    "answerable": true,
+                    "relevant_in_index": 55,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Lift (force)",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 210.2,
+                    "scope": {
+                        "subject_id": "AE001"
+                    }
+                },
+                {
+                    "id": "E28",
+                    "question": "What is a Hohmann transfer orbit?",
+                    "answerable": true,
+                    "relevant_in_index": 19,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Hohmann transfer orbit",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 403.6,
+                    "scope": {
+                        "subject_id": "AE006"
+                    }
+                },
+                {
+                    "id": "E29",
+                    "question": "How does an anti-lock braking system work?",
+                    "answerable": true,
+                    "relevant_in_index": 30,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Anti-lock braking system",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 361.3,
+                    "scope": {
+                        "subject_id": "AUTO008"
+                    }
+                },
+                {
+                    "id": "E30",
+                    "question": "What does a catalytic converter do?",
+                    "answerable": true,
+                    "relevant_in_index": 34,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Catalytic converter",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 1482.4,
+                    "scope": {
+                        "subject_id": "AUTO006"
+                    }
+                },
+                {
+                    "id": "E31",
+                    "question": "What is a programmable logic controller?",
+                    "answerable": true,
+                    "relevant_in_index": 35,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Programmable logic controller",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 475.7,
+                    "scope": {
+                        "subject_id": "MCT004"
+                    }
+                },
+                {
+                    "id": "E32",
+                    "question": "How does a strain gauge measure strain?",
+                    "answerable": true,
+                    "relevant_in_index": 26,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Strain gauge",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 230.6,
+                    "scope": {
+                        "subject_id": "MCT001"
+                    }
+                },
+                {
+                    "id": "E33",
+                    "question": "What is inverse kinematics in robotics?",
+                    "answerable": true,
+                    "relevant_in_index": 11,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Inverse kinematics",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true,
+                        false,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 301.7,
+                    "scope": {
+                        "subject_id": "ROBO001"
+                    }
+                },
+                {
+                    "id": "E34",
+                    "question": "Explain simultaneous localization and mapping (SLAM).",
+                    "answerable": true,
+                    "relevant_in_index": 17,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Simultaneous localization and mapping",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 1759.8,
+                    "scope": {
+                        "subject_id": "ROBO004"
+                    }
+                },
+                {
+                    "id": "E35",
+                    "question": "How does a thermocouple measure temperature?",
+                    "answerable": true,
+                    "relevant_in_index": 43,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Thermocouple",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 686.3,
+                    "scope": {
+                        "subject_id": "ICE001"
+                    }
+                },
+                {
+                    "id": "E36",
+                    "question": "What is model predictive control?",
+                    "answerable": true,
+                    "relevant_in_index": 18,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Model predictive control",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 195.4,
+                    "scope": {
+                        "subject_id": "ICE007"
+                    }
+                },
+                {
+                    "id": "E37",
+                    "question": "How does drip irrigation save water?",
+                    "answerable": true,
+                    "relevant_in_index": 19,
+                    "first_relevant_rank": 2,
+                    "top1_article": "Drip irrigation",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 215.5,
+                    "scope": {
+                        "subject_id": "AGRI003"
+                    }
+                },
+                {
+                    "id": "E38",
+                    "question": "What is precision agriculture?",
+                    "answerable": true,
+                    "relevant_in_index": 18,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Precision agriculture",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 795.7,
+                    "scope": {
+                        "subject_id": "AGRI008"
+                    }
+                },
+                {
+                    "id": "E39",
+                    "question": "What is froth flotation in mineral processing?",
+                    "answerable": true,
+                    "relevant_in_index": 35,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Froth flotation",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 224.9,
+                    "scope": {
+                        "subject_id": "MINING008"
+                    }
+                },
+                {
+                    "id": "E40",
+                    "question": "Explain longwall mining.",
+                    "answerable": true,
+                    "relevant_in_index": 14,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Longwall mining",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 199.3,
+                    "scope": {
+                        "subject_id": "MINING004"
+                    }
+                },
+                {
+                    "id": "E41",
+                    "question": "What is hydraulic fracturing?",
+                    "answerable": true,
+                    "relevant_in_index": 35,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Fracking",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 189.9,
+                    "scope": {
+                        "subject_id": "PETRO004"
+                    }
+                },
+                {
+                    "id": "E42",
+                    "question": "What is the function of drilling fluid (mud) in oil wells?",
+                    "answerable": true,
+                    "relevant_in_index": 33,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Drilling fluid",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 182.3,
+                    "scope": {
+                        "subject_id": "PETRO002"
+                    }
+                },
+                {
+                    "id": "E43",
+                    "question": "What is metacentric height and why does it matter for ship stability?",
+                    "answerable": true,
+                    "relevant_in_index": 18,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Metacentric height",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 272.8,
+                    "scope": {
+                        "subject_id": "MARINE001"
+                    }
+                },
+                {
+                    "id": "E44",
+                    "question": "What is MARPOL?",
+                    "answerable": true,
+                    "relevant_in_index": 12,
+                    "first_relevant_rank": 2,
+                    "top1_article": "Oily water separator (marine)",
+                    "top1_article_relevant": false,
+                    "flags": [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 628.7,
+                    "scope": {
+                        "discipline": "MARINE"
+                    }
+                },
+                {
+                    "id": "E45",
+                    "question": "What is the difference between annealing and tempering?",
+                    "answerable": true,
+                    "relevant_in_index": 76,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Annealing (materials science)",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 177.8,
+                    "scope": {
+                        "subject_id": "MET005"
+                    }
+                },
+                {
+                    "id": "E46",
+                    "question": "How does a blast furnace produce iron?",
+                    "answerable": true,
+                    "relevant_in_index": 34,
+                    "first_relevant_rank": 2,
+                    "top1_article": "Blast furnace",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 190.3,
+                    "scope": {
+                        "subject_id": "MET003"
+                    }
+                },
+                {
+                    "id": "E47",
+                    "question": "How does ring spinning produce yarn?",
+                    "answerable": true,
+                    "relevant_in_index": 20,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Ring spinning",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true
+                    ],
+                    "latency_ms": 187.0,
+                    "scope": {
+                        "subject_id": "TEXTILE002"
+                    }
+                },
+                {
+                    "id": "E48",
+                    "question": "What is a nonwoven fabric?",
+                    "answerable": true,
+                    "relevant_in_index": 12,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Nonwoven fabric",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false
+                    ],
+                    "latency_ms": 184.2,
+                    "scope": {
+                        "subject_id": "TEXTILE003"
+                    }
+                },
+                {
+                    "id": "E49",
+                    "question": "How does ocean thermal energy conversion work?",
+                    "answerable": true,
+                    "relevant_in_index": 35,
+                    "first_relevant_rank": 2,
+                    "top1_article": "Marine energy",
+                    "top1_article_relevant": false,
+                    "flags": [
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 183.9,
+                    "scope": {
+                        "subject_id": "OCEAN006"
+                    }
+                },
+                {
+                    "id": "E50",
+                    "question": "What is a breakwater in coastal engineering?",
+                    "answerable": true,
+                    "relevant_in_index": 13,
+                    "first_relevant_rank": 1,
+                    "top1_article": "Breakwater (structure)",
+                    "top1_article_relevant": true,
+                    "flags": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        true
+                    ],
+                    "latency_ms": 232.7,
+                    "scope": {
+                        "subject_id": "OCEAN003"
+                    }
+                }
+            ]
+        }
+    }
+}

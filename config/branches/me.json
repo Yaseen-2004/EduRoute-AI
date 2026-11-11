@@ -1,0 +1,151 @@
+{
+  "branch_code": "ME",
+  "branch_name": "Mechanical Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "ME001",
+      "name": "Engineering Thermodynamics",
+      "year": 2,
+      "topics": [
+        "Laws of thermodynamics",
+        "Entropy",
+        "Carnot cycle",
+        "Enthalpy",
+        "Thermodynamic system"
+      ]
+    },
+    {
+      "id": "ME002",
+      "name": "Fluid Mechanics",
+      "year": 2,
+      "topics": [
+        "Fluid mechanics",
+        "Bernoulli's principle",
+        "Navier-Stokes equations",
+        "Reynolds number",
+        "Viscosity"
+      ]
+    },
+    {
+      "id": "ME003",
+      "name": "Strength of Materials",
+      "year": 2,
+      "topics": [
+        "Stress (mechanics)",
+        "Hooke's law",
+        "Shear and moment diagram",
+        "Torsion (mechanics)",
+        "Mohr's circle"
+      ]
+    },
+    {
+      "id": "ME004",
+      "name": "Theory of Machines",
+      "year": 2,
+      "topics": [
+        "Kinematic pair",
+        "Four-bar linkage",
+        "Cam (mechanism)",
+        "Gear",
+        "Flywheel"
+      ]
+    },
+    {
+      "id": "ME005",
+      "name": "Manufacturing Processes",
+      "year": 2,
+      "topics": [
+        "Casting (metalworking)",
+        "Welding",
+        "Forging",
+        "Machining",
+        "Sheet metal"
+      ]
+    },
+    {
+      "id": "ME006",
+      "name": "Heat Transfer",
+      "year": 3,
+      "topics": [
+        "Heat transfer",
+        "Thermal conduction",
+        "Convection (heat transfer)",
+        "Thermal radiation",
+        "Heat exchanger"
+      ]
+    },
+    {
+      "id": "ME007",
+      "name": "Design of Machine Elements",
+      "year": 3,
+      "topics": [
+        "Machine element",
+        "Factor of safety",
+        "Bearing (mechanical)",
+        "Drive shaft",
+        "Fatigue (material)"
+      ]
+    },
+    {
+      "id": "ME008",
+      "name": "Applied Thermodynamics",
+      "year": 3,
+      "topics": [
+        "Rankine cycle",
+        "Otto cycle",
+        "Diesel cycle",
+        "Brayton cycle",
+        "Vapor-compression refrigeration"
+      ]
+    },
+    {
+      "id": "ME009",
+      "name": "Internal Combustion Engines",
+      "year": 3,
+      "topics": [
+        "Internal combustion engine",
+        "Four-stroke engine",
+        "Two-stroke engine",
+        "Fuel injection",
+        "Turbocharger"
+      ]
+    },
+    {
+      "id": "ME010",
+      "name": "CAD/CAM",
+      "year": 3,
+      "topics": [
+        "Computer-aided design",
+        "Computer-aided manufacturing",
+        "Numerical control",
+        "Finite element method",
+        "G-code"
+      ]
+    },
+    {
+      "id": "ME011",
+      "name": "Refrigeration and Air Conditioning",
+      "year": 4,
+      "topics": [
+        "Refrigeration",
+        "Air conditioning",
+        "Heat pump",
+        "Psychrometrics",
+        "Refrigerant"
+      ]
+    },
+    {
+      "id": "ME012",
+      "name": "Industrial Engineering",
+      "year": 4,
+      "topics": [
+        "Industrial engineering",
+        "Lean manufacturing",
+        "Six Sigma",
+        "Operations research",
+        "Economic order quantity"
+      ]
+    }
+  ]
+}

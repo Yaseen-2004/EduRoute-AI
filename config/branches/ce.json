@@ -1,0 +1,151 @@
+{
+  "branch_code": "CE",
+  "branch_name": "Civil Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "CE001",
+      "name": "Surveying",
+      "year": 2,
+      "topics": [
+        "Surveying",
+        "Theodolite",
+        "Levelling",
+        "Total station",
+        "Triangulation (surveying)"
+      ]
+    },
+    {
+      "id": "CE002",
+      "name": "Building Materials and Construction",
+      "year": 2,
+      "topics": [
+        "Building material",
+        "Concrete",
+        "Brick",
+        "Cement",
+        "Masonry"
+      ]
+    },
+    {
+      "id": "CE003",
+      "name": "Mechanics of Solids",
+      "year": 2,
+      "topics": [
+        "Elasticity (physics)",
+        "Young's modulus",
+        "Poisson's ratio",
+        "Beam (structure)",
+        "Euler's critical load"
+      ]
+    },
+    {
+      "id": "CE004",
+      "name": "Fluid Mechanics and Hydraulics",
+      "year": 2,
+      "topics": [
+        "Hydraulics",
+        "Open-channel flow",
+        "Pipe flow",
+        "Hydraulic jump",
+        "Weir"
+      ]
+    },
+    {
+      "id": "CE005",
+      "name": "Structural Analysis",
+      "year": 3,
+      "topics": [
+        "Structural analysis",
+        "Truss",
+        "Moment distribution method",
+        "Influence line",
+        "Statically indeterminate"
+      ]
+    },
+    {
+      "id": "CE006",
+      "name": "Geotechnical Engineering",
+      "year": 3,
+      "topics": [
+        "Geotechnical engineering",
+        "Soil mechanics",
+        "Consolidation (soil)",
+        "Shear strength (soil)",
+        "Atterberg limits"
+      ]
+    },
+    {
+      "id": "CE007",
+      "name": "Reinforced Concrete Design",
+      "year": 3,
+      "topics": [
+        "Reinforced concrete",
+        "Limit state design",
+        "Rebar",
+        "Prestressed concrete",
+        "Column"
+      ]
+    },
+    {
+      "id": "CE008",
+      "name": "Transportation Engineering",
+      "year": 3,
+      "topics": [
+        "Transportation engineering",
+        "Highway engineering",
+        "Road surface",
+        "Traffic flow",
+        "Track (rail transport)"
+      ]
+    },
+    {
+      "id": "CE009",
+      "name": "Environmental Engineering",
+      "year": 3,
+      "topics": [
+        "Environmental engineering",
+        "Water treatment",
+        "Sewage treatment",
+        "Activated sludge",
+        "Air pollution"
+      ]
+    },
+    {
+      "id": "CE010",
+      "name": "Hydrology and Water Resources",
+      "year": 3,
+      "topics": [
+        "Hydrology",
+        "Hydrograph",
+        "Surface runoff",
+        "Groundwater",
+        "Irrigation"
+      ]
+    },
+    {
+      "id": "CE011",
+      "name": "Steel Structures",
+      "year": 4,
+      "topics": [
+        "Steel frame",
+        "Structural steel",
+        "Bolted joint",
+        "Girder",
+        "Buckling"
+      ]
+    },
+    {
+      "id": "CE012",
+      "name": "Foundation Engineering",
+      "year": 4,
+      "topics": [
+        "Foundation (engineering)",
+        "Shallow foundation",
+        "Deep foundation",
+        "Bearing capacity",
+        "Retaining wall"
+      ]
+    }
+  ]
+}

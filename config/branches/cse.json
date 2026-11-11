@@ -1,0 +1,97 @@
+
+{
+  "branch_code": "CSE",
+  "branch_name": "Computer Science and Engineering",
+  "subjects": [
+    {
+      "id": "CSE001",
+      "name": "Object Oriented Programming",
+      "year": 2,
+      "topics": ["Classes", "Objects", "Inheritance", "Polymorphism", "Encapsulation"]
+    },
+    {
+      "id": "CSE002",
+      "name": "Data Structures and Algorithms",
+      "year": 2,
+      "topics": ["Arrays", "Linked Lists", "Stacks", "Queues", "Trees", "Graphs"]
+    },
+    {
+      "id": "CSE003",
+      "name": "Database Management Systems",
+      "year": 2,
+      "topics": ["Relational Algebra", "SQL", "Normalization", "Transactions", "Indexing"]
+    },
+    {
+      "id": "CSE004",
+      "name": "Operating Systems",
+      "year": 2,
+      "topics": ["Processes", "Threads", "CPU Scheduling", "Memory Management", "Deadlocks"]
+    },
+    {
+      "id": "CSE005",
+      "name": "Computer Organization and Architecture",
+      "year": 2,
+      "topics": ["CPU Architecture", "Instruction Sets", "Pipelining", "Cache Memory", "I/O Organization"]
+    },
+    {
+      "id": "CSE006",
+      "name": "Theory of Computation",
+      "year": 3,
+      "topics": ["Finite Automata", "Regular Expressions", "Context Free Grammars", "Pushdown Automata", "Turing Machines"]
+    },
+    {
+      "id": "CSE007",
+      "name": "Compiler Design",
+      "year": 3,
+      "topics": ["Lexical Analysis", "Parsing", "Semantic Analysis", "Intermediate Code", "Code Optimization"]
+    },
+    {
+      "id": "CSE008",
+      "name": "Computer Networks",
+      "year": 3,
+      "topics": ["OSI Model", "TCP/IP", "Routing", "Transport Layer", "Network Security"]
+    },
+    {
+      "id": "CSE009",
+      "name": "Software Engineering",
+      "year": 3,
+      "topics": ["Software Development Life Cycle", "Agile", "Requirements Engineering", "Testing", "Design Patterns"]
+    },
+    {
+      "id": "CSE010",
+      "name": "Design and Analysis of Algorithms",
+      "year": 3,
+      "topics": ["Time Complexity", "Greedy Algorithms", "Dynamic Programming", "Backtracking", "Graph Algorithms"]
+    },
+    {
+      "id": "CSE011",
+      "name": "Web Technologies",
+      "year": 3,
+      "topics": ["HTML", "CSS", "JavaScript", "Frontend Frameworks", "Backend Development", "REST APIs"]
+    },
+    {
+      "id": "CSE012",
+      "name": "Information Security",
+      "year": 3,
+      "topics": ["Cryptography", "Authentication", "Access Control", "Network Security", "Digital Signatures"]
+    },
+    {
+      "id": "CSE013",
+      "name": "Distributed Systems",
+      "year": 4,
+      "topics": ["Distributed Architecture", "Consistency", "Replication", "Consensus", "Fault Tolerance"]
+    },
+    {
+      "id": "CSE014",
+      "name": "Cloud Computing",
+      "year": 4,
+      "topics": ["Virtualization", "Cloud Service Models", "Cloud Deployment Models", "Containers", "Cloud Security"]
+    },
+    {
+      "id": "CSE015",
+      "name": "Internet of Things",
+      "year": 4,
+      "topics": ["IoT Architecture", "Sensors", "Communication Protocols", "Edge Computing", "IoT Security"]
+    }
+  ]
+}

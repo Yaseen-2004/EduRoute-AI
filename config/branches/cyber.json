@@ -1,0 +1,151 @@
+{
+  "branch_code": "CYBER",
+  "branch_name": "Cyber Security",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "CYBER001",
+      "name": "Cryptography",
+      "year": 2,
+      "topics": [
+        "Cryptography",
+        "Symmetric-key algorithm",
+        "Public-key cryptography",
+        "RSA cryptosystem",
+        "Advanced Encryption Standard"
+      ]
+    },
+    {
+      "id": "CYBER002",
+      "name": "Network Security",
+      "year": 2,
+      "topics": [
+        "Firewall (computing)",
+        "Intrusion detection system",
+        "Virtual private network",
+        "Transport Layer Security",
+        "IPsec"
+      ]
+    },
+    {
+      "id": "CYBER003",
+      "name": "Ethical Hacking",
+      "year": 3,
+      "topics": [
+        "Penetration test",
+        "Vulnerability scanner",
+        "Social engineering (security)",
+        "Port scanner",
+        "Metasploit"
+      ]
+    },
+    {
+      "id": "CYBER004",
+      "name": "Malware Analysis",
+      "year": 3,
+      "topics": [
+        "Malware",
+        "Computer virus",
+        "Ransomware",
+        "Trojan horse (computing)",
+        "Malware analysis"
+      ]
+    },
+    {
+      "id": "CYBER005",
+      "name": "Digital Forensics",
+      "year": 3,
+      "topics": [
+        "Digital forensics",
+        "Computer forensics",
+        "Chain of custody",
+        "Disk image",
+        "Network forensics"
+      ]
+    },
+    {
+      "id": "CYBER006",
+      "name": "Web Application Security",
+      "year": 3,
+      "topics": [
+        "OWASP",
+        "SQL injection",
+        "Cross-site scripting",
+        "Cross-site request forgery",
+        "Session hijacking"
+      ]
+    },
+    {
+      "id": "CYBER007",
+      "name": "Security Operations",
+      "year": 3,
+      "topics": [
+        "Security operations center",
+        "Security information and event management",
+        "Computer security incident management",
+        "Cyber threat intelligence",
+        "Log management"
+      ]
+    },
+    {
+      "id": "CYBER008",
+      "name": "Identity and Access Management",
+      "year": 3,
+      "topics": [
+        "Identity management",
+        "Multi-factor authentication",
+        "Single sign-on",
+        "Role-based access control",
+        "OAuth"
+      ]
+    },
+    {
+      "id": "CYBER009",
+      "name": "Cloud Security",
+      "year": 4,
+      "topics": [
+        "Cloud computing security",
+        "Zero trust architecture",
+        "Data loss prevention software",
+        "Cloud access security broker",
+        "Encryption"
+      ]
+    },
+    {
+      "id": "CYBER010",
+      "name": "Cyber Law and Ethics",
+      "year": 4,
+      "topics": [
+        "Information technology law",
+        "Information Technology Act, 2000",
+        "Computer Fraud and Abuse Act",
+        "Cybercrime",
+        "Computer ethics"
+      ]
+    },
+    {
+      "id": "CYBER011",
+      "name": "Blockchain Security",
+      "year": 4,
+      "topics": [
+        "Blockchain",
+        "Proof of work",
+        "Smart contract",
+        "Cryptographic hash function",
+        "Merkle tree"
+      ]
+    },
+    {
+      "id": "CYBER012",
+      "name": "Risk Management and Compliance",
+      "year": 4,
+      "topics": [
+        "IT risk management",
+        "ISO/IEC 27001",
+        "Risk assessment",
+        "Business continuity planning",
+        "Information security audit"
+      ]
+    }
+  ]
+}

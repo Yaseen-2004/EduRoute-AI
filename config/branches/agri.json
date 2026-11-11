@@ -1,0 +1,127 @@
+{
+  "branch_code": "AGRI",
+  "branch_name": "Agricultural Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "AGRI001",
+      "name": "Soil and Water Conservation",
+      "year": 2,
+      "topics": [
+        "Soil conservation",
+        "Soil erosion",
+        "Terrace (earthworks)",
+        "Watershed management",
+        "Contour plowing"
+      ]
+    },
+    {
+      "id": "AGRI002",
+      "name": "Farm Machinery",
+      "year": 2,
+      "topics": [
+        "Agricultural machinery",
+        "Tractor",
+        "Combine harvester",
+        "Plough",
+        "Seed drill"
+      ]
+    },
+    {
+      "id": "AGRI003",
+      "name": "Irrigation Engineering",
+      "year": 3,
+      "topics": [
+        "Drip irrigation",
+        "Irrigation sprinkler",
+        "Canal",
+        "Evapotranspiration",
+        "Surface irrigation"
+      ]
+    },
+    {
+      "id": "AGRI004",
+      "name": "Post-Harvest Technology",
+      "year": 3,
+      "topics": [
+        "Postharvest",
+        "Grain drying",
+        "Food preservation",
+        "Threshing",
+        "Silo"
+      ]
+    },
+    {
+      "id": "AGRI005",
+      "name": "Dairy and Food Engineering",
+      "year": 3,
+      "topics": [
+        "Food engineering",
+        "Pasteurization",
+        "Homogenization (chemistry)",
+        "Spray drying",
+        "Food packaging"
+      ]
+    },
+    {
+      "id": "AGRI006",
+      "name": "Renewable Energy in Agriculture",
+      "year": 3,
+      "topics": [
+        "Biogas",
+        "Biomass (energy)",
+        "Solar water heating",
+        "Biofuel",
+        "Agrivoltaics"
+      ]
+    },
+    {
+      "id": "AGRI007",
+      "name": "Agricultural Structures",
+      "year": 3,
+      "topics": [
+        "Greenhouse",
+        "Barn",
+        "Grain elevator",
+        "Polytunnel",
+        "Hydroponics"
+      ]
+    },
+    {
+      "id": "AGRI008",
+      "name": "Precision Agriculture",
+      "year": 4,
+      "topics": [
+        "Precision agriculture",
+        "Remote sensing",
+        "Geographic information system",
+        "Agricultural drone",
+        "Normalized difference vegetation index"
+      ]
+    },
+    {
+      "id": "AGRI009",
+      "name": "Groundwater Engineering",
+      "year": 4,
+      "topics": [
+        "Aquifer",
+        "Water well",
+        "Darcy's law",
+        "Groundwater recharge",
+        "Tube well"
+      ]
+    },
+    {
+      "id": "AGRI010",
+      "name": "Agricultural Process Engineering",
+      "year": 4,
+      "topics": [
+        "Agricultural engineering",
+        "Mill (grinding)",
+        "Expeller pressing",
+        "Parboiled rice",
+        "Food processing"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{"id": "X01", "set": "comparison", "answer_mode": "10-mark", "question": "Compare supervised and unsupervised learning with examples."}
+{"id": "X02", "set": "comparison", "answer_mode": "5-mark", "question": "What is the difference between a GAN and a variational autoencoder?"}
+{"id": "X03", "set": "comparison", "answer_mode": "10-mark", "question": "Compare LSTM and GRU and also explain the vanishing gradient problem."}
+{"id": "X04", "set": "numerical", "answer_mode": "5-mark", "question": "Calculate the entropy of a dataset with 9 positive and 5 negative examples."}
+{"id": "X05", "set": "numerical", "answer_mode": "5-mark", "question": "Compute the output size of a 32x32 image after a 5x5 convolution with stride 1 and no padding."}
+{"id": "X06", "set": "procedure", "answer_mode": "5-mark", "question": "What are the steps of the k-means clustering algorithm?"}
+{"id": "X07", "set": "evidence_request", "answer_mode": "5-mark", "question": "According to the sources, who introduced the transformer architecture and when?"}
+{"id": "X08", "set": "evidence_request", "answer_mode": "2-mark", "question": "Cite a source that defines reinforcement learning from human feedback."}
+{"id": "X09", "set": "general", "answer_mode": "conversational", "question": "Hello! What can you help me with?"}
+{"id": "X10", "set": "general", "answer_mode": "conversational", "question": "Give me some exam preparation tips for my machine learning paper."}

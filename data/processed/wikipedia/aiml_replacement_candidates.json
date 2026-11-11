@@ -1,0 +1,746 @@
+[
+  {
+    "title": "Artificial intelligence",
+    "subject": "Explainable AI",
+    "search_query": "SHAP machine learning Shapley additive explanations",
+    "snippet": "2024 Verma, Yugesh (25 December 2021). \"A Complete Guide to SHAP – SHAPley Additive exPlanations for Practitioners\". Analytics India Magazine. Archived from",
+    "source": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Explainable artificial intelligence",
+    "subject": "Explainable AI",
+    "search_query": "SHAP machine learning Shapley additive explanations",
+    "snippet": "SHAP ( SHapley Additive exPlanations ) enables visualization of the contribution of each input feature to the output. It works by calculating Shapley values",
+    "source": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Feature Importance",
+    "subject": "Explainable AI",
+    "search_query": "SHAP machine learning Shapley additive explanations",
+    "snippet": "of LIME and SHAP in Alzheimer's disease detection\". Brain Informatics. 11 (1): 10. Ibebuchi, C. C. (2025). \"Uncertainty in machine learning feature importance",
+    "source": "https://en.wikipedia.org/wiki/Feature_Importance",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Paolo Giudici",
+    "subject": "Explainable AI",
+    "search_query": "SHAP machine learning Shapley additive explanations",
+    "snippet": "AI models: Local Interpretable Model-agnostic Explanations (LIME) and SHapley Additive Explanations ( SHAP ), employing XGBoost to predict the default probability",
+    "source": "https://en.wikipedia.org/wiki/Paolo_Giudici",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Quantum machine learning",
+    "subject": "Explainable AI",
+    "search_query": "LIME machine learning model interpretability",
+    "snippet": "Quantum machine learning (QML) is the study of quantum algorithms for machine learning . It often refers to quantum algorithms for machine learning tasks",
+    "source": "https://en.wikipedia.org/wiki/Quantum_machine_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Liang Zhao",
+    "subject": "Explainable AI",
+    "search_query": "LIME machine learning model interpretability",
+    "snippet": "machine learning , and artificial intelligence, with particular interests in deep learning on graphs, societal event prediction, interpretable machine",
+    "source": "https://en.wikipedia.org/wiki/Liang_Zhao",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Glossary of artificial intelligence",
+    "subject": "Explainable AI",
+    "search_query": "Explainable artificial intelligence feature attribution",
+    "snippet": "This glossary of artificial intelligence is a list of definitions of terms and concepts relevant to the study of artificial intelligence (AI), its subdisciplines",
+    "source": "https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Regulation of artificial intelligence",
+    "subject": "Explainable AI",
+    "search_query": "Explainable artificial intelligence feature attribution",
+    "snippet": "Regulation of artificial intelligence is the development of public-sector policies and laws to promote and regulate artificial intelligence (AI). AI regulation",
+    "source": "https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Generative AI",
+    "subject": "Explainable AI",
+    "search_query": "Explainable artificial intelligence feature attribution",
+    "snippet": "Generative artificial intelligence (GenAI) is a subfield of artificial intelligence (AI) that uses generative models to generate text, images, videos,",
+    "source": "https://en.wikipedia.org/wiki/Generative_AI",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Artificial intelligence in healthcare",
+    "subject": "Explainable AI",
+    "search_query": "Explainable artificial intelligence feature attribution",
+    "snippet": "Artificial intelligence in healthcare refers to the application of artificial intelligence (AI) to medical and healthcare data in areas including disease",
+    "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Generative adversarial network",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "A generative adversarial network (GAN) is a class of machine learning frameworks and a prominent framework for approaching generative AI. The concept",
+    "source": "https://en.wikipedia.org/wiki/Generative_adversarial_network",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Generative model",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "autoencoders, generative adversarial networks and others. In statistical classification, two main approaches are called the generative approach and the",
+    "source": "https://en.wikipedia.org/wiki/Generative_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Wasserstein GAN",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "The Wasserstein Generative Adversarial Network (WGAN) is a variant of generative adversarial network (GAN) proposed in 2017 that aims to \"improve the stability",
+    "source": "https://en.wikipedia.org/wiki/Wasserstein_GAN",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "History of artificial neural networks",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "which trains a generative models to distinguish data from random noise, using the same loss function as GANs. Generative adversarial networks (GANs) as introduced",
+    "source": "https://en.wikipedia.org/wiki/History_of_artificial_neural_networks",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Diffusion model",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "diffusion models , also known as diffusion -based generative models or score-based generative models , are a class of latent variable generative models .",
+    "source": "https://en.wikipedia.org/wiki/Diffusion_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "LTX (world model)",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "generative artificial intelligence video models , developed by Lightricks. Lightricks first released LTX in November 2024 as a text-to-video model . It contained",
+    "source": "https://en.wikipedia.org/wiki/LTX_%28world_model%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "World model (artificial intelligence)",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "A world model in artificial intelligence is a machine learning system that builds an internal representation of an environment. The model predicts how",
+    "source": "https://en.wikipedia.org/wiki/World_model_%28artificial_intelligence%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Open weights",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "language models, diffusion models and other generative artificial intelligence . Open weights is contrasted to open-source artificial intelligence , which considers",
+    "source": "https://en.wikipedia.org/wiki/Open_weights",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Hallucination (artificial intelligence)",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "anthropomorphizing computers. Symbolic artificial intelligence models generally do not produce hallucinations, unlike large language models . In computer vision, since",
+    "source": "https://en.wikipedia.org/wiki/Hallucination_%28artificial_intelligence%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Variational autoencoder",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "In machine learning, a variational autoencoder (VAE) is an artificial neural network architecture introduced by Diederik P. Kingma and Max Welling in",
+    "source": "https://en.wikipedia.org/wiki/Variational_autoencoder",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Autoencoder",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "modifications to the basic autoencoder , to be detailed below. Variational autoencoders (VAEs) belong to the families of variational Bayesian methods. Despite",
+    "source": "https://en.wikipedia.org/wiki/Autoencoder",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Reparameterization trick",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "used in statistical machine learning, particularly in variational inference, variational autoencoders , and stochastic optimization. It allows for the efficient",
+    "source": "https://en.wikipedia.org/wiki/Reparameterization_trick",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Latent diffusion model",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "operation in conditional text-to-image generation. LDM consists of a variational autoencoder (VAE), a modified U-Net, and a text encoder. The VAE encoder compresses",
+    "source": "https://en.wikipedia.org/wiki/Latent_diffusion_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Natural language processing",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "Natural language processing (NLP) is the processing of natural language information by a computer. NLP is a subfield of computer science and is closely",
+    "source": "https://en.wikipedia.org/wiki/Natural_language_processing",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Natural language",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "of natural language processing ), as its prescriptive aspects do not make it regulated enough to be considered a constructed or controlled natural language",
+    "source": "https://en.wikipedia.org/wiki/Natural_language",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Empirical Methods in Natural Language Processing",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "Empirical Methods in Natural Language Processing (EMNLP) is a leading conference in the area of natural language processing and artificial intelligence",
+    "source": "https://en.wikipedia.org/wiki/Empirical_Methods_in_Natural_Language_Processing",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "History of natural language processing",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "The history of natural language processing describes the advancements of natural language processing . There is some overlap with the history of machine",
+    "source": "https://en.wikipedia.org/wiki/History_of_natural_language_processing",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Outline of natural language processing",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "provided as an overview of and topical guide to natural - language processing : Natural - language processing can be described as all of the following: A field",
+    "source": "https://en.wikipedia.org/wiki/Outline_of_natural_language_processing",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Byte-pair encoding",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "In computing, byte - pair encoding (BPE), or digram coding, is an algorithm, first described in 1994 by Philip Gage, for encoding strings of text into smaller",
+    "source": "https://en.wikipedia.org/wiki/Byte-pair_encoding",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Large language model",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "embedding is associated with the integer index. Algorithms include byte - pair encoding (BPE) and WordPiece. There are also special tokens serving as control",
+    "source": "https://en.wikipedia.org/wiki/Large_language_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Percent-encoding",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "Percent- encoding , also known as URL encoding , is a method to encode arbitrary data in a uniform resource identifier (URI) using only the US-ASCII characters",
+    "source": "https://en.wikipedia.org/wiki/Percent-encoding",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Base64",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "binary-to-text encoding that uses 64 printable characters to represent each 6-bit segment of a sequence of byte values. As for all binary-to-text encodings , Base64",
+    "source": "https://en.wikipedia.org/wiki/Base64",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Double-byte character set",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "double- byte character set (DBCS) is a character encoding in which either all characters (including control characters) are encoded in two bytes , or merely",
+    "source": "https://en.wikipedia.org/wiki/Double-byte_character_set",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Support vector machine",
+    "subject": "Natural Language Processing",
+    "search_query": "Text preprocessing machine learning",
+    "snippet": "In machine learning , a support vector machine (SVM) or support vector network is a supervised max-margin model with associated learning algorithms that",
+    "source": "https://en.wikipedia.org/wiki/Support_vector_machine",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "List of datasets for machine-learning research",
+    "subject": "Natural Language Processing",
+    "search_query": "Text preprocessing machine learning",
+    "snippet": "machine learning (ML) research and have been cited in peer-reviewed academic journals. Datasets are an integral part of the field of machine learning",
+    "source": "https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Machine learning",
+    "subject": "Natural Language Processing",
+    "search_query": "Text preprocessing machine learning",
+    "snippet": "Machine learning (ML) is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn",
+    "source": "https://en.wikipedia.org/wiki/Machine_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Machine learning in biology",
+    "subject": "Natural Language Processing",
+    "search_query": "Text preprocessing machine learning",
+    "snippet": "microarrays, systems biology, evolution, and text mining. Prior to the emergence of machine learning , bioinformatics algorithms had to be programmed",
+    "source": "https://en.wikipedia.org/wiki/Machine_learning_in_biology",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Fairness (machine learning)",
+    "subject": "Natural Language Processing",
+    "search_query": "Text preprocessing machine learning",
+    "snippet": "assessment. Fairness can be applied to machine learning algorithms in three different ways: data preprocessing , optimization during software training",
+    "source": "https://en.wikipedia.org/wiki/Fairness_%28machine_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "MLOps",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "requirements. While MLOps started as a set of best practices, it is slowly evolving into an independent approach to ML lifecycle management. MLOps applies to the",
+    "source": "https://en.wikipedia.org/wiki/MLOps",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "AI observability",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "under the name of concept drift. AI observability is closely related to MLOps (machine learning operations), and it is sometimes treated as one of its",
+    "source": "https://en.wikipedia.org/wiki/AI_observability",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Artificial intelligence engineering",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "environments. MLOps is particularly important as AI systems scale to handle more complex tasks and larger datasets. Without robust MLOps practices, models",
+    "source": "https://en.wikipedia.org/wiki/Artificial_intelligence_engineering",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "AIOps",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "environments, data centers, and other IT infrastructures. In contrast to MLOps (Machine Learning Operations), which focuses on the lifecycle management",
+    "source": "https://en.wikipedia.org/wiki/AIOps",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Seldon (company)",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "founded in 2014, and headquartered in London, England. It made real-time MLOps and LLMOps for enterprise deployment and monitoring of machine learning",
+    "source": "https://en.wikipedia.org/wiki/Seldon_%28company%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Automated machine learning",
+    "subject": "MLOps",
+    "search_query": "Machine learning model deployment",
+    "snippet": "stage from beginning with a raw dataset to building a machine learning model ready for deployment . AutoML was proposed as an artificial intelligence-based",
+    "source": "https://en.wikipedia.org/wiki/Automated_machine_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Transformer (deep learning)",
+    "subject": "MLOps",
+    "search_query": "Machine learning model deployment",
+    "snippet": "Machine learning model for vision processing Large language model – Type of machine learning model BERT (language model ) – Series of language models developed",
+    "source": "https://en.wikipedia.org/wiki/Transformer_%28deep_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Neural network (machine learning)",
+    "subject": "MLOps",
+    "search_query": "Machine learning model deployment",
+    "snippet": "In machine learning , a neural network (NN) or artificial neural network (ANN) is a computational model inspired by the structure and functions of biological",
+    "source": "https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Reinforcement learning from human feedback",
+    "subject": "MLOps",
+    "search_query": "Machine learning model deployment",
+    "snippet": "reward model to represent preferences, which can then be used to train other models through reinforcement learning . In classical reinforcement learning , an",
+    "source": "https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Fine-tuning (deep learning)",
+    "subject": "MLOps",
+    "search_query": "Machine learning model monitoring",
+    "snippet": "In deep learning , fine-tuning is the process of adapting a computational model trained for one task (the upstream task) to perform a different, usually",
+    "source": "https://en.wikipedia.org/wiki/Fine-tuning_%28deep_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Ensemble learning",
+    "subject": "MLOps",
+    "search_query": "Machine learning model monitoring",
+    "snippet": "Ensemble learning trains two or more machine learning algorithms on a specific classification or regression task. The algorithms within the ensemble model are",
+    "source": "https://en.wikipedia.org/wiki/Ensemble_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Computer vision",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "computer vision (e.g. neural net and deep learning based image and feature analysis and classification ) have their background in neurobiology. The Neocognitron",
+    "source": "https://en.wikipedia.org/wiki/Computer_vision",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Multispectral imaging",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "in the image . Such classification is a complex task which involves rigorous validation of the training samples depending on the classification algorithm",
+    "source": "https://en.wikipedia.org/wiki/Multispectral_imaging",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Text-to-image model",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "image classification model when applied to a sample of images generated by the text-to- image model. The score is increased when the image classification model",
+    "source": "https://en.wikipedia.org/wiki/Text-to-image_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Contextual image classification",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "image classification , a topic of pattern recognition in computer vision, is an approach of classification based on contextual information in images .",
+    "source": "https://en.wikipedia.org/wiki/Contextual_image_classification",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "ImageNet",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "of researchers to work on the Image Net project. They used Amazon Mechanical Turk to help with the classification of images . Labeling started in July 2008",
+    "source": "https://en.wikipedia.org/wiki/ImageNet",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Object detection",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "videos. Well-researched domains of object detection include face detection and pedestrian detection . Object detection has applications in many areas of",
+    "source": "https://en.wikipedia.org/wiki/Object_detection",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "You Only Look Once",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "You Only Look Once (YOLO) is a series of real-time object detection systems based on convolutional neural networks. First introduced by Joseph Redmon et",
+    "source": "https://en.wikipedia.org/wiki/You_Only_Look_Once",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Viola–Jones object detection framework",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "The Viola–Jones object detection framework is a machine learning object detection framework proposed in 2001 by Paul Viola and Michael Jones. It was motivated",
+    "source": "https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "List of datasets in computer vision and image processing",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "such as object detection , facial recognition, and multi-label classification. See (Calli et al, 2015) for a review of 33 datasets of 3D object as of 2015",
+    "source": "https://en.wikipedia.org/wiki/List_of_datasets_in_computer_vision_and_image_processing",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Moving object detection",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "Moving object detection is a technique used in computer vision and image processing. Multiple consecutive frames from a video are compared by various methods",
+    "source": "https://en.wikipedia.org/wiki/Moving_object_detection",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Q-learning",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "Q - learning is a reinforcement learning algorithm that trains an agent to assign values to its possible actions based on its current state, without requiring",
+    "source": "https://en.wikipedia.org/wiki/Q-learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Reinforcement learning",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "Apprenticeship learning Error-driven learning Model-free (reinforcement learning ) Multi-agent reinforcement learning Optimal control Q - learning Reinforcement",
+    "source": "https://en.wikipedia.org/wiki/Reinforcement_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Attention (machine learning)",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "In machine learning , attention is a method that determines the importance of, or \"attends to\", each component in a sequence relative to the other components",
+    "source": "https://en.wikipedia.org/wiki/Attention_%28machine_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Multi-agent reinforcement learning",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "Multi-agent reinforcement learning (MARL) is a sub-field of reinforcement learning . It focuses on studying the behavior of multiple learning agents that coexist",
+    "source": "https://en.wikipedia.org/wiki/Multi-agent_reinforcement_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Deep reinforcement learning",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "Deep reinforcement learning (deep RL) is a subfield of machine learning that combines reinforcement learning (RL) and deep learning . RL considers the problem",
+    "source": "https://en.wikipedia.org/wiki/Deep_reinforcement_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Markov decision process",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "In decision theory, a Markov decision process (MDP) is a mathematical model for sequential decision making when outcomes are uncertain. It is a type of",
+    "source": "https://en.wikipedia.org/wiki/Markov_decision_process",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Partially observable Markov decision process",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "observable Markov decision process (POMDP) is a generalization of a Markov decision process (MDP). A POMDP models an agent decision process in which it",
+    "source": "https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Markov chain",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "In probability theory and statistics, a Markov chain or Markov process is a stochastic process describing a sequence of possible events in which the probability",
+    "source": "https://en.wikipedia.org/wiki/Markov_chain",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Markov model",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "to expected rewards. A partially observable Markov decision process (POMDP) is a Markov decision process in which the state of the system is only partially",
+    "source": "https://en.wikipedia.org/wiki/Markov_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Decentralized partially observable Markov decision process",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "The decentralized partially observable Markov decision process (Dec-POMDP) is a model for coordination and decision -making among multiple agents. It is a",
+    "source": "https://en.wikipedia.org/wiki/Decentralized_partially_observable_Markov_decision_process",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Proximal policy optimization",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "Proximal policy optimization (PPO) is a reinforcement learning (RL) algorithm for training an intelligent agent. Specifically, it is a policy gradient",
+    "source": "https://en.wikipedia.org/wiki/Proximal_policy_optimization",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Policy gradient method",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "Policy gradient methods are a class of reinforcement learning algorithms and a sub-class of policy optimization methods. Unlike value-based methods which",
+    "source": "https://en.wikipedia.org/wiki/Policy_gradient_method",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "John Schulman",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "In particular, his work on Trust Region Policy Optimization , and its extension proximal policy optimization , were components of ChatGPT. In August 2024",
+    "source": "https://en.wikipedia.org/wiki/John_Schulman",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Model-free (reinforcement learning)",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "Trust Region Policy Optimization (TRPO), Proximal Policy Optimization (PPO), Asynchronous Advantage Actor-Critic (A3C), Deep Deterministic Policy Gradient",
+    "source": "https://en.wikipedia.org/wiki/Model-free_%28reinforcement_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Relevance vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "subsequently developed. The RVM has an identical functional form to the support vector machine , but provides probabilistic classification. It is actually equivalent",
+    "source": "https://en.wikipedia.org/wiki/Relevance_vector_machine",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Structured support vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "supportvector machine is a machine learning algorithm that generalizes the support vector machine (SVM) classifier. Whereas the SVM classifier supports binary",
+    "source": "https://en.wikipedia.org/wiki/Structured_support_vector_machine",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Least-squares support vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "Least-squares support - vector machines (LS-SVM) for statistics and in statistical modeling, are least-squares versions of support - vector machines (SVM), which",
+    "source": "https://en.wikipedia.org/wiki/Least-squares_support_vector_machine",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Elastic net regularization",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "Examples of where the elastic net method has been applied are: Support vector machine Metric learning Portfolio optimization Cancer prognosis It was proven",
+    "source": "https://en.wikipedia.org/wiki/Elastic_net_regularization",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Decision tree learning",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "Decision tree learning is a supervised learning approach used in statistics, data mining and machine learning . In this formalism, a classification or",
+    "source": "https://en.wikipedia.org/wiki/Decision_tree_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Decision tree",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "A decision tree is a decision support recursive partitioning structure that uses a tree -like model of decisions and their possible consequences, including",
+    "source": "https://en.wikipedia.org/wiki/Decision_tree",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Information gain (decision tree)",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "In the context of decision trees in information theory and machine learning , information gain refers to the conditional expected value of the Kullback–Leibler",
+    "source": "https://en.wikipedia.org/wiki/Information_gain_%28decision_tree%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Decision tree pruning",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "compression technique in machine learning and search algorithms that reduces the size of decision trees by removing sections of the tree that are non-critical and",
+    "source": "https://en.wikipedia.org/wiki/Decision_tree_pruning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Random forest",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "decision forests is an ensemble learning method for classification, regression and other tasks that works by creating a multitude of decision trees during",
+    "source": "https://en.wikipedia.org/wiki/Random_forest",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Outline of machine learning",
+    "subject": "Machine Learning",
+    "search_query": "Random forest machine learning",
+    "snippet": "(GBDT) Gradient boosting Random Forest Stacked Generalization Meta- learning Inductive bias Metadata Reinforcement learning Q- learning State–action–reward–state–action",
+    "source": "https://en.wikipedia.org/wiki/Outline_of_machine_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Boosting (machine learning)",
+    "subject": "Machine Learning",
+    "search_query": "Random forest machine learning",
+    "snippet": "In machine learning (ML), boosting is an ensemble learning method that combines a set of less accurate models (called \"weak learners\") to create a single",
+    "source": "https://en.wikipedia.org/wiki/Boosting_%28machine_learning%29",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Convolutional neural network",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "A convolutional neural network (CNN) is a type of feedforward neural network that learns features via filter (or kernel) optimization. This type of deep",
+    "source": "https://en.wikipedia.org/wiki/Convolutional_neural_network",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Graph neural network",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "certain existing neural network architectures can be interpreted as GNNs operating on suitably defined graphs. A convolutional neural network layer, in the",
+    "source": "https://en.wikipedia.org/wiki/Graph_neural_network",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Deep learning",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "fully connected networks , deep belief networks , recurrent neural networks , recurrent Random neural networks , convolutional neural networks , generative adversarial",
+    "source": "https://en.wikipedia.org/wiki/Deep_learning",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Convolutional layer",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "artificial neural networks , a convolutional layer is a type of network layer that applies a convolution operation to the input. Convolutional layers are",
+    "source": "https://en.wikipedia.org/wiki/Convolutional_layer",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Recurrent neural network",
+    "subject": "Deep Learning",
+    "search_query": "Recurrent neural network",
+    "snippet": "In artificial neural networks , recurrent neural networks (RNNs) are designed for processing sequential data, such as text, speech, and time series, where",
+    "source": "https://en.wikipedia.org/wiki/Recurrent_neural_network",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Bidirectional recurrent neural networks",
+    "subject": "Deep Learning",
+    "search_query": "Recurrent neural network",
+    "snippet": "Bidirectional recurrent neural networks (BRNN) connect two hidden layers of opposite directions to the same output. With this form of generative deep",
+    "source": "https://en.wikipedia.org/wiki/Bidirectional_recurrent_neural_networks",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Language model",
+    "subject": "Deep Learning",
+    "search_query": "Recurrent neural network",
+    "snippet": "texts scraped from the public internet). They have superseded recurrent neural network -based models, which had previously superseded the purely statistical",
+    "source": "https://en.wikipedia.org/wiki/Language_model",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Attention Is All You Need",
+    "subject": "Deep Learning",
+    "search_query": "Attention mechanism machine learning",
+    "snippet": "Google. The paper introduced a new deep learning architecture known as the transformer, based on the attention mechanism proposed in 2014 by Bahdanau et al",
+    "source": "https://en.wikipedia.org/wiki/Attention_Is_All_You_Need",
+    "status": "candidate_not_yet_verified"
+  },
+  {
+    "title": "Seq2seq",
+    "subject": "Deep Learning",
+    "search_query": "Attention mechanism machine learning",
+    "snippet": "In machine learning and natural language processing, seq2seq is a family of approaches that uses sequence transformation, i.e., it turns an input sequence",
+    "source": "https://en.wikipedia.org/wiki/Seq2seq",
+    "status": "candidate_not_yet_verified"
+  }
+]

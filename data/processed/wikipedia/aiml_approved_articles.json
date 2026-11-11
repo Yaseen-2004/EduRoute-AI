@@ -1,0 +1,290 @@
+[
+  {
+    "title": "AI observability",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "under the name of concept drift. AI observability is closely related to MLOps (machine learning operations), and it is sometimes treated as one of its",
+    "source": "https://en.wikipedia.org/wiki/AI_observability",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Autoencoder",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "modifications to the basic autoencoder , to be detailed below. Variational autoencoders (VAEs) belong to the families of variational Bayesian methods. Despite",
+    "source": "https://en.wikipedia.org/wiki/Autoencoder",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Automated machine learning",
+    "subject": "MLOps",
+    "search_query": "Machine learning model deployment",
+    "snippet": "stage from beginning with a raw dataset to building a machine learning model ready for deployment . AutoML was proposed as an artificial intelligence-based",
+    "source": "https://en.wikipedia.org/wiki/Automated_machine_learning",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Bidirectional recurrent neural networks",
+    "subject": "Deep Learning",
+    "search_query": "Recurrent neural network",
+    "snippet": "Bidirectional recurrent neural networks (BRNN) connect two hidden layers of opposite directions to the same output. With this form of generative deep",
+    "source": "https://en.wikipedia.org/wiki/Bidirectional_recurrent_neural_networks",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Boosting (machine learning)",
+    "subject": "Machine Learning",
+    "search_query": "Random forest machine learning",
+    "snippet": "In machine learning (ML), boosting is an ensemble learning method that combines a set of less accurate models (called \"weak learners\") to create a single",
+    "source": "https://en.wikipedia.org/wiki/Boosting_%28machine_learning%29",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Byte-pair encoding",
+    "subject": "Natural Language Processing",
+    "search_query": "Byte pair encoding",
+    "snippet": "In computing, byte - pair encoding (BPE), or digram coding, is an algorithm, first described in 1994 by Philip Gage, for encoding strings of text into smaller",
+    "source": "https://en.wikipedia.org/wiki/Byte-pair_encoding",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Convolutional layer",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "artificial neural networks , a convolutional layer is a type of network layer that applies a convolution operation to the input. Convolutional layers are",
+    "source": "https://en.wikipedia.org/wiki/Convolutional_layer",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Convolutional neural network",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "A convolutional neural network (CNN) is a type of feedforward neural network that learns features via filter (or kernel) optimization. This type of deep",
+    "source": "https://en.wikipedia.org/wiki/Convolutional_neural_network",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Decision tree learning",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "Decision tree learning is a supervised learning approach used in statistics, data mining and machine learning . In this formalism, a classification or",
+    "source": "https://en.wikipedia.org/wiki/Decision_tree_learning",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Decision tree pruning",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "compression technique in machine learning and search algorithms that reduces the size of decision trees by removing sections of the tree that are non-critical and",
+    "source": "https://en.wikipedia.org/wiki/Decision_tree_pruning",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Deep learning",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "fully connected networks , deep belief networks , recurrent neural networks , recurrent Random neural networks , convolutional neural networks , generative adversarial",
+    "source": "https://en.wikipedia.org/wiki/Deep_learning",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Diffusion model",
+    "subject": "Generative AI",
+    "search_query": "Diffusion model artificial intelligence",
+    "snippet": "diffusion models , also known as diffusion -based generative models or score-based generative models , are a class of latent variable generative models .",
+    "source": "https://en.wikipedia.org/wiki/Diffusion_model",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Elastic net regularization",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "Examples of where the elastic net method has been applied are: Support vector machine Metric learning Portfolio optimization Cancer prognosis It was proven",
+    "source": "https://en.wikipedia.org/wiki/Elastic_net_regularization",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Explainable artificial intelligence",
+    "subject": "Explainable AI",
+    "search_query": "SHAP machine learning Shapley additive explanations",
+    "snippet": "SHAP ( SHapley Additive exPlanations ) enables visualization of the contribution of each input feature to the output. It works by calculating Shapley values",
+    "source": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Generative adversarial network",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "A generative adversarial network (GAN) is a class of machine learning frameworks and a prominent framework for approaching generative AI. The concept",
+    "source": "https://en.wikipedia.org/wiki/Generative_adversarial_network",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Graph neural network",
+    "subject": "Deep Learning",
+    "search_query": "Convolutional neural network",
+    "snippet": "certain existing neural network architectures can be interpreted as GNNs operating on suitably defined graphs. A convolutional neural network layer, in the",
+    "source": "https://en.wikipedia.org/wiki/Graph_neural_network",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "ImageNet",
+    "subject": "Computer Vision",
+    "search_query": "Image classification",
+    "snippet": "of researchers to work on the Image Net project. They used Amazon Mechanical Turk to help with the classification of images . Labeling started in July 2008",
+    "source": "https://en.wikipedia.org/wiki/ImageNet",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Information gain (decision tree)",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "In the context of decision trees in information theory and machine learning , information gain refers to the conditional expected value of the Kullback–Leibler",
+    "source": "https://en.wikipedia.org/wiki/Information_gain_%28decision_tree%29",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Latent diffusion model",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "operation in conditional text-to-image generation. LDM consists of a variational autoencoder (VAE), a modified U-Net, and a text encoder. The VAE encoder compresses",
+    "source": "https://en.wikipedia.org/wiki/Latent_diffusion_model",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Least-squares support vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "Least-squares support - vector machines (LS-SVM) for statistics and in statistical modeling, are least-squares versions of support - vector machines (SVM), which",
+    "source": "https://en.wikipedia.org/wiki/Least-squares_support_vector_machine",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "MLOps",
+    "subject": "MLOps",
+    "search_query": "MLOps",
+    "snippet": "requirements. While MLOps started as a set of best practices, it is slowly evolving into an independent approach to ML lifecycle management. MLOps applies to the",
+    "source": "https://en.wikipedia.org/wiki/MLOps",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Model-free (reinforcement learning)",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "Trust Region Policy Optimization (TRPO), Proximal Policy Optimization (PPO), Asynchronous Advantage Actor-Critic (A3C), Deep Deterministic Policy Gradient",
+    "source": "https://en.wikipedia.org/wiki/Model-free_%28reinforcement_learning%29",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Multi-agent reinforcement learning",
+    "subject": "Reinforcement Learning",
+    "search_query": "Q-learning",
+    "snippet": "Multi-agent reinforcement learning (MARL) is a sub-field of reinforcement learning . It focuses on studying the behavior of multiple learning agents that coexist",
+    "source": "https://en.wikipedia.org/wiki/Multi-agent_reinforcement_learning",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Natural language",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "of natural language processing ), as its prescriptive aspects do not make it regulated enough to be considered a constructed or controlled natural language",
+    "source": "https://en.wikipedia.org/wiki/Natural_language",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Natural language processing",
+    "subject": "Natural Language Processing",
+    "search_query": "Natural language processing",
+    "snippet": "Natural language processing (NLP) is the processing of natural language information by a computer. NLP is a subfield of computer science and is closely",
+    "source": "https://en.wikipedia.org/wiki/Natural_language_processing",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Partially observable Markov decision process",
+    "subject": "Reinforcement Learning",
+    "search_query": "Markov decision process",
+    "snippet": "observable Markov decision process (POMDP) is a generalization of a Markov decision process (MDP). A POMDP models an agent decision process in which it",
+    "source": "https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Policy gradient method",
+    "subject": "Reinforcement Learning",
+    "search_query": "Proximal policy optimization",
+    "snippet": "Policy gradient methods are a class of reinforcement learning algorithms and a sub-class of policy optimization methods. Unlike value-based methods which",
+    "source": "https://en.wikipedia.org/wiki/Policy_gradient_method",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Random forest",
+    "subject": "Machine Learning",
+    "search_query": "Decision tree learning",
+    "snippet": "decision forests is an ensemble learning method for classification, regression and other tasks that works by creating a multitude of decision trees during",
+    "source": "https://en.wikipedia.org/wiki/Random_forest",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Recurrent neural network",
+    "subject": "Deep Learning",
+    "search_query": "Recurrent neural network",
+    "snippet": "In artificial neural networks , recurrent neural networks (RNNs) are designed for processing sequential data, such as text, speech, and time series, where",
+    "source": "https://en.wikipedia.org/wiki/Recurrent_neural_network",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Relevance vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "subsequently developed. The RVM has an identical functional form to the support vector machine , but provides probabilistic classification. It is actually equivalent",
+    "source": "https://en.wikipedia.org/wiki/Relevance_vector_machine",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Reparameterization trick",
+    "subject": "Generative AI",
+    "search_query": "Variational autoencoder",
+    "snippet": "used in statistical machine learning, particularly in variational inference, variational autoencoders , and stochastic optimization. It allows for the efficient",
+    "source": "https://en.wikipedia.org/wiki/Reparameterization_trick",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Seq2seq",
+    "subject": "Deep Learning",
+    "search_query": "Attention mechanism machine learning",
+    "snippet": "In machine learning and natural language processing, seq2seq is a family of approaches that uses sequence transformation, i.e., it turns an input sequence",
+    "source": "https://en.wikipedia.org/wiki/Seq2seq",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Structured support vector machine",
+    "subject": "Machine Learning",
+    "search_query": "Support vector machine",
+    "snippet": "supportvector machine is a machine learning algorithm that generalizes the support vector machine (SVM) classifier. Whereas the SVM classifier supports binary",
+    "source": "https://en.wikipedia.org/wiki/Structured_support_vector_machine",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Viola–Jones object detection framework",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "The Viola–Jones object detection framework is a machine learning object detection framework proposed in 2001 by Paul Viola and Michael Jones. It was motivated",
+    "source": "https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "Wasserstein GAN",
+    "subject": "Generative AI",
+    "search_query": "Generative adversarial network",
+    "snippet": "The Wasserstein Generative Adversarial Network (WGAN) is a variant of generative adversarial network (GAN) proposed in 2017 that aims to \"improve the stability",
+    "source": "https://en.wikipedia.org/wiki/Wasserstein_GAN",
+    "status": "approved_for_fetching"
+  },
+  {
+    "title": "You Only Look Once",
+    "subject": "Computer Vision",
+    "search_query": "Object detection",
+    "snippet": "You Only Look Once (YOLO) is a series of real-time object detection systems based on convolutional neural networks. First introduced by Joseph Redmon et",
+    "source": "https://en.wikipedia.org/wiki/You_Only_Look_Once",
+    "status": "approved_for_fetching"
+  }
+]

@@ -1,0 +1,168 @@
+
+{
+  "catalogue_name": "EduRoute AI Universal B.Tech Catalogue",
+  "catalogue_version": "1.0",
+  "degree": "B.Tech",
+  "total_catalogue_groups": 26,
+  "total_subjects": 289,
+  "academic_years": [1, 2, 3, 4],
+  "semester_mapping": "Configurable according to university curriculum",
+  "groups": [
+    {
+      "code": "COMMON",
+      "name": "Common Engineering",
+      "category": "shared",
+      "planned_subject_count": 15
+    },
+    {
+      "code": "CSE",
+      "name": "Computer Science and Engineering",
+      "category": "specialized",
+      "planned_subject_count": 15
+    },
+    {
+      "code": "AIML",
+      "name": "Artificial Intelligence and Machine Learning",
+      "category": "specialized",
+      "planned_subject_count": 13
+    },
+    {
+      "code": "DS",
+      "name": "Data Science",
+      "category": "specialized",
+      "planned_subject_count": 12
+    },
+    {
+      "code": "IT",
+      "name": "Information Technology",
+      "category": "specialized",
+      "planned_subject_count": 11
+    },
+    {
+      "code": "CYBER",
+      "name": "Cyber Security",
+      "category": "specialized",
+      "planned_subject_count": 12
+    },
+    {
+      "code": "ECE",
+      "name": "Electronics and Communication Engineering",
+      "category": "specialized",
+      "planned_subject_count": 13
+    },
+    {
+      "code": "EEE",
+      "name": "Electrical and Electronics Engineering",
+      "category": "specialized",
+      "planned_subject_count": 11
+    },
+    {
+      "code": "EE",
+      "name": "Electrical Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "ME",
+      "name": "Mechanical Engineering",
+      "category": "specialized",
+      "planned_subject_count": 12
+    },
+    {
+      "code": "CE",
+      "name": "Civil Engineering",
+      "category": "specialized",
+      "planned_subject_count": 12
+    },
+    {
+      "code": "CHE",
+      "name": "Chemical Engineering",
+      "category": "specialized",
+      "planned_subject_count": 11
+    },
+    {
+      "code": "BT",
+      "name": "Biotechnology",
+      "category": "specialized",
+      "planned_subject_count": 12
+    },
+    {
+      "code": "BME",
+      "name": "Biomedical Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "AE",
+      "name": "Aerospace Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "AUTO",
+      "name": "Automobile Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "MCT",
+      "name": "Mechatronics Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "ROBO",
+      "name": "Robotics Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "ICE",
+      "name": "Instrumentation and Control Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "AGRI",
+      "name": "Agricultural Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "MINING",
+      "name": "Mining Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "PETRO",
+      "name": "Petroleum Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "MARINE",
+      "name": "Marine Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "MET",
+      "name": "Metallurgical Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "TEXTILE",
+      "name": "Textile Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    },
+    {
+      "code": "OCEAN",
+      "name": "Ocean Engineering",
+      "category": "specialized",
+      "planned_subject_count": 10
+    }
+  ]
+}

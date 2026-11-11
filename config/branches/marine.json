@@ -1,0 +1,127 @@
+{
+  "branch_code": "MARINE",
+  "branch_name": "Marine Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "MARINE001",
+      "name": "Naval Architecture",
+      "year": 2,
+      "topics": [
+        "Naval architecture",
+        "Hull (watercraft)",
+        "Buoyancy",
+        "Metacentric height",
+        "Ship stability"
+      ]
+    },
+    {
+      "id": "MARINE002",
+      "name": "Marine Engines",
+      "year": 3,
+      "topics": [
+        "Marine propulsion",
+        "Steam turbine",
+        "Propeller",
+        "Heavy fuel oil",
+        "Azimuth thruster"
+      ]
+    },
+    {
+      "id": "MARINE003",
+      "name": "Ship Construction",
+      "year": 3,
+      "topics": [
+        "Shipbuilding",
+        "Keel",
+        "Bulkhead (partition)",
+        "Shipyard",
+        "Double hull"
+      ]
+    },
+    {
+      "id": "MARINE004",
+      "name": "Marine Auxiliary Machinery",
+      "year": 3,
+      "topics": [
+        "Ballast tank",
+        "Bilge pump",
+        "Oily water separator (marine)",
+        "Rudder",
+        "Boiler"
+      ]
+    },
+    {
+      "id": "MARINE005",
+      "name": "Marine Electrical Systems",
+      "year": 3,
+      "topics": [
+        "Shore power",
+        "Diesel-electric transmission",
+        "Marine VHF radio",
+        "Global Maritime Distress and Safety System",
+        "Uninterruptible power supply"
+      ]
+    },
+    {
+      "id": "MARINE006",
+      "name": "Ship Resistance and Propulsion",
+      "year": 3,
+      "topics": [
+        "Ship resistance and propulsion",
+        "Froude number",
+        "Wave-making resistance",
+        "Cavitation",
+        "Hull speed"
+      ]
+    },
+    {
+      "id": "MARINE007",
+      "name": "Marine Heat Engines and Refrigeration",
+      "year": 3,
+      "topics": [
+        "Heat engine",
+        "Waste heat recovery unit",
+        "Reefer ship",
+        "Refrigerated container",
+        "Marine diesel oil"
+      ]
+    },
+    {
+      "id": "MARINE008",
+      "name": "Maritime Law and Safety",
+      "year": 4,
+      "topics": [
+        "International Convention for the Safety of Life at Sea",
+        "MARPOL 73/78",
+        "International Maritime Organization",
+        "Admiralty law",
+        "Load line (watercraft)"
+      ]
+    },
+    {
+      "id": "MARINE009",
+      "name": "Marine Navigation",
+      "year": 4,
+      "topics": [
+        "Navigation",
+        "Celestial navigation",
+        "Radar",
+        "Automatic identification system",
+        "Electronic Chart Display and Information System"
+      ]
+    },
+    {
+      "id": "MARINE010",
+      "name": "Ship Operation and Management",
+      "year": 4,
+      "topics": [
+        "Merchant navy",
+        "Ship registration",
+        "Bill of lading",
+        "Container ship",
+        "Port"
+      ]
+    }
+  ]
+}

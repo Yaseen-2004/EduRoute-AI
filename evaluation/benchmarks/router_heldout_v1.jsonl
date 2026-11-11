@@ -1,0 +1,60 @@
+{"id": "H01", "expected": "in", "branch": "CSE", "question": "Why is quicksort faster than bubble sort on average?"}
+{"id": "H02", "expected": "in", "branch": "CSE", "question": "What does a compiler's parser do?"}
+{"id": "H03", "expected": "in", "branch": "AIML", "question": "How does dropout reduce overfitting in neural networks?"}
+{"id": "H04", "expected": "in", "branch": "AIML", "question": "what is k means clustering"}
+{"id": "H05", "expected": "in", "branch": "DS", "question": "When should I use a box plot to describe data?"}
+{"id": "H06", "expected": "in", "branch": "IT", "question": "Explain the difference between HTTP and HTTPS."}
+{"id": "H07", "expected": "in", "branch": "CYBER", "question": "What is a man-in-the-middle attack?"}
+{"id": "H08", "expected": "in", "branch": "ECE", "question": "How does a PN junction diode rectify current?"}
+{"id": "H09", "expected": "in", "branch": "ECE", "question": "What is the purpose of a phase-locked loop?"}
+{"id": "H10", "expected": "in", "branch": "EEE", "question": "Why are transformers rated in kVA rather than kW?"}
+{"id": "H11", "expected": "in", "branch": "EE", "question": "What is power factor correction?"}
+{"id": "H12", "expected": "in", "branch": "ME", "question": "Explain the four strokes of a petrol engine."}
+{"id": "H13", "expected": "in", "branch": "ME", "question": "What is the difference between stress and strain?"}
+{"id": "H14", "expected": "in", "branch": "CE", "question": "How is the slump test used to check concrete workability?"}
+{"id": "H15", "expected": "in", "branch": "CE", "question": "What is a cantilever beam?"}
+{"id": "H16", "expected": "in", "branch": "CHE", "question": "What does a heat exchanger do in a chemical plant?"}
+{"id": "H17", "expected": "in", "branch": "BT", "question": "What are restriction enzymes used for in genetic engineering?"}
+{"id": "H18", "expected": "in", "branch": "BME", "question": "How does a pacemaker regulate the heartbeat?"}
+{"id": "H19", "expected": "in", "branch": "AE", "question": "What is a jet engine's bypass ratio?"}
+{"id": "H20", "expected": "in", "branch": "AUTO", "question": "How does a differential let car wheels turn at different speeds?"}
+{"id": "H21", "expected": "in", "branch": "MCT", "question": "What is a stepper motor and where is it used?"}
+{"id": "H22", "expected": "in", "branch": "ROBO", "question": "What are the degrees of freedom of a robot arm?"}
+{"id": "H23", "expected": "in", "branch": "ICE", "question": "What is a PID controller?"}
+{"id": "H24", "expected": "in", "branch": "AGRI", "question": "What is soil erosion and how can farmers reduce it?"}
+{"id": "H25", "expected": "in", "branch": "MINING", "question": "Why is ventilation important in underground mines?"}
+{"id": "H26", "expected": "in", "branch": "PETRO", "question": "What is crude oil refining?"}
+{"id": "H27", "expected": "in", "branch": "MARINE", "question": "What does a ship's propeller pitch mean?"}
+{"id": "H28", "expected": "in", "branch": "MET", "question": "What is the iron-carbon phase diagram?"}
+{"id": "H29", "expected": "in", "branch": "TEXTILE", "question": "What is the difference between weaving and knitting?"}
+{"id": "H30", "expected": "in", "branch": "COMMON", "question": "Explain Newton's second law with an example."}
+{"id": "N01", "expected": "out", "difficulty": "easy", "question": "What time does the sun set in Hyderabad today?"}
+{"id": "N02", "expected": "out", "difficulty": "easy", "question": "Suggest a name for my new puppy."}
+{"id": "N03", "expected": "out", "difficulty": "easy", "question": "How do I tie a tie?"}
+{"id": "N04", "expected": "out", "difficulty": "easy", "question": "Who is the current captain of the Indian cricket team?"}
+{"id": "N05", "expected": "out", "difficulty": "easy", "question": "What should I gift my sister for her birthday?"}
+{"id": "N06", "expected": "out", "difficulty": "easy", "question": "Translate 'good morning' into Tamil."}
+{"id": "N07", "expected": "out", "difficulty": "easy", "question": "How do I make dosa batter?"}
+{"id": "N08", "expected": "out", "difficulty": "easy", "question": "Which festival is celebrated with lamps in India?"}
+{"id": "N09", "expected": "out", "difficulty": "easy", "question": "Tell me a joke."}
+{"id": "N10", "expected": "out", "difficulty": "easy", "question": "What are the lyrics of the national anthem?"}
+{"id": "N11", "expected": "out", "difficulty": "hard", "question": "What were the main causes of the First World War?"}
+{"id": "N12", "expected": "out", "difficulty": "hard", "question": "Explain the theme of Shakespeare's Macbeth."}
+{"id": "N13", "expected": "out", "difficulty": "hard", "question": "What is the difference between civil law and criminal law?"}
+{"id": "N14", "expected": "out", "difficulty": "hard", "question": "How does the Indian Parliament pass a bill?"}
+{"id": "N15", "expected": "out", "difficulty": "hard", "question": "What is Keynesian economics?"}
+{"id": "N16", "expected": "out", "difficulty": "hard", "question": "What is the role of the Reserve Bank of India?"}
+{"id": "N17", "expected": "out", "difficulty": "hard", "question": "What are the stages of grief in psychology?"}
+{"id": "N18", "expected": "out", "difficulty": "hard", "question": "What is impressionism in painting?"}
+{"id": "N19", "expected": "out", "difficulty": "hard", "question": "How is a raga structured in Carnatic music?"}
+{"id": "N20", "expected": "out", "difficulty": "hard", "question": "What did Plato argue in The Republic?"}
+{"id": "N21", "expected": "out", "difficulty": "hard", "question": "What is the treatment for type 2 diabetes?"}
+{"id": "N22", "expected": "out", "difficulty": "hard", "question": "How do vaccines train the immune system?"}
+{"id": "N23", "expected": "out", "difficulty": "hard", "question": "What are the rules of English grammar for using articles?"}
+{"id": "N24", "expected": "out", "difficulty": "hard", "question": "Explain the causes of the 1857 revolt in India."}
+{"id": "N25", "expected": "out", "difficulty": "hard", "question": "What is the difference between a sonnet and a haiku?"}
+{"id": "N26", "expected": "out", "difficulty": "hard", "question": "How does a stock market index like the Sensex work?"}
+{"id": "N27", "expected": "either", "difficulty": "borderline", "question": "What is the Pythagorean theorem's proof by similar triangles?"}
+{"id": "N28", "expected": "either", "difficulty": "borderline", "question": "What causes earthquakes along tectonic plate boundaries?"}
+{"id": "N29", "expected": "either", "difficulty": "borderline", "question": "How do bees communicate the location of flowers?"}
+{"id": "N30", "expected": "either", "difficulty": "borderline", "question": "What is the greenhouse effect?"}

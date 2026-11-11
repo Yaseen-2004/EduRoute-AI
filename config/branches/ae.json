@@ -1,0 +1,127 @@
+{
+  "branch_code": "AE",
+  "branch_name": "Aerospace Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "AE001",
+      "name": "Aerodynamics",
+      "year": 2,
+      "topics": [
+        "Aerodynamics",
+        "Lift (force)",
+        "Drag (physics)",
+        "Airfoil",
+        "Boundary layer"
+      ]
+    },
+    {
+      "id": "AE002",
+      "name": "Aircraft Structures",
+      "year": 3,
+      "topics": [
+        "Fuselage",
+        "Monocoque",
+        "Wing",
+        "Composite material",
+        "Stressed skin"
+      ]
+    },
+    {
+      "id": "AE003",
+      "name": "Propulsion",
+      "year": 3,
+      "topics": [
+        "Jet engine",
+        "Turbofan",
+        "Gas turbine",
+        "Rocket engine",
+        "Specific impulse"
+      ]
+    },
+    {
+      "id": "AE004",
+      "name": "Flight Mechanics",
+      "year": 3,
+      "topics": [
+        "Flight dynamics (fixed-wing aircraft)",
+        "Aircraft flight control system",
+        "Stall (fluid dynamics)",
+        "Longitudinal static stability",
+        "Center of gravity of an aircraft"
+      ]
+    },
+    {
+      "id": "AE005",
+      "name": "Gas Dynamics",
+      "year": 3,
+      "topics": [
+        "Compressible flow",
+        "Mach number",
+        "Shock wave",
+        "De Laval nozzle",
+        "Supersonic speed"
+      ]
+    },
+    {
+      "id": "AE006",
+      "name": "Space Mechanics",
+      "year": 3,
+      "topics": [
+        "Orbital mechanics",
+        "Kepler's laws of planetary motion",
+        "Hohmann transfer orbit",
+        "Escape velocity",
+        "Geostationary orbit"
+      ]
+    },
+    {
+      "id": "AE007",
+      "name": "Avionics",
+      "year": 4,
+      "topics": [
+        "Avionics",
+        "Inertial navigation system",
+        "Global Positioning System",
+        "Autopilot",
+        "Fly-by-wire"
+      ]
+    },
+    {
+      "id": "AE008",
+      "name": "Computational Fluid Dynamics",
+      "year": 4,
+      "topics": [
+        "Computational fluid dynamics",
+        "Finite volume method",
+        "Turbulence modeling",
+        "Mesh generation",
+        "Finite difference method"
+      ]
+    },
+    {
+      "id": "AE009",
+      "name": "Rockets and Missiles",
+      "year": 4,
+      "topics": [
+        "Rocket",
+        "Multistage rocket",
+        "Solid-propellant rocket",
+        "Liquid-propellant rocket",
+        "Missile guidance"
+      ]
+    },
+    {
+      "id": "AE010",
+      "name": "Aircraft Design",
+      "year": 4,
+      "topics": [
+        "Aircraft design process",
+        "Wing loading",
+        "Thrust-to-weight ratio",
+        "Lift-to-drag ratio",
+        "Empennage"
+      ]
+    }
+  ]
+}

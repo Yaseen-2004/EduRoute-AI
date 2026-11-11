@@ -1,0 +1,139 @@
+{
+  "branch_code": "EEE",
+  "branch_name": "Electrical and Electronics Engineering",
+  "catalogue_status": "illustrative; validate against the institution's official curriculum",
+  "subjects": [
+    {
+      "id": "EEE001",
+      "name": "Electrical Circuit Analysis",
+      "year": 2,
+      "topics": [
+        "Electrical network",
+        "Ohm's law",
+        "Superposition theorem",
+        "Phasor",
+        "Three-phase electric power"
+      ]
+    },
+    {
+      "id": "EEE002",
+      "name": "Electrical Machines I",
+      "year": 2,
+      "topics": [
+        "DC motor",
+        "Electric generator",
+        "Transformer",
+        "Armature (electrical)",
+        "Commutator (electric)"
+      ]
+    },
+    {
+      "id": "EEE003",
+      "name": "Electrical Machines II",
+      "year": 3,
+      "topics": [
+        "Induction motor",
+        "Synchronous motor",
+        "Alternator",
+        "Stepper motor",
+        "Universal motor"
+      ]
+    },
+    {
+      "id": "EEE004",
+      "name": "Power Systems I",
+      "year": 3,
+      "topics": [
+        "Electric power transmission",
+        "Electric power distribution",
+        "Overhead power line",
+        "Corona discharge",
+        "Insulator (electricity)"
+      ]
+    },
+    {
+      "id": "EEE005",
+      "name": "Power Systems II",
+      "year": 3,
+      "topics": [
+        "Power-flow study",
+        "Electrical fault",
+        "Power system protection",
+        "Circuit breaker",
+        "Protective relay"
+      ]
+    },
+    {
+      "id": "EEE006",
+      "name": "Power Electronics",
+      "year": 3,
+      "topics": [
+        "Power electronics",
+        "Thyristor",
+        "Insulated-gate bipolar transistor",
+        "Power inverter",
+        "DC-to-DC converter"
+      ]
+    },
+    {
+      "id": "EEE007",
+      "name": "Control Systems",
+      "year": 3,
+      "topics": [
+        "Control theory",
+        "Transfer function",
+        "Root locus analysis",
+        "Bode plot",
+        "Proportional-integral-derivative controller"
+      ]
+    },
+    {
+      "id": "EEE008",
+      "name": "Electrical Measurements",
+      "year": 3,
+      "topics": [
+        "Wheatstone bridge",
+        "Multimeter",
+        "Oscilloscope",
+        "Wattmeter",
+        "Electricity meter"
+      ]
+    },
+    {
+      "id": "EEE009",
+      "name": "Renewable Energy Systems",
+      "year": 4,
+      "topics": [
+        "Renewable energy",
+        "Photovoltaics",
+        "Wind turbine",
+        "Maximum power point tracking",
+        "Energy storage"
+      ]
+    },
+    {
+      "id": "EEE010",
+      "name": "Electric Drives",
+      "year": 4,
+      "topics": [
+        "Adjustable-speed drive",
+        "Variable-frequency drive",
+        "Vector control (motor)",
+        "Regenerative braking",
+        "Servomotor"
+      ]
+    },
+    {
+      "id": "EEE011",
+      "name": "High Voltage Engineering",
+      "year": 4,
+      "topics": [
+        "High voltage",
+        "Partial discharge",
+        "Lightning arrester",
+        "Electrical breakdown",
+        "Marx generator"
+      ]
+    }
+  ]
+}

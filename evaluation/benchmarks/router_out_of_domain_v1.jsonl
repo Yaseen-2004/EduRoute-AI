@@ -1,0 +1,40 @@
+{"id": "O01", "group": "EEE", "question": "State and explain Ohm's law."}
+{"id": "O02", "group": "EEE", "question": "Explain Kirchhoff's current and voltage laws."}
+{"id": "O03", "group": "EEE", "question": "How does a three-phase induction motor work?"}
+{"id": "O04", "group": "EEE", "question": "What is the function of a transformer in a power distribution system?"}
+{"id": "O05", "group": "ECE", "question": "Explain the working of an operational amplifier as an inverting amplifier."}
+{"id": "O06", "group": "ECE", "question": "What is amplitude modulation?"}
+{"id": "O07", "group": "ECE", "question": "Explain the working of a PN junction diode."}
+{"id": "O08", "group": "ECE", "question": "What is the Nyquist sampling theorem?"}
+{"id": "O09", "group": "Mechanical", "question": "Explain the Rankine cycle used in steam power plants."}
+{"id": "O10", "group": "Mechanical", "question": "State the first law of thermodynamics."}
+{"id": "O11", "group": "Mechanical", "question": "What is Bernoulli's principle in fluid mechanics?"}
+{"id": "O12", "group": "Mechanical", "question": "Explain the working of a four-stroke petrol engine."}
+{"id": "O13", "group": "Civil", "question": "What is the curing of concrete and why is it important?"}
+{"id": "O14", "group": "Civil", "question": "How do you calculate the bending moment of a simply supported beam?"}
+{"id": "O15", "group": "Civil", "question": "What are the different types of foundations in building construction?"}
+{"id": "O16", "group": "Civil", "question": "Explain the process of surveying with a theodolite."}
+{"id": "O17", "group": "Chemical", "question": "What is fractional distillation?"}
+{"id": "O18", "group": "Chemical", "question": "Explain the working of a heat exchanger."}
+{"id": "O19", "group": "CSE", "question": "Explain the TCP three-way handshake."}
+{"id": "O20", "group": "CSE", "question": "What is a deadlock in operating systems and how can it be prevented?"}
+{"id": "O21", "group": "CSE", "question": "Explain SQL joins with an example."}
+{"id": "O22", "group": "CSE", "question": "What is normalization in database management systems?"}
+{"id": "O23", "group": "CSE", "question": "Explain the difference between a process and a thread."}
+{"id": "O24", "group": "CSE", "question": "What is virtual memory and paging?"}
+{"id": "O25", "group": "Maths", "question": "How do you find the eigenvalues of a 2x2 matrix?"}
+{"id": "O26", "group": "Maths", "question": "Explain the Laplace transform and its properties."}
+{"id": "O27", "group": "Physics", "question": "What is the photoelectric effect?"}
+{"id": "O28", "group": "Biotech", "question": "Explain the process of DNA replication."}
+{"id": "O29", "group": "Biomedical", "question": "How does an ECG machine record the heart's electrical activity?"}
+{"id": "O30", "group": "Aerospace", "question": "How do aircraft wings generate lift?"}
+{"id": "O31", "group": "General", "question": "What is the capital of France?"}
+{"id": "O32", "group": "General", "question": "Who won the 2011 Cricket World Cup?"}
+{"id": "O33", "group": "General", "question": "How do I make masala chai?"}
+{"id": "O34", "group": "General", "question": "Recommend a good movie to watch this weekend."}
+{"id": "O35", "group": "General", "question": "What is the best way to learn to play the guitar?"}
+{"id": "O36", "group": "General", "question": "How do I write a leave application to my college principal?"}
+{"id": "O37", "group": "General", "question": "What causes the seasons on Earth?"}
+{"id": "O38", "group": "General", "question": "Explain the rules of chess."}
+{"id": "O39", "group": "General", "question": "What is the GDP of India?"}
+{"id": "O40", "group": "General", "question": "How does photosynthesis work in plants?"}
