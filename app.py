@@ -6,6 +6,7 @@ Run from the project root:
 """
 
 import hashlib
+import os
 import threading
 import time
 from datetime import datetime, timezone
@@ -19,6 +20,9 @@ from src.rag.session_document import (DOCUMENT_TYPES, MAX_DOCUMENT_BYTES, Docume
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
+from src.ui.galaxy import knowledge_galaxy
+
+AVATARS = {"user": ":material/person:", "assistant": ":material/auto_awesome:"}
 
 st.set_page_config(page_title="EduRoute AI", page_icon=":material/school:", layout="centered")
 
@@ -212,10 +216,13 @@ if status["asr"]:
 with st.sidebar:
     st.header("EduRoute AI")
     st.caption("Adaptive academic assistant for B.Tech students (prototype)")
+    st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
+    if os.environ.get("EDUROUTE_ENABLE_STUDIO", "true").lower() == "true":
+        st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
 
     branches, subjects_by_branch = catalogue_options()
     branch = st.selectbox(
-        "Branch", options=[None, *branches], index=0,
+        "Branch", options=[None, *branches], key="branch_select",
         format_func=lambda b: f"All branches ({len(branches)})" if b is None else branches[b],
     )
     subjects = subjects_by_branch.get(branch, {}) if branch else {}
@@ -378,12 +385,28 @@ def render_assistant(message, index):
     st.feedback("thumbs", key=f"feedback_{index}", on_change=record_feedback, args=(index,))
 
 
-st.title("EduRoute AI")
-st.caption("Ask a question, attach a diagram or your notes (PDF, Word, text), or record your voice. "
-           "Answers cite their sources.")
+def _focus_branch_from_galaxy():
+    """A branch clicked in the galaxy becomes the sidebar's branch ('' = all branches)."""
+    code = getattr(st.session_state.get("galaxy"), "branch", None)
+    if code is not None:
+        st.session_state.branch_select = code or None
+
+
+knowledge_galaxy(
+    [{"code": code, "name": name, "subjects": len(subjects_by_branch.get(code, {}))}
+     for code, name in branches.items()],
+    selected=branch,
+    compact=bool(st.session_state.messages),
+    tagline="Ask anything across 26 engineering branches, by text, photo, voice or your own notes. "
+            "Every answer is routed, grounded and checked.",
+    chips=[f"{len(branches)} branches", f"{sum(len(v) for v in subjects_by_branch.values())} subjects",
+           "35,567 passages", "Text · photo · voice · PDF"],
+    on_branch_change=_focus_branch_from_galaxy,
+)
 
 for index, message in enumerate(st.session_state.messages):
-    with st.chat_message("assistant" if message["role"] == "note" else message["role"]):
+    role = "assistant" if message["role"] == "note" else message["role"]
+    with st.chat_message(role, avatar=AVATARS.get(role)):
         if message["role"] == "user":
             st.markdown(message["content"] or "_(image only)_")
             if message.get("image"):
@@ -495,7 +518,7 @@ if prompt:
             st.rerun()
 
     st.session_state.messages.append({"role": "user", "content": text, "image": image_bytes})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=AVATARS["user"]):
         st.markdown(text or "_(image only)_")
         if image_bytes:
             st.image(image_bytes, width=280, alt="Image attached by the student")
@@ -513,7 +536,7 @@ if prompt:
         "Subject": subjects[subject_id] if subject_id else None,
     } if branch else None
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=AVATARS["assistant"]):
         thinking = st.status(":shimmer[Thinking]", type="compact")
         # The answer appears word by word while it is generated; sources and
         # verification are added when it is complete.

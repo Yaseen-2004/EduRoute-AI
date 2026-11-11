@@ -24,6 +24,7 @@ import sys
 
 import pandas as pd
 import streamlit as st
+from streamlit.errors import StreamlitAPIException
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # project root, however started
 from config import settings  # noqa: E402
@@ -44,6 +45,13 @@ st.set_page_config(page_title="Evaluation studio", page_icon=":material/fact_che
 if os.environ.get("EDUROUTE_ENABLE_STUDIO", "true").lower() != "true":
     st.info("The evaluation studio is disabled on this deployment. Run the app locally to use it.")
     st.stop()
+
+with st.sidebar:
+    try:  # the links need the multipage app; skipped when this page runs on its own (tests)
+        st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
+        st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
+    except StreamlitAPIException:
+        pass
 
 st.title("Evaluation studio")
 st.caption("Each person works under their own name; files are saved after every click.")

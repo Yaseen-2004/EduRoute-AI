@@ -1,6 +1,48 @@
 [server]
 # Images are limited to 8 MB in the app itself (config/settings.py).
-maxUploadSize = 10
+maxUploadSize = 15
 
 [browser]
 gatherUsageStats = false
+
+[client]
+# Pages are listed with friendly names and icons by st.page_link in the sidebar.
+showSidebarNavigation = false
+
+# EduRoute AI "knowledge galaxy" theme: deep-space dark (default) and a matching
+# light mode; users can switch in the app settings. Violet accent, cyan links.
+[theme]
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+headingFontWeights = [700, 600, 600, 600, 500, 500]
+baseRadius = "large"
+buttonRadius = "full"
+showWidgetBorder = true
+showSidebarBorder = false
+
+[theme.dark]
+primaryColor = "#8b5cf6"
+backgroundColor = "#0b1020"
+secondaryBackgroundColor = "#141b34"
+textColor = "#e6e9f5"
+linkColor = "#67e8f9"
+borderColor = "#252e52"
+codeBackgroundColor = "#141b34"
+
+[theme.dark.sidebar]
+backgroundColor = "#0f1530"
+secondaryBackgroundColor = "#1a2244"
+borderColor = "#252e52"
+
+[theme.light]
+primaryColor = "#6d28d9"
+backgroundColor = "#f7f7fc"
+secondaryBackgroundColor = "#eceefa"
+textColor = "#1b1f3b"
+linkColor = "#0e7490"
+borderColor = "#d9dcf0"
+
+[theme.light.sidebar]
+backgroundColor = "#eef0fb"
+secondaryBackgroundColor = "#ffffff"

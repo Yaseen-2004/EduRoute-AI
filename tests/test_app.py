@@ -8,7 +8,7 @@ from streamlit.testing.v1 import AppTest
 def test_app_answers_a_question_end_to_end():
     at = AppTest.from_file("../app.py", default_timeout=180).run()
     assert not at.exception
-    assert at.title[0].value == "EduRoute AI"
+    assert at.sidebar.header[0].value == "EduRoute AI"   # the page title is the animated galaxy hero
 
     at.chat_input[0].set_value("Explain backpropagation in neural networks.").run()
     assert not at.exception
