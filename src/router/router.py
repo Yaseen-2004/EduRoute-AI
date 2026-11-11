@@ -228,6 +228,13 @@ class AdaptiveRouter:
 
         # 1. Image questions
         if analysis.modality.startswith("image"):
+            # The answer is in the image itself ("this truth table", "the circuit
+            # shown"): on the 11 Nov image benchmark the vision-only route was at
+            # least as accurate on every such question and ~3.5x faster than
+            # hybrid. Hybrid stays for explicit source requests.
+            if analysis.image_dependent and not analysis.evidence_requested:
+                reasons.append("question is about the image's own content -> vision LLM")
+                return "vision_llm", False, reasons, None
             conceptual = analysis.intent in ("explanation", "definition", "comparison")
             if in_domain or (conceptual and analysis.word_count >= 6):
                 reasons.append("image + domain knowledge needed -> hybrid multimodal RAG")

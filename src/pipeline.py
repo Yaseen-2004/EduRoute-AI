@@ -22,6 +22,7 @@ from src.llm.prompts import (
     strip_prompt_echo,
 )
 from src.rag.retrieval import EduRouteRetriever
+from src.router.query_analysis import depends_on_image  # noqa: F401  (re-exported)
 from src.router.router import AdaptiveRouter
 from src.utils.io import append_jsonl
 from src.verification.evidence_cache import EvidenceCache
@@ -31,26 +32,14 @@ from src.vision.analyzer import VisionAnalyzer
 from src.vision.image_input import ImageValidationError, prepare_image
 from src.voice.speech import to_speakable
 
-# A question that points at the image ("this truth table", "the circuit
-# shown", "solve the problem in the image") cannot be answered without it.
-# Answering such a question from the knowledge base alone produced a confident
-# wrong answer in testing ("XOR gate" for an AND truth table).
-IMAGE_REFERENCE = re.compile(
-    r"\b(this|these|the|above|following|given|attached|uploaded|my)\s+"
-    r"(image|picture|photo|screenshot|figure|diagram|circuit|graph|plot|chart|table|truth table|"
-    r"flow ?chart|code|snippet|equation|problem|drawing|sketch|waveform|signal|schematic)s?\b"
-    r"|\b(shown|pictured|in the (image|picture|photo|figure))\b",
-    re.IGNORECASE,
-)
+# A question that points at the image cannot be answered without it: answering
+# it from the knowledge base alone produced a confident wrong answer in testing
+# ("XOR gate" for an AND truth table). Detection lives in query_analysis.
 IMAGE_NOT_READ = (
     "I could not analyse the image, and this question depends on what the image shows, "
     "so I have not guessed an answer. Please try again, or type out the relevant part "
     "of the image (for example the table values or the circuit components)."
 )
-
-
-def depends_on_image(question):
-    return bool(question and IMAGE_REFERENCE.search(question))
 
 
 INSUFFICIENT_EVIDENCE = re.compile(r"does not contain enough information", re.IGNORECASE)

@@ -40,6 +40,20 @@ VAGUE_REFERENCES = re.compile(r"^\s*(it|this|that|they|those|these)\b|\b(the abo
 
 SUBQUESTION_SPLIT = re.compile(r"\?|;|\b(and also|also explain|as well as|along with)\b", re.IGNORECASE)
 
+# A question that points at the image ("this truth table", "the circuit
+# shown", "solve the problem in the image") is answered from the image itself.
+IMAGE_REFERENCE = re.compile(
+    r"\b(this|these|the|above|following|given|attached|uploaded|my)\s+"
+    r"(image|picture|photo|screenshot|figure|diagram|circuit|graph|plot|chart|table|truth table|"
+    r"flow ?chart|code|snippet|equation|problem|drawing|sketch|waveform|signal|schematic)s?\b"
+    r"|\b(shown|pictured|in the (image|picture|photo|figure))\b",
+    re.IGNORECASE,
+)
+
+
+def depends_on_image(question):
+    return bool(question and IMAGE_REFERENCE.search(question))
+
 
 @dataclass
 class QueryAnalysis:
@@ -53,6 +67,7 @@ class QueryAnalysis:
     answer_mode: str
     sub_questions: int
     word_count: int
+    image_dependent: bool = False    # the answer is in the attached image itself
     reasons: list = field(default_factory=list)
 
     def to_dict(self):
@@ -124,5 +139,6 @@ def analyse_query(question, has_image=False, from_voice=False, answer_mode="5-ma
         answer_mode=answer_mode,
         sub_questions=sub_questions,
         word_count=len(words),
+        image_dependent=has_image and depends_on_image(question),
         reasons=reasons,
     )

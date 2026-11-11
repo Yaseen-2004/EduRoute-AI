@@ -104,10 +104,21 @@ def test_out_of_domain_answer_is_flagged_as_ungrounded():
 
 
 def test_image_routes_to_hybrid_or_falls_back_without_vision():
-    q = "Explain how the layers in this diagram work"
+    q = "Explain backpropagation in neural networks using the attached notes"
     assert make_router(0.6, vision=True).route(q, has_image=True).workflow == "hybrid_multimodal_rag"
     fallback = make_router(0.6, vision=False).route(q, has_image=True)
     assert fallback.workflow == "rag_llm" and "vision" in fallback.fallback.lower()
+
+
+def test_questions_about_the_image_itself_go_to_the_vision_model():
+    router = make_router(0.6, vision=True)
+    for q in ("Which logic gate does this truth table represent?",
+              "Explain how the layers in this diagram work",
+              "Find the total resistance in the circuit shown"):
+        assert router.route(q, has_image=True).workflow == "vision_llm", q
+    # An explicit request for sources keeps the knowledge base in the loop.
+    assert router.route("According to the sources, what does this circuit do?",
+                        has_image=True).workflow == "hybrid_multimodal_rag"
 
 
 @pytest.mark.parametrize("strategy,workflow,verify", [
