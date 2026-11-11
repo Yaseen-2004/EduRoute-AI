@@ -20,7 +20,7 @@ Status as of 7 November 2026. Every number below was measured on this machine
 | Streamlit app (§20) | Pending | **Implemented:** chat, subject filter, answer modes, image/voice input, citations, verification, developer view, feedback | `app.py` |
 | Telemetry (§22.2) | Pending | **Implemented:** per-stage latency, tokens, model calls; question text not logged by default (§21) | `outputs/logs/` |
 | Formal evaluation (§22) | Pending | **First run done** with Qwen2.5-3B on a Colab T4: 250 answers, 0 failures. Cost and routing measured; quality awaits human grading | §8; `evaluation/results/system_benchmark_20261108_161042.json` |
-| Tests | – | 50 unit tests plus 1 headless app test (run against engineering_v1), all passing | `tests/` |
+| Tests | – | 65 unit tests plus 1 headless app test (run against engineering_v1), all passing | `tests/` |
 
 ## 2. Data-quality defects found in V3 (not in the report)
 
@@ -568,6 +568,24 @@ used.
 answers in favour of Colab. On this laptop, Qwen2.5-3B wrote about 3.9
 tokens/s once enough RAM was free, so a 10-mark answer took 2–4 minutes.
 Its partial file, `system_benchmark_partial_cpu_run1.jsonl`, is kept.
+
+## 9a. Improvements after the evaluation (12 Nov 2026)
+
+| Area | Change | Measured effect |
+|---|---|---|
+| Quick response | Answers stream onto the screen as they are generated; models and Whisper are loaded in the background when the app starts | Laptop CPU: first words after 3.2 s, against 10.4 s for the full answer. A cold model load (about 48 s on the CPU) no longer delays the first question |
+| Image routing | Questions about the image itself ("this truth table", "the circuit shown") go to the vision model alone | On the 11 Nov benchmark, the vision-only route was at least as accurate on every such image and about 3.5× faster than hybrid |
+| Image input | Camera photo button; the Colab notebook compares Qwen2.5-VL 3B and 7B | Preprocessing (2× upscale, contrast) did **not** help: 1 of 6 tries correct. The 3B model reads the truth-table rows correctly but names the gate wrongly, a reasoning error, so the 7B model is the candidate fix |
+| Voice | A technical-term corrector checks transcripts against the knowledge-base vocabulary (it never changes small words or plurals; corrections are shown to the student); beam size 1 | Synthetic set: WER 7.1% → **4.3%**, median 2.2 s per question |
+| Documents | Students upload PDF, Word or text files; passages are cited by page, and summaries cover the whole document | End to end: questions about a lab manual were answered from the right page; unrelated questions still used the knowledge base |
+| Diagrams | Workflow diagrams (Graphviz) for "draw / flowchart / workflow" requests and 10-mark process answers | Qwen2.5-3B often draws disconnected fragments. These are detected, and the step-by-step flowchart built from the answer is used instead |
+
+Tests: 65 unit tests plus 1 app test, all passing.
+
+**Housekeeping (12 Nov):**
+- C: had filled to 0.2 GB free, mainly because Windows' page file grew to 14.9 GB under memory pressure.
+- Removed unused downloads: a rejected NLI model, partial model files and the Ollama installer. This brought C: back to 4.7 GB free.
+- Restarting the laptop lets Windows shrink the page file.
 
 ## 10. What remains (report §25)
 
