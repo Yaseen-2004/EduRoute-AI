@@ -402,6 +402,17 @@ if st.session_state.voice_pending:
             + ("  \nTechnical terms corrected: " + ", ".join(f"*{a}* → **{b}**" for a, b in fixes)
                if fixes else ""), icon=":material/mic:")
 
+# Photo from the laptop camera (handwritten notes, a textbook page), attached to
+# the next question. On phones the upload button in the chat box offers the camera.
+with st.popover("Take a photo", icon=":material/photo_camera:"):
+    photo = st.camera_input("Photo of your question, notes or diagram",
+                            key=f"camera_{st.session_state.get('camera_round', 0)}")
+    if photo is not None:
+        st.session_state.camera_image = photo.getvalue()
+        st.caption("The photo will be attached to your next question.")
+if st.session_state.get("camera_image"):
+    st.caption(":material/photo_camera: A camera photo is attached to your next question.")
+
 prompt = st.chat_input(
     "Ask an academic question...",
     key="chat",
@@ -454,6 +465,12 @@ if prompt:
     images = [f for f in files if f.name.rsplit(".", 1)[-1].lower() in IMAGE_TYPES]
     documents = [f for f in files if f.name.rsplit(".", 1)[-1].lower() in DOCUMENT_TYPES]
     image_bytes = images[0].getvalue() if images else None
+    if image_bytes is None and st.session_state.get("camera_image"):
+        image_bytes = st.session_state.camera_image
+    if st.session_state.get("camera_image"):
+        # A new widget key empties the camera, so the photo is used once only.
+        st.session_state.camera_image = None
+        st.session_state.camera_round = st.session_state.get("camera_round", 0) + 1
     if images and images[0].size > settings.MAX_IMAGE_BYTES:
         st.error(f"Images are limited to {settings.MAX_IMAGE_BYTES // (1024 * 1024)} MB.")
         st.stop()

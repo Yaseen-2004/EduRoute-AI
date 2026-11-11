@@ -25,12 +25,12 @@ md("""
 At the end a zip downloads: copy its files **into** `evaluation\\results\\`
 (do not replace the folder).
 
-Step 0 chooses what to run. The defaults run only the image questions
-(about 15 minutes in total, including setup):
+Step 0 chooses what to run. The defaults run only the image questions, comparing
+the 3B and 7B vision models (about 25 minutes in total, including downloads):
 
 | Step | What | Default | Time on a T4 |
 |---|---|---|---|
-| 6 | Image questions with Qwen2.5-VL | on | ~5 min |
+| 6 | Image questions: Qwen2.5-VL 3B and 7B compared | on | ~12 min |
 | 7 | System benchmark: 5 strategies × 50 questions | off (done 11 Nov) | ~30 min |
 | 9 | Router check on held-out questions | off (done: 0.964) | ~1 min |
 | 10 | Voice word error rate | off (synthetic baseline done) | ~3 min |
@@ -40,6 +40,9 @@ Step 0 chooses what to run. The defaults run only the image questions
 md("## 0. Choose what to run")
 code("""
 RUN_IMAGES = True        # image questions (re-measures the 11 Nov image-prompt fix, ~5 min)
+# Vision models to compare on the image questions. 7B (~6 GB) fits the T4 next to the
+# 3B text model; it is the candidate fix for the 3B model misreading tables.
+VISION_MODELS = ['qwen2.5vl:3b', 'qwen2.5vl:7b']
 RUN_BENCHMARK = False    # system benchmark (done 11 Nov; set True to repeat, ~30 min)
 RUN_ROUTER = False       # router held-out check (already measured)
 RUN_ASR = False          # voice WER; set True and upload voice_eval/ to use real recordings
@@ -99,15 +102,17 @@ def installed():
 
 !ollama pull qwen2.5:3b 2>&1 | tail -1
 if RUN_IMAGES:
-    for attempt in (1, 2):
-        !ollama pull qwen2.5vl:3b 2>&1 | tail -1
-        if any(n.startswith('qwen2.5vl') for n in installed()):
-            break
+    for vision_model in VISION_MODELS:
+        for attempt in (1, 2):
+            !ollama pull {vision_model} 2>&1 | tail -1
+            if vision_model in installed():
+                break
+    VISION_MODELS = [m for m in VISION_MODELS if m in installed()]
 print('Installed models:', installed())
 assert any(n.startswith('qwen2.5:3b') for n in installed()), 'Text model qwen2.5:3b is missing'
-if RUN_IMAGES and not any(n.startswith('qwen2.5vl') for n in installed()):
+if RUN_IMAGES and not VISION_MODELS:
     RUN_IMAGES = False
-    print('WARNING: the vision model could not be downloaded, so the image step is skipped.')
+    print('WARNING: no vision model could be downloaded, so the image step is skipped.')
 """)
 
 md("## 5. Settings, speed check and one question end to end")
@@ -146,14 +151,16 @@ images added to `evaluation/image_eval/` before the bundle was made.
 """)
 code("""
 if RUN_IMAGES:
-    try:  # warm the vision model: its first load can take a minute
-        warm = requests.post('http://localhost:11434/api/generate',
-                             json={'model': 'qwen2.5vl:3b', 'prompt': 'Say OK.', 'stream': False},
-                             timeout=600).json()
-        print('Vision model:', warm.get('error') or 'loaded')
-    except Exception as error:
-        print('Vision warm-up failed:', error)
-    !python -m evaluation.run_image_benchmark 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning|torch.jit"
+    for vision_model in VISION_MODELS:      # one result file per model, to compare
+        print(f'\\n===== {vision_model} =====')
+        try:  # warm the vision model: its first load can take a minute
+            warm = requests.post('http://localhost:11434/api/generate',
+                                 json={'model': vision_model, 'prompt': 'Say OK.', 'stream': False},
+                                 timeout=600).json()
+            print('Vision model:', warm.get('error') or 'loaded')
+        except Exception as error:
+            print('Vision warm-up failed:', error)
+        !EDUROUTE_VISION_MODEL={vision_model} python -m evaluation.run_image_benchmark 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning|torch.jit"
 else:
     print('Skipped (RUN_IMAGES = False)')
 """)
