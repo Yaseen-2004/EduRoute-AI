@@ -22,6 +22,10 @@ from src.llm.prompts import (
     strip_prompt_echo,
 )
 from src.rag.retrieval import EduRouteRetriever
+from src.rag.session_document import refers_to_document, search_document
+
+# MiniLM cosine above which an uploaded document's passage is relevant.
+DOCUMENT_THRESHOLD = 0.35
 from src.router.query_analysis import depends_on_image  # noqa: F401  (re-exported)
 from src.router.router import AdaptiveRouter
 from src.utils.io import append_jsonl
@@ -198,7 +202,7 @@ class EduRoutePipeline:
 
     def ask(self, question, image_bytes=None, answer_mode="5-mark", history=None,
             filters=None, subject_context=None, from_voice=False, fallback_filters=None,
-            on_token=None):
+            on_token=None, document=None):
         """`fallback_filters`: wider scopes tried in order when `filters` has no
         in-domain match (default: the whole index). Pass [] to keep the filter strict."""
         if answer_mode not in ANSWER_MODES:
@@ -239,11 +243,30 @@ class EduRoutePipeline:
                 answer_mode=answer_mode, history=history, filters=filters,
                 probe_results=probe if adaptive else None,
             )
-        if decision.fallback:
-            notices.append(decision.fallback)
-
         passages, visual_description, result = [], None, None
         workflow = decision.workflow
+
+        # An uploaded document is searched first; when it is relevant it grounds
+        # the answer (with at most two strong knowledge-base passages beside it).
+        if document is not None and question and workflow in ("direct_llm", "rag_llm") \
+                and not (decision.analysis or {}).get("general_chat"):
+            with _Timer(telemetry, "document_search"):
+                doc_passages = search_document(document, question, self.retriever.model)
+            top = (doc_passages[0].get("similarity_score") or 0.0) if doc_passages else 0.0
+            if doc_passages and (refers_to_document(question) or top >= DOCUMENT_THRESHOLD):
+                threshold = self.router.calibration["in_domain_threshold"]
+                kb = [] if refers_to_document(question) else [
+                    p for p in (probe or []) if (p.get("similarity_score") or 0.0) >= threshold][:2]
+                probe = doc_passages + kb
+                if workflow == "direct_llm":
+                    decision.reasons.append("uploaded document covers the question -> RAG on the document")
+                    decision.fallback = None          # the answer is grounded after all
+                    decision.verify_eligible = True
+                workflow = "rag_llm"
+                notices.append(f"Answered from your document '{document.name}'"
+                               + (" and the knowledge base." if kb else "."))
+        if decision.fallback:
+            notices.append(decision.fallback)
         if prepared is not None and self.vision_backend is None and depends_on_image(question):
             return self._finish(question, IMAGE_NOT_READ, answer_mode, decision, "none", telemetry,
                                 notices, started, error="no vision model configured",

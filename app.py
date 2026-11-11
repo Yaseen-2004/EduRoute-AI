@@ -14,6 +14,8 @@ import streamlit as st
 
 from config import settings
 from src.llm.prompts import ANSWER_MODES, strip_prompt_echo
+from src.rag.session_document import (DOCUMENT_TYPES, MAX_DOCUMENT_BYTES, DocumentError,
+                                      build_session_document)
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
@@ -36,7 +38,7 @@ counts and verification results. Thumbs-up/down feedback is logged the same
 way. Question text is logged only if the operator turns that on for a
 consented evaluation.
 
-**What is not kept.** Uploaded images and voice recordings are processed in
+**What is not kept.** Uploaded images, documents and voice recordings are processed in
 memory or in a temporary file that is deleted at once. Spoken answers are not
 stored.
 
@@ -245,13 +247,23 @@ with st.sidebar:
     if st.button("Knowledge base coverage", icon=":material/library_books:", width="stretch"):
         show_coverage(branch)
 
+    if st.session_state.get("document") is not None:
+        doc = st.session_state.document
+        with st.container(border=True):
+            st.markdown(f":material/description: **{doc.name}**")
+            st.caption(f"{doc.pages} pages · used for every question in this conversation")
+            if st.button("Remove document", icon=":material/close:", width="stretch"):
+                st.session_state.document = None
+                st.rerun()
+
     if st.button("New conversation", icon=":material/refresh:", width="stretch"):
         st.session_state.messages = []
+        st.session_state.document = None
         st.rerun()
 
     st.caption(
         "Privacy: questions are processed on this server and logged only as an anonymous "
-        "hash with timing data. Uploaded images and recordings are not stored. Answers are "
+        "hash with timing data. Uploaded images, documents and recordings are not stored. Answers are "
         "study aids, not official university guidance."
     )
     with st.expander("Privacy notice", icon=":material/shield:"):
@@ -264,7 +276,8 @@ def render_sources(sources):
     for s in sources:
         badge = ":green-badge[cited]" if s["cited"] else ":gray-badge[not cited]"
         section = f" - {s['section']}" if s.get("section") and s["section"] != "Introduction" else ""
-        st.markdown(f"**[{s['number']}] [{s['article_title']}]({s['source_url']}){section}** {badge}")
+        title = f"[{s['article_title']}]({s['source_url']})" if s.get("source_url") else s["article_title"]
+        st.markdown(f"**[{s['number']}] {title}{section}** {badge}")
         st.caption(s["text"][:400] + ("..." if len(s["text"]) > 400 else ""))
 
 
@@ -346,14 +359,17 @@ def render_assistant(message, index):
 
 
 st.title("EduRoute AI")
-st.caption("Ask a question, attach a diagram or record your voice. Answers cite their sources.")
+st.caption("Ask a question, attach a diagram or your notes (PDF, Word, text), or record your voice. "
+           "Answers cite their sources.")
 
 for index, message in enumerate(st.session_state.messages):
-    with st.chat_message(message["role"]):
+    with st.chat_message("assistant" if message["role"] == "note" else message["role"]):
         if message["role"] == "user":
             st.markdown(message["content"] or "_(image only)_")
             if message.get("image"):
                 st.image(message["image"], width=280, alt="Image attached by the student")
+        elif message["role"] == "note":
+            st.markdown(message["content"])
         else:
             render_assistant(message, index)
 
@@ -368,9 +384,9 @@ prompt = st.chat_input(
     "Ask an academic question...",
     key="chat",
     accept_file=True,
-    file_type=IMAGE_TYPES,
+    file_type=IMAGE_TYPES + DOCUMENT_TYPES,
     accept_audio=status["asr"],
-    max_upload_size=settings.MAX_IMAGE_BYTES // (1024 * 1024),
+    max_upload_size=MAX_DOCUMENT_BYTES // (1024 * 1024),
     submit_mode="disable",
 )
 
@@ -412,7 +428,31 @@ if prompt:
 
     from_voice = st.session_state.voice_pending
     st.session_state.voice_pending = False
-    image_bytes = files[0].getvalue() if files else None
+    images = [f for f in files if f.name.rsplit(".", 1)[-1].lower() in IMAGE_TYPES]
+    documents = [f for f in files if f.name.rsplit(".", 1)[-1].lower() in DOCUMENT_TYPES]
+    image_bytes = images[0].getvalue() if images else None
+    if images and images[0].size > settings.MAX_IMAGE_BYTES:
+        st.error(f"Images are limited to {settings.MAX_IMAGE_BYTES // (1024 * 1024)} MB.")
+        st.stop()
+
+    # A document is read once and kept for the rest of the conversation.
+    if documents:
+        doc_file = documents[0]
+        with st.spinner(f"Reading {doc_file.name}..."):
+            try:
+                st.session_state.document = build_session_document(
+                    doc_file.name, doc_file.getvalue(), get_retriever().model)
+            except DocumentError as error:
+                st.error(str(error))
+                st.stop()
+        doc = st.session_state.document
+        if not text.strip() and image_bytes is None:
+            st.session_state.messages.append({"role": "user", "content": f"Uploaded {doc.name}", "image": None})
+            st.session_state.messages.append({"role": "note", "content":
+                f"Read **{doc.name}**: {doc.pages} pages, {doc.words:,} words. Ask anything about it, "
+                "for example *Summarise this document* or a question on a topic it covers. "
+                "Answers will cite it by page."})
+            st.rerun()
 
     st.session_state.messages.append({"role": "user", "content": text, "image": image_bytes})
     with st.chat_message("user"):
@@ -452,6 +492,7 @@ if prompt:
                 text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
                 filters=filters, subject_context=subject_context, from_voice=from_voice,
                 fallback_filters=fallback_filters, on_token=show_partial,
+                document=st.session_state.get("document"),
             ).to_dict()
         except ValueError as error:
             thinking.update(label="Could not answer", state="error")
