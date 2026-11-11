@@ -17,6 +17,8 @@ from datetime import datetime, timezone
 
 from config import settings
 from src.llm.backends import ExtractiveBackend, LLMUnavailableError, build_backend
+from src.llm.diagrams import (build_diagram_messages, extract_dot, heuristic_dot, is_connected,
+                              wants_diagram)
 from src.llm.prompts import (
     ANSWER_MODES, build_direct_messages, build_rag_messages, build_revision_messages,
     strip_prompt_echo,
@@ -81,6 +83,7 @@ class EduRouteResponse:
     cited_sources: list = field(default_factory=list)
     invalid_citations: list = field(default_factory=list)
     visual_description: str | None = None
+    diagram_dot: str | None = None      # Graphviz flowchart of the answer, when one was drawn
     verification: dict | None = None
     decision: dict | None = None
     notices: list = field(default_factory=list)
@@ -372,10 +375,30 @@ class EduRoutePipeline:
         if passages and INSUFFICIENT_EVIDENCE.search(answer):
             notices.append("The knowledge base did not contain enough information for a full answer.")
 
+        # 8. Workflow diagram of the final answer, when asked for or for 10-mark processes
+        diagram = None
+        intent = (decision.analysis or {}).get("intent")
+        if question and answer and wants_diagram(question, answer_mode, intent):
+            with _Timer(telemetry, "diagram"):
+                if result.is_model_output:
+                    try:
+                        drawn = self.llm.generate(build_diagram_messages(question, answer),
+                                                  max_new_tokens=400, temperature=0.1)
+                        telemetry.add_generation(drawn)
+                        diagram = extract_dot(drawn.text)
+                    except LLMUnavailableError:
+                        diagram = None
+                # A disconnected model diagram (separate fragments) is replaced by the
+                # step-by-step flowchart of the answer, when the answer has steps.
+                if diagram and not is_connected(diagram):
+                    diagram = heuristic_dot(answer, title=question) or diagram
+                diagram = diagram or heuristic_dot(answer, title=question)
+
         response = self._finish(question, answer, answer_mode, decision, workflow, telemetry,
                                 notices, started, passages=passages,
                                 visual_description=visual_description,
                                 verification=verification, is_model_output=result.is_model_output)
+        response.diagram_dot = diagram
         return response
 
     def _finish(self, question, answer, answer_mode, decision, workflow, telemetry, notices,

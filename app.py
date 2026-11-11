@@ -337,6 +337,15 @@ def render_assistant(message, index):
     for notice in r["notices"]:
         st.warning(notice, icon=":material/info:")
     st.markdown(r["answer"])
+    if r.get("diagram_dot"):
+        with st.container(border=True):
+            st.caption(":material/account_tree: Workflow diagram (drawn from the answer above)")
+            try:
+                st.graphviz_chart(r["diagram_dot"], width="stretch")
+            except Exception:
+                st.caption("The diagram could not be drawn.")
+            with st.expander("Diagram source (Graphviz DOT)"):
+                st.code(r["diagram_dot"], language="dot")
     if r.get("visual_description"):
         with st.expander("What the vision model read from the image", icon=":material/visibility:"):
             st.caption("Machine reading of the image - may contain mistakes.")
