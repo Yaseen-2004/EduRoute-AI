@@ -55,8 +55,12 @@ def free_ram_gb():
 
 
 def keep_awake():
-    try:  # for the lifetime of this process only; no permanent setting changes
-        ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)
+    # For the lifetime of this process only; no permanent setting changes.
+    # SYSTEM_REQUIRED alone did not stop Modern Standby when the screen went off
+    # (12 Nov: 54 min lost mid-answer); DISPLAY_REQUIRED keeps the laptop out of it.
+    try:
+        ES_CONTINUOUS, ES_SYSTEM_REQUIRED, ES_DISPLAY_REQUIRED = 0x80000000, 0x00000001, 0x00000002
+        ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED)
         return True
     except Exception:
         return False

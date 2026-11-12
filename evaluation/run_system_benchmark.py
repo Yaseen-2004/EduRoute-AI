@@ -49,8 +49,8 @@ def keep_awake():
     """Ask Windows not to sleep while this process runs (no permanent setting change)."""
     try:
         import ctypes
-        ES_CONTINUOUS, ES_SYSTEM_REQUIRED = 0x80000000, 0x00000001
-        ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)
+        ES_CONTINUOUS, ES_SYSTEM_REQUIRED, ES_DISPLAY_REQUIRED = 0x80000000, 0x00000001, 0x00000002
+        ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED)
         print("Keep-awake: on (Windows will not sleep while the benchmark runs)", flush=True)
     except Exception as error:  # not Windows
         print(f"Keep-awake unavailable: {error}", flush=True)
