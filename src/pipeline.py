@@ -20,7 +20,8 @@ from src.llm.backends import ExtractiveBackend, LLMUnavailableError, build_backe
 from src.llm.diagrams import (build_diagram_messages, extract_dot, heuristic_dot, is_connected,
                               wants_diagram)
 from src.llm.prompts import (
-    ANSWER_MODES, build_direct_messages, build_rag_messages, build_revision_messages,
+    ANSWER_MODES, build_direct_messages, build_image_messages, build_rag_messages,
+    build_revision_messages,
     strip_prompt_echo,
 )
 from src.rag.retrieval import EduRouteRetriever
@@ -281,7 +282,18 @@ class EduRoutePipeline:
         if workflow in ("vision_llm", "hybrid_multimodal_rag"):
             analyzer = VisionAnalyzer(self.vision_backend)
             try:
-                if workflow == "vision_llm":
+                if workflow == "vision_llm" and settings.VISION_TWO_STEP and self.llm.is_available():
+                    # Read, then reason: the vision model transcribes, the text model answers.
+                    with _Timer(telemetry, "vision"):
+                        description = analyzer.describe(prepared, question)
+                    telemetry.add_generation(description)
+                    visual_description = description.text
+                    messages = build_image_messages(question, visual_description, answer_mode,
+                                                    history, subject_context)
+                    with _Timer(telemetry, "generation"):
+                        result = self._generate(messages, telemetry, answer_mode, None,
+                                                question, notices, on_token=on_token)
+                elif workflow == "vision_llm":
                     with _Timer(telemetry, "vision"):
                         result = analyzer.answer(prepared, question, answer_mode, on_token=on_token)
                     telemetry.add_generation(result)

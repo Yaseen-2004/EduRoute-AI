@@ -171,6 +171,27 @@ IMAGE_RULES = (
 )
 
 
+def build_image_messages(question, visual_description, answer_mode="5-mark", history=None,
+                         subject_context=None):
+    """Answer an image question with the TEXT model from the vision model's reading.
+
+    "Read, then reason": the 3B vision model transcribed the truth-table image
+    exactly but, answering in one step, called it XOR / NOT; the text model
+    reasoning over the transcription gets it right (12 Nov CPU tests).
+    """
+    mode = ANSWER_MODES[answer_mode]
+    user = (
+        f"{_context_block(subject_context)}{_history_block(history)}"
+        f"IMAGE ANALYSIS (read from the student's image by a vision model):\n{visual_description}\n\n"
+        f"Question about the image: {question or 'Explain this image.'}\n\n"
+        "Work from the IMAGE ANALYSIS: for a table, check each row before concluding; for a "
+        "graph, use the values read off it. Facts about the image need no citation. If the "
+        "analysis marks something uncertain or incomplete, say what could not be read.\n\n"
+        f"Answer format: {mode['instructions']} {NO_PADDING}"
+    )
+    return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
+
+
 def build_rag_messages(question, passages, answer_mode="5-mark", history=None,
                        subject_context=None, visual_description=None):
     mode = ANSWER_MODES[answer_mode]
@@ -202,12 +223,19 @@ VISION_EXTRACTION_PROMPT = (
     "2. VISIBLE: labels, text, symbols, values, axes and connections you can read clearly.\n"
     "3. UNCERTAIN: anything you cannot read reliably - mark each item '(uncertain)'.\n"
     "4. Relationships/structure (what connects to what, trends in a graph, steps in a flow).\n"
+    "TABLES (truth tables, data tables): copy EVERY row, cell by cell, as a Markdown table "
+    "with its header. Never summarise a table as 'values 0 and 1'.\n"
+    "GRAPHS: read the axis labels, units and the tick values at the peaks, crossings and "
+    "periods.\n"
     "Do not answer the student's question yet and do not guess unreadable values."
 )
 
 VISION_ANSWER_PROMPT = (
     "Student question about the attached image: {question}\n\n"
     "Answer format: {instructions} {no_padding}\n"
+    "If the image contains a table (for example a truth table), first copy EVERY row, cell "
+    "by cell, as a Markdown table, then answer using those rows only. For a graph, first "
+    "state the axis labels, units and the values you read.\n"
     "Distinguish clearly between what is visible in the image and what you are "
     "inferring. If part of the image is unreadable, say so."
 )

@@ -75,6 +75,10 @@ VISION_MODEL = _env("EDUROUTE_VISION_MODEL", "")
 VISION_API_KEY = _env("EDUROUTE_VISION_API_KEY", "")
 # Image analysis is slower than text; by default it gets the same budget as the LLM.
 VISION_TIMEOUT = int(_env("EDUROUTE_VISION_TIMEOUT", str(LLM_TIMEOUT)))
+# Image-only questions: the vision model transcribes the image, the text model
+# answers from that ("read, then reason"). One-step answers by the 3B vision
+# model misjudged a truth table it had transcribed correctly (12 Nov).
+VISION_TWO_STEP = _env("EDUROUTE_VISION_TWO_STEP", "true").lower() == "true"
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 MAX_IMAGE_SIDE = 1536
 
