@@ -25,28 +25,34 @@ md("""
 At the end a zip downloads: copy its files **into** `evaluation\\results\\`
 (do not replace the folder).
 
-Step 0 chooses what to run. The defaults run only the image questions, comparing
-the 3B and 7B vision models (about 25 minutes in total, including downloads):
+Step 0 chooses what to run. The defaults run the **complete GPU evaluation**,
+about 2 hours on a T4. Keep the tab open; if the session disconnects, run all
+again: the benchmark resumes from Google Drive and skips finished answers.
 
 | Step | What | Default | Time on a T4 |
 |---|---|---|---|
+| 5b | End-to-end smoke test of every route | on | ~2 min |
 | 6 | Image questions: Qwen2.5-VL 3B and 7B compared | on | ~12 min |
-| 7 | System benchmark: 5 strategies × 50 questions | off (done 11 Nov) | ~30 min |
-| 9 | Router check on held-out questions | off (done: 0.964) | ~1 min |
-| 10 | Voice word error rate | off (synthetic baseline done) | ~3 min |
-| 11 | Claim-labelling export (only after a benchmark) | on | seconds |
+| 7 | System benchmark: **all 130 questions** × 5 strategies, NLI on | on | ~80-100 min |
+| 9 | Router check on held-out questions (extended index) | on | ~1 min |
+| 10 | Voice word error rate | on | ~3 min |
+| 11 | Claim-labelling export | on | seconds |
 """)
 
 md("## 0. Choose what to run")
 code("""
-RUN_IMAGES = True        # image questions (re-measures the 11 Nov image-prompt fix, ~5 min)
+RUN_SMOKE = True         # end-to-end check of every route before the long runs
+RUN_IMAGES = True        # image questions
 # Vision models to compare on the image questions. 7B (~6 GB) fits the T4 next to the
 # 3B text model; it is the candidate fix for the 3B model misreading tables.
 VISION_MODELS = ['qwen2.5vl:3b', 'qwen2.5vl:7b']
-RUN_BENCHMARK = False    # system benchmark (done 11 Nov; set True to repeat, ~30 min)
-RUN_ROUTER = False       # router held-out check (already measured)
-RUN_ASR = False          # voice WER; set True and upload voice_eval/ to use real recordings
-SAMPLE = 20              # questions per set; None = all 130 questions (~65 min)
+RUN_BENCHMARK = True     # system benchmark
+SAMPLE = None            # questions per set; None = all 130 questions (the full run)
+RUN_ROUTER = True        # router held-out check on the extended (36,367-passage) index
+RUN_ASR = True           # voice WER; upload voice_eval/ to use real recordings instead
+# Keep progress and results in Google Drive (MyDrive/eduroute_colab): a disconnect
+# then loses nothing, and "Run all" resumes the benchmark. False = session only.
+SAVE_TO_DRIVE = True
 """)
 
 md("## 1. Check the GPU")
@@ -72,12 +78,26 @@ zipfile.ZipFile(bundle).extractall('/content')
 os.chdir('/content/eduroute')
 os.makedirs('evaluation/results', exist_ok=True)
 print(sorted(os.listdir('.')))
+
+DRIVE_DIR = None
+if SAVE_TO_DRIVE:
+    from google.colab import drive
+    drive.mount('/content/drive')
+    DRIVE_DIR = '/content/drive/MyDrive/eduroute_colab'
+    os.makedirs(DRIVE_DIR, exist_ok=True)
+    # Results of an earlier, interrupted session come back, so nothing is redone.
+    !cp -n {DRIVE_DIR}/*.json* evaluation/results/ 2>/dev/null; true
+    print('Progress is saved to', DRIVE_DIR)
+
+def save_progress():
+    if DRIVE_DIR:
+        !cp -r evaluation/results/. {DRIVE_DIR}/ 2>/dev/null; true
 """)
 
 md("## 3. Install dependencies")
 code("""
-!pip -q install sentence-transformers faiss-cpu python-dotenv truststore requests Pillow
-if RUN_ASR:
+!pip -q install sentence-transformers faiss-cpu python-dotenv truststore requests Pillow pymupdf
+if RUN_ASR or RUN_SMOKE:
     !pip -q install faster-whisper av edge-tts gTTS
 """)
 
@@ -143,6 +163,19 @@ if r.verification:
 """)
 
 md("""
+## 5b. Smoke test: every route with the real models
+
+The same check as on a server (`deploy/smoke_test.py`): GPU, both models, a cited
+knowledge-base answer, a general answer, an image question and voice, each within
+a time limit. A FAIL here means fix it before the long runs.
+""")
+code("""
+if RUN_SMOKE:
+    !python -m deploy.smoke_test 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning|torch.jit"
+    save_progress()
+""")
+
+md("""
 ## 6. Image questions (Qwen2.5-VL)
 
 8 starter images with exactly known answers (truth table, block diagram,
@@ -161,6 +194,7 @@ if RUN_IMAGES:
         except Exception as error:
             print('Vision warm-up failed:', error)
         !EDUROUTE_VISION_MODEL={vision_model} python -m evaluation.run_image_benchmark 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning|torch.jit"
+        save_progress()
 else:
     print('Skipped (RUN_IMAGES = False)')
 """)
@@ -173,11 +207,17 @@ strategies = 250 answers, the same questions as every earlier run. If the
 session disconnects, run this cell again: it resumes and skips finished answers.
 """)
 code("""
-PARTIAL = 'evaluation/results/system_benchmark_partial_colab.jsonl'
+# In Drive, every finished answer is saved at once: a disconnect loses nothing.
+run_name = 'full' if not SAMPLE else f'sample{SAMPLE}'
+PARTIAL = (f'{DRIVE_DIR}/system_benchmark_partial_colab_{run_name}.jsonl' if DRIVE_DIR
+           else f'evaluation/results/system_benchmark_partial_colab_{run_name}.jsonl')
 open(PARTIAL, 'a').close()
 if RUN_BENCHMARK:
     sample_arg = f'--sample {SAMPLE}' if SAMPLE else ''
+    done = sum(1 for _ in open(PARTIAL))
+    print(f'{done} answers already done (resuming)' if done else 'Starting a new run')
     !python -m evaluation.run_system_benchmark {sample_arg} --seed 7 --resume {PARTIAL} 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning|torch.jit"
+    save_progress()
 else:
     print('Skipped (RUN_BENCHMARK = False)')
 """)
@@ -202,10 +242,11 @@ if images:
     print('Image benchmark:', image_report.get('summary') or image_report.get('reason'))
 """)
 
-md("## 9. Router check on held-out questions (optional)")
+md("## 9. Router check on held-out questions")
 code("""
 if RUN_ROUTER:
-    !python -m evaluation.check_router_heldout --version engineering_v1 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning"
+    !python -m evaluation.check_router_heldout --version engineering_v1 2>&1 | grep -v -E "Batches|Loading weights|FutureWarning" | tee evaluation/results/router_heldout_colab.txt
+    save_progress()
 else:
     print('Skipped (RUN_ROUTER = False)')
 """)
@@ -222,7 +263,8 @@ if RUN_ASR:
     if os.path.exists('voice_eval/references.csv'):
         !python -m evaluation.evaluate_asr voice_eval 2>&1 | tail -6
     else:
-        !python -m evaluation.evaluate_asr --make-synthetic 20 2>&1 | tail -6
+        # the same 20 synthetic recordings as the laptop baseline (comparable WER)
+        !python -m evaluation.evaluate_asr evaluation/voice_eval_synthetic 2>&1 | tail -6
 else:
     print('Skipped (RUN_ASR = False)')
 """)
@@ -240,6 +282,10 @@ Copy the files from this zip **into** the project's `evaluation\\results\\`
 folder (do not replace the folder). Keep `grading_key_*.json` away from the raters.
 """)
 code("""
+import shutil
+if not PARTIAL.startswith('evaluation/'):
+    shutil.copy(PARTIAL, 'evaluation/results/')   # the per-answer file, kept in Drive
+save_progress()
 !cd evaluation && zip -q -r /content/eduroute_results.zip results
 files.download('/content/eduroute_results.zip')
 """)

@@ -175,7 +175,7 @@ def architecture():
     box(60, 46, 50, 16, "Adaptive router", "5 strategies · cost preference", fill=colors.HexColor("#fef3c7"))
     arrow(137, 70, 100, 62)
     box(2, 22, 38, 16, "Direct LLM", "Qwen2.5-3B")
-    box(44, 22, 38, 16, "RAG + LLM", "FAISS (35,567 chunks)\n+ cited answer")
+    box(44, 22, 38, 16, "RAG + LLM", "FAISS (36,367 chunks)\n+ cited answer")
     box(86, 22, 38, 16, "Vision LLM", "Qwen2.5-VL-3B")
     box(128, 22, 40, 16, "Hybrid multimodal", "image analysis\n+ retrieval")
     for x in (21, 63, 105, 148):
@@ -199,9 +199,15 @@ def build():
     }
     images = load("image_benchmark_20261111_035749_rescored.json")
     asr = load("asr_eval_voice_eval_synthetic_20261110_153745.json")
-    heldout = load("router_heldout_engineering_v1_20261110_153646.json")
+    heldout = load("router_heldout_engineering_v1_20261111_221904.json")   # after the 11 Nov gap fill
     corpus = json.loads((ROOT / "data" / "metadata" / "engineering_corpus_report_v1.json").read_text(encoding="utf-8"))
     index = json.loads((ROOT / "data" / "metadata" / "engineering_index_report_v1.json").read_text(encoding="utf-8"))
+    # The 11 Nov gap fill appended to the index; current totals include it.
+    supplement = json.loads((ROOT / "data" / "metadata" / "engineering_supplement_report_v1.json")
+                            .read_text(encoding="utf-8"))
+    new_articles = supplement["new_articles"]
+    new_articles = len(new_articles) if isinstance(new_articles, (list, dict)) else new_articles
+    total_articles = corpus["articles_total"] + new_articles
     aicte = list(csv.DictReader(open(ROOT / "data" / "metadata" / "aicte_comparison.csv", encoding="utf-8")))
     gaps = list(csv.DictReader(open(ROOT / "data" / "metadata" / "aicte_gaps.csv", encoding="utf-8")))
 
@@ -241,8 +247,8 @@ def build():
                 "grounded where it matters, at a lower cost than retrieving and verifying everything."),
               table([
                   ["Area", "Result"],
-                  ["Knowledge base", f"{corpus['articles_total']:,} articles · 26 branch groups · 289 subjects · "
-                                     f"{index['total_chunks']:,} indexed chunks"],
+                  ["Knowledge base", f"{total_articles:,} articles · 26 branch groups · 289 subjects · "
+                                     f"{supplement['index_vectors_after']:,} indexed chunks"],
                   ["Retrieval", "Correct source in the top 5 for 50/50 engineering questions (MRR 0.95–0.96)"],
                   ["Router", f"AUC 0.999 on calibration; {heldout['accuracy_excluding_borderline'] * 100:.1f}% "
                              "correct on 60 unseen questions"],
@@ -286,7 +292,7 @@ def build():
                   ["Language model", "Qwen2.5-3B-Instruct (4-bit) via Ollama", "Answer generation, revision"],
                   ["Vision model", "Qwen2.5-VL-3B via Ollama", "Image description and image answers"],
                   ["Embeddings", "all-MiniLM-L6-v2 (384-d)", "Retrieval, router probe, claim-evidence mapping"],
-                  ["Vector store", "FAISS IndexFlatIP", "Exact cosine search over 35,567 chunks"],
+                  ["Vector store", "FAISS IndexFlatIP", "Exact cosine search over 36,367 chunks"],
                   ["Verification", "Heuristics + nli-deberta-v3-xsmall", "Claim support, figure checks, contradictions"],
                   ["Speech", "faster-whisper base.en · Edge-TTS / gTTS", "Voice questions, spoken answers"],
                   ["Interface", "Streamlit 1.66", "Chat app and evaluation studio"],
@@ -323,7 +329,9 @@ def build():
         ], f"About 186 requests; 1,370/1,370 topics resolved; {corpus['articles_total']:,} unique articles."),
         phase("Step 4 · Indexing and retrieval evaluation", [
             f"Embedded {index['total_chunks']:,} chunks (average {index['average_chunk_tokens']:.0f} tokens) into a "
-            "FAISS index (3.7 h on the laptop CPU).",
+            f"FAISS index (3.7 h on the laptop CPU). On 11 Nov, {supplement['gap_topics']} missing AICTE core "
+            f"topics added {new_articles} articles and {supplement['new_passages']} passages incrementally "
+            f"({supplement['embedding_seconds']:.0f} s), giving {supplement['index_vectors_after']:,}.",
             "Evaluated dense, hybrid (BM25 + RRF) and cross-encoder reranking on two 50-question benchmarks.",
             "Found that strict subject filters made in-scope questions look out of scope; added subject → branch → "
             "whole-index widening.",
@@ -494,7 +502,16 @@ def build():
                      ["11 Nov", "Hybrid image answers ignored the image", "Image rules in the prompt",
                       "Amplitude read correctly in re-test"],
                      ["11 Nov", "Image scoring matched the word 'and' and missed LaTeX answers",
-                      "Whole-word matching, LaTeX normalisation", "Re-scored: 6/8 and 5/8"]],
+                      "Whole-word matching, LaTeX normalisation", "Re-scored: 6/8 and 5/8"],
+                     ["11 Nov", "66 AICTE core topics missing from the knowledge base",
+                      "Incremental extension: 37 articles, 800 passages, 87 s (no rebuild)",
+                      "Router held-out 96.4% → 98.2%"],
+                     ["11 Nov", "Wrong arithmetic passed verification ('20 ms → 1 Hz')",
+                      "Arithmetic and unit check on every answer; one revision",
+                      "All 3 known errors caught"],
+                     ["12 Nov", "App open to anyone on a public pod link; no load limits",
+                      "Access codes, rate limit, answer queue, error references",
+                      "Gate and limit tests"]],
                     [17, 54, 54, 45]),
               Spacer(1, 3 * mm),
               P("A larger NLI model (nli-deberta-v3-base) was tested as an alternative and performed <i>worse</i>: "
@@ -510,8 +527,9 @@ def build():
                   "catalogues need team review; 12 groups have no AICTE reference.",
                   "<b>Small samples.</b> 50 questions per benchmark run and 8 synthetic images; differences of a few "
                   "percentage points are within run-to-run variation.",
-                  "<b>Verification checks support, not reasoning.</b> An arithmetic slip using figures that are in the "
-                  "sources (e.g. 'period 20 ms → 1 Hz') passes unless a figure is missing or contradicted.",
+                  "<b>Verification checks support and explicit arithmetic, not reasoning.</b> Written-out "
+                  "calculations and period/frequency pairs are now recomputed, but a wrong step of reasoning "
+                  "without a written calculation still passes.",
                   "<b>Small models.</b> The 3B vision model misreads tables; the 3B language model needs firm prompting "
                   "to cite sources and to avoid inventing examples.",
                   "<b>Hardware.</b> Interactive use needs a GPU; the laptop CPU produced 1–4 tokens/s.",
@@ -527,6 +545,8 @@ def build():
                      ["Record student voice questions (with consent)", "Team", "Evaluation Studio → Record voice"],
                      ["Add real images (circuits, notes, figures)", "Team", "Evaluation Studio → Add images"],
                      ["Deploy on Streamlit Community Cloud", "Team", "docs/DEPLOYMENT.md (~20 min)"],
+                     ["Full 130-question benchmark and 3B vs 7B vision comparison on a GPU",
+                      "Me, on Colab or the DGX", "Colab benchmark notebook / deploy/k8s/deploy.sh"],
                      ["Insert grading results into the results chapter", "Me, after grading",
                       "evaluation.analyse_grading"]],
                     [80, 30, 60]),
@@ -549,7 +569,16 @@ def build():
                    "python -m evaluation.evaluate_asr <folder>\n"
                    "python -m evaluation.analyse_grading --key <key.json> rater1.csv rater2.csv\n"
                    "python -m src.data_collection.compare_aicte\n"
-                   "python -m pytest -q                      (53 tests)"),
+                   "python -m pytest -q                      (88 tests)"),
+              P("Production deployment on a GPU server or the DGX cluster (docs/GPU_SERVER.md)", "h2"),
+              code("laptop:      venv\\Scripts\\python deploy\\make_server_package.py\n"
+                   "DGX (k8s):   bash deploy/k8s/inspect_cluster.sh;  bash deploy/k8s/deploy.sh up\n"
+                   "plain GPU:   bash deploy/gpu/setup.sh;  bash deploy/gpu/services.sh start\n"
+                   "check:       python -m deploy.smoke_test\n"
+                   "evaluate:    bash deploy/gpu/run_evaluations.sh   (results zipped)"),
+              P("A deployment requires an access code for students and a separate code for the evaluation "
+                "studio, limits each session to 60 questions an hour, generates at most four answers at once "
+                "(others queue), restarts failed services automatically and backs up the team's work daily."),
               P("Project layout", "h2"),
               table([["Folder", "Contents"],
                      ["app.py, pages/", "Streamlit chat app; Evaluation Studio"],
@@ -559,6 +588,7 @@ def build():
                      ["config/", "Settings, branch catalogues, router calibration"],
                      ["evaluation/", "Benchmarks, evaluators, rubric, results"],
                      ["colab/", "GPU notebooks and upload bundle"],
+                     ["deploy/", "GPU server, pod and Kubernetes deployment; smoke test"],
                      ["docs/", "PROGRESS.md (measured status), REPORT_RESULTS.md, DEPLOYMENT.md, this report"]],
                     [60, 110])]
     return story

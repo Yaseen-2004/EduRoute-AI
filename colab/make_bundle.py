@@ -12,21 +12,23 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "colab" / "eduroute_colab_bundle.zip"
 
-INCLUDE_DIRS = ["config", "src", "evaluation"]
+INCLUDE_DIRS = ["config", "src", "evaluation", "deploy"]
 INCLUDE_FILES = [
     "app.py", "requirements.txt", ".env.example", "pytest.ini",
     "vector_store/engineering_faiss_v1.index",
     "vector_store/engineering_faiss_v1_metadata.jsonl",
 ]
 SKIP_PARTS = {"__pycache__", "results"}
-SKIP_NAMES = {".env"}
+SKIP_NAMES = {".env", "local.conf", "pod.conf"}
+SKIP_SUFFIXES = {".gz", ".zip", ".bak"}
 
 
 def files():
     for d in INCLUDE_DIRS:
         for path in (ROOT / d).rglob("*"):
             rel = path.relative_to(ROOT)
-            if path.is_file() and not SKIP_PARTS & set(rel.parts) and path.name not in SKIP_NAMES:
+            if (path.is_file() and not SKIP_PARTS & set(rel.parts) and path.name not in SKIP_NAMES
+                    and path.suffix not in SKIP_SUFFIXES):
                 yield rel
     for f in INCLUDE_FILES:
         yield Path(f)
