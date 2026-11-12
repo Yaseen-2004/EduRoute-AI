@@ -18,3 +18,5 @@ def test_app_answers_a_question_end_to_end():
     # The answer must be labelled with its workflow and show sources.
     assert any("knowledge base" in c.value.lower() for c in at.caption)
     assert any("Sources" in e.label for e in at.expander)
+    # The conversation can be downloaded as study notes once there is an answer.
+    assert at.get("download_button"), "no 'Download conversation' button"

@@ -293,11 +293,11 @@ class TransformersBackend(LLMBackend):
 
     def health_check(self):
         try:
-            import torch  # noqa: F401
-            import transformers  # noqa: F401
+            import importlib
+            torch = importlib.import_module("torch")
+            importlib.import_module("transformers")
         except ImportError as error:
             return False, str(error)
-        import torch
         device = "CUDA" if torch.cuda.is_available() else "CPU (slow)"
         return True, f"{self.model_name} in-process on {device} (loads on first use)"
 

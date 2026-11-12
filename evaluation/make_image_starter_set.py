@@ -19,7 +19,6 @@ questions.csv columns:
 
 import csv
 import math
-from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 

@@ -7,6 +7,7 @@ Run from the project root:
 
 import hashlib
 import logging
+import sys
 import threading
 import time
 import uuid
@@ -179,6 +180,26 @@ def show_coverage(branch_code):
     )
 
 
+def conversation_markdown(messages):
+    """The conversation as study notes: each question, its answer, and the sources it cited."""
+    lines = ["# EduRoute AI study notes", f"_Exported {datetime.now():%d %b %Y, %H:%M}. Answers are study "
+             "aids; check important facts against your course material._", ""]
+    for message in messages:
+        if message["role"] == "user":
+            lines += [f"## Q: {message['content'] or '(image question)'}", ""]
+        elif message["role"] == "assistant":
+            r = message["response"]
+            lines += [r["answer"], ""]
+            if r.get("notices"):
+                lines += [f"> {n}" for n in r["notices"]] + [""]
+            cited = [s for s in r.get("sources", []) if s.get("cited")]
+            if cited:
+                lines += ["**Sources**", ""] + [
+                    f"{s['number']}. [{s['article_title']}]({s['source_url']})" if s.get("source_url")
+                    else f"{s['number']}. {s['article_title']}" for s in cited] + [""]
+    return "\n".join(lines)
+
+
 # ------------------------------------------------------------------- state
 
 if "messages" not in st.session_state:
@@ -232,6 +253,7 @@ with st.sidebar:
     st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
     if settings.ENABLE_STUDIO:
         st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
+        st.page_link("pages/3_Operations_Dashboard.py", label="Operations", icon=":material/monitoring:")
 
     branches, subjects_by_branch = catalogue_options()
     branch = st.selectbox(
@@ -288,6 +310,8 @@ with st.sidebar:
                 st.session_state.document = None
                 st.rerun()
 
+    # Filled at the end of the run, so it includes an answer generated in this run.
+    export_slot = st.empty()
     if st.button("New conversation", icon=":material/refresh:", width="stretch"):
         st.session_state.messages = []
         st.session_state.document = None
@@ -597,6 +621,11 @@ if prompt:
         except Exception:
             reference = uuid.uuid4().hex[:8]
             logger.exception("Answer failed (reference %s)", reference)
+            append_jsonl(settings.LOG_DIR / "errors.jsonl", {   # no question text (report §21)
+                "timestamp": datetime.now(timezone.utc).isoformat(), "reference": reference,
+                "error": type(sys.exc_info()[1]).__name__, "answer_mode": answer_mode,
+                "has_image": image_bytes is not None, "has_document": st.session_state.get("document") is not None,
+            })
             thinking.update(label="Could not answer", state="error")
             live.empty()
             st.error(f"Something went wrong while answering. Please try again. "
@@ -622,3 +651,14 @@ if prompt:
         message = {"role": "assistant", "response": response, "audio": audio_bytes}
         st.session_state.messages.append(message)
         render_assistant(message, len(st.session_state.messages) - 1)
+
+
+# ------------------------------------------------------------------ export
+
+if any(m["role"] == "assistant" for m in st.session_state.messages):
+    export_slot.download_button(
+        "Download conversation", data=conversation_markdown(st.session_state.messages),
+        file_name=f"eduroute_{datetime.now():%Y%m%d_%H%M}.md", mime="text/markdown",
+        icon=":material/download:", width="stretch",
+        help="Questions, answers and their cited sources, as study notes",
+    )

@@ -89,7 +89,7 @@ def evaluate_side(side):
     side = side.strip().strip(".,;:")
     if not re.search(r"\d", side):
         return None
-    out, pos = [], 0
+    out = []
     for m in re.finditer(r"\d+(?:\.\d+)?(?:[eE][-+]?\d+)?|[A-Za-zΩµ°%]+|\^|[-+*/()]|\S", side):
         tok = m.group(0)
         if re.fullmatch(r"\d+(?:\.\d+)?(?:[eE][-+]?\d+)?", tok):

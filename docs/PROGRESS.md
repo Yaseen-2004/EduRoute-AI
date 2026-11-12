@@ -643,7 +643,18 @@ Tests: 79 unit tests plus 1 app test, all passing.
 - **Smoke test:** `deploy/smoke_test.py` asks real questions on every route (knowledge base with citations, general, image, voice) within time limits, and exits non-zero on failure.
 - **Fixed:** the front page showed a stale passage count (35,567); it now reads it from the index.
 
-Status: ready. Waiting for server access.
+Status: ready. The DGX login node (172.19.0.11) is reachable only from the lab network, so GPU work moved to Colab (12 Nov).
+
+## 9d. Product completeness for real use (12 Nov 2026)
+
+- **Full app on Colab:** `colab/EduRoute_Colab_App.ipynb` runs the complete app on a T4 GPU behind a public HTTPS link (Cloudflare quick tunnel), with random student and team codes. It runs the smoke test before opening the link, restarts anything that stops, and downloads the session's data (ratings, logs, studio work) at the end.
+- **Full evaluation on Colab:** `colab/EduRoute_Colab_Benchmark.ipynb` defaults to the complete run (smoke test, all 130 questions × 5 strategies, 3B vs 7B images, router, voice, claim export) and resumes from Google Drive.
+- **Operations dashboard** (`pages/3_Operations_Dashboard.py`, team code): questions per day, route mix, answer time by route (median, 95th percentile), quality signals (verified, unsupported-claim rate, revised, citing), helpful-rating rate, failed answers with reference codes. Failures are now logged to `errors.jsonl` (no question text).
+- **Conversation export:** students download their questions, answers and cited sources as Markdown study notes. The app test caught that the button first appeared one interaction late; it is now filled at the end of each run.
+- **README:** rewritten as a product page (what it does, architecture, measured results, three ways to run, roles, configuration, privacy). GitHub Actions CI runs the static check, the shell-script parse and the tests.
+- **Static check:** pyflakes is clean; 4 minor warnings fixed.
+
+Tests: 90 passing.
 
 ## 10. What remains (report §25)
 

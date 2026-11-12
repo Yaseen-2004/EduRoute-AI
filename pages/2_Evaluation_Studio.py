@@ -52,6 +52,7 @@ with st.sidebar:
     try:  # the links need the multipage app; skipped when this page runs on its own (tests)
         st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
         st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
+        st.page_link("pages/3_Operations_Dashboard.py", label="Operations", icon=":material/monitoring:")
     except StreamlitAPIException:
         pass
 

@@ -569,7 +569,7 @@ def build():
                    "python -m evaluation.evaluate_asr <folder>\n"
                    "python -m evaluation.analyse_grading --key <key.json> rater1.csv rater2.csv\n"
                    "python -m src.data_collection.compare_aicte\n"
-                   "python -m pytest -q                      (88 tests)"),
+                   "python -m pytest -q                      (90 tests)"),
               P("Production deployment on a GPU server or the DGX cluster (docs/GPU_SERVER.md)", "h2"),
               code("laptop:      venv\\Scripts\\python deploy\\make_server_package.py\n"
                    "DGX (k8s):   bash deploy/k8s/inspect_cluster.sh;  bash deploy/k8s/deploy.sh up\n"

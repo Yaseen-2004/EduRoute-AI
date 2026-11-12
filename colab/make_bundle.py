@@ -1,5 +1,5 @@
 """
-Package what the Colab benchmark needs into colab/eduroute_colab_bundle.zip:
+Package what the Colab notebooks need (benchmark and the full app) into colab/eduroute_colab_bundle.zip:
 code, configs, benchmarks and the engineering index. Excludes the venv, raw
 data, logs, old results and anything secret (.env).
 
@@ -12,14 +12,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "colab" / "eduroute_colab_bundle.zip"
 
-INCLUDE_DIRS = ["config", "src", "evaluation", "deploy"]
+INCLUDE_DIRS = ["config", "src", "evaluation", "deploy", "pages", ".streamlit", "tests"]
 INCLUDE_FILES = [
-    "app.py", "requirements.txt", ".env.example", "pytest.ini",
+    "app.py", "requirements.txt", "requirements-gpu.txt", ".env.example", "pytest.ini",
+    "data/metadata/engineering_topic_resolution_v1.csv",   # "Knowledge base coverage" in the app
     "vector_store/engineering_faiss_v1.index",
     "vector_store/engineering_faiss_v1_metadata.jsonl",
 ]
 SKIP_PARTS = {"__pycache__", "results"}
-SKIP_NAMES = {".env", "local.conf", "pod.conf"}
+SKIP_NAMES = {".env", "local.conf", "pod.conf", "secrets.toml"}
 SKIP_SUFFIXES = {".gz", ".zip", ".bak"}
 
 
