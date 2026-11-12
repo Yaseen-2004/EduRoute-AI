@@ -656,6 +656,33 @@ Status: ready. The DGX login node (172.19.0.11) is reachable only from the lab n
 
 Tests: 90 passing.
 
+## 9e. CPU-only operation (12 Nov 2026)
+
+Colab could not be used, so everything now runs on the laptop (i7-8665U, 4 cores, 16 GB, no GPU).
+
+- **Measured speed:** prompt reading 18.5 → 20.9 tokens/s; writing 4.4 → 5.3 tokens/s (+20%) after tuning Ollama for the CPU:
+  - one request slot;
+  - flash attention with an 8-bit KV cache;
+  - models kept loaded for 2 h.
+
+  A repeated system prompt is now read from cache at ~250 tokens/s. A knowledge-base answer takes ~2.5–3 min; a general answer ~10 s.
+- **Laptop `.env`** (not committed): vision on (`qwen2.5vl:3b`), NLI on, 30-minute timeouts, one answer at a time, Hugging Face offline mode. When the Wi-Fi dropped, model loading had been stalling on download retries.
+- **Image fix (read, then reason):** the CPU smoke test failed the truth-table image.
+  - The 3B vision model *transcribed* the table exactly, but answering in one step it called it XOR, then NOT.
+  - Image-only questions now go in two steps: the vision model transcribes (tables row by row, graph axes and values), then the text model answers from the transcription.
+  - Result: "AND gate", with the right reason, in 248 s on the CPU (175 s before, one call fewer).
+  - `EDUROUTE_VISION_TWO_STEP=false` restores one-step answers. Tests use mock models.
+- **Unattended evaluation:** `run_cpu_evaluation.cmd` (`evaluation/run_cpu_evaluation.py`) runs these stages, keeping Windows awake and skipping finished stages on restart:
+  - the smoke test;
+  - the adaptive strategy on all 140 benchmark questions (resumable answer by answer);
+  - the image benchmark with the 3B model; 7B only with `--with-7b` and at least 8 GB free RAM;
+  - voice word error rate;
+  - the claim export.
+
+  The 5-strategy comparison stays the 11 Nov GPU run: repeating it on 140 questions would take ~30 h on this CPU.
+
+Tests: 92 passing.
+
 ## 10. What remains (report §25)
 
 Everything below is done in the **evaluation studio** (`streamlit run app.py`,

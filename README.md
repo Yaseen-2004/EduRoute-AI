@@ -91,6 +91,11 @@ venv\Scripts\streamlit run app.py   # or double-click run_app.cmd
 Without a language model the app still works in a clearly labelled "source
 excerpts" mode. On a laptop CPU an answer takes 1–3 minutes; a GPU takes seconds.
 
+**Full evaluation on a CPU, unattended:** double-click `run_cpu_evaluation.cmd`.
+It runs overnight (8–10 h): smoke test, all 140 benchmark questions, images,
+voice and the claim export. It keeps the laptop awake, and if stopped it resumes
+where it left off. Progress: `outputs\cpu_evaluation.log`.
+
 ### C. On a GPU server, pod or Kubernetes cluster
 
 ```bash
