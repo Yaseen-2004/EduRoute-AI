@@ -212,13 +212,24 @@ class EduRouteRetriever:
 
     # -------------------------------------------------------------- utilities
 
+    QUERY_CACHE_SIZE = 512
+
     def embed_query(self, question):
-        embedding = self.model.encode(
-            [question.strip()], convert_to_numpy=True, normalize_embeddings=True
-        )
+        """Embedding of a query, cached (LRU): the router probe, the agent's searches
+        and the answer cache embed the same text several times per question."""
+        key = question.strip()
+        cache = self.__dict__.setdefault("_query_cache", {})
+        if key in cache:
+            embedding = cache.pop(key)
+            cache[key] = embedding                       # most recently used last
+            return embedding
+        embedding = self.model.encode([key], convert_to_numpy=True, normalize_embeddings=True)
         embedding = np.asarray(embedding, dtype=np.float32)
         if embedding.shape != (1, EXPECTED_DIMENSION) or not np.isfinite(embedding).all():
             raise ValueError("Invalid query embedding.")
+        cache[key] = embedding                           # shared: callers must not modify it
+        while len(cache) > self.QUERY_CACHE_SIZE:
+            cache.pop(next(iter(cache)))                 # least recently used
         return embedding
 
     def allowed_ids(self, filters):

@@ -111,6 +111,17 @@ with right:
             f"{(t.loc[grounded, 'cited'] > 0).mean():.0%}",
             "Mean output tokens": f"{t['output_tokens'].mean():.0f}",
         }
+        if "cache_hit" in t:
+            rows["Answered instantly from the answer cache"] = f"{t['cache_hit'].fillna(False).astype(bool).mean():.0%}"
+        if "context" in t:
+            saved = [c.get("saved_pct") for c in t["context"] if isinstance(c, dict) and c]
+            if saved:
+                rows["Prompt tokens saved by context engineering (median)"] = f"{pd.Series(saved).median():.0f}%"
+        if "agent_trace" in t:
+            refined = [any(s.get("action") == "refine" for s in tr) for tr in t["agent_trace"]
+                       if isinstance(tr, list) and tr]
+            if refined:
+                rows["Agentic retrieval needed a second search"] = f"{pd.Series(refined).mean():.0%}"
         st.dataframe(pd.DataFrame(rows.items(), columns=["Signal", "Value"]), hide_index=True, width="stretch")
 
 if not e.empty:

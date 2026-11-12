@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-11-12T19:40:50",
+  "index": "engineering_v1",
+  "questions": 100,
+  "follow_up": {
+    "cases": 300,
+    "baseline_hit@5": 0.003,
+    "memory_hit@5": 0.973
+  },
+  "comparison": {
+    "pairs": 40,
+    "baseline_both_hit@5": 0.225,
+    "agent_both_hit": 0.75,
+    "agent_mean_steps": 4
+  },
+  "context": {
+    "2-mark": {
+      "tokens_before_median": 1020.5,
+      "tokens_after_median": 399.0,
+      "saved_pct": 59.9,
+      "top_relevant_kept": 1.0,
+      "prompt_seconds_saved_at_20_tok_s": 31.1
+    },
+    "5-mark": {
+      "tokens_before_median": 1020.5,
+      "tokens_after_median": 644.0,
+      "saved_pct": 35.8,
+      "top_relevant_kept": 1.0,
+      "prompt_seconds_saved_at_20_tok_s": 18.8
+    },
+    "10-mark": {
+      "tokens_before_median": 1020.5,
+      "tokens_after_median": 874.0,
+      "saved_pct": 13.5,
+      "top_relevant_kept": 1.0,
+      "prompt_seconds_saved_at_20_tok_s": 7.3
+    }
+  },
+  "cache": {
+    "exact_repeat_hits": "100/100",
+    "reworded_repeat_hits": "98/100",
+    "false_hits_between_different_questions": 0
+  }
+}

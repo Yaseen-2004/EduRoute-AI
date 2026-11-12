@@ -1,0 +1,48 @@
+{
+  "llm": "qwen2.5:3b",
+  "vision": "qwen2.5vl:3b",
+  "results": [
+    {
+      "check": "GPU",
+      "ok": true,
+      "seconds": 6.99,
+      "detail": "no GPU (allowed with --no-gpu)"
+    },
+    {
+      "check": "Language model reachable",
+      "ok": true,
+      "seconds": 2.47,
+      "detail": "qwen2.5:3b @ http://localhost:11434/v1"
+    },
+    {
+      "check": "Vision model reachable",
+      "ok": true,
+      "seconds": 2.08,
+      "detail": "qwen2.5vl:3b @ http://localhost:11434/v1"
+    },
+    {
+      "check": "Knowledge-base answer",
+      "ok": true,
+      "seconds": 95.15,
+      "detail": "1 cited sources, verified=False"
+    },
+    {
+      "check": "General answer",
+      "ok": true,
+      "seconds": 10.5,
+      "detail": "workflow direct_llm"
+    },
+    {
+      "check": "Image question",
+      "ok": true,
+      "seconds": 88.18,
+      "detail": "workflow vision_llm"
+    },
+    {
+      "check": "Voice transcription",
+      "ok": true,
+      "seconds": 8.7,
+      "detail": "What are the different types of foundations in building construction?"
+    }
+  ]
+}

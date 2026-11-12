@@ -123,7 +123,7 @@ def format_sources(passages, max_chars=1200):
         title = passage.get("article_title", "Unknown source")
         section = passage.get("section")
         heading = f"{title} - {section}" if section and section != "Introduction" else title
-        text = passage["text"]
+        text = passage.get("prompt_text") or passage["text"]     # compressed by context engineering
         if len(text) > max_chars:
             text = text[:max_chars].rsplit(" ", 1)[0] + " ..."
         blocks.append(f"[{number}] {heading}\n{text}")
@@ -133,6 +133,8 @@ def format_sources(passages, max_chars=1200):
 def _history_block(history):
     if not history:
         return ""
+    if isinstance(history, str):          # already rendered by conversation memory
+        return history
     lines = []
     for turn in history[-3:]:
         lines.append(f"Student: {turn['question']}")
@@ -193,7 +195,11 @@ def build_image_messages(question, visual_description, answer_mode="5-mark", his
 
 
 def build_rag_messages(question, passages, answer_mode="5-mark", history=None,
-                       subject_context=None, visual_description=None):
+                       subject_context=None, visual_description=None, stable_prefix=False):
+    """`stable_prefix`: put the fixed grounding rules in the system message, so every
+    RAG prompt starts with the same text and the server reuses its cached reading
+    (Ollama/llama.cpp prefix cache) instead of re-reading ~250 tokens per question.
+    The citation reminder stays last: the 3B model follows the final instruction best."""
     mode = ANSWER_MODES[answer_mode]
     visual = ""
     if visual_description:
@@ -202,17 +208,18 @@ def build_rag_messages(question, passages, answer_mode="5-mark", history=None,
             "treat items marked uncertain as uncertain):\n"
             f"{visual_description}\n\n"
         )
+    system = f"{SYSTEM_PROMPT}\n\n{GROUNDING_RULES}" if stable_prefix else SYSTEM_PROMPT
     user = (
         f"{_context_block(subject_context)}{_history_block(history)}"
         f"{visual}"
         f"SOURCES:\n{format_sources(passages)}\n\n"
-        f"{GROUNDING_RULES}\n\n"
+        f"{'' if stable_prefix else GROUNDING_RULES + chr(10) * 2}"
         f"{IMAGE_RULES + chr(10) * 2 if visual_description else ''}"
         f"Question: {question}\n\n"
         f"Answer format: {mode['instructions']} {NO_PADDING}\n\n"
         f"{CITATION_REMINDER}"
     )
-    return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
+    return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
 VISION_EXTRACTION_PROMPT = (

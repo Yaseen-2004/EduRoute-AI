@@ -683,6 +683,37 @@ Colab could not be used, so everything now runs on the laptop (i7-8665U, 4 cores
 
 Tests: 92 passing.
 
+## 9f. Agentic RAG, context engineering, inference optimisation, memory (12 Nov 2026)
+
+| Feature | Module | Mechanism |
+|---|---|---|
+| Agentic RAG | `src/agent/agentic_rag.py` | Plan sub-queries (comparisons, multi-part questions) → retrieve each → critique (coverage of the question's key terms) → refine with the missing terms (bounded at 3 steps; optional one-call LLM query rewrite) → after verification, retrieve evidence for each unsupported claim before the one revision. Every step is traced in the developer view. |
+| Context engineering | `src/rag/context.py`, `build_rag_messages(stable_prefix=True)` | Token budget per answer mode (450/750/1,100/600); near-duplicate removal; sentence-level compression to the most relevant sentences (first sentence kept, original order); only the prompt copy is compressed, so verification sees the full passages; fixed rules moved into the system message so the prompt prefix is identical and reused by the server's cache. |
+| Inference optimisation | `src/inference/answer_cache.py`, `EduRouteRetriever.embed_query` | Answer cache shared by all sessions: exact tier, plus a semantic tier at cosine ≥ 0.97 with an identical content-word set. Same mode, scope and strategy only. No images, documents, follow-ups or answers with warnings. LRU, 256 entries, 24 h TTL. Query-embedding LRU (512). |
+| Memory management | `src/agent/memory.py` | Working memory (recent turns as key sentences, within 500 tokens), an episodic summary of older topics, and follow-up resolution into a self-contained search query. Bounded at 20 turns. |
+
+All four are settings (`EDUROUTE_AGENTIC_RAG`, `_CONTEXT_ENGINEERING`, `_CONVERSATION_MEMORY`, `_ANSWER_CACHE`). They are off until the running CPU benchmark finishes, so its later stages measure the same system.
+
+**Measured without the language model** (`python -m evaluation.evaluate_agentic`, engineering_v1 index, 100 benchmark questions; `evaluation/results/agentic_eval_20261112_200024.json`):
+
+| Measure | Baseline | New |
+|---|---|---|
+| Follow-ups ("What are its advantages?" etc., 300 cases): topic in the top 5 | 0.3% | 97.3% |
+| Comparisons ("Compare A and B", 40 same-branch pairs): evidence for both sides | 22.5% (top 5) | 75% (agent's evidence, up to 6 passages; ~4 steps) |
+| Source tokens in the prompt (median), 2 / 5 / 10-mark | 1,020 | 399 / 644 / 874 (−60% / −36% / −14%) |
+| Best relevant passage kept in the prompt | – | 100% in every mode |
+| Prompt-reading time saved on this CPU (~20 tokens/s) | – | ~31 / 19 / 7 s |
+| Cache: exact repeats / reworded repeats | – | 100/100 / 98/100 |
+| Cache: wrong hits between different questions | – | 0 (4,950 pairs) |
+
+The tests caught two bugs before release:
+- The cache matched "advantages of **AC** motor" with "of **DC** motor", because a 3-letter minimum dropped "AC" and "DC". Every word now counts.
+- The planner ignored one-word sub-questions ("What is a transformer?").
+
+Still to measure, after the CPU benchmark: answer quality and latency with the features on, on the same questions.
+
+Tests: 114 passing (fast suite 112 + 2 slow).
+
 ## 10. What remains (report §25)
 
 Everything below is done in the **evaluation studio** (`streamlit run app.py`,

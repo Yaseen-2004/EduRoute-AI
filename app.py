@@ -79,11 +79,21 @@ def get_retriever():
     return EduRouteRetriever(version=settings.RAG_VERSION, mode=settings.RETRIEVAL_MODE)
 
 
+@st.cache_resource(show_spinner=False)
+def get_answer_cache():
+    """One answer cache for every session on this server: a question one student
+    asked is answered instantly for the next (bounded LRU with a time limit)."""
+    if not settings.ANSWER_CACHE:
+        return None
+    from src.inference.answer_cache import SemanticAnswerCache
+    return SemanticAnswerCache(get_retriever().model)
+
+
 @st.cache_resource(show_spinner=False, max_entries=10)
 def get_pipeline(strategy, cost_preference):
     from src.pipeline import EduRoutePipeline
     return EduRoutePipeline(strategy=strategy, cost_preference=cost_preference,
-                            retriever=get_retriever())
+                            retriever=get_retriever(), answer_cache=get_answer_cache())
 
 
 @st.cache_resource(show_spinner=False)
@@ -369,6 +379,24 @@ def render_developer(r):
     st.markdown("**Routing reasons**\n" + "\n".join(f"- {x}" for x in d["reasons"]))
     if d.get("verify_triggers"):
         st.markdown("**Verification triggers**\n" + "\n".join(f"- {x}" for x in d["verify_triggers"]))
+    if t.get("cache_hit"):
+        st.markdown("**Answer cache:** hit, so no retrieval or model call")
+    if t.get("agent_trace"):
+        st.markdown("**Agentic retrieval steps**")
+        st.dataframe(t["agent_trace"], hide_index=True, width="stretch", column_config={
+            "top_score": st.column_config.NumberColumn("Top score", format="%.2f"),
+            "coverage": st.column_config.ProgressColumn("Evidence coverage", min_value=0, max_value=1)})
+    if t.get("context"):
+        c = t["context"]
+        st.markdown(f"**Context engineering:** {c['passages_out']} of {c['passages_in']} passages, "
+                    f"{c['tokens_before']} → {c['tokens_after']} prompt tokens "
+                    f"({c['saved_pct']}% saved; budget {c['budget']}; "
+                    f"{c['duplicates_removed']} duplicate(s) removed)")
+    if t.get("memory"):
+        m = t["memory"]
+        st.markdown(f"**Memory:** {m.get('turns', 0)} earlier turn(s) in {m.get('tokens', 0)} tokens "
+                    f"(raw history would be {m.get('tokens_previous_method', 0)})"
+                    + (f"; follow-up searched as: *{m['resolved_query']}*" if m.get("resolved_query") else ""))
     st.json({"stages_ms": t["stages_ms"], "retrieval_signal": d.get("retrieval_signal"),
              "analysis": d.get("analysis"), "backends": t["backends"]}, expanded=False)
 

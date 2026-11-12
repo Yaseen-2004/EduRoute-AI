@@ -24,6 +24,10 @@ from src.llm.prompts import (
     build_revision_messages,
     strip_prompt_echo,
 )
+from src.agent import memory
+from src.agent.agentic_rag import AgenticRetriever
+from src.inference.answer_cache import SemanticAnswerCache
+from src.rag.context import ContextBuilder
 from src.rag.retrieval import EduRouteRetriever
 from src.rag.session_document import refers_to_document, search_document
 
@@ -62,6 +66,10 @@ class Telemetry:
     input_tokens: int = 0
     output_tokens: int = 0
     backends: list = field(default_factory=list)
+    agent_trace: list = field(default_factory=list)     # agentic RAG steps (developer view)
+    context: dict = field(default_factory=dict)         # context-engineering statistics
+    memory: dict = field(default_factory=dict)          # conversation-memory statistics
+    cache_hit: bool = False
 
     def add_generation(self, result):
         self.model_calls += 1 if result.is_model_output else 0
@@ -122,6 +130,17 @@ def scoped_retrieve(retriever, question, filters, fallback_filters, threshold,
     return best, best_scope
 
 
+def _loggable(telemetry):
+    """Telemetry for the log file. Agent queries and resolved follow-ups contain the
+    student's words, so they are dropped unless question logging is enabled (§21)."""
+    record = asdict(telemetry)
+    if not settings.LOG_QUERY_TEXT:
+        record["agent_trace"] = [{k: s.get(k) for k in ("action", "found", "top_score", "coverage")}
+                                 for s in record.get("agent_trace", [])]
+        record["memory"] = {k: v for k, v in record.get("memory", {}).items() if k != "resolved_query"}
+    return record
+
+
 class _Timer:
     def __init__(self, telemetry, stage):
         self.telemetry, self.stage = telemetry, stage
@@ -140,7 +159,9 @@ class EduRoutePipeline:
 
     def __init__(self, strategy="adaptive", cost_preference="balanced", llm_backend=None,
                  vision_backend=None, retriever=None, rag_version=None, retrieval_mode=None,
-                 log=True):
+                 log=True, answer_cache=None):
+        """`answer_cache`: a SemanticAnswerCache shared between pipelines/sessions;
+        default: a private one when EDUROUTE_ANSWER_CACHE is on."""
         self.retriever = retriever or EduRouteRetriever(
             version=rag_version or settings.RAG_VERSION,
             mode=retrieval_mode or settings.RETRIEVAL_MODE,
@@ -161,6 +182,25 @@ class EduRoutePipeline:
         )
         self.log = log
         self.telemetry_path = settings.LOG_DIR / "telemetry.jsonl"
+        self.context_builder = ContextBuilder(self.retriever.model)
+        self.answer_cache = answer_cache if answer_cache is not None else (
+            SemanticAnswerCache(self.retriever.model) if settings.ANSWER_CACHE else None)
+
+    def _agent(self, filters, fallback_filters):
+        threshold = self.router.calibration["in_domain_threshold"]
+
+        def search(query, k):
+            return scoped_retrieve(self.retriever, query, filters, fallback_filters, threshold, top_k=k)[0]
+        return AgenticRetriever(search, threshold, llm=self.llm)
+
+    def _prepare_context(self, question, passages, answer_mode, telemetry):
+        """Context engineering: de-duplicate, compress and budget the sources for the prompt."""
+        if not settings.CONTEXT_ENGINEERING or not passages:
+            return passages
+        with _Timer(telemetry, "context"):
+            selected, stats = self.context_builder.build(question, passages, answer_mode)
+        telemetry.context = stats.to_dict()
+        return selected or passages
 
     # ------------------------------------------------------------ helpers
 
@@ -229,6 +269,27 @@ class EduRoutePipeline:
         if not question and prepared is None:
             raise ValueError("Please type a question or attach an image.")
 
+        # 1b. Memory: a follow-up ("what are its advantages?") is searched as a
+        # self-contained question; the prompt gets a budgeted memory, not raw turns.
+        retrieval_query, follow_up_topic = memory.contextualize(question, history)
+        prompt_history = history
+        if settings.CONVERSATION_MEMORY and history:
+            prompt_history = memory.render(history)
+            telemetry.memory = {**memory.memory_stats(history, prompt_history),
+                                "follow_up": follow_up_topic is not None}
+        if follow_up_topic:
+            telemetry.memory["resolved_query"] = retrieval_query
+
+        # 1c. Answer cache: the same question, same scope and format, answered recently.
+        cache_signature = cache_vector = None
+        if (self.answer_cache is not None and question and prepared is None and document is None
+                and follow_up_topic is None):
+            cache_signature = SemanticAnswerCache.signature(answer_mode, filters, self.router.strategy)
+            cache_vector = self.retriever.embed_query(question)[0]
+            cached = self.answer_cache.get(question, cache_signature, cache_vector)
+            if cached is not None:
+                return self._from_cache(cached, telemetry, started)
+
         # 2-4. Query understanding + routing (the adaptive probe is reused below)
         with _Timer(telemetry, "routing"):
             probe = None
@@ -237,7 +298,7 @@ class EduRoutePipeline:
             adaptive = self.router.strategy == "adaptive"
             # Baselines never probe; retrieving baselines still get the same scope widening.
             if question and (adaptive or (filters and self.router.strategy != "direct")):
-                probe, scope = self._scoped_retrieve(question, filters, fallback_filters)
+                probe, scope = self._scoped_retrieve(retrieval_query, filters, fallback_filters)
                 if scope != filters:
                     narrow = "subject" if "subject_id" in filters else "branch"
                     wider = "the selected branch" if scope and "discipline" in scope else "the whole knowledge base"
@@ -289,7 +350,7 @@ class EduRoutePipeline:
                     telemetry.add_generation(description)
                     visual_description = description.text
                     messages = build_image_messages(question, visual_description, answer_mode,
-                                                    history, subject_context)
+                                                    prompt_history, subject_context)
                     with _Timer(telemetry, "generation"):
                         result = self._generate(messages, telemetry, answer_mode, None,
                                                 question, notices, on_token=on_token)
@@ -304,9 +365,11 @@ class EduRoutePipeline:
                     visual_description = description.text
                     query = f"{question} {visual_description[:400]}".strip()
                     passages = self._retrieve(query, filters, telemetry)
+                    passages = self._prepare_context(question or query, passages, answer_mode, telemetry)
                     messages = build_rag_messages(
-                        question or "Explain this image.", passages, answer_mode, history,
+                        question or "Explain this image.", passages, answer_mode, prompt_history,
                         subject_context, visual_description=visual_description,
+                        stable_prefix=settings.CONTEXT_ENGINEERING,
                     )
                     with _Timer(telemetry, "generation"):
                         result = self._generate(messages, telemetry, answer_mode, passages,
@@ -322,19 +385,32 @@ class EduRoutePipeline:
                 notices.append("Answering the text question from the knowledge base, without the image.")
                 workflow = "rag_llm"
 
+        agent = None
         if workflow == "rag_llm":
-            passages = probe if probe else self._retrieve(question, filters, telemetry)
+            document_grounded = document is not None and probe and probe[0].get("page") is not None
+            if settings.AGENTIC_RAG and question and not document_grounded:
+                # Agentic RAG: plan sub-queries, judge coverage, refine (bounded).
+                agent = self._agent(filters, fallback_filters)
+                subject = (subject_context or {}).get("Subject") or (subject_context or {}).get("Branch")
+                with _Timer(telemetry, "retrieval"):
+                    run = agent.run(retrieval_query, probe=probe, subject=subject)
+                passages = run.passages
+                telemetry.agent_trace = run.trace_dicts()
+            else:
+                passages = probe if probe else self._retrieve(retrieval_query, filters, telemetry)
             if not passages:
                 notices.append("No passages matched the selected filters; answering without sources.")
                 workflow = "direct_llm"
             else:
-                messages = build_rag_messages(question, passages, answer_mode, history, subject_context)
+                passages = self._prepare_context(question, passages, answer_mode, telemetry)
+                messages = build_rag_messages(question, passages, answer_mode, prompt_history,
+                                              subject_context, stable_prefix=settings.CONTEXT_ENGINEERING)
                 with _Timer(telemetry, "generation"):
                     result = self._generate(messages, telemetry, answer_mode, passages,
                                             question, notices, on_token=on_token)
 
         if workflow == "direct_llm":
-            messages = build_direct_messages(question, answer_mode, history, subject_context)
+            messages = build_direct_messages(question, answer_mode, prompt_history, subject_context)
             fallback_passages = None
             signal = decision.retrieval_signal or {}
             if question and not self.llm.is_available() and signal.get("in_domain", True):
@@ -363,6 +439,14 @@ class EduRoutePipeline:
                 if self.verifier.needs_revision(report) and result.is_model_output:
                     to_fix = self.verifier.claims_to_fix(report)
                     before = report.unsupported_claim_rate
+                    if agent is not None:
+                        # Agentic correction: fetch evidence for exactly the unsupported
+                        # claims, so the revision can correct them, not only drop them.
+                        with _Timer(telemetry, "retrieval"):
+                            extra, steps = agent.correct(to_fix, passages)
+                        telemetry.agent_trace += [s.to_dict() for s in steps]
+                        if extra:
+                            passages = passages + extra      # appended: earlier [n] keep their numbers
                     messages = build_revision_messages(question, answer, passages, to_fix, answer_mode)
                     with _Timer(telemetry, "revision"):
                         revised = self._generate(messages, telemetry, answer_mode, passages,
@@ -434,6 +518,33 @@ class EduRoutePipeline:
                                 verification=verification, is_model_output=result.is_model_output)
         response.diagram_dot = diagram
         response.arithmetic_issues = [i.describe() for i in arithmetic]
+        if cache_signature is not None and SemanticAnswerCache.cacheable(response):
+            self.answer_cache.put(question, cache_signature, response.to_dict(), cache_vector)
+        return response
+
+    def _from_cache(self, cached, telemetry, started):
+        """A stored answer to the same question: no model call, no retrieval."""
+        import copy
+        response = EduRouteResponse(**copy.deepcopy(cached))
+        telemetry.cache_hit = True
+        telemetry.total_ms = round((time.perf_counter() - started) * 1000, 1)
+        telemetry.stages_ms["cache"] = telemetry.total_ms
+        response.telemetry = asdict(telemetry)
+        response.notices = ["Answered instantly: this question was answered recently, "
+                            "so this is the stored answer."]
+        if self.log:
+            append_jsonl(self.telemetry_path, {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "question_sha256": hashlib.sha256(response.question.encode("utf-8")).hexdigest()[:16],
+                "question": response.question if settings.LOG_QUERY_TEXT else None,
+                "workflow": response.workflow, "strategy": response.strategy,
+                "answer_mode": response.answer_mode, "verified": response.verification is not None,
+                "revised": bool(response.verification and response.verification.get("revised")),
+                "unsupported_claim_rate": response.verification and response.verification.get(
+                    "unsupported_claim_rate"),
+                "sources": len(response.sources), "cited": len(response.cited_sources),
+                **_loggable(telemetry),
+            })
         return response
 
     def _finish(self, question, answer, answer_mode, decision, workflow, telemetry, notices,
@@ -481,7 +592,7 @@ class EduRoutePipeline:
                 "unsupported_claim_rate": verification and verification.get("unsupported_claim_rate"),
                 "sources": len(sources),
                 "cited": len(valid),
-                **asdict(telemetry),
+                **_loggable(telemetry),
             }
             append_jsonl(self.telemetry_path, record)
         return response
