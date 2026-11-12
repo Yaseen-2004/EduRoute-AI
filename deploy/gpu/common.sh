@@ -3,7 +3,9 @@
 #   GPU_ID=1            use only that GPU (shared servers)
 #   OLLAMA_PORT=11435   if 11434 is taken by someone else's Ollama
 #   APP_PORT=8502       if 8501 is taken
+#   APP_ADDRESS=0.0.0.0 on a pod whose platform proxies the port (needs an access code)
 #   PYTHON=python3.11   interpreter for the virtual environment
+#   OLLAMA_HOME / OLLAMA_MODELS / HF_HOME   put binaries and models on a persistent volume
 
 PROJECT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 RUN_DIR="$PROJECT/run"
@@ -13,6 +15,7 @@ mkdir -p "$RUN_DIR"
 VENV="$PROJECT/.venv"
 OLLAMA_PORT="${OLLAMA_PORT:-11434}"
 APP_PORT="${APP_PORT:-8501}"
+APP_ADDRESS="${APP_ADDRESS:-127.0.0.1}"
 OLLAMA_HOME="${OLLAMA_HOME:-$HOME/.local/ollama}"     # user-space install location
 export PATH="$OLLAMA_HOME/bin:$PATH"
 
@@ -21,7 +24,9 @@ export PATH="$OLLAMA_HOME/bin:$PATH"
 export OLLAMA_HOST="127.0.0.1:$OLLAMA_PORT"
 export OLLAMA_CONTEXT_LENGTH="${OLLAMA_CONTEXT_LENGTH:-8192}"
 export OLLAMA_MAX_LOADED_MODELS="${OLLAMA_MAX_LOADED_MODELS:-3}"
-export OLLAMA_NUM_PARALLEL="${OLLAMA_NUM_PARALLEL:-2}"
+export OLLAMA_NUM_PARALLEL="${OLLAMA_NUM_PARALLEL:-4}"
+[ -n "${OLLAMA_MODELS:-}" ] && export OLLAMA_MODELS
+[ -n "${HF_HOME:-}" ] && export HF_HOME
 export OLLAMA_KEEP_ALIVE="${OLLAMA_KEEP_ALIVE:-30m}"
 
 [ -n "${GPU_ID:-}" ] && export CUDA_VISIBLE_DEVICES="$GPU_ID"

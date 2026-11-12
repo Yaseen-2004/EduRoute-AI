@@ -630,6 +630,19 @@ Tests: 79 unit tests plus 1 app test, all passing.
   - Whisper's device is now a setting (`EDUROUTE_WHISPER_DEVICE`, `EDUROUTE_WHISPER_COMPUTE_TYPE`).
   - `pymupdf` was missing from `requirements.txt`, so PDF uploads would have failed on a fresh install. It has been added.
 
+**Production hardening** (the app will run on a pod whose link is public):
+
+- **Access codes:** an access code for students and a separate studio code for the team (the studio holds grading data). Setup generates random codes; comparison is constant-time, and each wrong attempt slows the next.
+- **Load limits:**
+  - 60 questions an hour per session;
+  - at most 4 answers generated at once, with the rest queued for up to 120 s;
+  - questions capped at 4,000 characters.
+- **Hidden from students:** the developer view (routing internals, strategy switch).
+- **Errors:** an unexpected failure shows the student a short reference code; the full traceback goes to the server log.
+- **Pod support:** `pod_start.sh` installs on the persistent volume on first boot, then starts the services and watches them; `services.sh watch` restarts anything that stops. On any address other than localhost, the app refuses to start without an access code.
+- **Smoke test:** `deploy/smoke_test.py` asks real questions on every route (knowledge base with citations, general, image, voice) within time limits, and exits non-zero on failure.
+- **Fixed:** the front page showed a stale passage count (35,567); it now reads it from the index.
+
 Status: ready. Waiting for server access.
 
 ## 10. What remains (report §25)

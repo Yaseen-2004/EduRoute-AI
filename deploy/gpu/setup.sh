@@ -19,6 +19,12 @@ if [ -z "${PYTHON:-}" ]; then
   for py in python3.12 python3.11 python3.10 python3; do command -v $py >/dev/null && { PYTHON=$py; break; }; done
 fi
 $PYTHON -c 'import sys; assert sys.version_info >= (3, 10), "Python 3.10+ needed"'
+# Bare container images (pods) often lack venv/zstd; install them when running as root.
+if ! $PYTHON -m venv --help >/dev/null 2>&1 || ! command -v zstd >/dev/null; then
+  if [ "$(id -u)" = 0 ] && command -v apt-get >/dev/null; then
+    apt-get update -qq && apt-get install -y -qq python3-venv zstd curl ca-certificates >/dev/null
+  fi
+fi
 [ -d "$VENV" ] || $PYTHON -m venv "$VENV"
 . "$VENV/bin/activate"
 python -m pip install -q --upgrade pip wheel
@@ -79,6 +85,15 @@ else
   chmod 600 .env
   echo "Wrote .env from deploy/gpu/server.env"
 fi
+# Random access codes where none is set (shown once; they stay in .env, mode 600)
+for key in EDUROUTE_ACCESS_CODE EDUROUTE_STUDIO_CODE; do
+  if grep -q "^$key=$" .env; then
+    code=$(python -c 'import secrets; print(secrets.token_urlsafe(9))')
+    sed -i "s#^$key=\$#$key=$code#" .env
+    echo "  $key = $code"
+  fi
+done
+echo "  (change them any time in .env, then: bash deploy/gpu/services.sh restart)"
 
 step "6/7 Embedding, NLI and Whisper models (first download only)"
 python - <<'PY'
@@ -95,6 +110,7 @@ PY
 
 step "7/7 Self-check"
 python -m pytest -q 2>&1 | tail -3
+python -m deploy.smoke_test || echo "Smoke test failed: see the [FAIL] lines above"
 echo
 echo "Setup complete. Next:"
 echo "  bash deploy/gpu/services.sh start        # Ollama + the app (127.0.0.1:$APP_PORT)"

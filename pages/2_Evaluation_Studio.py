@@ -15,7 +15,6 @@ is disabled on a hosted deployment (EDUROUTE_ENABLE_STUDIO=false).
 import csv
 import glob
 import json
-import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -28,6 +27,7 @@ from streamlit.errors import StreamlitAPIException
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # project root, however started
 from config import settings  # noqa: E402
+from src.utils.access import require_access  # noqa: E402
 from src.utils.catalogue_loader import load_catalogue
 
 ROOT = settings.BASE_DIR
@@ -42,9 +42,11 @@ CRITERIA = ["correctness_0_3", "completeness_0_3", "relevance_0_3", "clarity_0_3
 
 st.set_page_config(page_title="Evaluation studio", page_icon=":material/fact_check:", layout="wide")
 
-if os.environ.get("EDUROUTE_ENABLE_STUDIO", "true").lower() != "true":
+if not settings.ENABLE_STUDIO:
     st.info("The evaluation studio is disabled on this deployment. Run the app locally to use it.")
     st.stop()
+# Grading keys and ratings live here: the team's own code, not the students' code.
+require_access("studio", settings.STUDIO_CODE, title="Evaluation studio")
 
 with st.sidebar:
     try:  # the links need the multipage app; skipped when this page runs on its own (tests)

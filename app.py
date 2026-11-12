@@ -6,9 +6,10 @@ Run from the project root:
 """
 
 import hashlib
-import os
+import logging
 import threading
 import time
+import uuid
 from datetime import datetime, timezone
 
 import streamlit as st
@@ -17,14 +18,17 @@ from config import settings
 from src.llm.prompts import ANSWER_MODES, strip_prompt_echo
 from src.rag.session_document import (DOCUMENT_TYPES, MAX_DOCUMENT_BYTES, DocumentError,
                                       build_session_document)
+from src.utils.access import AnswerSlots, SlidingWindowLimiter, require_access
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
 from src.ui.galaxy import knowledge_galaxy
 
 AVATARS = {"user": ":material/person:", "assistant": ":material/auto_awesome:"}
+logger = logging.getLogger("eduroute.app")
 
 st.set_page_config(page_title="EduRoute AI", page_icon=":material/school:", layout="centered")
+require_access("app", settings.ACCESS_CODE)
 
 IMAGE_TYPES = ["png", "jpg", "jpeg", "webp", "bmp"]
 WORKFLOW_LABELS = {
@@ -79,6 +83,13 @@ def get_pipeline(strategy, cost_preference):
     from src.pipeline import EduRoutePipeline
     return EduRoutePipeline(strategy=strategy, cost_preference=cost_preference,
                             retriever=get_retriever())
+
+
+@st.cache_resource(show_spinner=False)
+def load_limits():
+    """Shared by every session on this server."""
+    return (SlidingWindowLimiter(settings.MAX_QUESTIONS_PER_HOUR, 3600),
+            AnswerSlots(settings.MAX_CONCURRENT_ANSWERS))
 
 
 @st.cache_resource(show_spinner="Loading speech recognition...")
@@ -172,6 +183,8 @@ def show_coverage(branch_code):
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "session_key" not in st.session_state:
+    st.session_state.session_key = uuid.uuid4().hex
 if "voice_pending" not in st.session_state:
     st.session_state.voice_pending = False
 if "voice_corrections" not in st.session_state:
@@ -217,7 +230,7 @@ with st.sidebar:
     st.header("EduRoute AI")
     st.caption("Adaptive academic assistant for B.Tech students (prototype)")
     st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
-    if os.environ.get("EDUROUTE_ENABLE_STUDIO", "true").lower() == "true":
+    if settings.ENABLE_STUDIO:
         st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
 
     branches, subjects_by_branch = catalogue_options()
@@ -236,8 +249,9 @@ with st.sidebar:
     ) or "5-mark"
     speak = st.toggle("Read answers aloud", value=False, disabled=not status["tts"],
                       help=None if status["tts"] else "Install edge-tts or gTTS to enable.")
-    developer_view = st.toggle("Developer view", value=False,
-                               help="Show routing decisions, retrieval scores, verification and telemetry.")
+    developer_view = settings.ENABLE_DEVELOPER_VIEW and st.toggle(
+        "Developer view", value=False,
+        help="Show routing decisions, retrieval scores, verification and telemetry.")
 
     strategy, cost_preference = "adaptive", "balanced"
     if developer_view:
@@ -400,7 +414,7 @@ knowledge_galaxy(
     tagline="Ask anything across 26 engineering branches, by text, photo, voice or your own notes. "
             "Every answer is routed, grounded and checked.",
     chips=[f"{len(branches)} branches", f"{sum(len(v) for v in subjects_by_branch.values())} subjects",
-           "35,567 passages", "Text · photo · voice · PDF"],
+           f"{len(get_retriever().metadata):,} passages", "Text · photo · voice · PDF"],
     on_branch_change=_focus_branch_from_galaxy,
 )
 
@@ -443,6 +457,7 @@ prompt = st.chat_input(
     file_type=IMAGE_TYPES + DOCUMENT_TYPES,
     accept_audio=status["asr"],
     max_upload_size=MAX_DOCUMENT_BYTES // (1024 * 1024),
+    max_chars=settings.MAX_QUESTION_CHARS,
     submit_mode="disable",
 )
 
@@ -459,6 +474,7 @@ if not st.session_state.messages and prompt is None:
 
 if prompt:
     text = prompt if isinstance(prompt, str) else (prompt.text or "")
+    text = text[:settings.MAX_QUESTION_CHARS]
     files = [] if isinstance(prompt, str) else list(prompt.files or [])
     audio = None if isinstance(prompt, str) else getattr(prompt, "audio", None)
 
@@ -482,6 +498,14 @@ if prompt:
         st.session_state.voice_corrections = transcript.corrections
         st.session_state.voice_pending = True
         st.rerun()
+
+    # Counted once the question is sent (a voice transcript is not a question yet).
+    rate_limiter, answer_slots = load_limits()
+    if not rate_limiter.allow(st.session_state.session_key):
+        wait = rate_limiter.retry_after(st.session_state.session_key)
+        st.warning(f"You have reached the limit of {settings.MAX_QUESTIONS_PER_HOUR} questions an hour. "
+                   f"Please try again in about {max(1, wait // 60)} minutes.", icon=":material/hourglass:")
+        st.stop()
 
     from_voice = st.session_state.voice_pending
     st.session_state.voice_pending = False
@@ -550,16 +574,33 @@ if prompt:
                 last_draw[0] = now
 
         pipeline = get_pipeline(strategy, cost_preference)
+        if answer_slots.limit and answer_slots.busy >= answer_slots.limit:
+            thinking.update(label=":shimmer[Many students are asking right now - you are in the queue]")
         try:
-            response = pipeline.ask(
-                text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
-                filters=filters, subject_context=subject_context, from_voice=from_voice,
-                fallback_filters=fallback_filters, on_token=show_partial,
-                document=st.session_state.get("document"),
-            ).to_dict()
+            with answer_slots.acquire(settings.QUEUE_TIMEOUT) as got_slot:
+                if not got_slot:
+                    thinking.update(label="Server busy", state="error")
+                    st.warning("The server is busy answering other students. Please send your question "
+                               "again in a minute.", icon=":material/hourglass:")
+                    st.stop()
+                thinking.update(label=":shimmer[Thinking]")
+                response = pipeline.ask(
+                    text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
+                    filters=filters, subject_context=subject_context, from_voice=from_voice,
+                    fallback_filters=fallback_filters, on_token=show_partial,
+                    document=st.session_state.get("document"),
+                ).to_dict()
         except ValueError as error:
             thinking.update(label="Could not answer", state="error")
             st.error(str(error))
+            st.stop()
+        except Exception:
+            reference = uuid.uuid4().hex[:8]
+            logger.exception("Answer failed (reference %s)", reference)
+            thinking.update(label="Could not answer", state="error")
+            live.empty()
+            st.error(f"Something went wrong while answering. Please try again. "
+                     f"If it keeps happening, give this reference to the team: **{reference}**.")
             st.stop()
         live.empty()
         first = response["telemetry"]["stages_ms"].get("first_token")

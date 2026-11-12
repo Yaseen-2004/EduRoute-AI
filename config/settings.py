@@ -105,6 +105,18 @@ LOG_QUERY_TEXT = _env("EDUROUTE_LOG_QUERY_TEXT", "false").lower() == "true"
 # Logs older than this are deleted (src/utils/retention.py). 0 = keep forever.
 LOG_RETENTION_DAYS = int(_env("EDUROUTE_LOG_RETENTION_DAYS", "30"))
 
+# Access and load limits (production; deploy/gpu/server.env). Empty access
+# code = open app (laptop / lab use). Codes are compared in constant time.
+ACCESS_CODE = _env("EDUROUTE_ACCESS_CODE", "")
+# The evaluation studio holds grading data: its own code, else the access code.
+STUDIO_CODE = _env("EDUROUTE_STUDIO_CODE", "") or ACCESS_CODE
+ENABLE_STUDIO = _env("EDUROUTE_ENABLE_STUDIO", "true").lower() == "true"
+ENABLE_DEVELOPER_VIEW = _env("EDUROUTE_ENABLE_DEVELOPER_VIEW", "true").lower() == "true"
+MAX_QUESTIONS_PER_HOUR = int(_env("EDUROUTE_MAX_QUESTIONS_PER_HOUR", "0"))     # per session; 0 = no limit
+MAX_CONCURRENT_ANSWERS = int(_env("EDUROUTE_MAX_CONCURRENT_ANSWERS", "0"))     # whole server; 0 = no limit
+QUEUE_TIMEOUT = int(_env("EDUROUTE_QUEUE_TIMEOUT", "120"))                     # seconds to wait for a slot
+MAX_QUESTION_CHARS = int(_env("EDUROUTE_MAX_QUESTION_CHARS", "4000"))
+
 # Application settings
 APP_NAME = "EduRoute AI"
 APP_VERSION = "1.1.0"

@@ -3,7 +3,7 @@
 #   bash deploy/gpu/run_evaluations.sh                       # all stages
 #   STAGES="system images" bash deploy/gpu/run_evaluations.sh
 #   nohup bash deploy/gpu/run_evaluations.sh >run/eval.log 2>&1 &    # survives logout
-# Stages: tests retrieval router system images voice claims
+# Stages: tests smoke retrieval router system images voice claims
 # The system benchmark resumes after an interruption: just run it again.
 set -uo pipefail
 . "$(dirname "$0")/common.sh"
@@ -11,7 +11,7 @@ cd "$PROJECT"
 activate_venv
 start_ollama
 
-STAGES="${STAGES:-tests retrieval router system images voice claims}"
+STAGES="${STAGES:-tests smoke retrieval router system images voice claims}"
 VISION_MODELS="${VISION_MODELS:-qwen2.5vl:3b qwen2.5vl:7b}"
 PARTIAL=evaluation/results/system_benchmark_partial_gpu.jsonl
 STAMP=$(date +%Y%m%d_%H%M%S)
@@ -38,6 +38,7 @@ has() { [[ " $STAGES " == *" $1 "* ]]; }
 } >"evaluation/results/server_info_$STAMP.txt" 2>&1
 
 has tests     && stage tests python -m pytest -q
+has smoke     && stage smoke python -m deploy.smoke_test
 has retrieval && stage retrieval_engineering python -m evaluation.evaluate_retrieval \
                    --configs engineering_v1:dense --benchmark retrieval_engineering_v1.jsonl
 has retrieval && stage retrieval_aiml python -m evaluation.evaluate_retrieval \
