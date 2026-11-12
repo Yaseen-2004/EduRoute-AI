@@ -32,3 +32,4 @@ data/processed/wikipedia/*_chunks_*.jsonl
 deploy/*.tar.gz
 run/
 deploy/gpu/local.conf
+deploy/gpu/pod.conf

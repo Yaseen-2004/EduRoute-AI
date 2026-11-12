@@ -10,6 +10,7 @@
 PROJECT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 RUN_DIR="$PROJECT/run"
 mkdir -p "$RUN_DIR"
+[ -f "$PROJECT/deploy/gpu/pod.conf" ] && . "$PROJECT/deploy/gpu/pod.conf"      # written by pod_start.sh
 [ -f "$PROJECT/deploy/gpu/local.conf" ] && . "$PROJECT/deploy/gpu/local.conf"
 
 VENV="$PROJECT/.venv"

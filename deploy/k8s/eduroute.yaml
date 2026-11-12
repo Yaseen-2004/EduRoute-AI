@@ -1,0 +1,78 @@
+# EduRoute AI on the DGX Kubernetes cluster: storage, GPU pod, NodePort service.
+# deploy.sh fills the __PLACEHOLDERS__ (or edit them by hand) and applies it.
+#   __NAME__        pod/service/claim name, e.g. eduroute
+#   __STORAGE__     persistent volume size, e.g. 60Gi
+#   __GPUS__        GPUs for the pod (1 is plenty: all models need ~16 GB)
+#   __NODEPORT__    port on 172.19.0.11 where the app is reached, e.g. 30851
+#   __IMAGE__       container image (PyTorch + CUDA runtime)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: __NAME__-data
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: __STORAGE__
+  # storageClassName: <from inspect_cluster.sh, if the cluster has no default>
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: __NAME__
+  labels:
+    app: __NAME__
+spec:
+  restartPolicy: Always
+  containers:
+    - name: eduroute
+      image: __IMAGE__
+      workingDir: /workspace
+      # Starts EduRoute once the project is on the volume; until then the pod
+      # just waits, so deploy.sh can copy the package in.
+      command: ["bash", "-c"]
+      args:
+        - |
+          if [ -f /workspace/eduroute/deploy/gpu/pod_start.sh ]; then
+            exec bash /workspace/eduroute/deploy/gpu/pod_start.sh
+          fi
+          echo "Waiting for /workspace/eduroute"; sleep infinity
+      env:
+        - {name: APP_ADDRESS, value: "0.0.0.0"}
+        - {name: PERSIST_DIR, value: "/workspace"}
+        - {name: APP_PORT, value: "8501"}
+      ports:
+        - {name: app, containerPort: 8501}
+      resources:
+        limits:
+          nvidia.com/gpu: __GPUS__
+          memory: 48Gi
+          cpu: "8"
+        requests:
+          nvidia.com/gpu: __GPUS__
+          memory: 24Gi
+          cpu: "4"
+      readinessProbe:
+        httpGet: {path: /_stcore/health, port: 8501}
+        periodSeconds: 20
+        failureThreshold: 3
+      volumeMounts:
+        - {name: data, mountPath: /workspace}
+        - {name: shm, mountPath: /dev/shm}
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: __NAME__-data
+    - name: shm
+      emptyDir: {medium: Memory, sizeLimit: 8Gi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: __NAME__-svc
+spec:
+  type: NodePort
+  selector:
+    app: __NAME__
+  ports:
+    - {name: app, port: 8501, targetPort: 8501, nodePort: __NODEPORT__}

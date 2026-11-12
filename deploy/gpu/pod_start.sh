@@ -18,6 +18,13 @@ export HF_HOME="${HF_HOME:-$PERSIST/hf_cache}"
 export APP_ADDRESS="${APP_ADDRESS:-0.0.0.0}"
 mkdir -p "$OLLAMA_MODELS" "$HF_HOME" "$PROJECT/run"
 cd "$PROJECT"
+# Every later command (kubectl exec ..., run_evaluations.sh) reads these via common.sh.
+cat >deploy/gpu/pod.conf <<EOF
+OLLAMA_HOME="$OLLAMA_HOME"
+OLLAMA_MODELS="$OLLAMA_MODELS"
+HF_HOME="$HF_HOME"
+APP_ADDRESS="$APP_ADDRESS"
+EOF
 
 # Pod restarts keep the venv but not system packages: re-run setup only when
 # something is missing (it is idempotent and skips finished steps quickly).

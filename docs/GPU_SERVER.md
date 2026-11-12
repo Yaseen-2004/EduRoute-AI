@@ -116,6 +116,30 @@ scp -i $HOME\.ssh\eduroute_gpu user@server:~/eduroute/run/eduroute_gpu_results_*
 
 Unzip it into the project folder: the files land in `evaluation\results\`.
 
+## University DGX cluster (Kubernetes, login node 172.19.0.11)
+
+The login node is reachable only from the campus or lab network. Run these on the laptop, connected to that network:
+
+```powershell
+venv\Scripts\python deploy\make_server_package.py
+scp deploy\eduroute_server_package.tar.gz <user>@172.19.0.11:~/
+ssh <user>@172.19.0.11
+```
+
+Then on the login node:
+
+```bash
+tar -xzf eduroute_server_package.tar.gz deploy/k8s     # just the cluster scripts
+bash deploy/k8s/inspect_cluster.sh                     # read-only: GPUs, quota, storage, used NodePorts
+bash deploy/k8s/deploy.sh up                           # storage + GPU pod + NodePort service, copy, start
+bash deploy/k8s/deploy.sh logs                         # install progress; access codes appear here once
+```
+
+- **App address:** `http://172.19.0.11:30851` once the logs show "App running". It is reachable from the campus network, and students need the access code.
+- **Other commands:** `deploy.sh status | eval | results | update | shell | down`. `down` keeps the volume holding the models and results.
+- **Settings:** `NAME`, `NODEPORT`, `GPUS`, `STORAGE` and `IMAGE` override the defaults. For example, `NODEPORT=30852 bash deploy/k8s/deploy.sh up` if `inspect_cluster.sh` shows 30851 is taken.
+- **No Jupyter needed:** the lab's usual Jupyter step isn't required for EduRoute. If you use Jupyter, set a strong token rather than a short number: a NodePort is open to the whole campus network.
+
 ## GPU pod (RunPod, NVIDIA Brev, Kubernetes and similar)
 
 A pod is a container: it has no systemd, and only its **persistent volume**
