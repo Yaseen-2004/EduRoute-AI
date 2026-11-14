@@ -85,7 +85,8 @@ def get_answer_cache():
     if not settings.ANSWER_CACHE:
         return None
     from src.inference.answer_cache import SemanticAnswerCache
-    return SemanticAnswerCache(get_retriever().model)
+    # Saved to disk, so a restart keeps it, and pre-filled by the question bank.
+    return SemanticAnswerCache(get_retriever().model, path=settings.ANSWER_CACHE_PATH)
 
 
 @st.cache_resource(show_spinner=False, max_entries=10)

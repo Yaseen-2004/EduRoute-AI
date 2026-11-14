@@ -5,7 +5,7 @@ import re
 STOPWORDS = frozenset("""
 a an the and or but if then else of to in on at by for with from into onto over under about as is are was were be
 been being do does did done has have had having it its this that these those they them their there here what which
-who whom whose when where why how can could should would may might must shall will not no yes than so such very
+who whom whose when where why how can could should would may might must shall will yes than so such very
 also just only more most less least much many some any each every all both either neither other another same own
 please explain describe define discuss write give list state briefly detail details short answer question mark marks
 between difference differences compare comparison versus vs using use used work works working me my we our you your

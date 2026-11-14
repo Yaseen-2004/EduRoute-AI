@@ -79,9 +79,15 @@ MEMORY_BUDGET_TOKENS = int(_env("EDUROUTE_MEMORY_BUDGET_TOKENS", "500"))
 
 # Inference optimisation (src/inference/answer_cache.py): repeated questions answered from cache.
 ANSWER_CACHE = _flag("EDUROUTE_ANSWER_CACHE", "true")
-ANSWER_CACHE_SIZE = int(_env("EDUROUTE_ANSWER_CACHE_SIZE", "256"))
-ANSWER_CACHE_TTL_HOURS = float(_env("EDUROUTE_ANSWER_CACHE_TTL_HOURS", "24"))
-ANSWER_CACHE_SIMILARITY = float(_env("EDUROUTE_ANSWER_CACHE_SIMILARITY", "0.97"))
+ANSWER_CACHE_SIZE = int(_env("EDUROUTE_ANSWER_CACHE_SIZE", "500"))
+# Saved answers stay valid until the index, model or prompt format changes
+# (each record carries that version); a week bounds how long an answer can age.
+ANSWER_CACHE_TTL_HOURS = float(_env("EDUROUTE_ANSWER_CACHE_TTL_HOURS", "168"))
+ANSWER_CACHE_PATH = BASE_DIR / "outputs" / "cache" / "answer_cache.jsonl"
+# Matching needs the SAME content words (the safety rule: 0 of 4,950 different benchmark
+# questions share them) AND cosine >= this. Phrasings of one question ("What is X?",
+# "Tell me about X", "X") scored as low as 0.69 against "Explain X." (14 Nov), so 0.65.
+ANSWER_CACHE_SIMILARITY = float(_env("EDUROUTE_ANSWER_CACHE_SIMILARITY", "0.65"))
 
 # LLM configuration (report §9.3)
 LLM_MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"

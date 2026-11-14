@@ -289,7 +289,7 @@ class EduRoutePipeline:
             cache_vector = self.retriever.embed_query(question)[0]
             cached = self.answer_cache.get(question, cache_signature, cache_vector)
             if cached is not None:
-                return self._from_cache(cached, telemetry, started)
+                return self._from_cache(cached, telemetry, started, question)
 
         # 2-4. Query understanding + routing (the adaptive probe is reused below)
         with _Timer(telemetry, "routing"):
@@ -523,10 +523,11 @@ class EduRoutePipeline:
             self.answer_cache.put(question, cache_signature, response.to_dict(), cache_vector)
         return response
 
-    def _from_cache(self, cached, telemetry, started):
+    def _from_cache(self, cached, telemetry, started, question):
         """A stored answer to the same question: no model call, no retrieval."""
         import copy
         response = EduRouteResponse(**copy.deepcopy(cached))
+        response.question = question          # the student's own wording (the saved copy has none)
         telemetry.cache_hit = True
         telemetry.total_ms = round((time.perf_counter() - started) * 1000, 1)
         telemetry.stages_ms["cache"] = telemetry.total_ms
