@@ -32,6 +32,7 @@ with st.sidebar:
     try:
         st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
         st.page_link("pages/4_Past_Papers.py", label="Past papers", icon=":material/history_edu:")
+        st.page_link("pages/5_Practice.py", label="Practice", icon=":material/quiz:")
         if settings.ENABLE_STUDIO:
             st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
             st.page_link("pages/3_Operations_Dashboard.py", label="Operations", icon=":material/monitoring:")
