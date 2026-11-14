@@ -23,20 +23,19 @@ from src.utils.access import AnswerSlots, SlidingWindowLimiter, require_access
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
-from src.ui.galaxy import knowledge_galaxy
 
-AVATARS = {"user": ":material/person:", "assistant": ":material/auto_awesome:"}
+AVATARS = {"user": ":material/person:", "assistant": ":material/menu_book:"}
 logger = logging.getLogger("eduroute.app")
 
-st.set_page_config(page_title="EduRoute AI", page_icon=":material/school:", layout="centered")
+st.set_page_config(page_title="EduRoute", page_icon=":material/menu_book:", layout="centered")
 require_access("app", settings.ACCESS_CODE)
 
 IMAGE_TYPES = ["png", "jpg", "jpeg", "webp", "bmp"]
 WORKFLOW_LABELS = {
-    "direct_llm": ":material/bolt: Direct answer",
-    "rag_llm": ":material/menu_book: Answer from knowledge base",
-    "vision_llm": ":material/image: Image analysis",
-    "hybrid_multimodal_rag": ":material/image_search: Image + knowledge base",
+    "direct_llm": "Answered directly",
+    "rag_llm": "Answered from the reference sources",
+    "vision_llm": "Answered from your image",
+    "hybrid_multimodal_rag": "Answered from your image and the reference sources",
 }
 
 
@@ -192,7 +191,7 @@ def show_coverage(branch_code):
 
 def conversation_markdown(messages):
     """The conversation as study notes: each question, its answer, and the sources it cited."""
-    lines = ["# EduRoute AI study notes", f"_Exported {datetime.now():%d %b %Y, %H:%M}. Answers are study "
+    lines = ["# EduRoute study notes", f"_Exported {datetime.now():%d %b %Y, %H:%M}. Answers are study "
              "aids; check important facts against your course material._", ""]
     for message in messages:
         if message["role"] == "user":
@@ -258,8 +257,8 @@ if status["asr"]:
 # ------------------------------------------------------------------ sidebar
 
 with st.sidebar:
-    st.header("EduRoute AI")
-    st.caption("Adaptive academic assistant for B.Tech students (prototype)")
+    st.header("EduRoute")
+    st.caption("A study companion for B.Tech students")
     st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
     if settings.ENABLE_STUDIO:
         st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
@@ -299,14 +298,14 @@ with st.sidebar:
         st.markdown("**System status**")
         llm_ok, llm_detail = status["llm"]
         st.markdown(f"{':green[:material/check_circle:]' if llm_ok else ':orange[:material/warning:]'} "
-                    f"Language model - {'ready' if llm_ok else 'unavailable'}")
+                    f"Language model: {'ready' if llm_ok else 'unavailable'}")
         if not llm_ok:
             st.caption(f"{llm_detail}. Answers will show source excerpts only. See README to start Qwen2.5-3B.")
         vision_ok = status["vision"][0]
         st.markdown(f"{':green[:material/check_circle:]' if vision_ok else ':gray[:material/block:]'} "
-                    f"Image questions - {'ready' if vision_ok else 'not configured'}")
+                    f"Image questions: {'ready' if vision_ok else 'not configured'}")
         st.markdown(f"{':green[:material/check_circle:]' if status['asr'] else ':gray[:material/block:]'} "
-                    f"Voice input - {'ready' if status['asr'] else 'not installed'}")
+                    f"Voice input: {'ready' if status['asr'] else 'not installed'}")
 
     if st.button("Knowledge base coverage", icon=":material/library_books:", width="stretch"):
         show_coverage(branch)
@@ -452,24 +451,24 @@ def render_assistant(message, index):
     st.feedback("thumbs", key=f"feedback_{index}", on_change=record_feedback, args=(index,))
 
 
-def _focus_branch_from_galaxy():
-    """A branch clicked in the galaxy becomes the sidebar's branch ('' = all branches)."""
-    code = getattr(st.session_state.get("galaxy"), "branch", None)
-    if code is not None:
-        st.session_state.branch_select = code or None
-
-
-knowledge_galaxy(
-    [{"code": code, "name": name, "subjects": len(subjects_by_branch.get(code, {}))}
-     for code, name in branches.items()],
-    selected=branch,
-    compact=bool(st.session_state.messages),
-    tagline="Ask anything across 26 engineering branches, by text, photo, voice or your own notes. "
-            "Every answer is routed, grounded and checked.",
-    chips=[f"{len(branches)} branches", f"{sum(len(v) for v in subjects_by_branch.values())} subjects",
-           f"{len(get_retriever().metadata):,} passages", "Text · photo · voice · PDF"],
-    on_branch_change=_focus_branch_from_galaxy,
-)
+# Masthead: a plain title and one sentence, like the front page of a course
+# handbook. Once a conversation starts it shrinks to a small heading.
+n_subjects = sum(len(v) for v in subjects_by_branch.values())
+if not st.session_state.messages:
+    st.title("EduRoute")
+    st.markdown("Exam-style answers for B.Tech subjects, written from reference sources and "
+                "checked before you see them.")
+    st.caption(f"{len(branches)} branches · {n_subjects} subjects · "
+               f"{len(get_retriever().metadata):,} indexed passages")
+    steps = st.columns(3, gap="medium")
+    steps[0].markdown("**1. Choose your subject**  \nPick a branch and subject on the left, "
+                      "or leave it on all branches.")
+    steps[1].markdown("**2. Ask in your own words**  \nType, speak, attach a photo of your "
+                      "notes, or upload a PDF.")
+    steps[2].markdown("**3. Check the sources**  \nEvery answer lists where it came from and "
+                      "flags anything it could not confirm.")
+else:
+    st.subheader(branches.get(branch, "EduRoute") if branch else "EduRoute")
 
 for index, message in enumerate(st.session_state.messages):
     role = "assistant" if message["role"] == "note" else message["role"]
@@ -504,7 +503,7 @@ if st.session_state.get("camera_image"):
     st.caption(":material/photo_camera: A camera photo is attached to your next question.")
 
 prompt = st.chat_input(
-    "Ask an academic question...",
+    "Ask about any topic in your syllabus",
     key="chat",
     accept_file=True,
     file_type=IMAGE_TYPES + DOCUMENT_TYPES,
@@ -516,12 +515,12 @@ prompt = st.chat_input(
 
 if not st.session_state.messages and prompt is None:
     examples = {
-        ":material/local_fire_department: Rankine cycle": "Explain the Rankine cycle used in steam power plants.",
-        ":material/electric_bolt: Induction motor": "How does a three-phase induction motor work?",
-        ":material/foundation: Foundations": "What are the different types of foundations in building construction?",
-        ":material/school: Backpropagation": "Explain backpropagation in neural networks.",
+        "The Rankine cycle": "Explain the Rankine cycle used in steam power plants.",
+        "Three-phase induction motors": "How does a three-phase induction motor work?",
+        "Types of foundations": "What are the different types of foundations in building construction?",
+        "Backpropagation": "Explain backpropagation in neural networks.",
     }
-    choice = st.pills("Try asking", list(examples), label_visibility="collapsed")
+    choice = st.pills("Not sure where to start? Try one of these:", list(examples))
     if choice:
         prompt = examples[choice]
 
@@ -614,7 +613,7 @@ if prompt:
     } if branch else None
 
     with st.chat_message("assistant", avatar=AVATARS["assistant"]):
-        thinking = st.status(":shimmer[Thinking]", type="compact")
+        thinking = st.status("Looking it up…", type="compact")
         # The answer appears word by word while it is generated; sources and
         # verification are added when it is complete.
         live = st.empty()
@@ -628,7 +627,7 @@ if prompt:
 
         pipeline = get_pipeline(strategy, cost_preference)
         if answer_slots.limit and answer_slots.busy >= answer_slots.limit:
-            thinking.update(label=":shimmer[Many students are asking right now - you are in the queue]")
+            thinking.update(label="Many students are asking right now; you are next in line…")
         try:
             with answer_slots.acquire(settings.QUEUE_TIMEOUT) as got_slot:
                 if not got_slot:
@@ -636,7 +635,7 @@ if prompt:
                     st.warning("The server is busy answering other students. Please send your question "
                                "again in a minute.", icon=":material/hourglass:")
                     st.stop()
-                thinking.update(label=":shimmer[Thinking]")
+                thinking.update(label="Looking it up…")
                 response = pipeline.ask(
                     text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
                     filters=filters, subject_context=subject_context, from_voice=from_voice,

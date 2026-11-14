@@ -8,41 +8,64 @@ gatherUsageStats = false
 [client]
 # Pages are listed with friendly names and icons by st.page_link in the sidebar.
 showSidebarNavigation = false
+# Hide the developer toolbar (Deploy, rerun) from students.
+toolbarMode = "minimal"
 
-# EduRoute AI "knowledge galaxy" theme: deep-space dark (default) and a matching
-# light mode; users can switch in the app settings. Violet accent, cyan links.
+# "Course handbook" theme: warm paper, ink-black text and a single brick-red
+# accent, set in book typefaces (Source Serif 4 headings, Source Sans 3 body).
+# Small corners and thin rules, no glows or gradients. Light by default, with a
+# lamplit dark mode in the app settings.
 [theme]
-font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
-codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
-headingFontWeights = [700, 600, 600, 600, 500, 500]
-baseRadius = "large"
-buttonRadius = "full"
+font = "'Source Sans 3':https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap"
+headingFont = "'Source Serif 4':https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+codeFont = "'IBM Plex Mono':https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+baseFontSize = 16
+headingFontWeights = [700, 600, 600, 600, 600, 600]
+headingFontSizes = ["2.4rem", "1.6rem", "1.3rem", "1.1rem", "1rem", "0.9rem"]
+baseRadius = "small"
+buttonRadius = "small"
 showWidgetBorder = true
-showSidebarBorder = false
-
-[theme.dark]
-primaryColor = "#8b5cf6"
-backgroundColor = "#0b1020"
-secondaryBackgroundColor = "#141b34"
-textColor = "#e6e9f5"
-linkColor = "#67e8f9"
-borderColor = "#252e52"
-codeBackgroundColor = "#141b34"
-
-[theme.dark.sidebar]
-backgroundColor = "#0f1530"
-secondaryBackgroundColor = "#1a2244"
-borderColor = "#252e52"
+showSidebarBorder = true
+linkUnderline = true
 
 [theme.light]
-primaryColor = "#6d28d9"
-backgroundColor = "#f7f7fc"
-secondaryBackgroundColor = "#eceefa"
-textColor = "#1b1f3b"
-linkColor = "#0e7490"
-borderColor = "#d9dcf0"
+primaryColor = "#9b2c22"
+backgroundColor = "#fbf8f1"
+secondaryBackgroundColor = "#f1ebde"
+textColor = "#221f1a"
+linkColor = "#8a2a20"
+borderColor = "#d9cfbd"
+codeBackgroundColor = "#f1ebde"
+codeTextColor = "#3b4a2a"
+dataframeHeaderBackgroundColor = "#ebe3d2"
+chartCategoricalColors = ["#9b2c22", "#3d5a6c", "#7a6a3a", "#4f6b4a", "#6b4f6b", "#8a6a55", "#5a5a5a"]
 
 [theme.light.sidebar]
-backgroundColor = "#eef0fb"
-secondaryBackgroundColor = "#ffffff"
+backgroundColor = "#f3eee3"
+secondaryBackgroundColor = "#fbf8f1"
+codeBackgroundColor = "#ebe3d2"
+textColor = "#221f1a"
+borderColor = "#d9cfbd"
+primaryColor = "#9b2c22"
+linkColor = "#8a2a20"
+
+[theme.dark]
+primaryColor = "#c4584a"
+backgroundColor = "#1b1916"
+secondaryBackgroundColor = "#25221e"
+textColor = "#ebe5d8"
+linkColor = "#e09a86"
+borderColor = "#3a352d"
+codeBackgroundColor = "#25221e"
+codeTextColor = "#c9d1a8"
+dataframeHeaderBackgroundColor = "#2c2823"
+chartCategoricalColors = ["#e09a86", "#8fb0c4", "#c9b77d", "#93b08c", "#b597b5", "#c4a58f", "#a0a0a0"]
+
+[theme.dark.sidebar]
+backgroundColor = "#211e1a"
+secondaryBackgroundColor = "#1b1916"
+codeBackgroundColor = "#2c2823"
+textColor = "#ebe5d8"
+borderColor = "#3a352d"
+primaryColor = "#c4584a"
+linkColor = "#e09a86"
