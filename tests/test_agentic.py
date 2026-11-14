@@ -267,3 +267,14 @@ def test_pipeline_resolves_follow_ups_for_retrieval(all_on):
     assert response.telemetry["memory"]["follow_up"]
     assert any("rankine" in q.lower() for q in p.retriever.queries)          # searched with the topic
     assert response.telemetry["cache_hit"] is False                          # follow-ups never cached
+    assert response.workflow == "rag_llm" and response.grounded              # answered from the topic's sources
+
+
+def test_router_sends_in_domain_follow_ups_to_rag():
+    from tests.test_core import make_router
+    follow = make_router(0.75).route("What are its advantages?", answer_mode="2-mark",
+                                     history=HISTORY, follow_up=True)
+    assert follow.workflow == "rag_llm" and "follow-up" in " ".join(follow.reasons)
+    outside = make_router(0.2).route("What are its advantages?", answer_mode="2-mark",
+                                     history=HISTORY, follow_up=True)
+    assert outside.workflow == "direct_llm"                                    # not in the KB: no fake grounding

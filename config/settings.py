@@ -62,7 +62,7 @@ def _flag(name, default):
 
 # Agentic RAG (src/agent/agentic_rag.py): plan sub-queries, judge evidence
 # coverage, reformulate, and fetch evidence for unsupported claims before revising.
-AGENTIC_RAG = _flag("EDUROUTE_AGENTIC_RAG", "false")
+AGENTIC_RAG = _flag("EDUROUTE_AGENTIC_RAG", "true")
 AGENTIC_MAX_STEPS = int(_env("EDUROUTE_AGENTIC_MAX_STEPS", "3"))
 AGENTIC_MIN_COVERAGE = float(_env("EDUROUTE_AGENTIC_MIN_COVERAGE", "0.6"))
 # Ask the LLM for a better search query when rules could not find coverage (one short call).
@@ -70,15 +70,15 @@ AGENTIC_LLM_REWRITE = _flag("EDUROUTE_AGENTIC_LLM_REWRITE", "false")
 
 # Context engineering (src/rag/context.py): token-budgeted, de-duplicated,
 # sentence-compressed sources and a cache-friendly prompt layout.
-CONTEXT_ENGINEERING = _flag("EDUROUTE_CONTEXT_ENGINEERING", "false")
+CONTEXT_ENGINEERING = _flag("EDUROUTE_CONTEXT_ENGINEERING", "true")
 CONTEXT_BUDGET = {"2-mark": 450, "5-mark": 750, "10-mark": 1100, "conversational": 600}
 
 # Memory (src/agent/memory.py): budgeted conversation memory and follow-up resolution.
-CONVERSATION_MEMORY = _flag("EDUROUTE_CONVERSATION_MEMORY", "false")
+CONVERSATION_MEMORY = _flag("EDUROUTE_CONVERSATION_MEMORY", "true")
 MEMORY_BUDGET_TOKENS = int(_env("EDUROUTE_MEMORY_BUDGET_TOKENS", "500"))
 
 # Inference optimisation (src/inference/answer_cache.py): repeated questions answered from cache.
-ANSWER_CACHE = _flag("EDUROUTE_ANSWER_CACHE", "false")
+ANSWER_CACHE = _flag("EDUROUTE_ANSWER_CACHE", "true")
 ANSWER_CACHE_SIZE = int(_env("EDUROUTE_ANSWER_CACHE_SIZE", "256"))
 ANSWER_CACHE_TTL_HOURS = float(_env("EDUROUTE_ANSWER_CACHE_TTL_HOURS", "24"))
 ANSWER_CACHE_SIMILARITY = float(_env("EDUROUTE_ANSWER_CACHE_SIMILARITY", "0.97"))

@@ -68,6 +68,7 @@ class QueryAnalysis:
     sub_questions: int
     word_count: int
     image_dependent: bool = False    # the answer is in the attached image itself
+    follow_up: bool = False          # resolved by conversation memory (src/agent/memory.py)
     reasons: list = field(default_factory=list)
 
     def to_dict(self):

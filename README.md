@@ -14,8 +14,12 @@ before showing the answer.
   - figures are checked against the sources;
   - an NLI contradiction check;
   - written calculations and units are recomputed;
+  - truth tables and short code snippets read off images are worked out exactly by built-in tools;
   - at most one automatic revision;
   - warnings shown to the student.
+- **Agentic RAG:** comparisons and multi-part questions are planned into sub-searches; evidence coverage is checked and the search refined; unsupported claims get targeted evidence before the revision. Every step is visible in the developer view.
+- **Context engineering and memory:** sources are de-duplicated and compressed to a token budget per answer type; conversation memory is budgeted; follow-ups ("What are its advantages?") are resolved to their topic.
+- **Inference optimisation:** a shared answer cache answers repeated questions instantly; query embeddings are cached; a stable prompt prefix is reused by the model server.
 - **Runs on open models:** Qwen2.5-3B (text) and Qwen2.5-VL 3B/7B (images) via Ollama, MiniLM embeddings, FAISS.
 - **Production features:**
   - access codes;
@@ -55,7 +59,12 @@ and checked on held-out questions. Verification runs only where it pays off.
 | Adaptive vs always verifying | **53% fewer tokens** |
 | Forcing retrieval on out-of-scope questions | 76% unsupported claims (13% in scope), which is why the router matters |
 | Answers citing their sources | 16% → 86% after the prompt fixes the benchmark exposed |
-| Image questions (8 known-answer images) | 6/8 (image route), 5/8 (adaptive) with the 3B vision model |
+| Image questions (8 known-answer images, 3B vision model, CPU) | 7/8 (image route), 4/8 (adaptive) before the exact reasoning tools; both lasting failures now answered correctly |
+| Full benchmark, all 140 questions on a laptop CPU | 0 failures; 84% of grounded answers cite sources; 30/30 out-of-scope questions kept ungrounded |
+| Follow-up questions resolved by memory (300 cases) | right topic in the top 5: 0.3% → **97.3%** |
+| Comparisons with agentic retrieval (40 pairs) | evidence for both sides: 22.5% → **75%** |
+| Context engineering, answer time on the CPU | **−34%** time, −33% prompt tokens; the best passage kept in 100% of cases |
+| Answer cache | repeated question 9 s → 0 s; **0 false hits** across 4,950 pairs of different questions |
 | Speech recognition, synthetic Indian-English voices | 4.3% word error rate |
 
 Human grading of answer correctness is in progress (Evaluation Studio). Details,

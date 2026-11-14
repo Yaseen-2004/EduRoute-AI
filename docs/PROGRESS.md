@@ -683,6 +683,25 @@ Colab could not be used, so everything now runs on the laptop (i7-8665U, 4 cores
 
 Tests: 92 passing.
 
+## 9e-2. Full 140-question benchmark on the laptop CPU (12–13 Nov 2026)
+
+Adaptive strategy, all 140 questions (100 in-domain, 30 out-of-domain, 10 extra), qwen2.5:3b on the i7 CPU, NLI on, extended index. File: `evaluation/results/system_benchmark_20261113_111439.json` (blind grading sheet `grading_sheet_20261113_111439.csv`).
+
+| Adaptive | GPU 11 Nov (50-question sample) | CPU 13 Nov (all 140) |
+|---|---|---|
+| Failures | 0 | 0 |
+| In-domain answered from sources | 85% | 79% |
+| Out-of-domain kept ungrounded | 100% | 100% (30/30) |
+| Grounded answers citing a source | 88% | 84% |
+| Invalid citations | 0 | 0 |
+| Mean unsupported-claim rate (verified answers) | 0.133 | 0.150 |
+| Answers with a counted contradiction | – | 0.7% (1/140) |
+| Median answer time | 4 s | 125 s (CPU) |
+
+The full question set confirms the 50-question sample within a few points. The one flagged answer (X05, the 32×32 convolution calculation) failed the arithmetic check after its revision and carried a contradiction, so the student would see both warnings rather than silent wrong working.
+
+The run was interrupted twice and resumed without loss. Modern Standby (lid closed) paused it for 54 min and 80 min, and a restart stopped it overnight. The answer affected by standby was re-run so its timing is clean.
+
 ## 9f. Agentic RAG, context engineering, inference optimisation, memory (12 Nov 2026)
 
 | Feature | Module | Mechanism |
@@ -692,7 +711,7 @@ Tests: 92 passing.
 | Inference optimisation | `src/inference/answer_cache.py`, `EduRouteRetriever.embed_query` | Answer cache shared by all sessions: exact tier, plus a semantic tier at cosine ≥ 0.97 with an identical content-word set. Same mode, scope and strategy only. No images, documents, follow-ups or answers with warnings. LRU, 256 entries, 24 h TTL. Query-embedding LRU (512). |
 | Memory management | `src/agent/memory.py` | Working memory (recent turns as key sentences, within 500 tokens), an episodic summary of older topics, and follow-up resolution into a self-contained search query. Bounded at 20 turns. |
 
-All four are settings (`EDUROUTE_AGENTIC_RAG`, `_CONTEXT_ENGINEERING`, `_CONVERSATION_MEMORY`, `_ANSWER_CACHE`). They are off until the running CPU benchmark finishes, so its later stages measure the same system.
+All four are settings (`EDUROUTE_AGENTIC_RAG`, `_CONTEXT_ENGINEERING`, `_CONVERSATION_MEMORY`, `_ANSWER_CACHE`). They stayed off until the CPU benchmark had finished, so it measured one system throughout, and are now on by default (see below).
 
 **Measured without the language model** (`python -m evaluation.evaluate_agentic`, engineering_v1 index, 100 benchmark questions; `evaluation/results/agentic_eval_20261112_200024.json`):
 
@@ -710,7 +729,33 @@ The tests caught two bugs before release:
 - The cache matched "advantages of **AC** motor" with "of **DC** motor", because a 3-letter minimum dropped "AC" and "DC". Every word now counts.
 - The planner ignored one-word sub-questions ("What is a transformer?").
 
-Still to measure, after the CPU benchmark: answer quality and latency with the features on, on the same questions.
+**With the language model** (14 Nov 2026; `evaluation/run_feature_ablation.py`; qwen2.5:3b on the laptop CPU; the same 10 cases, features off vs on; `evaluation/results/feature_ablation_20261114_103600.json`):
+
+| Cases | Features off | Features on |
+|---|---|---|
+| Normal questions (3): mean time / prompt tokens | 84 s / 1,226 | **56 s / 824** (−34% / −33%) |
+| Comparisons (3): evidence covers both sides | 1/3 | **3/3** (citations 9 → 12) |
+| Follow-ups (3): answered from the topic's sources | 0/3 | **3/3** (9 citations; 44 s instead of 13 s, because they now retrieve) |
+| Repeated question | 9.1 s | **0.0 s** (cache) |
+
+The first run found a gap. Memory resolved each follow-up's topic, but the router's "simple 2-mark definition → direct answer" shortcut then answered it ungrounded. A follow-up resolved from the conversation now goes to RAG when its topic is in the knowledge base (router rule 4b; an out-of-domain follow-up still goes direct). Re-run: 3/3 grounded.
+
+**The four features are now on by default.** Each can be switched off with its `EDUROUTE_*` setting.
+
+## 9g. Exact reasoning tools for images (14 Nov 2026)
+
+The CPU image benchmark (`image_benchmark_20261114_091650.json`) gave: image-only route 7/8 images with all facts right (94% of facts), adaptive 4/8 (75%). In both lasting failures the vision model **read the image exactly**, and the 3B model then reasoned wrongly from its own transcription:
+- a truth table read as 00→0, 01→0, 10→0, 11→1 was called NOT (it is AND);
+- `total = 0; for i in range(1, 6): total += i; print(total)` was said to print 21 (it prints 15).
+
+`src/vision/reasoning_tools.py` works like the arithmetic check: it computes, rather than trusting the model.
+- **Truth tables:** the rows of any 0/1 table are tested against AND, OR, NAND, NOR, XOR, XNOR, NOT and buffer, with any number of inputs.
+- **Code:** short snippets are run by a ~100-line interpreter that knows only numbers, strings, variables, arithmetic, comparisons, if/for/while and a few built-ins. There are no imports, attributes, function definitions or files, and runs stop at 10,000 steps.
+- **Hand-off:** the result is appended to the image reading as a CHECKED FACT for the text model.
+
+Run over every saved transcription, the tools gave AND and "15" for the two failures, and fired on none of the other six images. Live on the real models, both answers are now correct ("AND gate"; "prints 15"). Tests cover all gates; unsafe, endless and huge code is never run.
+
+Tests: 129 fast + 2 slow.
 
 Tests: 114 passing (fast suite 112 + 2 slow).
 

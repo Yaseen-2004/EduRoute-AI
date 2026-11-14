@@ -133,9 +133,12 @@ class AdaptiveRouter:
         return self.retriever.retrieve(question, top_k=settings.TOP_K, filters=filters)
 
     def route(self, question, has_image=False, from_voice=False, answer_mode="5-mark",
-              history=None, filters=None, probe_results=None):
+              history=None, filters=None, probe_results=None, follow_up=False):
         started = time.perf_counter()
         analysis = analyse_query(question, has_image, from_voice, answer_mode, history)
+        if follow_up:
+            analysis.follow_up = True
+            analysis.reasons.append("follow-up resolved from the conversation")
 
         needs_probe = self.strategy == "adaptive" and question.strip()
         if probe_results is None and needs_probe:
@@ -261,6 +264,14 @@ class AdaptiveRouter:
                 "This topic is outside the current knowledge base, so the answer is "
                 "not backed by retrieved sources."
             )
+
+        # 4b. A follow-up resolved by conversation memory ("What are its advantages?"):
+        # its facts are about the earlier topic, so it is answered from that topic's
+        # sources, never by the short-definition shortcut (14 Nov ablation: 3/3
+        # follow-ups found the right sources but were then answered ungrounded).
+        if analysis.follow_up:
+            reasons.append("follow-up about an in-domain topic -> RAG on that topic's sources")
+            return "rag_llm", True, reasons, None
 
         # 5. Simple short answers
         simple_modes = {"economy": ("2-mark", "5-mark", "conversational"),

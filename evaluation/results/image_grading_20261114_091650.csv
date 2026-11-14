@@ -1,0 +1,54 @@
+file,strategy,question,answer,expected,correct_0_3,notes
+truth_table.png,adaptive,Which logic gate does this truth table represent? Explain.,"This truth table represents a NOT gate. The output Y is the negation of the input A. The table shows that when both A and B are 0, Y is 0; when A is 0 and B is 1, Y is 0; when A is 1 and B is 0, Y is 0; and when both A and B are 1, Y is 1.",AND gate|AND|and gate|and-gate,,
+truth_table.png,modality,Which logic gate does this truth table represent? Explain.,"This truth table represents an AND gate. The output Y is 1 (true) only when both inputs A and B are 1 (true). For all other combinations, Y is 0 (false).",AND gate|AND|and gate|and-gate,,
+block_diagram.png,adaptive,What system does this block diagram show? Explain the role of each block.,"This block diagram shows a communication system, specifically a model of the communication process. The key roles of each block are as follows:
+
+- **Source**: The origin of the information or message, which could be a person, machine, or any entity generating the data to be transmitted.
+- **Encoder**: Converts raw information from the source into a format suitable for transmission over the channel, such as encoding the message into a digital signal.
+- **Channel**: The medium through which the encoded message is transmitted, such as a physical medium like a wire or a wireless medium like radio waves.
+- **Decoder**: Converts the encoded message back into its original form, such as decoding the signal into a digital signal or voice signal.
+- **Destination**: The point where the decoded message is received and understood.
+
+[1] For example, in a communication system, the encoder might take raw voice data from a microphone and encode it into digital signals, which are then transmitted over a network channel. The decoder at the destination would then decode these digital signals back into the original voice data.",communication;encoder|encoding|encodes|encode;decoder|decoding|decodes|decode;channel;noise|noisy,,
+block_diagram.png,modality,What system does this block diagram show? Explain the role of each block.,"Introduction: The block diagram illustrates a communication system, which is a fundamental concept in electrical and electronic engineering. The system includes a source, an encoder, a channel, a decoder, and a destination, with noise affecting the channel.
+
+- **Source**: The initial point of information generation.
+- **Encoder**: Converts the source information into a format suitable for transmission, such as converting analog signals to digital signals.
+- **Channel**: The medium through which the encoded information is transmitted, susceptible to noise.
+- **Decoder**: Converts the encoded information back into its original form, such as converting digital signals to analog signals.
+- **Destination**: The point where the decoded information is received.
+
+Example: In a radio communication system, the source could be a microphone capturing sound, the encoder converts the sound waves into an electrical signal, the channel is the air through which the signal travels, the decoder converts the signal back into sound at the receiver, and the destination is the listener who hears the decoded sound. Noise could be interference from other radio signals or static.",communication;encoder|encoding|encodes|encode;decoder|decoding|decodes|decode;channel;noise|noisy,,
+sine_plot.png,adaptive,What are the amplitude and frequency of this signal?,"The amplitude of the signal is 5V, as it represents the peak voltage from the negative trough to the positive peak. The frequency is 0.5 Hz, as one complete cycle occurs over 40 ms.",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+sine_plot.png,modality,What are the amplitude and frequency of this signal?,"The amplitude of the signal is 5 V, as the voltage reaches its maximum of 5 V and minimum of -5 V. The frequency is 50 Hz, calculated from the period of 20 ms.",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+bar_chart.png,adaptive,"Which pump has the highest flow rate, and what is it?",The highest flow rate is from Pump B with a flow rate of 50 litres per minute [2].,pump b;50,,
+bar_chart.png,modality,"Which pump has the highest flow rate, and what is it?","Pump B has the highest flow rate. Its flow rate is 50 litres per minute. The flow rates of Pump A and Pump C are 30 litres per minute and 20 litres per minute, respectively.",pump b;50,,
+equation.png,adaptive,Solve the problem shown in the image.,"The problem involves solving for voltage \( V \) using Ohm's law, \( V = I \times R \).
+
+Key points:
+- Given \( I = 2 \, \text{A} \) and \( R = 5 \, \Omega \).
+- Substitute these values into Ohm's law: \( V = 2 \, \text{A} \times 5 \, \Omega \).
+- Therefore, \( V = 10 \, \text{V} \).",10 v|10v|10 volt,,
+equation.png,modality,Solve the problem shown in the image.,"The problem involves solving for voltage (V) using Ohm's law, \( V = I \times R \).
+
+Given: Current (I) = 2 A, Resistance (R) = 5 Ω.
+
+Key point: Substituting the given values into Ohm's law, \( V = 2 \, \text{A} \times 5 \, \Omega = 10 \, \text{V} \). Therefore, the voltage (V) is 10 volts.",10 v|10v|10 volt,,
+series_circuit.png,adaptive,Find the total resistance and the current in this circuit.,"**Introduction**: In this circuit, we have a series connection of two resistors, R1 and R2, with a voltage source of 12V. The resistors are labeled as R1 = 10 Ω and R2 = 20 Ω.
+
+**Explanation**:
+- **Total Resistance**: In a series circuit, the total resistance \( R_{total} \) is the sum of the individual resistances. Therefore, \( R_{total} = R1 + R2 = 10 \, \Omega + 20 \, \Omega = 30 \, \Omega \).
+- **Current Calculation**: Using Ohm's Law, \( I = \frac{V}{R_{total}} \), where V is the voltage of the battery (12V) and \( R_{total} \) is the total resistance (30 Ω). Thus, \( I = \frac{12 \, V}{30 \, \Omega} = 0.4 \, A \).
+
+**Example**: In a simple series circuit with a 6V battery and two resistors of 3Ω and 4Ω, the total resistance would be 7Ω, and the current would be \( \frac{6 \, V}{7 \, \Omega} \approx 0.86 \, A \).",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+series_circuit.png,modality,Find the total resistance and the current in this circuit.,"**Introduction**: The circuit consists of two resistors, R1 and R2, connected in series with a voltage source. The resistors have values of 10 Ω and 20 Ω, respectively, and the voltage source provides 12 V.
+
+**Structured Explanation**:
+- **Total Resistance**: Since R1 and R2 are in series, the total resistance (R_total) is the sum of R1 and R2. Therefore, R_total = R1 + R2 = 10 Ω + 20 Ω = 30 Ω.
+- **Current Calculation**: Using Ohm's Law, the current (I) in the circuit can be calculated as I = V / R_total, where V is the voltage of the source. Thus, I = 12 V / 30 Ω = 0.4 A.
+
+**Example**: In a similar circuit with resistors of 5 Ω and 10 Ω, the total resistance would be 15 Ω, and if the voltage source is 15 V, the current would be 1 A.",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+code_snippet.png,adaptive,What does this code print? Explain why.,"The code prints `21`. It initializes `total` to 0 and iterates over the range from 1 to 6, adding each number to `total` in each iteration. The final value of `total` after the loop is the sum of the numbers 1 through 6, which is 21.",15,,
+code_snippet.png,modality,What does this code print? Explain why.,"The code prints `21`. It calculates the sum of numbers from 1 to 6, which is 21. The loop iterates six times, adding each number in the range to the total, resulting in the final value of `total` being `21`.",15,,
+flowchart.png,adaptive,What does this flowchart do?,"This flowchart evaluates whether a number is even or odd. It checks if the number is divisible by 2 (n mod 2 = 0). If true, it prints ""Even""; if false, it prints ""Odd"". The flowchart starts with ""Start"" and ends with ""End"".",even;odd,,
+flowchart.png,modality,What does this flowchart do?,"This flowchart evaluates whether a given integer is even or odd. It starts by reading an integer value ""n"". If ""n mod 2"" equals 0, it prints ""Even""; otherwise, it prints ""Odd"". The process concludes with ""End"".",even;odd,,

@@ -42,6 +42,7 @@ from src.verification.nli import build_nli_checker
 from src.verification.verifier import AnswerVerifier, verification_triggers
 from src.vision.analyzer import VisionAnalyzer
 from src.vision.image_input import ImageValidationError, prepare_image
+from src.vision.reasoning_tools import check_image_reading
 from src.voice.speech import to_speakable
 
 # A question that points at the image cannot be answered without it: answering
@@ -308,7 +309,7 @@ class EduRoutePipeline:
             decision = self.router.route(
                 question, has_image=prepared is not None, from_voice=from_voice,
                 answer_mode=answer_mode, history=history, filters=filters,
-                probe_results=probe if adaptive else None,
+                probe_results=probe if adaptive else None, follow_up=follow_up_topic is not None,
             )
         passages, visual_description, result = [], None, None
         workflow = decision.workflow
@@ -348,7 +349,7 @@ class EduRoutePipeline:
                     with _Timer(telemetry, "vision"):
                         description = analyzer.describe(prepared, question)
                     telemetry.add_generation(description)
-                    visual_description = description.text
+                    visual_description = description.text + check_image_reading(description.text)
                     messages = build_image_messages(question, visual_description, answer_mode,
                                                     prompt_history, subject_context)
                     with _Timer(telemetry, "generation"):
@@ -362,7 +363,7 @@ class EduRoutePipeline:
                     with _Timer(telemetry, "vision"):
                         description = analyzer.describe(prepared, question)
                     telemetry.add_generation(description)
-                    visual_description = description.text
+                    visual_description = description.text + check_image_reading(description.text)
                     query = f"{question} {visual_description[:400]}".strip()
                     passages = self._retrieve(query, filters, telemetry)
                     passages = self._prepare_context(question or query, passages, answer_mode, telemetry)

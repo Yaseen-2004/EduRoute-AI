@@ -511,7 +511,23 @@ def build():
                       "All 3 known errors caught"],
                      ["12 Nov", "App open to anyone on a public pod link; no load limits",
                       "Access codes, rate limit, answer queue, error references",
-                      "Gate and limit tests"]],
+                      "Gate and limit tests"],
+                     ["12 Nov", "Follow-ups ('What are its advantages?') retrieved unrelated passages",
+                      "Conversation memory resolves the topic; budgeted memory in the prompt",
+                      "Right topic in top 5: 0.3% → 97.3%"],
+                     ["12 Nov", "Comparisons retrieved evidence for one side only",
+                      "Agentic RAG: plan sub-queries, check coverage, refine, correct",
+                      "Both sides: 22.5% → 75%"],
+                     ["12 Nov", "~1,000 source tokens per prompt at 20 tokens/s on the CPU",
+                      "Context engineering: de-duplicate, compress, budget; stable prefix",
+                      "−34% answer time, best passage kept 100%"],
+                     ["12 Nov", "Answer cache matched 'AC motor' with 'DC motor'",
+                      "Every content word must match, short ones included",
+                      "0 false hits in 4,950 pairs"],
+                     ["14 Nov", "Follow-ups resolved but answered by the direct shortcut",
+                      "Router rule: in-domain follow-ups go to RAG", "0/3 → 3/3 grounded"],
+                     ["14 Nov", "3B model read a truth table / code exactly, then reasoned wrongly",
+                      "Exact tools: gate checker, safe code interpreter", "AND; prints 15"]],
                     [17, 54, 54, 45]),
               Spacer(1, 3 * mm),
               P("A larger NLI model (nli-deberta-v3-base) was tested as an alternative and performed <i>worse</i>: "
@@ -569,7 +585,7 @@ def build():
                    "python -m evaluation.evaluate_asr <folder>\n"
                    "python -m evaluation.analyse_grading --key <key.json> rater1.csv rater2.csv\n"
                    "python -m src.data_collection.compare_aicte\n"
-                   "python -m pytest -q                      (90 tests)"),
+                   "python -m pytest -q                      (131 tests)"),
               P("Production deployment on a GPU server or the DGX cluster (docs/GPU_SERVER.md)", "h2"),
               code("laptop:      venv\\Scripts\\python deploy\\make_server_package.py\n"
                    "DGX (k8s):   bash deploy/k8s/inspect_cluster.sh;  bash deploy/k8s/deploy.sh up\n"

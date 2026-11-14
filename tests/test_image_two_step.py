@@ -58,7 +58,9 @@ def test_vision_reads_then_text_model_answers(backends, monkeypatch):
     assert "TABLES" in vision.calls[0]["messages"][-1]["content"]              # asked to transcribe, not answer
     prompt = text.calls[0]["messages"][-1]["content"]
     assert TRANSCRIPT in prompt and "check each row" in prompt                 # text model reasons over the rows
-    assert "AND gate" in response.answer and response.visual_description == TRANSCRIPT
+    assert "AND gate" in response.answer and response.visual_description.startswith(TRANSCRIPT)
+    # The exact truth-table check is handed to the text model as a checked fact.
+    assert "CHECKED FACTS" in prompt and "matches the AND function" in prompt
 
 
 def test_one_step_mode_still_available(backends, monkeypatch):
