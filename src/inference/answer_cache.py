@@ -137,9 +137,12 @@ class SemanticAnswerCache:
             del self._entries[unpinned.pop(0)]            # least recently used first
 
     # ------------------------------------------------------------ disk
-    def _load(self):
+    def _load(self, compact=True):
+        """Read the saved cache. `compact=False`: only merge in lines other processes
+        added (the question-bank builder runs beside the app), never rewrite."""
         if not self.path.exists():
             return
+        self._seen = self.path.stat().st_mtime_ns
         now, version, records = time.time(), cache_version(), {}
         for line in self.path.read_text(encoding="utf-8").splitlines():
             try:
@@ -152,12 +155,23 @@ class SemanticAnswerCache:
                 continue
             records[(_tuple(r["signature"]), r["qkey"])] = r   # later lines win
         for key, r in records.items():
+            if not compact and key in self._entries and self._entries[key]["stored"] >= r["stored"]:
+                continue                                   # ours is as new: keep its place in the LRU
             vector = np.asarray(r["vector"], dtype=np.float32) if r.get("vector") else None
             self._entries[key] = {"stored": r["stored"], "vector": vector, "pinned": bool(r.get("pinned")),
                                   "words": frozenset(r["words"]), "response": r["response"],
                                   "question": r.get("question")}
         self._evict()
-        self._rewrite()                                    # compact: one line per live entry
+        if compact:
+            self._rewrite()                                # compact: one line per live entry
+            self._seen = self.path.stat().st_mtime_ns
+
+    def _sync(self):
+        """Pick up answers another process saved since we last looked (cheap stat check)."""
+        if self.path is None or not self.path.exists():
+            return
+        if self.path.stat().st_mtime_ns != getattr(self, "_seen", None):
+            self._load(compact=False)
 
     def _record(self, key, entry):
         """A saved line. Student questions are kept only as hashes and a meaning vector;
@@ -183,8 +197,11 @@ class SemanticAnswerCache:
         if self.path is None:
             return
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        stale = self.path.exists() and self.path.stat().st_mtime_ns != getattr(self, "_seen", None)
         with self.path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(self._record(key, entry), ensure_ascii=False) + "\n")
+        if not stale:
+            self._seen = self.path.stat().st_mtime_ns     # our own write is not news
 
     # ------------------------------------------------------------ API
     def get(self, question, signature, vector=None):
@@ -192,6 +209,7 @@ class SemanticAnswerCache:
         now = time.time()
         key = (signature, question_key(question))
         with self._lock:
+            self._sync()
             self._expire(now)
             if key in self._entries:
                 self._entries.move_to_end(key)

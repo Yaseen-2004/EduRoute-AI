@@ -32,6 +32,16 @@ def test_answers_survive_a_restart(path):
     assert reloaded.get("The Rankine cycle: explain", SIG)["answer"] == "A"         # semantic tier
 
 
+def test_answers_saved_by_another_process_are_picked_up(path):
+    """The question-bank builder runs beside the app: the app must see new bank answers."""
+    app = SemanticAnswerCache(WordEmbedder(), path=path)
+    assert app.get("Explain the Rankine cycle.", SIG) is None
+    builder = SemanticAnswerCache(WordEmbedder(), path=path)
+    time.sleep(0.05)                                     # a distinct file timestamp
+    builder.put("Explain the Rankine cycle.", SIG, response("bank"), pinned=True)
+    assert app.get("What is the Rankine cycle?", SIG)["answer"] == "bank"
+
+
 def test_no_student_wording_is_saved(path):
     secret = "Explain the Rankine cycle for Priya in room 204"
     SemanticAnswerCache(WordEmbedder(), path=path).put(secret, SIG, response("A", secret))
