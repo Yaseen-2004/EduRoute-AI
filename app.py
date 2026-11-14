@@ -415,7 +415,8 @@ def record_feedback(index):
     })
 
 
-def render_assistant(message, index):
+def render_assistant(message, index, interactive=True):
+    """`interactive=False`: a draft still being checked (no rating widget yet)."""
     r = message["response"]
     st.caption(WORKFLOW_LABELS.get(r["workflow"], r["workflow"]))
     for notice in r["notices"]:
@@ -449,7 +450,8 @@ def render_assistant(message, index):
     if developer_view:
         with st.expander("Developer view", icon=":material/developer_mode:"):
             render_developer(r)
-    st.feedback("thumbs", key=f"feedback_{index}", on_change=record_feedback, args=(index,))
+    if interactive:
+        st.feedback("thumbs", key=f"feedback_{index}", on_change=record_feedback, args=(index,))
 
 
 # Masthead: a plain title and one sentence, like the front page of a course
@@ -637,12 +639,28 @@ if prompt:
                                "again in a minute.", icon=":material/hourglass:")
                     st.stop()
                 thinking.update(label="Looking it up…")
-                response = pipeline.ask(
+                # Answer first, check afterwards: the student reads the draft while
+                # verification (and any revision) runs.
+                draft = pipeline.ask(
                     text, image_bytes=image_bytes, answer_mode=answer_mode, history=history,
                     filters=filters, subject_context=subject_context, from_voice=from_voice,
                     fallback_filters=fallback_filters, on_token=show_partial,
-                    document=st.session_state.get("document"),
-                ).to_dict()
+                    document=st.session_state.get("document"), defer_checks=True,
+                )
+                shown = st.empty()
+                final = draft
+                if draft.pending_check:
+                    live.empty()
+                    with shown.container():
+                        render_assistant({"role": "assistant", "response": draft.to_dict(), "audio": None},
+                                         None, interactive=False)
+                    thinking.update(label="Checking the answer against its sources…")
+                    final = draft.complete()
+                response = final.to_dict()
+                shown.empty()
+                if final.answer.strip() != draft.answer.strip():
+                    response["notices"].insert(0, "The answer was corrected after checking it against "
+                                                  "the sources.")
         except ValueError as error:
             thinking.update(label="Could not answer", state="error")
             st.error(str(error))
@@ -661,13 +679,16 @@ if prompt:
                      f"If it keeps happening, give this reference to the team: **{reference}**.")
             st.stop()
         live.empty()
-        first = response["telemetry"]["stages_ms"].get("first_token")
-        thinking.update(
-            label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} - "
-                  f"{response['telemetry']['total_ms'] / 1000:.1f} s"
-                  + (f" (first words after {first / 1000:.1f} s)" if first else ""),
-            state="complete",
-        )
+        stages = response["telemetry"]["stages_ms"]
+        first, ready = stages.get("first_token"), stages.get("draft_ready")
+        if response["telemetry"].get("cache_hit"):
+            timing = "answered instantly"
+        else:
+            timing = f"answer ready in {(ready or response['telemetry']['total_ms']) / 1000:.0f} s"
+            if first:
+                timing += f", first words after {first / 1000:.0f} s"
+        thinking.update(label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} · {timing}",
+                        state="complete")
 
         audio_bytes = None
         if speak:

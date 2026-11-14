@@ -6,7 +6,7 @@ from streamlit.testing.v1 import AppTest
 
 @pytest.mark.slow
 def test_app_answers_a_question_end_to_end():
-    at = AppTest.from_file("../app.py", default_timeout=180).run()
+    at = AppTest.from_file("../app.py", default_timeout=600).run()   # CPU-only: an answer can take minutes
     assert not at.exception
     assert at.sidebar.header[0].value == "EduRoute"
     assert at.title[0].value == "EduRoute"                 # plain masthead, no animated hero

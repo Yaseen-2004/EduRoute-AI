@@ -102,6 +102,7 @@ class EduRouteResponse:
     spoken_text: str = ""
     telemetry: dict = field(default_factory=dict)
     error: str | None = None
+    pending_check: bool = False          # a draft: response.complete() runs the checks
 
     def to_dict(self):
         return asdict(self)
@@ -249,7 +250,7 @@ class EduRoutePipeline:
 
     def ask(self, question, image_bytes=None, answer_mode="5-mark", history=None,
             filters=None, subject_context=None, from_voice=False, fallback_filters=None,
-            on_token=None, document=None):
+            on_token=None, document=None, defer_checks=False):
         """`fallback_filters`: wider scopes tried in order when `filters` has no
         in-domain match (default: the whole index). Pass [] to keep the filter strict."""
         if answer_mode not in ANSWER_MODES:
@@ -424,104 +425,122 @@ class EduRoutePipeline:
                 passages = fallback_passages
 
         answer = strip_prompt_echo(result.text)
+        draft_notices = list(notices)
+        telemetry.stages_ms["draft_ready"] = round((time.perf_counter() - started) * 1000, 1)
 
-        # 7. Selective verification (+ at most one revision call)
-        # Figures the student gave, or that the vision model read off the image,
-        # need no source (e.g. "32x32 image", "20 ms" on a graph axis).
-        known_text = f"{question} {visual_description or ''}"
-        verification = None
-        if passages and decision.verify_eligible:
-            triggers = list(decision.verify_triggers)
-            if self.router.strategy == "adaptive" and not decision.verify:
-                triggers = verification_triggers(None, None, answer=answer)
-            if triggers or self.router.strategy == "always_verify":
-                with _Timer(telemetry, "verification"):
-                    report = self.verifier.verify(answer, passages, triggers, question=known_text)
-                if self.verifier.needs_revision(report) and result.is_model_output:
-                    to_fix = self.verifier.claims_to_fix(report)
-                    before = report.unsupported_claim_rate
-                    if agent is not None:
-                        # Agentic correction: fetch evidence for exactly the unsupported
-                        # claims, so the revision can correct them, not only drop them.
-                        with _Timer(telemetry, "retrieval"):
-                            extra, steps = agent.correct(to_fix, passages)
-                        telemetry.agent_trace += [s.to_dict() for s in steps]
-                        if extra:
-                            passages = passages + extra      # appended: earlier [n] keep their numbers
-                    messages = build_revision_messages(question, answer, passages, to_fix, answer_mode)
-                    with _Timer(telemetry, "revision"):
-                        revised = self._generate(messages, telemetry, answer_mode, passages,
-                                                 question, notices)
-                    if revised.is_model_output and revised.text:
-                        answer = strip_prompt_echo(revised.text)
-                        with _Timer(telemetry, "verification"):
-                            report = self.verifier.verify(answer, passages, triggers, question=known_text)
-                        report.revised = True
-                        report.note = f"Unsupported claim rate before revision: {before}"
-                unchecked = sorted({n for c in report.claims for n in c.missing_numbers},
-                                   key=lambda n: float(n) if n.replace(".", "", 1).isdigit() else 0)
-                if unchecked:
-                    notices.append("These figures could not be found in the sources, so check them "
-                                   "before relying on them: " + ", ".join(unchecked))
-                contradicted = [c.text for c in report.claims if c.nli == "contradiction"]
-                if contradicted:
-                    notices.append("The sources contradict this part of the answer, so treat it "
-                                   "as likely wrong: " + " | ".join(t[:160] for t in contradicted))
-                verification = report.to_dict()
+        def complete(answer=answer, passages=passages):
+            """Steps 7-8 (verification, arithmetic, diagram), then log and cache.
+            Run at once, or later by the caller when `defer_checks` is set."""
 
-        if not result.is_model_output:
-            notices.append("Extractive mode: these are source excerpts, not a generated explanation.")
-        if passages and INSUFFICIENT_EVIDENCE.search(answer):
-            notices.append("The knowledge base did not contain enough information for a full answer.")
+            # 7. Selective verification (+ at most one revision call)
+            # Figures the student gave, or that the vision model read off the image,
+            # need no source (e.g. "32x32 image", "20 ms" on a graph axis).
+            known_text = f"{question} {visual_description or ''}"
+            verification = None
+            if passages and decision.verify_eligible:
+                triggers = list(decision.verify_triggers)
+                if self.router.strategy == "adaptive" and not decision.verify:
+                    triggers = verification_triggers(None, None, answer=answer)
+                if triggers or self.router.strategy == "always_verify":
+                    with _Timer(telemetry, "verification"):
+                        report = self.verifier.verify(answer, passages, triggers, question=known_text)
+                    if self.verifier.needs_revision(report) and result.is_model_output:
+                        to_fix = self.verifier.claims_to_fix(report)
+                        before = report.unsupported_claim_rate
+                        if agent is not None:
+                            # Agentic correction: fetch evidence for exactly the unsupported
+                            # claims, so the revision can correct them, not only drop them.
+                            with _Timer(telemetry, "retrieval"):
+                                extra, steps = agent.correct(to_fix, passages)
+                            telemetry.agent_trace += [s.to_dict() for s in steps]
+                            if extra:
+                                passages = passages + extra      # appended: earlier [n] keep their numbers
+                        messages = build_revision_messages(question, answer, passages, to_fix, answer_mode)
+                        with _Timer(telemetry, "revision"):
+                            revised = self._generate(messages, telemetry, answer_mode, passages,
+                                                     question, notices)
+                        if revised.is_model_output and revised.text:
+                            answer = strip_prompt_echo(revised.text)
+                            with _Timer(telemetry, "verification"):
+                                report = self.verifier.verify(answer, passages, triggers, question=known_text)
+                            report.revised = True
+                            report.note = f"Unsupported claim rate before revision: {before}"
+                    unchecked = sorted({n for c in report.claims for n in c.missing_numbers},
+                                       key=lambda n: float(n) if n.replace(".", "", 1).isdigit() else 0)
+                    if unchecked:
+                        notices.append("These figures could not be found in the sources, so check them "
+                                       "before relying on them: " + ", ".join(unchecked))
+                    contradicted = [c.text for c in report.claims if c.nli == "contradiction"]
+                    if contradicted:
+                        notices.append("The sources contradict this part of the answer, so treat it "
+                                       "as likely wrong: " + " | ".join(t[:160] for t in contradicted))
+                    verification = report.to_dict()
 
-        # 7b. Arithmetic: recompute what the answer computes (every workflow; no model needed).
-        # One revision call if a calculation is wrong and none has been made yet.
-        with _Timer(telemetry, "arithmetic"):
-            arithmetic = check_arithmetic(answer)
-        already_revised = bool(verification and verification.get("revised"))
-        if arithmetic and result.is_model_output and not already_revised:
-            fixes = [f"This calculation is wrong: {i.describe()}. Recompute it step by step."
-                     for i in arithmetic[:3]]
-            messages = build_revision_messages(question, answer, passages, fixes, answer_mode)
-            with _Timer(telemetry, "revision"):
-                revised = self._generate(messages, telemetry, answer_mode, passages, question, notices)
-            if revised.is_model_output and revised.text:
-                answer = strip_prompt_echo(revised.text)
+            if not result.is_model_output:
+                notices.append("Extractive mode: these are source excerpts, not a generated explanation.")
+            if passages and INSUFFICIENT_EVIDENCE.search(answer):
+                notices.append("The knowledge base did not contain enough information for a full answer.")
+
+            # 7b. Arithmetic: recompute what the answer computes (every workflow; no model needed).
+            # One revision call if a calculation is wrong and none has been made yet.
+            with _Timer(telemetry, "arithmetic"):
                 arithmetic = check_arithmetic(answer)
-                if verification is not None:
-                    verification["arithmetic_revised"] = True
-        if arithmetic:
-            notices.append("A calculation in this answer does not work out, so check it: "
-                           + "; ".join(i.describe() for i in arithmetic[:3]))
+            already_revised = bool(verification and verification.get("revised"))
+            if arithmetic and result.is_model_output and not already_revised:
+                fixes = [f"This calculation is wrong: {i.describe()}. Recompute it step by step."
+                         for i in arithmetic[:3]]
+                messages = build_revision_messages(question, answer, passages, fixes, answer_mode)
+                with _Timer(telemetry, "revision"):
+                    revised = self._generate(messages, telemetry, answer_mode, passages, question, notices)
+                if revised.is_model_output and revised.text:
+                    answer = strip_prompt_echo(revised.text)
+                    arithmetic = check_arithmetic(answer)
+                    if verification is not None:
+                        verification["arithmetic_revised"] = True
+            if arithmetic:
+                notices.append("A calculation in this answer does not work out, so check it: "
+                               + "; ".join(i.describe() for i in arithmetic[:3]))
 
-        # 8. Workflow diagram of the final answer, when asked for or for 10-mark processes
-        diagram = None
-        intent = (decision.analysis or {}).get("intent")
-        if question and answer and wants_diagram(question, answer_mode, intent):
-            with _Timer(telemetry, "diagram"):
-                if result.is_model_output:
-                    try:
-                        drawn = self.llm.generate(build_diagram_messages(question, answer),
-                                                  max_new_tokens=400, temperature=0.1)
-                        telemetry.add_generation(drawn)
-                        diagram = extract_dot(drawn.text)
-                    except LLMUnavailableError:
-                        diagram = None
-                # A disconnected model diagram (separate fragments) is replaced by the
-                # step-by-step flowchart of the answer, when the answer has steps.
-                if diagram and not is_connected(diagram):
-                    diagram = heuristic_dot(answer, title=question) or diagram
-                diagram = diagram or heuristic_dot(answer, title=question)
+            # 8. Workflow diagram of the final answer, when asked for or for 10-mark processes
+            diagram = None
+            intent = (decision.analysis or {}).get("intent")
+            if question and answer and wants_diagram(question, answer_mode, intent):
+                with _Timer(telemetry, "diagram"):
+                    if result.is_model_output:
+                        try:
+                            drawn = self.llm.generate(build_diagram_messages(question, answer),
+                                                      max_new_tokens=400, temperature=0.1)
+                            telemetry.add_generation(drawn)
+                            diagram = extract_dot(drawn.text)
+                        except LLMUnavailableError:
+                            diagram = None
+                    # A disconnected model diagram (separate fragments) is replaced by the
+                    # step-by-step flowchart of the answer, when the answer has steps.
+                    if diagram and not is_connected(diagram):
+                        diagram = heuristic_dot(answer, title=question) or diagram
+                    diagram = diagram or heuristic_dot(answer, title=question)
 
-        response = self._finish(question, answer, answer_mode, decision, workflow, telemetry,
-                                notices, started, passages=passages,
-                                visual_description=visual_description,
-                                verification=verification, is_model_output=result.is_model_output)
-        response.diagram_dot = diagram
-        response.arithmetic_issues = [i.describe() for i in arithmetic]
-        if cache_signature is not None and SemanticAnswerCache.cacheable(response):
-            self.answer_cache.put(question, cache_signature, response.to_dict(), cache_vector)
-        return response
+            response = self._finish(question, answer, answer_mode, decision, workflow, telemetry,
+                                    notices, started, passages=passages,
+                                    visual_description=visual_description,
+                                    verification=verification, is_model_output=result.is_model_output)
+            response.diagram_dot = diagram
+            response.arithmetic_issues = [i.describe() for i in arithmetic]
+            if cache_signature is not None and SemanticAnswerCache.cacheable(response):
+                self.answer_cache.put(question, cache_signature, response.to_dict(), cache_vector)
+            return response
+
+        if not defer_checks:
+            return complete()
+        # Answer first, check afterwards: the student reads the draft while the
+        # checks (and any revision) run; nothing is logged or cached until then.
+        draft = self._finish(question, answer, answer_mode, decision, workflow, telemetry,
+                             draft_notices, started, passages=passages,
+                             visual_description=visual_description,
+                             is_model_output=result.is_model_output, log=False)
+        draft.pending_check = True
+        draft.complete = complete
+        return draft
 
     def _from_cache(self, cached, telemetry, started, question):
         """A stored answer to the same question: no model call, no retrieval."""
@@ -551,7 +570,7 @@ class EduRoutePipeline:
 
     def _finish(self, question, answer, answer_mode, decision, workflow, telemetry, notices,
                 started, passages=None, visual_description=None, verification=None,
-                is_model_output=True, error=None):
+                is_model_output=True, error=None, log=True):
         passages = passages or []
         cited = sorted({int(n) for n in CITATION.findall(answer)})
         valid = [n for n in cited if 1 <= n <= len(passages)]
@@ -580,7 +599,7 @@ class EduRoutePipeline:
             verification=verification, decision=decision.to_dict(), notices=notices,
             spoken_text=to_speakable(answer), telemetry=asdict(telemetry), error=error,
         )
-        if self.log:
+        if self.log and log:
             record = {
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 # Store a hash, not the question, unless explicitly enabled (§21).
