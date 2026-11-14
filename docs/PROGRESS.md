@@ -768,6 +768,36 @@ Tests: 129 fast + 2 slow.
 
 Tests: 114 passing (fast suite 112 + 2 slow).
 
+## 9h. Faster answers on the CPU, and past papers (14 Nov 2026)
+
+**Saved answer cache and question bank** (`src/inference/answer_cache.py`, `src/inference/question_bank.py`, `run_question_bank.cmd`):
+- The cache is saved to disk and survives restarts. Each record carries the index, model and format version, so stale answers are dropped automatically.
+- Student questions are stored only as a hash, hashed words and an embedding, never as text (a test checks that no wording reaches the file).
+- Matching rule: the same content words, plus intent markers (compare, why, derive, calculate, example) and negations, and cosine ≥ 0.65.
+  - Simple rewordings ("What is X?", "Tell me about X", "X") scored as low as 0.69 against "Explain X."
+  - On the 100 benchmark questions: 500/500 rewordings found, 0 wrong matches.
+  - Tests also caught "Compare A and B" matching "Explain A and B" (fixed with the intent markers).
+- The question bank pre-answers "Explain <topic>." breadth-first over all 289 subjects and pins the answers (never expired or evicted), under the subject, branch and no-selection scopes.
+  - Live: "Can you explain calculus" was answered in **0.03 s** instead of 68–94 s.
+  - Build: 578 answers overnight (`run_question_bank.cmd`).
+- The app picks up answers saved by the builder while it runs.
+
+**Answer first, check afterwards** (`ask(defer_checks=True)`, `draft.complete()`):
+- The student sees the answer as soon as it is written. Verification, any revision, the arithmetic check and the diagram run afterwards, and the answer is replaced (with a notice) only if a check changed it.
+- The final answers are identical to before (tested).
+- On the 140-question CPU run, 50 answers had checks after writing. For those, the wait until readable was a mean of 364 s → 224 s. Across all answers: **182 s → 131 s (−28%)**.
+
+**Past papers** (`pages/4_Past_Papers.py`, `src/data_collection/past_papers.py`):
+- Upload a previous-year paper. It is split into questions (Q1. (a) …, [10], (5M); instructions dropped), with the format taken from the marks, and each question is matched to a catalogue subject and topic.
+- Any question can be answered (instantly if banked). The team can queue the whole paper into the question bank.
+- A 5-question sample paper matched all five to the right subject and topic.
+
+**Memory:** the vision model is no longer warmed at app start. Idle, it held 2.9 GB and, together with the bank build and other jobs, exhausted the laptop's RAM (MemoryError). It now loads in ~10 s on the first image question (`EDUROUTE_WARM_VISION_MODEL=true` to opt in).
+
+**Shared resources:** `src/ui/resources.py` gives every page one copy of the index, models and cache.
+
+**Research paper:** the edits in `docs/PAPER_UPDATE_14NOV.md` and the results above are applied (section 3.7 and results table 6.6 added).
+
 ## 10. What remains (report §25)
 
 **Done by me (12–14 Nov):**
@@ -791,5 +821,4 @@ Tests: 114 passing (fast suite 112 + 2 slow).
 
 **Blocked by hardware or access:**
 - **qwen2.5vl:7b image comparison:** needs ~8 GB of free RAM on this laptop (it has ~3 GB with the app open) or a GPU. Run `run_cpu_evaluation.cmd --with-7b --stages images7b` with other programs closed, or on Colab or the DGX.
-- **Research paper (Claude Docs):** the connector was unavailable in this session. The exact edits are in `docs/PAPER_UPDATE_14NOV.md`.
 - **Optional:** a larger NLI model or an LLM judge for reasoning errors.

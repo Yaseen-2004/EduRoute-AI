@@ -1,5 +1,7 @@
 # Research paper: edits to apply (results of 12–14 Nov 2026)
 
+**Status: applied to the paper on 14 Nov 2026**, together with the answer-first and saved-cache results. This file is kept as a record.
+
 Paper: "An Adaptive LLM, RAG, Multimodal and Voice-Enabled Framework for Resource-Efficient, Evidence-Grounded Educational Question Answering" (Claude Docs). The Docs connector was unavailable on 14 Nov, so these edits are written out here. Figures come from `evaluation/results/` and `docs/PROGRESS.md` §9e-2 to §9g.
 
 ## Abstract: add after the sentence on citation use
