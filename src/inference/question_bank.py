@@ -64,6 +64,23 @@ def plan(per_subject, branches=None):
     return jobs
 
 
+def from_file(path):
+    """Jobs from a saved list of questions (a past paper): each keeps its own format and subject."""
+    import json
+    catalogue = load_catalogue()
+    names = {g["code"]: g["name"] for g in catalogue["metadata"]["groups"]}
+    subjects = {s["id"]: s for s in catalogue["subjects"]}
+    home = {s["id"]: code for code, group in catalogue["groups"].items() for s in group
+            if s["id"].startswith(code)}
+    jobs = []
+    for q in json.loads(open(path, encoding="utf-8").read()):
+        subject = subjects.get(q.get("subject_id"))
+        if subject and q.get("question"):
+            code = home.get(subject["id"])
+            jobs.append((q["question"], subject, code, names.get(code, code), q.get("answer_mode", "5-mark")))
+    return jobs
+
+
 def signatures(mode, subject, branch_code, strategy="adaptive"):
     sig = SemanticAnswerCache.signature
     out = [sig(mode, {"subject_id": subject["id"]}, strategy), sig(mode, None, strategy)]
@@ -78,6 +95,8 @@ def main():
     parser.add_argument("--modes", nargs="+", default=["5-mark"])
     parser.add_argument("--branches", nargs="+", help="only these branch codes, e.g. CSE ECE")
     parser.add_argument("--limit", type=int, default=None, help="stop after this many new answers")
+    parser.add_argument("--from-file", help="JSON list of {question, answer_mode, subject_id} "
+                                            "(e.g. a past paper saved by the Past papers page)")
     args = parser.parse_args()
     keep_awake()
 
@@ -87,8 +106,11 @@ def main():
     cache = SemanticAnswerCache(retriever.model, path=settings.ANSWER_CACHE_PATH)
     pipeline = EduRoutePipeline(strategy="adaptive", retriever=retriever, log=False, answer_cache=cache)
 
-    jobs = [(q, s, code, name, mode) for q, s, code, name in plan(args.per_subject, args.branches)
-            for mode in args.modes]
+    if args.from_file:
+        jobs = from_file(args.from_file)
+    else:
+        jobs = [(q, s, code, name, mode) for q, s, code, name in plan(args.per_subject, args.branches)
+                for mode in args.modes]
     log(f"Question bank: {len(jobs)} questions planned ({len({j[1]['id'] for j in jobs})} subjects, "
         f"modes {' '.join(args.modes)}); cache has {cache.stats()['pinned']} pinned answers")
     made = skipped = rejected = 0

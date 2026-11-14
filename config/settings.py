@@ -113,6 +113,8 @@ VISION_TIMEOUT = int(_env("EDUROUTE_VISION_TIMEOUT", str(LLM_TIMEOUT)))
 # answers from that ("read, then reason"). One-step answers by the 3B vision
 # model misjudged a truth table it had transcribed correctly (12 Nov).
 VISION_TWO_STEP = _env("EDUROUTE_VISION_TWO_STEP", "true").lower() == "true"
+# Load the vision model at app start (fast first image question, but ~3 GB of RAM held).
+WARM_VISION_MODEL = _flag("EDUROUTE_WARM_VISION_MODEL", "false")
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 MAX_IMAGE_SIDE = 1536
 

@@ -19,7 +19,8 @@ from config import settings
 from src.llm.prompts import ANSWER_MODES, strip_prompt_echo
 from src.rag.session_document import (DOCUMENT_TYPES, MAX_DOCUMENT_BYTES, DocumentError,
                                       build_session_document)
-from src.utils.access import AnswerSlots, SlidingWindowLimiter, require_access
+from src.utils.access import require_access
+from src.ui.resources import get_pipeline, get_retriever, load_limits
 from src.utils.catalogue_loader import load_catalogue
 from src.utils.io import append_jsonl
 from src.utils.retention import purge_logs
@@ -70,37 +71,6 @@ def enforce_log_retention():
 
 
 enforce_log_retention()
-
-
-@st.cache_resource(show_spinner="Loading the knowledge base...")
-def get_retriever():
-    from src.rag.retrieval import EduRouteRetriever
-    return EduRouteRetriever(version=settings.RAG_VERSION, mode=settings.RETRIEVAL_MODE)
-
-
-@st.cache_resource(show_spinner=False)
-def get_answer_cache():
-    """One answer cache for every session on this server: a question one student
-    asked is answered instantly for the next (bounded LRU with a time limit)."""
-    if not settings.ANSWER_CACHE:
-        return None
-    from src.inference.answer_cache import SemanticAnswerCache
-    # Saved to disk, so a restart keeps it, and pre-filled by the question bank.
-    return SemanticAnswerCache(get_retriever().model, path=settings.ANSWER_CACHE_PATH)
-
-
-@st.cache_resource(show_spinner=False, max_entries=10)
-def get_pipeline(strategy, cost_preference):
-    from src.pipeline import EduRoutePipeline
-    return EduRoutePipeline(strategy=strategy, cost_preference=cost_preference,
-                            retriever=get_retriever(), answer_cache=get_answer_cache())
-
-
-@st.cache_resource(show_spinner=False)
-def load_limits():
-    """Shared by every session on this server."""
-    return (SlidingWindowLimiter(settings.MAX_QUESTIONS_PER_HOUR, 3600),
-            AnswerSlots(settings.MAX_CONCURRENT_ANSWERS))
 
 
 @st.cache_resource(show_spinner="Loading speech recognition...")
@@ -231,7 +201,9 @@ def warm_up_models():
     laptop CPU and several seconds on a GPU)."""
     def run():
         from src.llm.backends import build_backend
-        for role in ("text", "vision"):
+        # The vision model (2.9 GB) is warmed only when asked: on a 16 GB CPU laptop it sat
+        # idle in memory and helped exhaust RAM (14 Nov). It loads in ~10 s on first use.
+        for role in ("text", "vision") if settings.WARM_VISION_MODEL else ("text",):
             try:
                 backend = build_backend(settings, role)
                 if backend is not None and backend.name != "extractive" and backend.is_available():
@@ -261,6 +233,7 @@ with st.sidebar:
     st.header("EduRoute")
     st.caption("A study companion for B.Tech students")
     st.page_link("app.py", label="Ask EduRoute", icon=":material/forum:")
+    st.page_link("pages/4_Past_Papers.py", label="Past papers", icon=":material/history_edu:")
     if settings.ENABLE_STUDIO:
         st.page_link("pages/2_Evaluation_Studio.py", label="Evaluation studio", icon=":material/fact_check:")
         st.page_link("pages/3_Operations_Dashboard.py", label="Operations", icon=":material/monitoring:")
