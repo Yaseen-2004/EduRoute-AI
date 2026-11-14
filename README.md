@@ -59,7 +59,7 @@ and checked on held-out questions. Verification runs only where it pays off.
 | Adaptive vs always verifying | **53% fewer tokens** |
 | Forcing retrieval on out-of-scope questions | 76% unsupported claims (13% in scope), which is why the router matters |
 | Answers citing their sources | 16% → 86% after the prompt fixes the benchmark exposed |
-| Image questions (8 known-answer images, 3B vision model, CPU) | 7/8 (image route), 4/8 (adaptive) before the exact reasoning tools; both lasting failures now answered correctly |
+| Image questions (8 known-answer images, 3B vision model, CPU) | adaptive **8/8** with every fact right (4/8 before the exact reasoning tools); image-only 7/8 |
 | Full benchmark, all 140 questions on a laptop CPU | 0 failures; 84% of grounded answers cite sources; 30/30 out-of-scope questions kept ungrounded |
 | Follow-up questions resolved by memory (300 cases) | right topic in the top 5: 0.3% → **97.3%** |
 | Comparisons with agentic retrieval (40 pairs) | evidence for both sides: 22.5% → **75%** |

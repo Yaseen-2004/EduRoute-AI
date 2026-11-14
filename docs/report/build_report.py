@@ -527,7 +527,7 @@ def build():
                      ["14 Nov", "Follow-ups resolved but answered by the direct shortcut",
                       "Router rule: in-domain follow-ups go to RAG", "0/3 → 3/3 grounded"],
                      ["14 Nov", "3B model read a truth table / code exactly, then reasoned wrongly",
-                      "Exact tools: gate checker, safe code interpreter", "AND; prints 15"]],
+                      "Exact tools: gate checker, safe code interpreter", "Adaptive images 4/8 → 8/8"]],
                     [17, 54, 54, 45]),
               Spacer(1, 3 * mm),
               P("A larger NLI model (nli-deberta-v3-base) was tested as an alternative and performed <i>worse</i>: "

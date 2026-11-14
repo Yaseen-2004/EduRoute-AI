@@ -755,6 +755,15 @@ The CPU image benchmark (`image_benchmark_20261114_091650.json`) gave: image-onl
 
 Run over every saved transcription, the tools gave AND and "15" for the two failures, and fired on none of the other six images. Live on the real models, both answers are now correct ("AND gate"; "prints 15"). Tests cover all gates; unsafe, endless and huge code is never run.
 
+**Image benchmark re-run with the tools** (CPU, `image_benchmark_20261114_120214.json`):
+
+| Route | Before (14 Nov 09:16) | After (14 Nov 12:02) |
+|---|---|---|
+| Adaptive: images with all facts right | 4/8 (75% of facts) | **8/8 (100%)** |
+| Image-only: images with all facts right | 7/8 (94%) | 7/8 (94%) |
+
+The one remaining miss is on the image-only route: the block-diagram answer leaves out one of the five expected elements, a recall gap, not a reasoning error.
+
 Tests: 129 fast + 2 slow.
 
 Tests: 114 passing (fast suite 112 + 2 slow).

@@ -1,0 +1,57 @@
+file,strategy,question,answer,expected,correct_0_3,notes
+truth_table.png,adaptive,Which logic gate does this truth table represent? Explain.,"This truth table represents an AND gate. The output Y is 1 only when both inputs A and B are 1, which matches the AND logic function. All other input combinations result in an output of 0, consistent with the AND gate's behavior.",AND gate|AND|and gate|and-gate,,
+truth_table.png,modality,Which logic gate does this truth table represent? Explain.,"This truth table represents an AND gate. Key points: 
+- The output Y is 1 only when both A and B are 1, matching the AND logic function.
+- All other input combinations result in Y being 0, which is consistent with an AND gate's behavior.",AND gate|AND|and gate|and-gate,,
+block_diagram.png,adaptive,What system does this block diagram show? Explain the role of each block.,"This block diagram shows the basic components of a communication system, specifically the encoding and decoding process. The key blocks and their roles are as follows:
+
+- **Source**: Represents the origin of the data or message.
+- **Encoder**: Converts the source data into a format that can be transmitted over the channel.
+- **Channel**: The medium through which the encoded data is transmitted, which can include wires, optical fibers, or wireless signals.
+- **Decoder**: Converts the encoded data back into its original form at the destination.
+- **Destination**: The final point where the decoded data is received and interpreted.
+
+[1] [2][3] The encoder takes the raw data from the source and encodes it into a format suitable for transmission over the channel. The channel then transmits this encoded data. Upon reaching the destination, the decoder decodes the received data back into its original form, allowing the destination to interpret the message correctly. The channel can be affected by noise, which is represented by the arrow pointing to the decoder. The encoder and decoder are crucial components in ensuring that the data is accurately transmitted and received, as shown in the OSI model [3].",communication;encoder|encoding|encodes|encode;decoder|decoding|decodes|decode;channel;noise|noisy,,
+block_diagram.png,modality,What system does this block diagram show? Explain the role of each block.,"Introduction: This block diagram illustrates a communication system, specifically the communication model, which is a fundamental concept in information theory and digital communications.
+
+Key Concepts:
+- **Source**: The origin of the message, like a microphone capturing sound waves.
+- **Encoder**: Converts the raw message into a format suitable for transmission, such as compressing audio data into a digital signal.
+- **Channel**: The medium through which the message is transmitted, such as an Ethernet cable or satellite link.
+- **Decoder**: Converts the encoded message back into its original form, like a speaker converting the digital signal back into sound waves.
+
+Example: In a wireless communication system, the source could be a mobile phone, the encoder compresses the voice data, the channel is the airwaves, and the decoder in the receiver converts the compressed voice data back into audible sound.",communication;encoder|encoding|encodes|encode;decoder|decoding|decodes|decode;channel;noise|noisy,,
+sine_plot.png,adaptive,What are the amplitude and frequency of this signal?,"The amplitude of the signal is 5 V. The frequency is 50 Hz, calculated from the time period of 20 ms.",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+sine_plot.png,modality,What are the amplitude and frequency of this signal?,"The amplitude of the signal is 5V, as the voltage oscillates between -5V and 5V [1]. The frequency is 50 Hz, given that the period is 20 ms [1]. [1] The sources provide no figures for frequency or period, so these calculations are based on general knowledge.",5 v|5v|5 volt;50 hz|50hz|50 hertz,,
+bar_chart.png,adaptive,"Which pump has the highest flow rate, and what is it?","Pump B has the highest flow rate. [3] The flow rates are clearly marked on the bars: 30 for Pump A, 50 for Pump B, and 20 for Pump C. [3]",pump b;50,,
+bar_chart.png,modality,"Which pump has the highest flow rate, and what is it?","Pump B has the highest flow rate. Its flow rate is 50 litres per minute. The flow rates of Pump A and Pump C are 30 litres per minute and 20 litres per minute, respectively.",pump b;50,,
+equation.png,adaptive,Solve the problem shown in the image.,"The equation given is Ohm's law, \( V = I \times R \). Given \( I = 2 \, \text{A} \) and \( R = 5 \, \Omega \), we can solve for \( V \). Substituting the values, \( V = 2 \, \text{A} \times 5 \, \Omega = 10 \, \text{V} \). Therefore, the voltage \( V \) is 10 volts.",10 v|10v|10 volt,,
+equation.png,modality,Solve the problem shown in the image.,"The problem involves Ohm's law, which is given by \( V = I \times R \). Given \( I = 2 \, \text{A} \) and \( R = 5 \, \Omega \), we can find \( V \) by substituting these values into the equation. Thus, \( V = 2 \, \text{A} \times 5 \, \Omega = 10 \, \text{V} \). Key points: Use Ohm's law to calculate voltage from given current and resistance. Calculate \( V = 10 \, \text{V} \).",10 v|10v|10 volt,,
+series_circuit.png,adaptive,Find the total resistance and the current in this circuit.,"Introduction: 
+To solve for the total resistance and current in the given series circuit, we first identify the resistances and then apply the rules of series circuits.
+
+Key Concepts:
+- In a series circuit, the total resistance (R_total) is the sum of individual resistances.
+- Ohm's Law (V=IR) can be used to find the current, where V is the voltage, I is the current, and R is the resistance.
+
+Explanation:
+- **Total Resistance**: The resistors R1 and R2 are in series, so their resistances add up. Given R1 = 10 Ω and R2 = 20 Ω, the total resistance is R_total = R1 + R2 = 10 Ω + 20 Ω = 30 Ω.
+- **Current**: Using Ohm's Law, the current I can be calculated as I = V / R_total, where V is the voltage of the battery. Given V = 12V, the current is I = 12V / 30Ω = 0.4 A.
+
+Example:
+Consider a simple series circuit with a 6V battery and two resistors, one with a resistance of 3Ω and the other with 9Ω. The total resistance is 3Ω + 9Ω = 12Ω. If the battery voltage is 6V, the current is 6V / 12Ω = 0.5A.",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+series_circuit.png,modality,Find the total resistance and the current in this circuit.,"**Introduction:**
+The image provided is a circuit diagram representing a series circuit with a battery and two resistors. The goal is to determine the total resistance and the current flowing through the circuit using Ohm's Law.
+
+**Structured Explanation:**
+- **Total Resistance Calculation**: In a series circuit, the total resistance \( R_{total} \) is the sum of individual resistances. Given \( R1 = 10 \, \Omega \) and \( R2 = 20 \, \Omega \), the total resistance is \( R_{total} = R1 + R2 = 10 \, \Omega + 20 \, \Omega = 30 \, \Omega \).
+- **Current Calculation**: Ohm's Law states that \( I = \frac{V}{R} \), where \( V \) is the voltage and \( R \) is the resistance. The battery provides 12 V. Therefore, the current \( I \) in the circuit is \( I = \frac{12 \, V}{30 \, \Omega} = 0.4 \, A \).
+
+**Example:**
+For a different series circuit with resistors of 5 Ω and 15 Ω, the total resistance would be \( 5 \, \Omega + 15 \, \Omega = 20 \, \Omega \). If the battery provides 10 V, the current would be \( \frac{10 \, V}{20 \, \Omega} = 0.5 \, A \).",30 Ω|30Ω|30 ohm|30 ohms|30-ohm;0.4 A|0.4A|0.4 amp|0.4 ampere|400 mA,,
+code_snippet.png,adaptive,What does this code print? Explain why.,"The code prints `15`. This is because the loop iterates over the numbers 1 through 5, adding each to the initial `total` of 0. The sum of the numbers from 1 to 5 is 15.",15,,
+code_snippet.png,modality,What does this code print? Explain why.,"The code prints '15'. Key points: 
+- The loop iterates from 1 to 5, adding each number to `total`.
+- `total` starts at 0 and accumulates to 15 after the loop completes.",15,,
+flowchart.png,adaptive,What does this flowchart do?,"This flowchart evaluates whether a number is even or odd. It starts by taking a value ""n"". It checks if ""n mod 2 = 0"". If the result is true, it prints ""Even"" and ends. If the result is false, it prints ""Odd"" and ends. The flowchart does not differentiate between positive and negative numbers.",even;odd,,
+flowchart.png,modality,What does this flowchart do?,"This flowchart determines if a given integer is even or odd. It starts by reading an integer ""n"". It then checks if ""n mod 2 = 0"". If true, it prints ""Even""; if false, it prints ""Odd"".",even;odd,,
