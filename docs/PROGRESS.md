@@ -770,18 +770,26 @@ Tests: 114 passing (fast suite 112 + 2 slow).
 
 ## 10. What remains (report §25)
 
-Everything below is done in the **evaluation studio** (`streamlit run app.py`,
-then the *Evaluation Studio* page in the sidebar). Each person works under
-their own name, and the files are saved in the formats the analysis scripts read.
+**Done by me (12–14 Nov):**
+- Corpus gap fill (AICTE core gaps; *Phase-locked loop*): 37 articles, 800 passages; no rebuild needed (§9b).
+- The full benchmark on all 140 questions (CPU, §9e-2).
+- Image, voice and feature measurements (§9f, §9g).
+- Production deployment kits (§9c, §9d).
+- Offline read-aloud.
+- The non-AI "course handbook" redesign.
+
+**Needs the team.** Done in the **evaluation studio** (`streamlit run app.py`, then *Evaluation studio* in the sidebar, team code). Each person works under their own name, and the files are saved in the formats the analysis scripts read.
 
 | Item | Studio tab | Who | Then run |
 |---|---|---|---|
-| Grade the 250 answers of the 11 Nov run, blind, 2 raters | Grade answers | Team (2 people, ~3–4 h each) | `python -m evaluation.analyse_grading --key evaluation/results/grading_key_20261111_042423.json --benchmark evaluation/results/system_benchmark_20261111_042423.json evaluation/results/grading/*.csv` |
-| Label the 120 claims | Label claims | Team (~1 h) | `python -m evaluation.claim_labels score evaluation/results/claim_labelling/<file>.csv` |
+| Grade answers blind, 2 raters: the 140 answers of the 13 Nov CPU run (current system) or the 250 of the 11 Nov GPU run (5-strategy comparison) | Grade answers | Team (2 people, ~2–4 h each) | `python -m evaluation.analyse_grading --key evaluation/results/grading_key_20261113_111439.json --benchmark evaluation/results/system_benchmark_20261113_111439.json evaluation/results/grading/*.csv` |
+| Label the exported claims (`claim_labels_20261114_091735.csv`) | Label claims | Team (~1 h) | `python -m evaluation.claim_labels score evaluation/results/claim_labelling/<file>.csv` |
 | Record 20–30 questions per speaker (with consent) | Record voice | Team | `python -m evaluation.evaluate_asr evaluation/voice_eval` |
-| Add real images with their expected facts | Add images | Team | Run the image step on Colab (notebook defaults) |
+| Add real images with their expected facts | Add images | Team | `run_cpu_evaluation.cmd --stages images --redo` |
 | Confirm or correct each subject; the AICTE match is shown (§7.5) | Review syllabus | Team; branches without an AICTE reference need the university syllabus | – |
-| Push to GitHub and create the Streamlit app | – | Team (`docs/DEPLOYMENT.md`, ~20 min) | – |
-| Corpus update for gaps found (AICTE core gaps; *Phase-locked loop*); rebuild the index on a GPU | – | Team decides, then me | – |
-| Full 130-question benchmark and the 3B vs 7B image comparison on the GPU server | – | Me, once server access is given | `bash deploy/gpu/run_evaluations.sh` |
-| Optional: a larger NLI model or an LLM judge for reasoning errors | – | – | – |
+| Push to GitHub; host it (Streamlit Cloud, a GPU server or the DGX) | – | Team: say the word and I prepare and run it | `docs/DEPLOYMENT.md`, `docs/GPU_SERVER.md` |
+
+**Blocked by hardware or access:**
+- **qwen2.5vl:7b image comparison:** needs ~8 GB of free RAM on this laptop (it has ~3 GB with the app open) or a GPU. Run `run_cpu_evaluation.cmd --with-7b --stages images7b` with other programs closed, or on Colab or the DGX.
+- **Research paper (Claude Docs):** the connector was unavailable in this session. The exact edits are in `docs/PAPER_UPDATE_14NOV.md`.
+- **Optional:** a larger NLI model or an LLM judge for reasoning errors.
