@@ -54,6 +54,7 @@ def availability():
         "asr": importlib.util.find_spec("faster_whisper") is not None,
         "tts_edge": importlib.util.find_spec("edge_tts") is not None,
         "tts_gtts": importlib.util.find_spec("gtts") is not None,
+        "tts_offline": offline_voice_available(),
     }
 
 
@@ -189,7 +190,7 @@ def to_speakable(text, max_words=180):
 
 
 def synthesize(text, voice=None):
-    """Return (mp3_bytes, engine_name). Raises VoiceUnavailableError."""
+    """Return (audio_bytes, engine_name): MP3 from the online voices, WAV from the offline one. Raises VoiceUnavailableError."""
     speakable = to_speakable(text)
     if not speakable:
         raise ValueError("Nothing to speak.")
@@ -228,7 +229,70 @@ def synthesize(text, voice=None):
         except Exception as error:
             errors.append(f"gTTS: {error}")
 
+    # Both engines above are online services; without internet (12-14 Nov: the
+    # Wi-Fi dropped) read-aloud failed. The operating system's own voice works offline.
+    try:
+        audio = synthesize_offline(speakable)
+        if audio:
+            return audio, "offline system voice"
+    except Exception as error:
+        errors.append(f"offline voice: {error}")
+
     raise VoiceUnavailableError(
-        "Text-to-speech failed or is not installed (pip install edge-tts gTTS). "
-        + "; ".join(errors)
+        "Text-to-speech failed (no internet for the online voices, and no offline voice "
+        "available). " + "; ".join(errors)
     )
+
+
+OFFLINE_TIMEOUT_S = 120
+
+_WINDOWS_TTS = r"""
+Add-Type -AssemblyName System.Speech
+$s = New-Object System.Speech.Synthesis.SpeechSynthesizer
+$voices = $s.GetInstalledVoices() | Where-Object { $_.Enabled } | ForEach-Object { $_.VoiceInfo }
+$pick = $voices | Where-Object { $_.Culture.Name -eq 'en-IN' } | Select-Object -First 1
+if (-not $pick) { $pick = $voices | Where-Object { $_.Culture.Name -like 'en-*' -and $_.Gender -eq 'Female' } | Select-Object -First 1 }
+if (-not $pick) { $pick = $voices | Where-Object { $_.Culture.Name -like 'en-*' } | Select-Object -First 1 }
+if ($pick) { $s.SelectVoice($pick.Name) }
+$s.Rate = 0
+$s.SetOutputToWaveFile($args[1])
+$s.Speak([IO.File]::ReadAllText($args[0], [Text.Encoding]::UTF8))
+$s.Dispose()
+"""
+
+
+def offline_voice_available():
+    import shutil
+    import sys
+    return sys.platform == "win32" or bool(shutil.which("espeak-ng") or shutil.which("espeak"))
+
+
+def synthesize_offline(text):
+    """WAV bytes from the operating system's own voice (no internet):
+    Windows SAPI (System.Speech) or espeak-ng/espeak on Linux."""
+    import shutil
+    import subprocess
+    import sys
+    import tempfile
+    from pathlib import Path
+
+    with tempfile.TemporaryDirectory() as tmp:
+        source, wav = Path(tmp) / "speech.txt", Path(tmp) / "speech.wav"
+        source.write_text(text, encoding="utf-8")       # a file, not a command line: no length limit or quoting
+        if sys.platform == "win32":
+            script = Path(tmp) / "speak.ps1"
+            script.write_text(_WINDOWS_TTS, encoding="utf-8")
+            subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script),
+                            str(source), str(wav)], check=True, capture_output=True, timeout=OFFLINE_TIMEOUT_S)
+        else:
+            engine = shutil.which("espeak-ng") or shutil.which("espeak")
+            if not engine:
+                raise VoiceUnavailableError("no offline voice (install espeak-ng)")
+            subprocess.run([engine, "-v", "en", "-f", str(source), "-w", str(wav)], check=True,
+                           capture_output=True, timeout=OFFLINE_TIMEOUT_S)
+        return wav.read_bytes() if wav.exists() else b""
+
+
+def audio_mime(audio):
+    """'audio/wav' for the offline voice, 'audio/mp3' for the online ones."""
+    return "audio/wav" if audio[:4] == b"RIFF" else "audio/mp3"

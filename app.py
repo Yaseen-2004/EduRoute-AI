@@ -123,7 +123,7 @@ def system_status():
         "llm": (llm_ok, llm_detail),
         "vision": (vision_ok, vision_detail),
         "asr": voice["asr"],
-        "tts": voice["tts_edge"] or voice["tts_gtts"],
+        "tts": voice["tts_edge"] or voice["tts_gtts"] or voice["tts_offline"],
     }
 
 
@@ -435,7 +435,8 @@ def render_assistant(message, index):
             st.caption("Machine reading of the image - may contain mistakes.")
             st.markdown(r["visual_description"])
     if message.get("audio"):
-        st.audio(message["audio"], format="audio/mp3")
+        from src.voice.speech import audio_mime
+        st.audio(message["audio"], format=audio_mime(message["audio"]))
     if r["sources"]:
         with st.expander(f"Sources ({len(r['cited_sources'])} cited of {len(r['sources'])})",
                          icon=":material/menu_book:"):

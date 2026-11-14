@@ -6,7 +6,7 @@ ARG TORCH_INDEX=cu124
 ENV PYTHONUNBUFFERED=1 HF_HUB_DISABLE_TELEMETRY=1 TOKENIZERS_PARALLELISM=false \
     HF_HOME=/models/hf
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends curl espeak-ng && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY requirements-gpu.txt .
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/${TORCH_INDEX} \

@@ -22,7 +22,7 @@ $PYTHON -c 'import sys; assert sys.version_info >= (3, 10), "Python 3.10+ needed
 # Bare container images (pods) often lack venv/zstd; install them when running as root.
 if ! $PYTHON -m venv --help >/dev/null 2>&1 || ! command -v zstd >/dev/null; then
   if [ "$(id -u)" = 0 ] && command -v apt-get >/dev/null; then
-    apt-get update -qq && apt-get install -y -qq python3-venv zstd curl ca-certificates >/dev/null
+    apt-get update -qq && apt-get install -y -qq python3-venv zstd curl ca-certificates espeak-ng >/dev/null
   fi
 fi
 [ -d "$VENV" ] || $PYTHON -m venv "$VENV"
