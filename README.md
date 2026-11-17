@@ -65,7 +65,7 @@ and checked on held-out questions. Verification runs only where it pays off.
 | Comparisons with agentic retrieval (40 pairs) | evidence for both sides: 22.5% → **75%** |
 | Context engineering, answer time on the CPU | **−34%** time, −33% prompt tokens; the best passage kept in 100% of cases |
 | Answer cache | repeated question 9 s → 0 s; **0 false hits** across 4,950 pairs of different questions |
-| Speech recognition, synthetic Indian-English voices | 4.3% word error rate |
+| Speech recognition, synthetic Indian-English voices | 4.3% → **3.6%** word error rate (subject found automatically from a first pass; noisy, quiet audio 7.1% → 6.4%) |
 
 Human grading of answer correctness is in progress (Evaluation Studio). Details,
 negative results and every run: [docs/PROGRESS.md](docs/PROGRESS.md),

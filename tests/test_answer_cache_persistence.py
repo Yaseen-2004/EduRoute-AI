@@ -1,6 +1,7 @@
 """The saved answer cache: survives restarts, keeps no student wording, drops stale answers."""
 
 import json
+import re
 import time
 
 import pytest
@@ -46,8 +47,10 @@ def test_no_student_wording_is_saved(path):
     secret = "Explain the Rankine cycle for Priya in room 204"
     SemanticAnswerCache(WordEmbedder(), path=path).put(secret, SIG, response("A", secret))
     text = path.read_text(encoding="utf-8").lower()
-    for word in ("priya", "room", "204", "rankine"):
+    for word in ("priya", "room", "rankine"):
         assert word not in text, word
+    # "204" as a number of its own; timestamps and embedding values (0.204...) may contain the digits
+    assert not re.search(r"(?<![\d.])204(?![\d.])", text)
     # ...yet the answer is still found after a restart
     assert SemanticAnswerCache(WordEmbedder(), path=path).get(secret, SIG)["answer"] == "A"
 

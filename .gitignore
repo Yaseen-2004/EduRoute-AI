@@ -34,5 +34,5 @@ run/
 deploy/gpu/local.conf
 deploy/gpu/pod.conf
 
-# Downloaded/converted model weights (rebuild: docs/MULTILINGUAL.md)
+# Translation model from the removed multilingual mode (git history, 17 Nov)
 models/translation/

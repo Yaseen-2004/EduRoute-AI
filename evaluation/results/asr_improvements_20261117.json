@@ -1,0 +1,46 @@
+{
+ "date": "2026-11-17",
+ "clips": 20,
+ "model": "base.en",
+ "metric": "WER",
+ "degraded": "volume -26 dB, fan noise + 50/100 Hz hum at 10 dB SNR",
+ "results": {
+  "generic prompt": {
+   "clean": 0.043,
+   "degraded": 0.071,
+   "median_s": 2.0
+  },
+  "auto subject (two passes)": {
+   "clean": 0.036,
+   "degraded": 0.064,
+   "median_s": 4.1,
+   "subject_right": "39/40"
+  },
+  "true subject": {
+   "clean": 0.036,
+   "degraded": 0.064,
+   "median_s": 2.0
+  },
+  "clean-up only": {
+   "clean": 0.05,
+   "degraded": 0.079,
+   "median_s": 1.9
+  },
+  "clean-up + true subject": {
+   "clean": 0.036,
+   "degraded": 0.043,
+   "median_s": 1.9
+  },
+  "clean-up + true subject + hotwords": {
+   "clean": 0.036,
+   "degraded": 0.05,
+   "median_s": 2.0
+  },
+  "+ word timestamps": {
+   "clean": 0.293,
+   "degraded": 0.186,
+   "median_s": 12.1
+  }
+ },
+ "kept": "auto subject second pass; clean-up, hotwords and word timestamps not used"
+}

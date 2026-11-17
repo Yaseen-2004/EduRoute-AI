@@ -798,6 +798,31 @@ Tests: 114 passing (fast suite 112 + 2 slow).
 
 **Research paper:** the edits in `docs/PAPER_UPDATE_14NOV.md` and the results above are applied (section 3.7 and results table 6.6 added).
 
+## 9i. Better speech-to-text (17 Nov 2026)
+
+Measured on the 20 synthetic Indian-English clips, plus a degraded copy of each: the volume at −26 dB (a quiet laptop microphone) with fan noise and 50/100 Hz mains hum at 10 dB SNR. The numbers are word error rates, about 140 words per set, so one word is about 0.7 points.
+
+| Change | Clean | Noisy and quiet | Median time | Kept? |
+|---|---|---|---|---|
+| Before (generic vocabulary prompt) | 4.3% | 7.1% | 2.0 s | – |
+| **Subject found automatically, second pass with its vocabulary** | **3.6%** | **6.4%** | 4.1 s | **yes**, when no subject is chosen |
+| Subject known (the student chose it) | 3.6% | 6.4% | 2.0 s | already in the app |
+| Recording clean-up (80 Hz high-pass, level normalisation) | 5.0% | 7.9% | 1.9 s | no: worse on its own |
+| Subject topics as Whisper hotwords | 3.6% | 5.0% | 2.0 s | no gain over the prompt |
+| Per-word confidence (word timestamps) | 29% | 19% | 12 s | no: breaks decoding |
+| `small.en` instead of `base.en` (clean) | 3.6% | – | 5.8 s | no: 2.5× slower |
+
+- **Automatic subject:** the first-pass transcript is searched in the index the app has already loaded, and the top five passages vote for a subject. Below a similarity of 0.45 no subject is used, so off-syllabus speech is not pushed towards engineering words. It picked the right subject in 39 of 40 clips. Cost: about 2 s more, and only when no subject is chosen (`EDUROUTE_WHISPER_SUBJECT_SECOND_PASS=false` turns it off). The student sees "Recognised with the vocabulary of *Thermodynamics*" above the transcript.
+- **Always on:**
+  - segments that Whisper itself rates as non-speech, and stock subtitle phrases ("Thank you for watching"), are dropped;
+  - decoder loops (the same letters 4+ times in a row) are dropped;
+  - one misheard phrase is not carried into the next segment (`condition_on_previous_text=False`).
+- **Not measurable here:** clean-up together with the subject prompt scored 4.3% on the noisy set, against 6.4% for the prompt alone. The gap is 3 words and clean-up alone was worse, so it stays off until real recordings (Evaluation studio, "Record voice") can settle it.
+
+**Multilingual mode (removed the same day at the team's request; kept in git history, commit `ebdb069`):**
+- NLLB-200 translation passed a round-trip quality gate for 8 Indian languages (chrF 77–85).
+- Whisper `small` speech was usable for Tamil (CER 19%), weak for Hindi (59%, mostly spelling variants) and unusable for Kannada and Telugu (CER > 100%).
+
 ## 10. What remains (report §25)
 
 **Done by me (12–14 Nov):**
