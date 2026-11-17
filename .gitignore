@@ -33,3 +33,6 @@ deploy/*.tar.gz
 run/
 deploy/gpu/local.conf
 deploy/gpu/pod.conf
+
+# Downloaded/converted model weights (rebuild: docs/MULTILINGUAL.md)
+models/translation/

@@ -1,0 +1,150 @@
+{
+    "generated_at": "2026-11-17T14:04:28",
+    "folder": "C:\\Users\\USER\\OneDrive\\Desktop\\EduRoute AI\\evaluation\\voice_eval_synthetic_kn",
+    "language": "kn",
+    "whisper_model": "small",
+    "metric": "CER (characters)",
+    "files": 10,
+    "wer": 1.148,
+    "exact_transcripts": 0.0,
+    "by_speaker": {
+        "kn-IN-SapnaNeural": 1.148
+    },
+    "by_accent": {
+        "synthetic-kn": 1.148
+    },
+    "median_latency_s": 101.91,
+    "real_time_factor": 26.27,
+    "rows": [
+        {
+            "file": "E21_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಭಾಗಶಃ ಡಿಸ್ಟಿಲೇಶನ್ ಎಂದರೇನು?",
+            "hypothesis": "kötา,  घिआई.  भागोह शैर जिस्टिलेश्यन अगह जाएनृ वागोह शाव्चे बट्रेनृ",
+            "errors": 54,
+            "words": 23,
+            "wer": 2.348,
+            "duration_s": 2.88,
+            "latency_s": 111.6,
+            "low_confidence": true
+        },
+        {
+            "file": "E10_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಆರ್ಎಸ್ಎ ಅಲ್ಗಾರಿದಮ್ ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಎಂಬುದನ್ನು ವಿವರಿಸಿ.",
+            "hypothesis": "bruk utet అతరడిమై వాడ్ కివ్ం�",
+            "errors": 56,
+            "words": 56,
+            "wer": 1.0,
+            "duration_s": 4.73,
+            "latency_s": 100.5,
+            "low_confidence": true
+        },
+        {
+            "file": "E26_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಮ್ಯಾಗ್ನೆಟಿಕ್ ರೆಸೊನೆನ್ಸ್ ಇಮೇಜಿಂಗ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ?",
+            "hypothesis": "circumstant  qualis          大        involved two",
+            "errors": 47,
+            "words": 47,
+            "wer": 1.0,
+            "duration_s": 4.15,
+            "latency_s": 112.87,
+            "low_confidence": true
+        },
+        {
+            "file": "E42_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ತೈಲ ಕೊಳಗಳಲ್ಲಿ ದ್ರವ (ಮಣ್ಣು) ಕೊರೆಯುವ ಕಾರ್ಯವೇನು?",
+            "hypothesis": "ु 쪽",
+            "errors": 37,
+            "words": 37,
+            "wer": 1.0,
+            "duration_s": 4.34,
+            "latency_s": 122.81,
+            "low_confidence": true
+        },
+        {
+            "file": "E04_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "TCP/IP ಪ್ರೋಟೋಕಾಲ್ ಸೂಟ್ ಅನ್ನು ವಿವರಿಸಿ.",
+            "hypothesis": "నీవనినేకిలోలోతిమాయార్తి మరాఫ్తి.",
+            "errors": 31,
+            "words": 31,
+            "wer": 1.0,
+            "duration_s": 3.41,
+            "latency_s": 105.6,
+            "low_confidence": true
+        },
+        {
+            "file": "E05_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಮುಖ್ಯ ಘಟಕ ವಿಶ್ಲೇಷಣೆ ಎಂದರೇನು?",
+            "hypothesis": "కోన్ర్ర్రాంికోివతర్రిమాలి.",
+            "errors": 25,
+            "words": 24,
+            "wer": 1.042,
+            "duration_s": 3.05,
+            "latency_s": 88.59,
+            "low_confidence": true
+        },
+        {
+            "file": "E35_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಉಷ್ಣ ದಂಪತಿಗಳು ತಾಪಮಾನವನ್ನು ಹೇಗೆ ಅಳೆಯುತ್ತವೆ?",
+            "hypothesis": "semanas , unfortunately , the goddess who created the  오�ags",
+            "errors": 47,
+            "words": 37,
+            "wer": 1.27,
+            "duration_s": 3.98,
+            "latency_s": 103.31,
+            "low_confidence": true
+        },
+        {
+            "file": "E07_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ವೆಬ್ ಪುಟಗಳಲ್ಲಿ ಡಾಕ್ಯುಮೆಂಟ್ ವಸ್ತು ಮಾದರಿ ಎಂದರೇನು?",
+            "hypothesis": "కాసార్ల్ వసిల్ల్ల్ సియమునిస్రి.",
+            "errors": 41,
+            "words": 41,
+            "wer": 1.0,
+            "duration_s": 4.06,
+            "latency_s": 80.13,
+            "low_confidence": true
+        },
+        {
+            "file": "E24_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ಪಾಲಿಮರೇಸ್ ಸರಣಿ ಪ್ರತಿಕ್ರಿಯೆ ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ?",
+            "hypothesis": "వ�ろలి మానానిన్ Buzzwords in the milk category played by hanged people.",
+            "errors": 58,
+            "words": 47,
+            "wer": 1.234,
+            "duration_s": 4.15,
+            "latency_s": 83.04,
+            "low_confidence": true
+        },
+        {
+            "file": "E38_kn.mp3",
+            "speaker": "kn-IN-SapnaNeural",
+            "accent": "synthetic-kn",
+            "reference": "ನಿಖರ ಕೃಷಿ ಎಂದರೇನು?",
+            "hypothesis": "ఇసిలుపోత్.",
+            "errors": 15,
+            "words": 15,
+            "wer": 1.0,
+            "duration_s": 2.47,
+            "latency_s": 69.14,
+            "low_confidence": true
+        }
+    ]
+}

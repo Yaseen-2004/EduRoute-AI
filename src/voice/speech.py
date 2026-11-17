@@ -17,6 +17,7 @@ import io
 import re
 import tempfile
 import time
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -67,6 +68,31 @@ class Transcript:
     low_confidence_segments: list = field(default_factory=list)
     latency_s: float = 0.0
     corrections: list = field(default_factory=list)   # (heard, corrected) technical terms
+    # False when an Indian-language transcript is mostly not in that language's script:
+    # Whisper small wrote Kannada and Telugu speech in Devanagari or produced junk (17 Nov),
+    # so such text is not offered as the student's question.
+    reliable: bool = True
+
+
+SCRIPT_SHARE_MIN = 0.5      # English technical terms in Latin script may make up the rest
+# A decoder stuck in a loop: the same 1-4 characters four or more times in a row
+# ("ల్ల్ల్ల్", "నినినిని" in Telugu, 17 Nov). Real words do not do this.
+STUCK = re.compile(r"((?:[^\W\d_]|[ऀ-෿]){1,4}?)\1{3,}")    # letters and Indic signs only
+
+
+def script_share(text, language):
+    """Share of the letters of `text` written in the script of `language` (a code in
+    src/language/languages.py). 1.0 for English or a language without a script range."""
+    from src.language.languages import LANGUAGES
+    lang = LANGUAGES.get(language)
+    if not lang or not lang.script_range:
+        return 1.0
+    # Letters and vowel signs (Unicode category M), which Indian scripts write as marks.
+    chars = [ch for ch in text if unicodedata.category(ch)[0] in "LM"]
+    if not chars:
+        return 0.0
+    lo, hi = lang.script_range
+    return sum(lo <= ord(ch) <= hi for ch in chars) / len(chars)
 
 
 def decode_audio(path, sampling_rate=16000):
@@ -93,23 +119,46 @@ def decode_audio(path, sampling_rate=16000):
     return np.concatenate(pieces).astype(np.float32) / 32768.0
 
 
+# Whisper's well-known inventions on silence or noise (it was trained on subtitled
+# video). A short clip whose only text is one of these is treated as no speech.
+HALLUCINATIONS = re.compile(
+    r"^\W*(thank you( (so much|very much))?( for watching)?|thanks for watching|please subscribe|"
+    r"subtitles? by.*|you|bye\.?|\.+|music)\W*$", re.IGNORECASE)
+
+
+def is_hallucination(segment):
+    """A segment that is not speech: Whisper itself judged it unlikely to be speech
+    and was unsure of the words, or it is a stock silence phrase."""
+    no_speech = getattr(segment, "no_speech_prob", 0.0) or 0.0
+    return (no_speech > 0.6 and segment.avg_logprob < -0.8) or bool(HALLUCINATIONS.match(segment.text.strip()))
+
+
 class SpeechRecognizer:
+    """English questions use the English-only model (best accuracy for its size);
+    questions in an Indian language use the multilingual model with that language
+    as a hint (`language=`), e.g. "hi", "kn", "te", "ta"."""
 
-    def __init__(self, model_size=None):
+    def __init__(self, model_size=None, multilingual_size=None):
         self.model_size = model_size or settings.WHISPER_MODEL_SIZE
-        self._model = None
+        self.multilingual_size = multilingual_size or settings.WHISPER_MULTILINGUAL_MODEL
+        self._models = {}
 
-    def _load(self):
-        if self._model is None:
+    def _load(self, multilingual=False):
+        size = self.multilingual_size if multilingual else self.model_size
+        if size not in self._models:
             try:
                 from faster_whisper import WhisperModel
             except ImportError as error:
                 raise VoiceUnavailableError(
                     "Speech recognition needs faster-whisper: pip install faster-whisper"
                 ) from error
-            self._model = WhisperModel(self.model_size, device=settings.WHISPER_DEVICE,
-                                       compute_type=settings.WHISPER_COMPUTE_TYPE)
-        return self._model
+            self._models[size] = WhisperModel(size, device=settings.WHISPER_DEVICE,
+                                              compute_type=settings.WHISPER_COMPUTE_TYPE)
+        return self._models[size]
+
+    @property
+    def _model(self):            # kept for the app's background warm-up
+        return self._models.get(self.model_size)
 
     @staticmethod
     def vocabulary_prompt(subject_name=None, topics=None):
@@ -122,7 +171,8 @@ class SpeechRecognizer:
             return f"B.Tech engineering question about {subject_name}" + (f": {terms}." if terms else ".")
         return "B.Tech engineering question about a technical topic."
 
-    def transcribe(self, audio_bytes, suffix=".wav", subject_name=None, topics=None):
+    def transcribe(self, audio_bytes, suffix=".wav", subject_name=None, topics=None, language=None):
+        """`language`: a Whisper code for a non-English question ("hi", "kn", ...); None/"en" = English."""
         if not audio_bytes:
             raise ValueError("Empty audio.")
         if len(audio_bytes) > settings.MAX_AUDIO_BYTES:
@@ -130,7 +180,8 @@ class SpeechRecognizer:
         if suffix.lower() not in AUDIO_EXTENSIONS:
             raise ValueError(f"Unsupported audio type {suffix}.")
 
-        model = self._load()
+        english = language in (None, "en")
+        model = self._load(multilingual=not english)
         started = time.perf_counter()
         # Audio is written to a temporary file only for decoding and deleted
         # immediately (report §21: no retention of voice recordings).
@@ -144,17 +195,23 @@ class SpeechRecognizer:
                 raise ValueError(f"Could not decode the audio file: {error}") from error
             segments, info = model.transcribe(
                 audio, beam_size=settings.WHISPER_BEAM_SIZE, vad_filter=True,
+                language=None if english and self.model_size.endswith(".en") else (language or "en"),
+                # Indian students mix English technical terms into Hindi/Kannada speech:
+                # an English vocabulary hint helps those words in every language.
                 initial_prompt=self.vocabulary_prompt(subject_name, topics),
+                condition_on_previous_text=False,       # stops one misheard phrase repeating
+                # The default temperature fallback stays: limiting it to (0.0, 0.4) made Hindi
+                # worse (CER 0.59 -> 1.31, stuck repeats kept) on 17 Nov.
             )
-            segments = list(segments)
+            segments = [s for s in segments if not is_hallucination(s)]
         finally:
             path.unlink(missing_ok=True)
 
         text = " ".join(s.text.strip() for s in segments).strip()
         # Fix mis-heard technical terms against the knowledge base's vocabulary
-        # (synthetic test set: word error rate 5.7% -> 4.3%).
+        # (synthetic test set: word error rate 5.7% -> 4.3%). English only.
         corrections = []
-        if settings.WHISPER_TERM_CORRECTION and text:
+        if settings.WHISPER_TERM_CORRECTION and text and english:
             from src.voice.term_correction import correct_terms
             text, corrections = correct_terms(text)
         logprobs = [s.avg_logprob for s in segments]
@@ -166,6 +223,8 @@ class SpeechRecognizer:
             avg_logprob=round(sum(logprobs) / len(logprobs), 3) if logprobs else None,
             low_confidence_segments=[s.text.strip() for s in segments if s.avg_logprob < -1.0],
             latency_s=round(time.perf_counter() - started, 2),
+            reliable=english or not text or (script_share(text, language) >= SCRIPT_SHARE_MIN
+                                             and not STUCK.search(text)),
         )
 
 
@@ -224,13 +283,19 @@ def synthesize(text, voice=None):
         try:
             from gtts import gTTS
             buffer = io.BytesIO()
-            gTTS(speakable, lang="en", tld="co.in").write_to_fp(buffer)
+            # Same language as the chosen Edge voice ("hi-IN-SwaraNeural" -> "hi").
+            gtts_lang = (voice or "en").split("-")[0]
+            gTTS(speakable, lang=gtts_lang, tld="co.in" if gtts_lang == "en" else "com").write_to_fp(buffer)
             return buffer.getvalue(), "gTTS"
         except Exception as error:
             errors.append(f"gTTS: {error}")
 
     # Both engines above are online services; without internet (12-14 Nov: the
-    # Wi-Fi dropped) read-aloud failed. The operating system's own voice works offline.
+    # Wi-Fi dropped) read-aloud failed. The operating system's own voice works offline,
+    # but it speaks English only: it would mangle Hindi or Tamil, so it is not used for them.
+    if voice and not voice.startswith("en-"):
+        raise VoiceUnavailableError("Reading aloud in this language needs an internet connection. "
+                                    + "; ".join(errors))
     try:
         audio = synthesize_offline(speakable)
         if audio:

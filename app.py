@@ -169,7 +169,7 @@ def conversation_markdown(messages):
             lines += [f"## Q: {message['content'] or '(image question)'}", ""]
         elif message["role"] == "assistant":
             r = message["response"]
-            lines += [r["answer"], ""]
+            lines += [r.get("answer_translated") or r["answer"], ""]
             if r.get("notices"):
                 lines += [f"> {n}" for n in r["notices"]] + [""]
             cited = [s for s in r.get("sources", []) if s.get("cited")]
@@ -215,6 +215,22 @@ def warm_up_models():
 
 
 @st.cache_resource(show_spinner=False)
+def warm_up_translation():
+    """Load the translation model (and its glossary) in the background the first time a
+    student picks another language: loading took ~35 s of the first Hindi answer (17 Nov)."""
+    from src.language import translate as tr
+
+    def run():
+        try:
+            tr._load()
+            tr.glossary()
+        except Exception:
+            pass                      # a real translation reports a real error
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+@st.cache_resource(show_spinner=False)
 def warm_up_speech():
     """Load Whisper in the background so the first voice question is not slowed down."""
     threading.Thread(target=get_recognizer()._load, daemon=True).start()
@@ -253,6 +269,20 @@ with st.sidebar:
         "Answer format", options=list(ANSWER_MODES), default="5-mark",
         format_func=lambda m: ANSWER_MODES[m]["label"].split(" (")[0].capitalize(),
     ) or "5-mark"
+    from src.language import translate as _tr
+    from src.language.languages import ENABLED, LANGUAGES, VOICE_ENABLED
+    language_options = [c for c in ENABLED if c == "en" or _tr.available()]
+    answer_language = st.selectbox(
+        "Answer language", language_options, key="answer_language",
+        format_func=lambda c: LANGUAGES[c].native if c == "en" else f"{LANGUAGES[c].native} ({LANGUAGES[c].name})",
+        help="Ask by typing or speaking in this language. EduRoute searches and checks in English, "
+             "then translates the checked answer; the English original is always one click away.")
+    if answer_language != "en":
+        warm_up_translation()
+    voice_input = status["asr"] and answer_language in VOICE_ENABLED
+    if status["asr"] and not voice_input:
+        st.caption(f"Speaking in {LANGUAGES[answer_language].name} is not reliable enough yet on this "
+                   "computer's speech model, so please type your question. Answers can still be read aloud.")
     speak = st.toggle("Read answers aloud", value=False, disabled=not status["tts"],
                       help=None if status["tts"] else "Install edge-tts or gTTS to enable.")
     developer_view = settings.ENABLE_DEVELOPER_VIEW and st.toggle(
@@ -395,7 +425,13 @@ def render_assistant(message, index, interactive=True):
     st.caption(WORKFLOW_LABELS.get(r["workflow"], r["workflow"]))
     for notice in r["notices"]:
         st.warning(notice, icon=":material/info:")
-    st.markdown(r["answer"])
+    if r.get("answer_translated"):
+        st.markdown(r["answer_translated"])
+        with st.expander("English original (the version checked against the sources)",
+                         icon=":material/translate:"):
+            st.markdown(r["answer"])
+    else:
+        st.markdown(r["answer"])
     if r.get("diagram_dot"):
         with st.container(border=True):
             st.caption(":material/account_tree: Workflow diagram (drawn from the answer above)")
@@ -484,7 +520,7 @@ prompt = st.chat_input(
     key="chat",
     accept_file=True,
     file_type=IMAGE_TYPES + DOCUMENT_TYPES,
-    accept_audio=status["asr"],
+    accept_audio=voice_input,
     max_upload_size=MAX_DOCUMENT_BYTES // (1024 * 1024),
     max_chars=settings.MAX_QUESTION_CHARS,
     submit_mode="disable",
@@ -516,12 +552,19 @@ if prompt:
                     audio.getvalue(), ".wav",
                     subject_name=subject["name"] if subject else (branches.get(branch) if branch else None),
                     topics=subject["topics"] if subject else None,
+                    language=None if answer_language == "en" else LANGUAGES[answer_language].whisper,
                 )
             except Exception as error:
                 st.error(f"Speech recognition failed: {error}")
                 st.stop()
         if not transcript.text:
             st.warning("No speech was detected. Please try again.")
+            st.stop()
+        if not transcript.reliable:
+            name = LANGUAGES[answer_language].name
+            st.warning(f"That recording could not be understood reliably in {name}. Please try again "
+                       f"closer to the microphone, or type the question (in {name} or English).",
+                       icon=":material/mic_off:")
             st.stop()
         st.session_state.chat = transcript.text
         st.session_state.voice_corrections = transcript.corrections
@@ -570,9 +613,21 @@ if prompt:
                 "Answers will cite it by page."})
             st.rerun()
 
-    st.session_state.messages.append({"role": "user", "content": text, "image": image_bytes})
+    from src.language.languages import detect_language
+    question_language = detect_language(text, preferred=answer_language)
+    original_text = text
+    if question_language != "en":
+        with st.spinner(f"Understanding your question ({LANGUAGES[question_language].name})..."):
+            try:
+                text = _tr.to_english(text, question_language)
+            except _tr.TranslationUnavailable as error:
+                st.error(str(error))
+                st.stop()
+    st.session_state.messages.append({"role": "user", "content": original_text, "image": image_bytes})
     with st.chat_message("user", avatar=AVATARS["user"]):
-        st.markdown(text or "_(image only)_")
+        st.markdown(original_text or "_(image only)_")
+        if question_language != "en":
+            st.caption(f"Understood as: {text}")
         if image_bytes:
             st.image(image_bytes, width=280, alt="Image attached by the student")
 
@@ -664,11 +719,24 @@ if prompt:
         thinking.update(label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} · {timing}",
                         state="complete")
 
+        if answer_language != "en":
+            thinking.update(label=f"Translating the checked answer into {LANGUAGES[answer_language].name}…")
+            try:
+                response["language"] = answer_language
+                response["answer_translated"] = _tr.translate_cached(response["answer"], answer_language)
+                response["notices"] = [_tr.translate_cached(n, answer_language) for n in response["notices"]]
+            except Exception as error:
+                response["notices"].append(f"Translation unavailable, so the answer is in English: {error}")
+            thinking.update(label=f"{WORKFLOW_LABELS.get(response['workflow'], response['workflow'])} · {timing}",
+                            state="complete")
+
         audio_bytes = None
         if speak:
             try:
                 from src.voice.speech import synthesize
-                audio_bytes, _ = synthesize(response["answer"])
+                spoken = response.get("answer_translated") or response["answer"]
+                audio_bytes, _ = synthesize(spoken, voice=LANGUAGES[answer_language].voice
+                                            if response.get("answer_translated") else None)
             except Exception as error:
                 response["notices"].append(f"Spoken answer unavailable: {error}")
 

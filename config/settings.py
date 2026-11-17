@@ -124,6 +124,9 @@ NLI_MODEL = _env("EDUROUTE_NLI_MODEL", "")
 
 # Voice
 WHISPER_MODEL_SIZE = _env("EDUROUTE_WHISPER_MODEL", "base.en")
+# Questions spoken in an Indian language (Hindi, Kannada, Telugu, Tamil, ...): the
+# multilingual model, with the chosen language as a hint.
+WHISPER_MULTILINGUAL_MODEL = _env("EDUROUTE_WHISPER_MULTILINGUAL_MODEL", "small")
 # Beam 1 was as accurate as beam 5 and faster on the synthetic test set (Nov 2026).
 WHISPER_BEAM_SIZE = int(_env("EDUROUTE_WHISPER_BEAM", "1"))
 # cpu (int8) on the laptop; on an NVIDIA server set cuda and float16.
