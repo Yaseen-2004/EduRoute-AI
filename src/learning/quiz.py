@@ -93,9 +93,11 @@ def support(option, passage_text):
     return len(words & set(content_words(passage_text, min_len=2))) / len(words)
 
 
-def validate(raw, passages):
-    """Well-formed, grounded questions; returns (kept, dropped_count)."""
+def validate(raw, passages, reasons=None):
+    """Well-formed, grounded questions; returns (kept, dropped_count).
+    `reasons`: a list that receives why each dropped question was dropped."""
     kept, dropped, seen = [], 0, set()
+    reasons = reasons if reasons is not None else []
     for item in raw:
         try:
             question = str(item["question"]).strip()
@@ -103,14 +105,16 @@ def validate(raw, passages):
             answer = int(item["answer"])
             source = int(item.get("source", 1))
             explanation = str(item.get("explanation", "")).strip()
-        except (KeyError, TypeError, ValueError):
+        except (KeyError, TypeError, ValueError) as error:
             dropped += 1
+            reasons.append(f"malformed: {error!r}")
             continue
         well_formed = (len(question.split()) >= 4 and len(options) == 4 and all(options)
                        and len({o.lower() for o in options}) == 4 and 0 <= answer < 4
                        and question.lower() not in seen)
         if not well_formed:
             dropped += 1
+            reasons.append(f"not well formed: {question[:60]!r} options={len(options)} answer={answer}")
             continue
         if not 1 <= source <= len(passages):
             source = 1
@@ -121,6 +125,7 @@ def validate(raw, passages):
             score, source = support(correct, passages[best]["text"]), best + 1
         if score < MIN_SUPPORT:
             dropped += 1                                 # the sources do not back this answer
+            reasons.append(f"unsupported ({score:.2f}): answer {correct!r} to {question[:60]!r}")
             continue
         seen.add(question.lower())
         kept.append(QuizQuestion(question, options, answer, explanation, source, round(score, 2)))
@@ -166,9 +171,18 @@ class QuizMaker:
             return Quiz(topic, subject_id)
         from src.llm.prompts import format_sources
         prompt = QUIZ_PROMPT.format(n=n, topic=topic, sources=format_sources(passages))
-        result = self.pipeline.llm.generate([{"role": "user", "content": prompt}],
-                                            max_new_tokens=180 * n, temperature=0.4)
-        questions, dropped = validate(_json_array(result.text or ""), passages)
+        # One retry when a reply yields too few usable questions: on the CPU, one run kept
+        # 0/5 (a malformed reply) and the next, same topic, kept 5/5 (14 Nov).
+        questions, dropped = [], 0
+        for _attempt in range(2):
+            result = self.pipeline.llm.generate([{"role": "user", "content": prompt}],
+                                                max_new_tokens=180 * n, temperature=0.4)
+            got, lost = validate(_json_array(result.text or ""), passages)
+            known = {q.question.lower() for q in questions}
+            questions += [q for q in got if q.question.lower() not in known]
+            dropped += lost
+            if len(questions) >= min(n, 3):
+                break
         quiz = Quiz(topic, subject_id, questions[:n], dropped=dropped,
                     sources=[{"number": i, "article_title": p.get("article_title"), "source_url": p.get("source_url"),
                               "text": p["text"]} for i, p in enumerate(passages, start=1)],

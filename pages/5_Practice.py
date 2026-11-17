@@ -42,7 +42,9 @@ def catalogue_choices():
 
 st.title("Practice")
 st.markdown("Test yourself on any topic. The questions are written from the same reference sources "
-            "as the answers, and each correct answer is checked against them first.")
+            "as the answers, and a question is shown only if its correct answer can be found in them.")
+st.caption("The check confirms the answer is stated in the sources; it cannot catch every wording slip, "
+           "so read the explanation and source after marking.")
 
 names, subjects_by_branch = catalogue_choices()
 branch = st.selectbox("Branch", list(subjects_by_branch), format_func=lambda c: names.get(c, c))

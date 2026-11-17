@@ -90,3 +90,24 @@ def test_quiz_is_made_once_then_reused(tmp_path, monkeypatch):
     assert pipeline.llm.calls == 1 and again.questions[0]["question"] == GOOD["question"]   # saved quiz reused
     maker.make("Rankine cycle", subject_id="ME003", n=5, fresh=True)
     assert pipeline.llm.calls == 2                                                           # new set on request
+
+
+class SequenceLLM:
+    def __init__(self, replies):
+        self.replies, self.calls = list(replies), 0
+
+    def generate(self, messages, **kw):
+        self.calls += 1
+        return GenerationResult(text=self.replies.pop(0), model="fake", backend="fake")
+
+
+def test_a_bad_reply_is_retried_once(tmp_path, monkeypatch):
+    monkeypatch.setattr(settings, "CONTEXT_ENGINEERING", False)
+    pump = {**GOOD, "question": "Which component raises the pressure of the water in the cycle?",
+            "options": ["The pump", "The turbine", "The condenser", "The chimney"]}
+    carnot = {**GOOD, "question": "Which idealised cycle has two isothermal and two adiabatic processes?",
+              "options": ["The Carnot cycle", "The Otto cycle", "The Diesel cycle", "The Brayton cycle"], "source": 2}
+    pipeline = FakePipeline("")
+    pipeline.llm = SequenceLLM(["Sorry, here are some questions: {broken", json.dumps([GOOD, pump, carnot])])
+    quiz = QuizMaker(pipeline, path=tmp_path / "q.jsonl").make("Rankine cycle", subject_id="ME003", n=5)
+    assert pipeline.llm.calls == 2 and len(quiz.questions) == 3
