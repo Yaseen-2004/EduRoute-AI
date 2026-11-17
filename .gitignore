@@ -34,5 +34,5 @@ run/
 deploy/gpu/local.conf
 deploy/gpu/pod.conf
 
-# Translation model from the removed multilingual mode (git history, 17 Nov)
+# Translation model from the removed multilingual mode (git history: "Multilingual mode" commit, 17 Nov)
 models/translation/

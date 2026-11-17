@@ -819,7 +819,7 @@ Measured on the 20 synthetic Indian-English clips, plus a degraded copy of each:
   - one misheard phrase is not carried into the next segment (`condition_on_previous_text=False`).
 - **Not measurable here:** clean-up together with the subject prompt scored 4.3% on the noisy set, against 6.4% for the prompt alone. The gap is 3 words and clean-up alone was worse, so it stays off until real recordings (Evaluation studio, "Record voice") can settle it.
 
-**Multilingual mode (removed the same day at the team's request; kept in git history, commit `ebdb069`):**
+**Multilingual mode (removed the same day at the team's request; kept in git history, commit `f3e8c5f` ("Multilingual mode (NLLB translation, ...)")):**
 - NLLB-200 translation passed a round-trip quality gate for 8 Indian languages (chrF 77–85).
 - Whisper `small` speech was usable for Tamil (CER 19%), weak for Hindi (59%, mostly spelling variants) and unusable for Kannada and Telugu (CER > 100%).
 
